@@ -5,7 +5,7 @@
 
 layui.config({
 	
-	base:"/Pear/modules/lay-modules/",
+	base:"modules/lay-modules/",
  /*   base: rootPath + "lay-module/", */
     version: true
 }).extend({
