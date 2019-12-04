@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>按钮组件</title>
+		<link href="../../assets/css/pearone.css" rel="stylesheet" />
+		<link href="../../component/layui/css/layui.css" rel="stylesheet" />
+		<link href="../../component/font-awesome/css/font-awesome.css" rel="stylesheet" />
+		<script src="../../component/layui/layui.js"></script>
+		<style>
+			
+		
+		    body{
+				margin:10px;
+			}
+		</style>
+	</head>
+	<body class="layui-bg-gray">
+		
+		<div class="layui-row layui-col-space10">
+			<div class="layui-col-md12">
+				<div class="layui-card">
+					<div class="layui-card-header">经典样式</div>
+					<div class="layui-card-body">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<button class="layui-btn">默认按钮</button>
+								<button class="layui-btn layui-btn-normal">百搭按钮</button>
+								<button class="layui-btn layui-btn-warm">警告按钮</button>
+								<button class="layui-btn layui-btn-danger">危险按钮</button>
+								<button class="layui-btn layui-btn-primary">主要按钮</button>
+							
+							</div>
+							<div class="layui-col-md12" style="margin-top:20px;">
+								<button class="layui-btn layui-btn-radius">默认按钮</button>
+								<button class="layui-btn layui-btn-normal layui-btn-radius">百搭按钮</button>
+								<button class="layui-btn layui-btn-warm layui-btn-radius">警告按钮</button>
+								<button class="layui-btn layui-btn-danger layui-btn-radius">危险按钮</button>
+								<button class="layui-btn layui-btn-primary layui-btn-radius">主要按钮</button>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md12">
+				<div class="layui-card">
+					<div class="layui-card-header">线形样式</div>
+					<div class="layui-card-body">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<button class="layui-btn layui-btn-dark-inline layui-btn-coarse">黑色按钮</button>
+								<button class="layui-btn layui-btn-inline">默认按钮</button>
+								<button class="layui-btn layui-btn-normal-inline">百搭按钮</button>
+								<button class="layui-btn layui-btn-warm-inline">警告按钮</button>
+								<button class="layui-btn layui-btn-danger-inline">危险按钮</button>
+							</div>
+							
+						
+							
+							<div class="layui-col-md12" style="margin-top: 20px;">
+								<button class="layui-btn layui-btn-dark-inline layui-btn-radius layui-btn-coarse">黑色按钮</button>
+								<button class="layui-btn layui-btn-inline layui-btn-radius  layui-btn-coarse">默认按钮</button>
+								<button class="layui-btn layui-btn-normal-inline layui-btn-radius  layui-btn-coarse">百搭按钮</button>
+								<button class="layui-btn layui-btn-warm-inline layui-btn-radius  layui-btn-coarse">警告按钮</button>
+								<button class="layui-btn layui-btn-danger-inline layui-btn-radius  layui-btn-coarse">危险按钮</button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-col-md12">
+				<div class="layui-card" style="height: 200px;">
+					<div class="layui-card-header">立体样式</div>
+					<div class="layui-card-body">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<button class="layui-btn layui-btn-3d">默认立体</button>
+								<button class="layui-btn layui-btn-normal-3d">百搭立体</button>
+								<button class="layui-btn layui-btn-warm-3d">警告立体</button>
+								<button class="layui-btn layui-btn-danger-3d">危险立体</button>
+							</div>
+							<div class="layui-col-md12" style="margin-top: 20px;">
+								<button class="layui-btn layui-btn-3d"><i class="fa fa-play"></i></button>
+								<button class="layui-btn layui-btn-normal-3d"><i class="fa fa-pause"></i></button>
+								<button class="layui-btn layui-btn-warm-3d"><i class="fa fa-backward"></i></button>
+								<button class="layui-btn layui-btn-danger-3d"><i class="fa fa-forward"></i></button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6">
+				<div class="layui-card">
+					<div class="layui-card-header">扩展样式</div>
+					<div class="layui-card-body">
+						<button class="layui-btn layui-btn-dark">黑色按钮</button>
+					    <button class="layui-btn layui-btn-default">亮色按钮</button>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md6">
+				<div class="layui-card">
+					<div class="layui-card-header">
+						下拉按钮
+					</div>
+					<div class="layui-card-body">
+						<button type="button" class="layui-btn  layui-unselect layui-form-select downpanel">
+						  <div class="layui-select-title">
+						    批量操作
+						    <i class="layui-edge"></i>
+						  </div>
+						  <dl class="layui-anim  layui-anim-upbit">
+						    <dd data-id="delete" title="删除选中文章到回收站"><i class="layui-icon"></i> 批量删除</dd>
+						    <dd data-id="move" title="移动选中文章到某栏目"><i class="layui-icon"></i> 批量移动</dd>
+						    <dd data-id="set" title="统一设置选中文章"><i class="layui-icon"></i> 批量设置</dd>
+						    <dd data-id="Audit" title="审核选中文章"><i class="layui-icon"></i> 批量审核</dd>
+						    <dd data-id="CancelAudit" title="取消审核选中文章"><i class="layui-icon">ဆ</i> 取消审核</dd>
+						    <dd data-id="replace" title="替换选中文章"><i class="layui-icon"></i> 批量替换</dd>
+						  </dl>
+						</button>
+						
+						<button type="button" class="layui-btn layui-btn-normal  layui-unselect layui-form-select downpanel">
+						  <div class="layui-select-title">
+						    下拉按钮
+						    <i class="layui-edge"></i>
+						  </div>
+						  <dl class="layui-anim  layui-anim-upbit">
+						    <dd data-id="delete" title="删除选中文章到回收站"><i class="layui-icon"></i> 批量删除</dd>
+						    <dd data-id="move" title="移动选中文章到某栏目"><i class="layui-icon"></i> 批量移动</dd>
+						    <dd data-id="set" title="统一设置选中文章"><i class="layui-icon"></i> 批量设置</dd>
+						    <dd data-id="Audit" title="审核选中文章"><i class="layui-icon"></i> 批量审核</dd>
+						    <dd data-id="CancelAudit" title="取消审核选中文章"><i class="layui-icon">ဆ</i> 取消审核</dd>
+						    <dd data-id="replace" title="替换选中文章"><i class="layui-icon"></i> 批量替换</dd>
+						  </dl>
+						</button>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		
+		
+	
+		
+		
+		
+		
+	
+		
+		
+		
+	
+		
+
+		<script src="../../modules/lay-config.js"></script>
+		<script type="text/javascript">
+			layui.use(['element', 'jquery', 'pearone', 'form'], function() {
+				
+				var element = layui.element,
+					$ = layui.jquery,
+					pearone = layui.pearone,
+					form = layui.form;
+				
+			});
+		</script>
+	</body>
+</html>

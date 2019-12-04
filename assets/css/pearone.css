@@ -1,0 +1,552 @@
+/**主页布局*/
+
+   /**通用 Header Logo */
+   .pearone-layout .layui-header .layui-logo {
+   	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
+   	background: #20222A;
+   	color: whitesmoke;
+   	transition: all .4s;
+   }
+
+   .pearone-mini .layui-side {
+   	width: 60px;
+   }
+
+   .pearone-layout .layui-side {
+   	top: 50px !important;
+   }
+
+   .pearone-layout .layui-logo {
+   	height: 50px;
+   	line-height: 50px;
+   }
+
+   .pearone-layout .layui-header {
+   	height: 50px !important;
+   	line-height: 50px !important;
+   }
+
+   .pearone-layout .layui-body {
+   	top: 50px;
+   }
+
+   .pearone-layout .layui-header .layui-nav li {
+   	height: 50px !important;
+   	line-height: 50px !important;
+   }
+
+   .pearone-mini .layui-layout-left {
+   	left: 60px;
+   	transition: all .4s;
+   }
+
+   .pearone-layout .layui-layout-left {
+   	transition: all .4s;
+   }
+
+
+   .pearone-mini .layui-body {
+   	left: 60px;
+   }
+
+   .pearone-mini .layui-header .layui-logo .title {
+   	display: none;
+   }
+
+   .pearone-mini .layui-side .layui-nav-item>a span {
+   	display: none;
+   }
+
+   .pearone-mini .layui-logo {
+   	width: 60px;
+   }
+
+   .pearone-layout .layui-logo .title {
+   	margin-left: 15px;
+   }
+
+   .pearone-layout .layui-body {
+   	overflow: -Scroll;
+   	overflow-y: hidden;
+   	transition: all .4s;
+   }
+
+   .pearone-layout .layui-side {
+   	transition: all .4s;
+   	background-color: #20222A !important;
+   }
+
+   .pearone-layout .layui-side .layui-nav-tree {
+   	background-color: #20222A !important;
+   }
+
+   .pearone-layout .layui-side .layui-nav-tree a span {
+   	margin-left: 15px;
+   }
+
+   /**通用 Body Tab */
+   .pearone-layout .layui-body .layui-tab {
+   	height: 100%;
+   }
+
+   .pearone-layout .layui-tab ul li:first-child .layui-tab-close {
+   	display: none;
+   }
+
+   .pearone-mini .layui-footer {
+
+   	left: 60px;
+   }
+
+   .pearone-layout .layui-footer {
+   	transition: all .4s;
+   }
+
+
+   .pearone-layout .layui-body .layui-tab .layui-tab-title {
+   	padding-left: 40px;
+   	padding-right: 80px;
+   	box-shadow: 0px 0px 5px gray;
+   }
+
+   .pearone-layout .layui-body .layui-tab .layui-tab-content {
+   	width: 100%;
+   	height: calc(100% - 41px);
+   	padding: 0px;
+   }
+
+   .pearone-layout .layui-body .layui-tab .layui-tab-content .layui-tab-item {
+   	width: 100%;
+   	height: 100%;
+
+   }
+
+   /**默认 Header 样式*/
+   .pearone-layout .layui-header {
+   	background-color: white;
+   }
+
+   .pearone-layout .layui-header .layui-this:after {
+   	display: none;
+   }
+
+
+   .pearone-menu-hover {
+   	position: fixed !important;
+   	left: 62px !important;
+/*   	top: 50px !important; */
+    
+   	z-index: 100 !important;
+   	width: 120px !important;
+   	background-color: #20222A !important;
+   	min-width: 120px;
+   	display: block;
+
+   }
+   
+   .pearone-menu-hover a i{
+	   display: none!important;
+   }
+  .pearone-menu-hover a span{
+	   margin: 0px!important;
+   }
+
+
+   .layui-nav-itemed>.pearone-menu-hover {
+   	background-color: #20222A !important;
+   }
+
+
+   /**通用 Body Tab 控制器*/
+   .pearone-layout .layui-body .admin-tabs-control {
+   	position: absolute;
+   	top: 0px;
+   	width: 40px;
+   	height: 41px;
+   	line-height: 41px;
+   	text-align: center;
+   	cursor: pointer;
+   	transition: all .3s;
+   	box-sizing: border-box;
+   	border-left: 1px solid #f6f6f6;
+   	z-index: 999;
+   	background-color: white;
+   	border-top: 1px solid whitesmoke;
+   	border-bottom: 1px solid whitesmoke;
+   }
+
+
+   .pearone-layout .layui-body .layui-icon-left {
+   	left: 0;
+   	border-left: none;
+   	border-right: 1px solid whitesmoke;
+
+
+   }
+
+
+
+   .pearone-layout .layui-body .layui-icon-right {
+   	right: 40px;
+   	border-left: 1px solid whitesmoke;
+
+   }
+
+   .pearone-layout .layui-body .layui-icon-down {
+   	right: 0;
+   	border-left: 1px solid whitesmoke;
+
+   }
+
+   .admin-tabs-select.layui-nav {
+   	position: absolute;
+   	left: 0;
+   	top: 0;
+   	width: 100%;
+   	height: 100%;
+   	padding: 0;
+   	background: 0 0;
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-item {
+   	line-height: 40px
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-item>a {
+   	height: 40px
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-item a {
+   	color: #666
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-child {
+   	top: 46px;
+   	left: auto;
+   	right: 6px
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-child dd.layui-this,
+   .admin-tabs-select.layui-nav .layui-nav-child dd.layui-this a {
+   	background-color: #f2f2f2 !important;
+   	color: #333
+   }
+
+   .admin-tabs-select.layui-nav .layui-nav-bar,
+   .admin-tabs-select.layui-nav .layui-nav-more {
+   	display: none;
+   }
+   
+   /**菜单栏美化*/
+   .layui-nav-child dd{
+	   padding-top:5px ;
+	   padding-bottom: 5px;
+   }
+   .layui-nav-child dd.layui-this,.layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this>a:hover{
+	   
+	   background-color: cornflowerblue!important;
+   }
+   
+   .layui-nav-tree .layui-nav-bar{
+	   background-color: cornflowerblue!important;
+   }
+  
+
+   /**样式扩展*/
+
+   /**选项卡扩展样式*/
+   .layui-tab-topline {
+   	padding: 0px;
+   	margin: 0px;
+   }
+
+   .layui-tab-topline .layui-tab-title {
+   	border: solid whitesmoke 0.0625rem;
+   }
+
+   .layui-tab-topline .layui-tab-title li {
+   	border: solid whitesmoke 0.0625rem;
+   }
+
+   .layui-tab-topline>.layui-tab-more li.layui-this:after,
+   .layui-tab-topline>.layui-tab-title .layui-this:after {
+   	border-top: 2px #5FB878 solid;
+   }
+
+   /*选项卡扩展样式*/
+   .layui-tab-button {
+   	padding: 0px;
+   	margin: 0px;
+   }
+
+   .layui-tab-button .layui-tab-title {
+   	height: 40px;
+   	line-height: 40px;
+   	border: 0px;
+   	background-color: lightgray;
+   }
+
+   .layui-tab-button .layui-tab-title li {
+   	height: 32px;
+   	line-height: 32px;
+   	background: #fff;
+   	border-radius: 3px;
+   	margin-left: 8px;
+   	border: none;
+   }
+
+   .layui-tab-button .layui-tab-title li span {
+   	margin-right: 5px;
+   }
+
+   .layui-tab-button .layui-tab-title li:hover {
+   	color: dodgerblue;
+
+   }
+
+   /** 选中状态 */
+   .layui-tab-button .layui-this {
+   	color: dodgerblue!important;
+   	border: none !important;
+   	border-radius: 5px;
+   }
+
+   /** 选中后 */
+   .layui-tab-button .layui-this:after {
+   	border: none;
+   }
+
+   .layui-tab-title li .layui-tab-close {
+
+   	border-radius: 50px;
+   }
+
+   .layui-tab-title li .layui-tab-close:hover {
+
+   	border-radius: 50px;
+   	background-color: lightgray;
+   }
+
+   /**
+	 * 横向导航栏样式
+	 */
+   .layui-bg-white *,
+   .layui-bg-white {
+   	background-color: white !important;
+   	color: black !important;
+   }
+
+   .layui-bg-white .layui-this:after,
+   .layui-bg-white .layui-nav-bar {
+   	background-color: black !important;
+   }
+
+   .layui-nav-topinline {
+   	padding: 0px;
+   }
+
+   .layui-nav-topinline .layui-this:after {
+   	top: 0px !important;
+   	height: 2px !important;
+   }
+
+   .layui-nav-topinline .layui-nav-bar {
+   	top: 0px !important;
+   	height: 2px !important;
+   }
+
+   /** 按钮样式拓展*/
+
+   .layui-btn-default {
+   	background-color: #C4C4C4 !important;
+   }
+
+   .layui-btn-dark {
+   	background-color: #525252 !important;
+   }
+
+   .layui-btn-dark-inline {
+   	background-color: white!important;
+   	border: #525252 0.0625rem solid !important;
+   	color: #525252 !important;
+   }
+
+   .layui-btn-dark-inline:hover {
+   	color: #525252 !important;
+   }
+
+   .layui-btn-inline {
+   	background-color: white !important;
+   	border: #009688 0.0625rem solid !important;
+   	color: #009688 !important;
+   }
+
+   .layui-btn-inline:hover {
+   	color: #009688 !important;
+   }
+
+   .layui-btn-normal-inline {
+   	background-color: white!important;
+   	border: #1E9FFF 0.0625rem solid !important;
+   	color: #1E9FFF !important;
+   }
+
+   .layui-btn-normal-inline:hover {
+   	color: #1E9FFF !important;
+   }
+
+   .layui-btn-warm-inline {
+   	background-color: white!important;
+   	border: #FFB800 0.0625rem solid !important;
+   	color: #FFB800 !important;
+   }
+
+   .layui-btn-warm-inline:hover {
+   	color: #FFB800 !important;
+   }
+
+   .layui-btn-danger-inline {
+   	background-color: white !important;
+   	border: #FF5722 0.0625rem solid !important;
+   	color: #FF5722 !important;
+   }
+
+   .layui-btn-danger-inline:hover {
+   	color: #FF5722 !important;
+   }
+
+   .layui-btn-coarse {
+   	border: 2px solid !important;
+   }
+
+
+
+   .layui-btn-3d {
+
+   	margin-top: 10px !important;
+   	border-radius: 3px !important;
+
+   	box-shadow: 0px 4px 0px seagreen, 0px 5px 15px rgba(0, 0, 0, .7) !important;
+
+   	text-align: center !important;
+
+
+   }
+
+   /* now if we make the box shadows smaller when the button is clicked, it'll look like the button has been "pushed" */
+
+   .layui-btn-3d:active {
+
+   	box-shadow: 0px 2px 0px seagreen, 0px 2px 3px rgba(0, 0, 0, .9) !important;
+
+   	position: relative !important;
+
+   	top: 4px !important;
+
+   }
+
+
+   .layui-btn-normal-3d {
+
+   	margin-top: 10px !important;
+
+   	border-radius: 3px !important;
+
+   	background-color: #1E9FFF !important;
+
+   	box-shadow: 0px 4px 0px royalblue, 0px 5px 15px rgba(0, 0, 0, .7) !important;
+
+   	text-align: center !important;
+
+
+   }
+
+   /* now if we make the box shadows smaller when the button is clicked, it'll look like the button has been "pushed" */
+
+   .layui-btn-normal-3d:active {
+
+   	box-shadow: 0px 2px 0px royalblue, 0px 2px 3px rgba(0, 0, 0, .9) !important;
+
+   	position: relative !important;
+
+   	top: 4px !important;
+
+   }
+
+   .layui-btn-warm-3d {
+
+   	margin-top: 10px !important;
+
+   	border-radius: 3px !important;
+
+   	background-color: #FFB800 !important;
+
+   	box-shadow: 0px 4px 0px goldenrod, 0px 5px 15px rgba(0, 0, 0, .7) !important;
+
+   	text-align: center !important;
+
+
+   }
+
+   /* now if we make the box shadows smaller when the button is clicked, it'll look like the button has been "pushed" */
+
+   .layui-btn-warm-3d:active {
+
+   	box-shadow: 0px 2px 0px goldenrod, 0px 2px 3px rgba(0, 0, 0, .9) !important;
+
+   	position: relative !important;
+
+   	top: 4px !important;
+
+   }
+
+   .layui-btn-danger-3d {
+
+
+   	margin-top: 10px !important;
+   	border-radius: 3px !important;
+
+   	background-color: #FF5722 !important;
+
+   	box-shadow: 0px 4px 0px indianred, 0px 5px 15px rgba(0, 0, 0, .7) !important;
+
+   	text-align: center !important;
+
+
+   }
+
+   /* now if we make the box shadows smaller when the button is clicked, it'll look like the button has been "pushed" */
+
+   .layui-btn-danger-3d:active {
+
+   	box-shadow: 0px 2px 0px indianred, 0px 2px 3px rgba(0, 0, 0, .9) !important;
+
+   	position: relative !important;
+
+   	top: 4px !important;
+
+   }
+
+   .downpanel {
+      width: 120px;
+   }
+
+   .downpanel .layui-select-title !important {
+   	padding-right: 30px !important;
+   	padding-left: 10px !important;
+   }
+
+   .downpanel dl {
+   	color: #000 !important;
+   	/*    top: 30px; */
+   	font-size: 14px !important;
+
+
+   }
+
+   .downpanel .layui-select-title i {
+   	border-top-color: #fff !important;
+   }
+   
+   
+
