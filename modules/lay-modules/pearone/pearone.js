@@ -309,7 +309,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 			this.rightPage = function() {
 				console.log("右滑");
 				pearone.rollPage();
-			},
+			}
 
 
 	}
