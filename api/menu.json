@@ -55,6 +55,14 @@
 	  	"type":1,
 	    "href": "views/plugin/tab.html",
 	    "spread": true
+	  },
+	  {
+	    "id":1232331,
+	    "title": "卡片",
+	    "icon": "layui-icon layui-icon-layer",
+	  	"type":1,
+	    "href": "views/plugin/card.html",
+	    "spread": true
 	  }
     ]
   },

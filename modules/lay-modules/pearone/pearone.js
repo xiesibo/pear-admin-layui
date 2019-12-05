@@ -172,7 +172,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 						if (currentTabId != 1) {
 							pearone.tabDelete(currentTabId);
 						}
-					})
+					});
 
 					$("#closeOtherTabs").on("click", function() {
 
@@ -184,7 +184,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 								pearone.tabDelete($(this).attr("lay-id"))
 							}
 						})
-					})
+					});
 
 					$("#closeAllTabs").on("click", function() {
 
@@ -196,7 +196,17 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 								pearone.tabDelete($(this).attr("lay-id"))
 							}
 						})
-					})
+					});
+					
+				   $("#leftPage").on("click", function() {
+					pearone.leftPage();
+				   })
+				
+				   $("#rightPage").on("click", function() {
+					pearone.rightPage();
+				   })
+				
+					
                     
 					pearone.initHome(pearone.config('homeInfo'));
 				
@@ -269,11 +279,42 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 			this.setTheme = function() {
 
 
-			}
+			},
+			this.rollPage =  function(d) {
+				var $tabTitle = $('.layui-body .layui-tab .layui-tab-title');
+				var left = $tabTitle.scrollLeft();
+				if ('left' === d) {
+					$tabTitle.scrollLeft(left - 300);
+				} else if ('auto' === d) {
+					var autoLeft = 0;
+					$tabTitle.children("li").each(function() {
+						if ($(this).hasClass('layui-this')) {
+							return false;
+						} else {
+							autoLeft += $(this).outerWidth();
+						}
+					});
+					// console.log(autoLeft);
+					$tabTitle.scrollLeft(autoLeft - 47);
+				} else {
+					$tabTitle.scrollLeft(left + 300);
+				}
+			},
+			// 左滑动tab
+			this.leftPage = function() {
+				console.log("左滑");
+				pearone.rollPage("left");
+			},
+			// 右滑动tab
+			this.rightPage = function() {
+				console.log("右滑");
+				pearone.rollPage();
+			},
 
 
 	}
     
+	
 	/**
 	 * 菜单栏隐藏
 	 * */
