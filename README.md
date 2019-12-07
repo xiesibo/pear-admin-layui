@@ -55,6 +55,13 @@ PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API
 
 作者因该模板与Java后台的整合，完整的开发文档会后续补全
 
+优秀开源推荐
+
+SpringBoot 后台管理系统：[SpringBoot_v2](http://gitee.com/bdj/SpringBoot_v2)
+
+
 本框架为开源框架，Apache 开源协议，支持商用，学习
 
 如果对你有帮助 欢迎 Start
+
+
