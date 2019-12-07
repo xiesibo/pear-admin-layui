@@ -199,11 +199,11 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 					});
 					
 				   $("#leftPage").on("click", function() {
-					pearone.leftPage();
+					      pearone.leftPage();
 				   })
 				
 				   $("#rightPage").on("click", function() {
-					pearone.rightPage();
+					      pearone.rightPage();
 				   })
 				
 					
@@ -309,7 +309,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 			this.rightPage = function() {
 				console.log("右滑");
 				pearone.rollPage();
-			},
+			}
 
 
 	}

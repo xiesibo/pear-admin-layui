@@ -41,6 +41,14 @@
         "spread": true
       },
 	  {
+	     "id":12321351,
+	    "title": "图标",
+	    "icon": "layui-icon layui-icon-component",
+	  	"type":1,
+	    "href": "views/plugin/iconpage.html",
+	    "spread": true
+	  },
+	  {
 		 "id":1231,
 	    "title": "导航栏",
 	    "icon": "layui-icon layui-icon-template",
