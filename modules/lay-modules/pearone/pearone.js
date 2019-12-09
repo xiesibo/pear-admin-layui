@@ -103,7 +103,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 										
 										console.log("链接:"+note.href);
 								   
-									    content+='<a class="site-demo-active" data-url="'+note.href+'" data-id="'+note.id+'" data-title="'+note.title+'" href="javascript:;"><i class="'+note.icon+'"></i><span>'+note.title+'</span></a>';
+									    content+='<a class="site-demo-active" data-url="'+note.href+'" data-id="'+note.id+'" data-title="'+note.title+'" data-icon="'+note.icon+'" href="javascript:;"><i class="'+note.icon+'"></i><span>'+note.title+'</span></a>';
 				                   
 								    }
 								   
@@ -156,7 +156,9 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 							})
 							if (isData == false) {
 								//标志为false 新增一个tab项
-								pearone.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
+								var title  = '<i class="'+dataid.attr("data-icon")+'">&nbsp;&nbsp;<span>'+dataid.attr("data-title")+'</span>'
+								
+								pearone.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"),title);
 							}
 						}
 						//最后不管是否新增tab，最后都转到要打开的选项页面上
@@ -239,7 +241,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 					//清空tab信息来初始化首页
 			        $(".pearone-layout .layui-body .layui-tab-title").html("");
 					$(".pearone-layout .layui-body .layui-tab-content").html("");
-					pearone.tabAdd(url,1,"首页");
+					pearone.tabAdd(url,1,"<i class='layui-icon layui-icon-home'></i>");
 					pearone.tabChange(1);
 				
 				}else{
