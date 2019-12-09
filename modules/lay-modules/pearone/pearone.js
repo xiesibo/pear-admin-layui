@@ -156,7 +156,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 							})
 							if (isData == false) {
 								//标志为false 新增一个tab项
-								var title  = '<i class="'+dataid.attr("data-icon")+'">&nbsp;&nbsp;<span>'+dataid.attr("data-title")+'</span>'
+								var title  = '<i class="'+dataid.attr("data-icon")+'"></i>&nbsp;&nbsp;<span>'+dataid.attr("data-title")+'</span>'
 								
 								pearone.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"),title);
 							}

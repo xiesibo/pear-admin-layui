@@ -26,5 +26,6 @@ layui.config({
 	tinymce:'tinymce/tinymce',
 	tableSelect:'tableSelect/tableSelect',
 	treetable:'treetable/treetable',
-	tag:'tag/tag'
+	tag:'tag/tag',
+	formSelects:'formSelects/formSelects-v4'
 });

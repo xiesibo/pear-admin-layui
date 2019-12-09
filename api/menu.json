@@ -90,6 +90,14 @@
 	    "spread": true
 	  },
 	  {
+	  		"id":12332112,
+	    "title": "多选下拉",
+	    "icon": "layui-icon layui-icon-left",
+	  		"type":1,
+	    "href": "views/plugin/formSelects.html",
+	    "spread": true
+	  },
+	  {
 		 "id":1212221,
 	    "title": "文本编辑",
 	    "icon": "layui-icon layui-icon-edit",
