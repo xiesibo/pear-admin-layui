@@ -162,7 +162,15 @@
   		"type":1,
   	    "href": "views/system/login.html",
   	    "spread": true
-  	  }
+  	  },
+	  {
+	    "id":1243523,
+	    "title": "404",
+	    "icon": "layui-icon layui-icon-face-cry",
+	    		"type":1,
+	    "href": "views/error/404.html",
+	    "spread": true
+	  }
   	]
    
   }
