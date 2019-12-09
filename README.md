@@ -15,8 +15,6 @@
 
 更新日志:http://jmysy.gitee.io/pear-one-layui/views/system/update.html
 
-因第三方组件引用路径的关系，演示系统中可能出现JS 404的情况，大家可下载后更改 Lay-Config.js中的配置路径即可
-
 PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以, 遇到问题及时拍板
 
 多标签页
