@@ -20,6 +20,10 @@
 PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以, 遇到问题及时拍板，加群讨论，如有意愿加入开源的
 伙伴可群内私信作者
 
+多标签 / 单标签 切换
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1214/000026_1ed92414_4835367.png "标签页动态切换.png")
+
 多标签页
 
 ![多标签页](https://images.gitee.com/uploads/images/2019/1204/204145_41f90ae8_4835367.jpeg "首页.jpg")
