@@ -1,4 +1,4 @@
-# Pear One Layui
+# Pear One Layui  最近更新 2019年 12月 14日
 
 #### 软件介绍
 基于Layui的后台管理系统模板，扩展Layui原生UI样式，整合第三方开源组件，提供便捷快速的开发方式，延续LayuiAdmin
