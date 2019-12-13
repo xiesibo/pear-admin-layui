@@ -355,6 +355,60 @@
    	height: 2px !important;
    }
 
+
+	.layui-tab-circular {
+				padding: 0px;
+				margin: 0px;
+			}
+			
+			.layui-tab-circular .layui-tab-title {
+				height: 40px;
+				line-height: 40px;
+				border: 0px;
+				background-color: whitesmoke!important;
+			}
+			
+			.layui-tab-circular .layui-tab-title li {
+				height: 32px;
+				line-height: 32px;
+				background: #fff;
+				border-radius: 20px;
+				margin-left: 8px;
+				border: none;
+			}
+			
+			.layui-tab-circular .layui-tab-title li span {
+				margin-right: 5px;
+			}
+			
+			.layui-tab-circular .layui-tab-title li:hover {
+				color: dodgerblue;
+			
+			}
+			
+			/** 选中状态 */
+			.layui-tab-circular .layui-this {
+				color: dodgerblue!important;
+				border: none !important;
+				box-shadow: 0px 0px 5px gray;
+			}
+			
+			/** 选中后 */
+			.layui-tab-circular .layui-this:after {
+				border: none;
+			}
+			
+			.layui-tab-title li .layui-tab-close {
+			
+				border-radius: 50px;
+			}
+			
+			.layui-tab-title li .layui-tab-close:hover {
+			
+				border-radius: 50px;
+				background-color: lightgray;
+			}
+
    /** 按钮样式拓展*/
 
    .layui-btn-default {

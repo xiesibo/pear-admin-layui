@@ -14,10 +14,19 @@
 		<form class="layui-form">
 			
 			<div class="layui-form-item">
-			    <label class="layui-form-label">多标签页</label>
-			    <div class="layui-input-block">
+			
 			      <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
-			    </div>
+				  &nbsp;&nbsp;多标签页
+			
+			  </div>
+			 <div class="layui-form-item">
+			 
+			      <input type="radio" name="sex"  lay-filter="radioTest" value="0" title="签页样式(一)" checked>
+					  <br>
+			      <input type="radio" name="sex"  lay-filter="radioTest" value="1" title="签页样式(二)">
+				      <br>
+				  <input type="radio" name="sex"  lay-filter="radioTest" value="2" title="签页样式(三)">
+			  
 			  </div>
 		</form>
 	
@@ -44,6 +53,32 @@
 				}
 		        
 		  });
+		  
+		  form.on('radio(radioTest)', function(data){
+		    
+			  console.log("我的天");
+			
+			  var className = "";
+			
+		      if(data.value=="0"){
+				  
+				  className = "layui-tab-button";
+				  
+			  }else if(data.value=="1"){
+				  
+				  className = "layui-tab-topline";
+				  
+			  }else if(data.value=="2"){
+				  
+				  className = "layui-tab-circular";
+				  
+			  }
+			  
+			  $(".layui-tab",parent.document).removeClass("layui-tab-button");
+			  $(".layui-tab",parent.document).removeClass("layui-tab-topline");
+			  $(".layui-tab",parent.document).removeClass("layui-tab-circular");
+			  $(".layui-tab",parent.document).addClass(className);
+		  });  
 	   	});
 	   	
 	   

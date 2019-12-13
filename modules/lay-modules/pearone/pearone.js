@@ -373,7 +373,7 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 		    closeBtn: false, //不显示关闭按钮
 		    shade: [0],
 		    shadeClose: true,
-		    area: ['300px', 'calc(100% - 50px)'],
+		    area: ['300px', 'calc(100% - 90px)'],
 		    offset: 'rb', //右下角弹出
 		    time: 0, //2秒后自动关闭
 		      anim   : -1,
