@@ -13,9 +13,12 @@
 
 演示地址:http://jmysy.gitee.io/pear-one-layui/
 
-因第三方组件引用路径的关系，演示系统中可能出现JS 404的情况，大家可下载后更改 Lay-Config.js中的配置路径即可
+更新日志:http://jmysy.gitee.io/pear-one-layui/views/system/update.html
 
-PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以
+交流链接: [交流群](https://jq.qq.com/?_wv=1027&k=5OdSmve)
+
+PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以, 遇到问题及时拍板，加群讨论，如有意愿加入开源的
+伙伴可群内私信作者
 
 多标签页
 
