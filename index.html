@@ -23,6 +23,9 @@
 					
 				</ul>
 				<ul class="layui-nav layui-nav-topinline layui-bg-white layui-layout-right">
+				     <li class="layui-nav-item">
+						 
+					 </li>
 					<li class="layui-nav-item">
 						<a href="javascript:;">
 							<img src="assets/images/avatar.jpg" class="layui-nav-img">
@@ -111,29 +114,24 @@
 		<script src="modules/lay-config.js"></script>
 		<script>
 			//JavaScript代码区域
-			layui.use(['element', 'jquery', 'pearone', 'layer','notice'], function() {
+			layui.use(['element', 'jquery', 'pearone', 'layer','notice','form'], function() {
 				var element = layui.element,
 					$ = layui.jquery,
 					pearone = layui.pearone,
 					layer = layui.layer,
-					notice = layui.notice;
+					notice = layui.notice,
+					form = layui.form;
                 
 				
 				    setTimeout(function() {
 					notice.success("登陆成功!");
 					
 				}, 2300);
-				
-				
 				pearone.init();
-			
-
 			});
 			
 		
 		</script>
-		
-	
 		<script src="assets/js/jquery-2.1.1.min.js"></script>
 		<script src="assets/js/jquery.preloader.js" type="text/javascript"></script>
 		<script type="text/javascript">

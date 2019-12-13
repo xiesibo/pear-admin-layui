@@ -1,7 +1,8 @@
-layui.define(["element", "jquery", "layer"], function(exports) {
+layui.define(["element", "jquery", "layer","form"], function(exports) {
 	var element = layui.element,
 		$ = layui.$,
-		layer = layui.layer;
+		layer = layui.layer,
+		form = layui.form;
 
 	// 判断是否在web容器中打开
 	if (!/http(s*):\/\//.test(location.href)) {
@@ -363,25 +364,11 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 	})
 
 	$(".setTheme").click(function() {
-		var html = '<div style="margin:20px">111</div>';
+		
 
-		/* layer.open({
-			type: 1,
-			title: false,
-			closeBtn: false, //不显示关闭按钮
-			shade: [0],
-			shadeClose: true,
-			area: ['300px', 'calc(100% - 50px)'],
-			offset: 'rb', //右下角弹出
-			time: 0, //2秒后自动关闭
-			anim: 2,
-			content: html, //iframe的url，no代表不显示滚动条
-			end: function() { //此处用于演示
-			}
-		}); */
 		
 		layer.open({
-		    type: 1,
+		    type: 2,
 		    title: false,
 		    closeBtn: false, //不显示关闭按钮
 		    shade: [0],
@@ -391,7 +378,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 		    time: 0, //2秒后自动关闭
 		      anim   : -1,
 		      skin:'layer-anim-07',
-		      content : '<div style="padding: 30px;" >右侧滑动效果</div>',
+		      content : 'views/system/theme.html',
 		      cancel  : function (index) {
 		        var $layero = $('#layui-layer' + index);
 		        $layero.animate({
@@ -402,6 +389,7 @@ layui.define(["element", "jquery", "layer"], function(exports) {
 		        return false;
 		      }
 		    });
+		
 	})
 	
 	/**
