@@ -13,12 +13,19 @@
 	<body>
 		<form class="layui-form">
 			
-			<div class="layui-form-item">
+			  <div class="layui-form-item">
 			
 			      <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="ON|OFF">
 				  &nbsp;&nbsp;多标签页
 			
 			  </div>
+			  
+			  <div class="layui-form-item">
+			  
+			        <input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="system" lay-text="ON|OFF">
+			  	  &nbsp;&nbsp;菜单模式
+			  
+			    </div>
 			 <div class="layui-form-item">
 			 
 			      <input type="radio" name="sex"  lay-filter="radioTest" value="0" title="签页样式(一)" checked>
@@ -51,6 +58,16 @@
 				}else{
 					  window.parent.pearone.initTab(false);	
 				}
+		        
+		  });
+		  
+		  form.on('switch(system)', function(data){
+		  		
+		        if(this.checked){
+		  				     window.parent.pearone.initMenu(pearone.config('menuInfo'));	
+		  				}else{
+		  					 window.parent.pearone.initMenuPlus(pearone.config('menuInfo'));	
+		  				}
 		        
 		  });
 		  

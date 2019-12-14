@@ -37,8 +37,10 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 				config.multileTab = b;
 			},
 			this.init = function() {
-              
+                // 单系统菜单
 			    pearone.initMenu(pearone.config('menuInfo')); 
+				// 多系统菜单
+				pearone.initMenuPlus(pearone.config('menuInfo')); 
 				
 			 	pearone.initHome(pearone.config('homeInfo')); 
 				
@@ -47,10 +49,120 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 			},
 			this.initMenu = function(url){
 				
+			   console.log("初始化单系统菜单")
 				//清空菜单栏
-				$("#menu").html("");
+			  $(".layui-side #menuEnd").html("");
+			  $(".layui-header #topMenu").html("");
 				
-				$.get(url, function(result){
+				var leftHtml= '<ul class="layui-nav layui-nav-tree" id="menu" lay-filter="test">'
+				$.ajaxSettings.async = false;
+		        $.get(url, function(result){
+				      $.each(result,function(i,item){
+						             var content='<li class="layui-nav-item" >';
+						             if(item.type==0){
+									    content+='<a  href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
+						             }else if(item.type==1){
+										content+='<a class="site-demo-active" data-url="'+item.href+'" data-id="'+item.id+'" data-title="'+item.title+'" href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
+									 }
+									 //这里是添加所有的子菜单
+						             content+=pearone.loadchild(item);
+						             content+='</li>';
+						             
+									 
+									 leftHtml+=content;
+									 
+	                    });
+						leftHtml+="</ul>";
+						$("#menuEnd").append(leftHtml);
+						element.init();
+				        pearone.initTab(pearone.config('multileTab'));
+			    });
+				$.ajaxSettings.async = true;
+				
+				//重新注入灵魂
+				
+				
+		             
+				
+				
+				
+			},
+			this.initMenuPlus = function(url){
+				//顶部菜单
+				var headHtml = "";
+				//左边菜单
+				var leftHtml = "";
+				console.log("初始化多系统菜单");
+		        $(".layui-side #menuEnd").html("");
+		        $(".layui-header #topMenu").html("");
+						
+			    $.ajaxSettings.async = false;
+				$.get(url,function(result){
+					//每一个菜单
+					 var leftMenuEnd ='<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
+					 //遍历第一层,既顶部菜单
+				     $.each(result,function(i,item){
+						      //设置每一个菜单的唯一值
+						     leftMenuEnd ='<ul  class="layui-nav layui-nav-tree leftMenu" id="lay-'+item.id+'" lay-filter="test">';
+						 
+				             var content='<li class="layui-nav-item" id="lay-'+item.id+'">';
+				             if(item.type==0){
+							    content+='<a  href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i>&nbsp;&nbsp;<span>'+item.title+'</span></a>';
+				             }else if(item.type==1){
+								content+='<a class="site-demo-active" data-url="'+item.href+'" data-id="'+item.id+'" data-title="'+item.title+'" href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i>&nbsp;&nbsp;<span>'+item.title+'</span></a>';
+							 }
+							 //这里是添加所有的子菜单
+				            /* content+=pearone.loadchild(item); */
+							   //遍历基本的左侧菜单
+							   $.each(item.children,function(j,item1){
+								 
+								var leftMenu='<li class="layui-nav-item">';
+								
+								if(item1.type==0){
+								   leftMenu+='<a  href="javascript:;" href="javascript:;"><i class="'+item1.icon+'"></i><span>'+item1.title+'</span></a>';
+								}else if(item1.type==1){
+								   
+								   leftMenu+='<a class="site-demo-active" data-url="'+item1.href+'" data-id="'+item1.id+'" data-title="'+item1.title+'" href="javascript:;" href="javascript:;"><i class="'+item1.icon+'"></i><span>'+item1.title+'</span></a>';
+																 
+								}
+								
+								leftMenu+= pearone.loadchild(item1);
+								leftMenu+='</li>';
+				                leftMenuEnd+=leftMenu;
+							})
+							
+							
+							leftMenuEnd +='</ul>';
+							//将每一个菜单拼接到总的 
+							leftHtml+=leftMenuEnd;
+							
+				            content+='</li>';
+				            $("#topMenu").append(content);
+							
+							$("#topMenu li").click(function(){
+								var  menuId = $(this).attr("id");
+								$(".layui-side .leftMenu").addClass("layui-hide");
+								$(".layui-side .leftMenu").removeClass("layui-show");
+								$(".layui-side #"+menuId).addClass("layui-show");
+								$(".layui-side #"+menuId).removeClass("layui-hide");
+							})
+							     
+				     });
+					 
+					 $("#menuEnd").append(leftHtml);
+					 element.init();
+					 pearone.initTab(pearone.config('multileTab'));
+					 
+					 $("#topMenu li:first-child").addClass("layui-this");
+					 $(".layui-side .leftMenu").addClass("layui-hide");
+					 $("#menuEnd ul:first-child").addClass("layui-show");
+					 $("#menuEnd ul:first-child").removeClass("layui-hide");
+					 
+				})
+				$.ajaxSettings.async = true;
+				
+				
+				/* $.get(url, function(result){
 				 
 				        $.each(result,function(i,item){
 						             var content='<li class="layui-nav-item">';
@@ -64,19 +176,12 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 						             content+=pearone.loadchild(item);
 						             content+='</li>';
 						             $("#menu").append(content);
-	                    });
+				        });
 						element.init();
 				        pearone.initTab(pearone.config('multileTab'));
-			    });
+				}); */
 				
-				//重新注入灵魂
-				
-				
-		             
-				
-				
-				
-			},
+			}
 			this.loadchild = function(obj){
 				            if(obj==null){
 				                return;
@@ -341,10 +446,7 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 				
 				$(this).children(".layui-nav-child").css(css);
 				               
-		
-	           
-
-			}, function() {
+		}, function() {
 			
 				$(this).children(".layui-nav-child").removeClass("pearone-menu-hover");
 				
@@ -391,6 +493,9 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 		    });
 		
 	})
+	
+
+	
 	
 	/**
 	 * 通用下拉按钮实现

@@ -327,6 +327,14 @@
    	background-color: lightgray;
    }
 
+   .pearone-mini  #topMenu{
+	    left:160px!important;
+   }
+   
+   #topMenu{
+	   transition: all .4s;
+   }
+
    /**
 	 * 横向导航栏样式
 	 */
