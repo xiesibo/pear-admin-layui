@@ -40,7 +40,7 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
                 // 单系统菜单
 			    pearone.initMenu(pearone.config('menuInfo')); 
 				// 多系统菜单
-				pearone.initMenuPlus(pearone.config('menuInfo')); 
+				/* pearone.initMenuPlus(pearone.config('menuInfo')); */
 				
 			 	pearone.initHome(pearone.config('homeInfo')); 
 				
