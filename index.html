@@ -51,9 +51,8 @@
 					<div style="background-color: white;height: 40px;line-height: 40px;z-index: 999;padding-left: 20px;border: 1px solid whitesmoke;box-shadow: 0px 0px 5px gray;">
 
 						<span class="layui-breadcrumb">
-							<a href="/">首页</a>
-							<a href="/demo/">演示</a>
-							<a><cite>导航元素</cite></a>
+							
+						  <a href="#" id="oneTab-title"><i class="layui-icon layui-icon-console"></i>&nbsp;&nbsp;<span>首页</span></a>
 						</span>
 
 					</div>
@@ -112,20 +111,24 @@
 					layer = layui.layer,
 					notice = layui.notice,
 					form = layui.form;
-                
-				
-				    setTimeout(function() {
+                    setTimeout(function() {
 					notice.success("登陆成功!");
 					
 				}, 2300);
+				
+				
 				
 				pearone.init({
 					menuInfo:'api/menu.json',   //菜单数据地址
 					menuType:true,     //菜单模式,true:多系统菜单 false:单系统菜单模式
 					homeInfo:'views/system/console.html',     //主页地址
-					multileTab:true, //多标签页是否开启,true:开启  false:关闭
+					multileTab:false, //多标签页是否开启,true:开启  false:关闭
 					tabType:3  //标签页样式 1.2.3 三种样式
 				});
+				
+				
+				
+				
 			});
 			
 		

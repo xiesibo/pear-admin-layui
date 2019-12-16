@@ -355,6 +355,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					$('.site-demo-active').on('click', function() {
 
 						var url = $(this).attr("data-url");
+                       
+					    $("#oneTab-title").html("<i class='layui-icon layui-icon-console'></i>&nbsp;&nbsp;<span>"+$(this).attr("data-title")+"</span>");
 
 						$("#mainFrame").attr("src", url);
 					})
