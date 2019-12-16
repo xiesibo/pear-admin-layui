@@ -1,6 +1,6 @@
 # Pear One Layui    
 
-最近更新 2019年 12月 15日
+最近更新 2019年 12月 17日
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1214/233215_030865dd_4835367.png "layui-logo.png")
 
