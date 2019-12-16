@@ -1,4 +1,4 @@
-layui.define(["element", "jquery", "layer","form"], function(exports) {
+layui.define(["element", "jquery", "layer", "form"], function(exports) {
 	var element = layui.element,
 		$ = layui.$,
 		layer = layui.layer,
@@ -16,152 +16,181 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 		 * @param name 
 		 * @returns {{BgColorDefault: number, urlSuffixDefault: boolean}|*}
 		 */
-		    var config = {
-		    	multileTab: true, 
-				homeInfo:'views/system/console.html',
-				menuInfo:'api/menu.json'
-		    };
-			
-			
-     	    this.config = function(name) {
+		var config = {
+			multileTab: true,
+			homeInfo: 'views/system/console.html',
+			menuInfo: 'api/menu.json'
+		};
 
-			
+
+		this.config = function(name) {
+
+
 				if (name == undefined) {
 					return config;
 				} else {
 					return config[name];
 				}
 			},
-			this.setConfig = function(b){
-				
+			this.setConfig = function(b) {
+
 				config.multileTab = b;
 			},
-			this.init = function() {
-                // 单系统菜单
-			    pearone.initMenu(pearone.config('menuInfo')); 
-				// 多系统菜单
-				/* pearone.initMenuPlus(pearone.config('menuInfo')); */
+			this.init = function(option) {
+				if (option.menuType) {
+					pearone.initMenuPlus(option.menuInfo);
+
+				} else {
+					pearone.initMenu(option.menuInfo);
+				}
+				pearone.initHome(option.homeInfo);
+
+				pearone.initTab(option.multileTab);
 				
-			 	pearone.initHome(pearone.config('homeInfo')); 
+				if(option.tabType==1){
+								  
+								  className = "layui-tab-button";
+								  
+				}else if(option.tabType==2){
+								  
+								  className = "layui-tab-topline";
+								  
+				}else if(option.tabType==3){
+								  
+								  className = "layui-tab-circular";
+								  
+				}
 				
-				pearone.initTab(pearone.config('multileTab'));
+				$(".layui-tab").removeClass("layui-tab-button");
+				$(".layui-tab").removeClass("layui-tab-topline");
+				$(".layui-tab").removeClass("layui-tab-circular");
+				$(".layui-tab").addClass(className);
 
 			},
-			this.initMenu = function(url){
-				
-			   console.log("初始化单系统菜单")
+			this.initMenu = function(url) {
+
+				console.log("初始化单系统菜单")
 				//清空菜单栏
-			  $(".layui-side #menuEnd").html("");
-			  $(".layui-header #topMenu").html("");
-				
-				var leftHtml= '<ul class="layui-nav layui-nav-tree" id="menu" lay-filter="test">'
+				$(".layui-side #menuEnd").html("");
+				$(".layui-header #topMenu").html("");
+
+				var leftHtml = '<ul class="layui-nav layui-nav-tree" id="menu" lay-filter="test">'
 				$.ajaxSettings.async = false;
-		        $.get(url, function(result){
-				      $.each(result,function(i,item){
-						             var content='<li class="layui-nav-item" >';
-						             if(item.type==0){
-									    content+='<a  href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
-						             }else if(item.type==1){
-										content+='<a class="site-demo-active" data-url="'+item.href+'" data-id="'+item.id+'" data-title="'+item.title+'" href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
-									 }
-									 //这里是添加所有的子菜单
-						             content+=pearone.loadchild(item);
-						             content+='</li>';
-						             
-									 
-									 leftHtml+=content;
-									 
-	                    });
-						leftHtml+="</ul>";
-						$("#menuEnd").append(leftHtml);
-						element.init();
-				        pearone.initTab(pearone.config('multileTab'));
-			    });
+				$.get(url, function(result) {
+					$.each(result, function(i, item) {
+						var content = '<li class="layui-nav-item" >';
+						if (item.type == 0) {
+							content += '<a  href="javascript:;" href="javascript:;"><i class="' + item.icon + '"></i><span>' + item.title +
+								'</span></a>';
+						} else if (item.type == 1) {
+							content += '<a class="site-demo-active" data-url="' + item.href + '" data-id="' + item.id +
+								'" data-title="' + item.title + '" href="javascript:;" href="javascript:;"><i class="' + item.icon +
+								'"></i><span>' + item.title + '</span></a>';
+						}
+						//这里是添加所有的子菜单
+						content += pearone.loadchild(item);
+						content += '</li>';
+
+
+						leftHtml += content;
+
+					});
+					leftHtml += "</ul>";
+					$("#menuEnd").append(leftHtml);
+					element.init();
+					pearone.initTab(pearone.config('multileTab'));
+				});
 				$.ajaxSettings.async = true;
-				
+
 				//重新注入灵魂
-				
-				
-		             
-				
-				
-				
+
+
+
+
+
+
 			},
-			this.initMenuPlus = function(url){
+			this.initMenuPlus = function(url) {
 				//顶部菜单
 				var headHtml = "";
 				//左边菜单
 				var leftHtml = "";
 				console.log("初始化多系统菜单");
-		        $(".layui-side #menuEnd").html("");
-		        $(".layui-header #topMenu").html("");
-						
-			    $.ajaxSettings.async = false;
-				$.get(url,function(result){
+				$(".layui-side #menuEnd").html("");
+				$(".layui-header #topMenu").html("");
+
+				$.ajaxSettings.async = false;
+				$.get(url, function(result) {
 					//每一个菜单
-					 var leftMenuEnd ='<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
-					 //遍历第一层,既顶部菜单
-				     $.each(result,function(i,item){
-						      //设置每一个菜单的唯一值
-						     leftMenuEnd ='<ul  class="layui-nav layui-nav-tree leftMenu" id="lay-'+item.id+'" lay-filter="test">';
-						 
-				             var content='<li class="layui-nav-item" id="lay-'+item.id+'">';
-				             if(item.type==0){
-							    content+='<a  href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i>&nbsp;&nbsp;<span>'+item.title+'</span></a>';
-				             }else if(item.type==1){
-								content+='<a class="site-demo-active" data-url="'+item.href+'" data-id="'+item.id+'" data-title="'+item.title+'" href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i>&nbsp;&nbsp;<span>'+item.title+'</span></a>';
-							 }
-							 //这里是添加所有的子菜单
-				            /* content+=pearone.loadchild(item); */
-							   //遍历基本的左侧菜单
-							   $.each(item.children,function(j,item1){
-								 
-								var leftMenu='<li class="layui-nav-item">';
-								
-								if(item1.type==0){
-								   leftMenu+='<a  href="javascript:;" href="javascript:;"><i class="'+item1.icon+'"></i><span>'+item1.title+'</span></a>';
-								}else if(item1.type==1){
-								   
-								   leftMenu+='<a class="site-demo-active" data-url="'+item1.href+'" data-id="'+item1.id+'" data-title="'+item1.title+'" href="javascript:;" href="javascript:;"><i class="'+item1.icon+'"></i><span>'+item1.title+'</span></a>';
-																 
-								}
-								
-								leftMenu+= pearone.loadchild(item1);
-								leftMenu+='</li>';
-				                leftMenuEnd+=leftMenu;
-							})
-							
-							
-							leftMenuEnd +='</ul>';
-							//将每一个菜单拼接到总的 
-							leftHtml+=leftMenuEnd;
-							
-				            content+='</li>';
-				            $("#topMenu").append(content);
-							
-							$("#topMenu li").click(function(){
-								var  menuId = $(this).attr("id");
-								$(".layui-side .leftMenu").addClass("layui-hide");
-								$(".layui-side .leftMenu").removeClass("layui-show");
-								$(".layui-side #"+menuId).addClass("layui-show");
-								$(".layui-side #"+menuId).removeClass("layui-hide");
-							})
-							     
-				     });
-					 
-					 $("#menuEnd").append(leftHtml);
-					 element.init();
-					 pearone.initTab(pearone.config('multileTab'));
-					 
-					 $("#topMenu li:first-child").addClass("layui-this");
-					 $(".layui-side .leftMenu").addClass("layui-hide");
-					 $("#menuEnd ul:first-child").addClass("layui-show");
-					 $("#menuEnd ul:first-child").removeClass("layui-hide");
-					 
+					var leftMenuEnd = '<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
+					//遍历第一层,既顶部菜单
+					$.each(result, function(i, item) {
+						//设置每一个菜单的唯一值
+						leftMenuEnd = '<ul  class="layui-nav layui-nav-tree leftMenu" id="lay-' + item.id + '" lay-filter="test">';
+
+						var content = '<li class="layui-nav-item" id="lay-' + item.id + '">';
+						if (item.type == 0) {
+							content += '<a  href="javascript:;" href="javascript:;"><i class="' + item.icon +
+								'"></i>&nbsp;&nbsp;<span>' + item.title + '</span></a>';
+						} else if (item.type == 1) {
+							content += '<a class="site-demo-active" data-url="' + item.href + '" data-id="' + item.id +
+								'" data-title="' + item.title + '" href="javascript:;" href="javascript:;"><i class="' + item.icon +
+								'"></i>&nbsp;&nbsp;<span>' + item.title + '</span></a>';
+						}
+						//这里是添加所有的子菜单
+						/* content+=pearone.loadchild(item); */
+						//遍历基本的左侧菜单
+						$.each(item.children, function(j, item1) {
+
+							var leftMenu = '<li class="layui-nav-item">';
+
+							if (item1.type == 0) {
+								leftMenu += '<a  href="javascript:;" href="javascript:;"><i class="' + item1.icon + '"></i><span>' +
+									item1.title + '</span></a>';
+							} else if (item1.type == 1) {
+
+								leftMenu += '<a class="site-demo-active" data-url="' + item1.href + '" data-id="' + item1.id +
+									'" data-title="' + item1.title + '" href="javascript:;" href="javascript:;"><i class="' + item1.icon +
+									'"></i><span>' + item1.title + '</span></a>';
+
+							}
+
+							leftMenu += pearone.loadchild(item1);
+							leftMenu += '</li>';
+							leftMenuEnd += leftMenu;
+						})
+
+
+						leftMenuEnd += '</ul>';
+						//将每一个菜单拼接到总的 
+						leftHtml += leftMenuEnd;
+
+						content += '</li>';
+						$("#topMenu").append(content);
+
+						$("#topMenu li").click(function() {
+							var menuId = $(this).attr("id");
+							$(".layui-side .leftMenu").addClass("layui-hide");
+							$(".layui-side .leftMenu").removeClass("layui-show");
+							$(".layui-side #" + menuId).addClass("layui-show");
+							$(".layui-side #" + menuId).removeClass("layui-hide");
+						})
+
+					});
+
+					$("#menuEnd").append(leftHtml);
+					element.init();
+					pearone.initTab(pearone.config('multileTab'));
+
+					$("#topMenu li:first-child").addClass("layui-this");
+					$(".layui-side .leftMenu").addClass("layui-hide");
+					$("#menuEnd ul:first-child").addClass("layui-show");
+					$("#menuEnd ul:first-child").removeClass("layui-hide");
+
 				})
 				$.ajaxSettings.async = true;
-				
-				
+
+
 				/* $.get(url, function(result){
 				 
 				        $.each(result,function(i,item){
@@ -180,56 +209,57 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 						element.init();
 				        pearone.initTab(pearone.config('multileTab'));
 				}); */
-				
+
 			}
-			this.loadchild = function(obj){
-				            if(obj==null){
-				                return;
-				            }
-				 
-				            var content='';
-				            if(obj.children!=null && obj.children.length>0){
-				                content+='<dl class="layui-nav-child">';
-				            }else{
-				                content+='<dl>';
-				            }
-				 
-				            if(obj.children!=null && obj.children.length>0){
-				                $.each(obj.children,function(i,note){
-				                    content+='<dd>';
-				                    
-									if(note.type==0){
-										
-										content+='<a  href="javascript:;"><i class="'+note.icon+'"></i><span>'+note.title+'</span></a>';
-														                   
-										
-									}else if(note.type==1){
-								   
-								        console.log("标题:"+note.title);
-										
-										console.log("链接:"+note.href);
-								   
-									    content+='<a class="site-demo-active" data-url="'+note.href+'" data-id="'+note.id+'" data-title="'+note.title+'" data-icon="'+note.icon+'" href="javascript:;"><i class="'+note.icon+'"></i><span>'+note.title+'</span></a>';
-				                   
-								    }
-								   
-								   
-									if
-									(note.children==null){
-				                        return;
-				                    }
-				                    content+=pearone.loadchild(note);
-				                    content+='</dd>';
-				                });
-				 
-				                content+='</dl>';
-				            }
-				            console.log(content);
-				            return content;
+		this.loadchild = function(obj) {
+				if (obj == null) {
+					return;
+				}
+
+				var content = '';
+				if (obj.children != null && obj.children.length > 0) {
+					content += '<dl class="layui-nav-child">';
+				} else {
+					content += '<dl>';
+				}
+
+				if (obj.children != null && obj.children.length > 0) {
+					$.each(obj.children, function(i, note) {
+						content += '<dd>';
+
+						if (note.type == 0) {
+
+							content += '<a  href="javascript:;"><i class="' + note.icon + '"></i><span>' + note.title + '</span></a>';
+
+
+						} else if (note.type == 1) {
+
+							console.log("标题:" + note.title);
+
+							console.log("链接:" + note.href);
+
+							content += '<a class="site-demo-active" data-url="' + note.href + '" data-id="' + note.id +
+								'" data-title="' + note.title + '" data-icon="' + note.icon + '" href="javascript:;"><i class="' + note.icon +
+								'"></i><span>' + note.title + '</span></a>';
+
+						}
+
+
+						if (note.children == null) {
+							return;
+						}
+						content += pearone.loadchild(note);
+						content += '</dd>';
+					});
+
+					content += '</dl>';
+				}
+				console.log(content);
+				return content;
 			},
 			this.initTab = function(b) {
 
-                pearone.setConfig(b);
+				pearone.setConfig(b);
 
 				/**初始化Tab页*/
 				if (b) {
@@ -243,7 +273,7 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 					$('.site-demo-active').on('click', function() {
 						var dataid = $(this);
 
-                        var title  = dataid.attr("data-title");
+						var title = dataid.attr("data-title");
 						var url = dataid.attr("data-url");
 						var id = dataid.attr("data-id");
 
@@ -262,9 +292,10 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 							})
 							if (isData == false) {
 								//标志为false 新增一个tab项
-								var title  = '<i class="'+dataid.attr("data-icon")+'"></i>&nbsp;&nbsp;<span>'+dataid.attr("data-title")+'</span>'
-								
-								pearone.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"),title);
+								var title = '<i class="' + dataid.attr("data-icon") + '"></i>&nbsp;&nbsp;<span>' + dataid.attr(
+									"data-title") + '</span>'
+
+								pearone.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), title);
 							}
 						}
 						//最后不管是否新增tab，最后都转到要打开的选项页面上
@@ -305,22 +336,22 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 							}
 						})
 					});
-					
-				   $("#leftPage").on("click", function() {
-					      pearone.leftPage();
-				   })
-				
-				   $("#rightPage").on("click", function() {
-					      pearone.rightPage();
-				   })
-				
-					
-                    
-					pearone.initHome(pearone.config('homeInfo'));
-				
- 				} else {
 
-                    //标签页菜单单击监听
+					$("#leftPage").on("click", function() {
+						pearone.leftPage();
+					})
+
+					$("#rightPage").on("click", function() {
+						pearone.rightPage();
+					})
+
+
+
+					pearone.initHome(pearone.config('homeInfo'));
+
+				} else {
+
+					//标签页菜单单击监听
 					$('.site-demo-active').on('click', function() {
 
 						var url = $(this).attr("data-url");
@@ -332,35 +363,35 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 					$("#oneTab").show();
 
 					$("#multileTab").hide();
-					
+
 					pearone.initHome(pearone.config('homeInfo'));
 
 
 				}
 
 			},
-			this.initHome = function(url){
-				
+			this.initHome = function(url) {
+
 				//初始化首页信息
-				if(pearone.config('multileTab')){
-				  
+				if (pearone.config('multileTab')) {
+
 					//清空tab信息来初始化首页
-			        $(".pearone-layout .layui-body .layui-tab-title").html("");
+					$(".pearone-layout .layui-body .layui-tab-title").html("");
 					$(".pearone-layout .layui-body .layui-tab-content").html("");
-					pearone.tabAdd(url,1,"<i class='layui-icon layui-icon-home'></i>");
+					pearone.tabAdd(url, 1, "<i class='layui-icon layui-icon-home'></i>");
 					pearone.tabChange(1);
-				
-				}else{
-					
-					$("#mainFrame").attr("src",url);
+
+				} else {
+
+					$("#mainFrame").attr("src", url);
 				}
-				
+
 			},
 			this.tabAdd = function(url, id, name) {
 				//查询该编号是否存在,如果存在进行相应替换
-				console.log("添加TaB:"+url);
-				
-			    element.tabAdd('mainFrame', {
+				console.log("添加TaB:" + url);
+
+				element.tabAdd('mainFrame', {
 					title: name,
 					content: '<iframe data-frameid="' + id +
 						'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;" src="' +
@@ -388,7 +419,7 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 
 
 			},
-			this.rollPage =  function(d) {
+			this.rollPage = function(d) {
 				var $tabTitle = $('.layui-body .layui-tab .layui-tab-title');
 				var left = $tabTitle.scrollLeft();
 				if ('left' === d) {
@@ -417,12 +448,51 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 			this.rightPage = function() {
 				console.log("右滑");
 				pearone.rollPage();
-			}
+			},
+
+                //封装请求
+             this.request = function(url,type,data,success){
+     	        var loading =  layer.load();
+     	        $.ajax({
+                    url:url,
+                    type:type,
+                    dataType:'json',
+                    data:data,
+                    success:function(data){
+                        layer.close(loading);
+                        if(data.success){
+                            success(data);
+                        }else{
+                            pearone.error(data.msg);
+                        }
+                    },
+                    error:function(xhr, textstatus, thrown){
+                        layer.close(loading);
+                        var errorMsg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
+                        pearone.error(errorMsg);
+                    }
+                })
+
+
+             },
+             this.get = function(url,data,success){
+
+     	        pearone.request(url,'get',data,success);
+             },
+             this.post = function(url,data,success){
+     	        pearone.request(url,'post',data,success);
+             },
+             this.put = function(url,data,success){
+     	        pearone.request(url,'put',data,success);
+             },
+             this.delete = function(url,data,success){
+     	        pearone.request(url,'delete',data,success);
+             }
 
 
 	}
-    
-	
+
+
 	/**
 	 * 菜单栏隐藏
 	 * */
@@ -433,32 +503,32 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 			$(this).attr("show-data", 1);
 		} else {
 			$(".layui-side .layui-nav-item").hover(function() {
-	
+
 				$(this).children(".layui-nav-child").addClass("pearone-menu-hover");
-				
+
 				var top = $(this).offset().top;
-			
-			
-			    var css = {
-			  
-					 top:top+'px'
-				}
-				
-				$(this).children(".layui-nav-child").css(css);
-				               
-		}, function() {
-			
-				$(this).children(".layui-nav-child").removeClass("pearone-menu-hover");
-				
+
+
 				var css = {
-							  
-					 top:'0px'
+
+					top: top + 'px'
 				}
-				
+
+				$(this).children(".layui-nav-child").css(css);
+
+			}, function() {
+
+				$(this).children(".layui-nav-child").removeClass("pearone-menu-hover");
+
+				var css = {
+
+					top: '0px'
+				}
+
 				$(this).children(".layui-nav-child").css(css);
 			})
-       
-	   
+
+
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");
 			$(this).attr("show-data", 0);
@@ -466,54 +536,54 @@ layui.define(["element", "jquery", "layer","form"], function(exports) {
 	})
 
 	$(".setTheme").click(function() {
-		
 
-		
+
+
 		layer.open({
-		    type: 2,
-		    title: false,
-		    closeBtn: false, //不显示关闭按钮
-		    shade: [0],
-		    shadeClose: true,
-		    area: ['300px', 'calc(100% - 90px)'],
-		    offset: 'rb', //右下角弹出
-		    time: 0, //2秒后自动关闭
-		      anim   : -1,
-		      skin:'layer-anim-07',
-		      content : 'views/system/theme.html',
-		      cancel  : function (index) {
-		        var $layero = $('#layui-layer' + index);
-		        $layero.animate({
-		          left : $layero.offset().left + $layero.width()
-		        }, 300, function () {
-		          layer.close(index);
-		        });
-		        return false;
-		      }
-		    });
-		
-	})
-	
+			type: 2,
+			title: false,
+			closeBtn: false, //不显示关闭按钮
+			shade: [0],
+			shadeClose: true,
+			area: ['300px', 'calc(100% - 90px)'],
+			offset: 'rb', //右下角弹出
+			time: 0, //2秒后自动关闭
+			anim: -1,
+			skin: 'layer-anim-07',
+			content: 'views/system/theme.html',
+			cancel: function(index) {
+				var $layero = $('#layui-layer' + index);
+				$layero.animate({
+					left: $layero.offset().left + $layero.width()
+				}, 300, function() {
+					layer.close(index);
+				});
+				return false;
+			}
+		});
 
-	
-	
+	})
+
+
+
+
 	/**
 	 * 通用下拉按钮实现
 	 * */
-	$(".downpanel").on("click",".layui-select-title",function(e){
-		      $(".layui-form-select").not($(this).parents(".layui-form-select")).removeClass("layui-form-selected");
-		      $(this).parents(".layui-form-select").toggleClass("layui-form-selected");
-		      e.stopPropagation();
-		    });
-		    $(document).click(function(event){
-		      //搜索框
-		      var _con2 = $(".downpanel");
-		      if(!_con2.is(event.target) && (_con2.has(event.target).length ===0)){
-		         _con2.removeClass("layui-form-selected");
-		         console.log(_con2);
-		      }
-	});    
-	
+	$(".downpanel").on("click", ".layui-select-title", function(e) {
+		$(".layui-form-select").not($(this).parents(".layui-form-select")).removeClass("layui-form-selected");
+		$(this).parents(".layui-form-select").toggleClass("layui-form-selected");
+		e.stopPropagation();
+	});
+	$(document).click(function(event) {
+		//搜索框
+		var _con2 = $(".downpanel");
+		if (!_con2.is(event.target) && (_con2.has(event.target).length === 0)) {
+			_con2.removeClass("layui-form-selected");
+			console.log(_con2);
+		}
+	});
+
 
 	exports("pearone", pearone);
 });
