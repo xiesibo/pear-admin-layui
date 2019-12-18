@@ -27,5 +27,6 @@ layui.config({
 	tableSelect:'tableSelect/tableSelect',
 	treetable:'treetable/treetable',
 	tag:'tag/tag',
-	formSelects:'formSelects/formSelects-v4'
+	formSelects:'formSelects/formSelects-v4',
+	dtree:'dtree/dtree'
 });

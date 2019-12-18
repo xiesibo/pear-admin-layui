@@ -148,6 +148,14 @@
 	    "spread": true
 	  },
 	  {
+	    "id":15653467,
+	    "title": "树结构",
+	    "icon": "layui-icon layui-icon-table",
+	  	"type":1,
+	    "href": "views/plugin/dtree.html",
+	    "spread": true
+	  },
+	  {
 	    "id":182347,
 	    "title": "动态标签",
 	    "icon": "layui-icon layui-icon-chart-screen",
