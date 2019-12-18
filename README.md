@@ -43,8 +43,7 @@ PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API
 
 |   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234745_08fb89d0_4835367.png "按钮.png")  | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215558_46d3622d_4835367.jpeg "选项卡.jpg")    |
 | --- | --- |
-| ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215650_b93452ad_4835367.jpeg "导航栏.jpg")    |  
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1205/233054_a25bbcdc_4835367.jpeg "卡片.jpg")   |
+| ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215650_b93452ad_4835367.jpeg "导航栏.jpg")    |  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1205/233054_a25bbcdc_4835367.jpeg "卡片.jpg")   |
 
 
 第三方组件 引用优化
