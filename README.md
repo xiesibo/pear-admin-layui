@@ -1,4 +1,4 @@
-# Pear One Layui    
+# Pear One Layui     :fa-meh-o: 
 
 最近更新 2019年 12月 17日
 
@@ -25,49 +25,35 @@
 PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以, 遇到问题及时拍板，加群讨论，如有意愿加入开源的
 伙伴可群内私信作者，第三期更新订版时会推出相关API文档
 
-标签页样式
+多标签页 单标签页 内置 四种标签页样式
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232841_576d0c8e_4835367.png "选项卡一.png")![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232849_b45ce511_4835367.png "选项卡二.png")
+|  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234520_84da85c0_4835367.png "选项卡一.png")   |   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234529_85c5ee2f_4835367.png "选项卡二.png")  |
+| --- | --- |
+|  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234536_3d33cf79_4835367.png "选项卡三.png")   |   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234544_52c8c116_4835367.png "选项卡4.png")  |
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232900_c87d7e5b_4835367.png "选项卡三.png")![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232915_3706ff7f_4835367.png "选项卡4.png")
 
-多标签 / 单标签 切换 单系统菜单 / 多系统模式
+菜单模式
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1214/233144_3dd25a2f_4835367.png "多系统菜单模式.png")
+| ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234638_82a05595_4835367.png "菜单模式一.png")    | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234646_a3761547_4835367.png "菜单模式二.png")    |
+| --- | --- |
+|   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234655_3411444d_4835367.png "菜单模式三.png")  | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234702_65204d92_4835367.png "菜单模式4.png")    |
 
-多标签页
 
-![多标签页](https://images.gitee.com/uploads/images/2019/1204/204145_41f90ae8_4835367.jpeg "首页.jpg")
+样式拓展
 
-单标签页
+|   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234745_08fb89d0_4835367.png "按钮.png")  | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215558_46d3622d_4835367.jpeg "选项卡.jpg")    |
+| --- | --- |
+| ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215650_b93452ad_4835367.jpeg "导航栏.jpg")    |  
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1205/233054_a25bbcdc_4835367.jpeg "卡片.jpg")   |
 
-![单标签页](https://images.gitee.com/uploads/images/2019/1204/204205_9a171d21_4835367.jpeg "1575459341(1).jpg")
 
-选项卡扩展
+第三方组件 引用优化
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215558_46d3622d_4835367.jpeg "选项卡.jpg")
+|   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234912_656d373c_4835367.png "动态标签.png")  |![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234922_32d7c75a_4835367.png "多选下拉.png")     |
+| --- | --- |
+| ![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215726_34e2729f_4835367.jpeg "消息通知.jpg")    |  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234939_cb824c11_4835367.png "树形表格.png")   |
 
-按钮扩展
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215634_099cf0be_4835367.jpeg "按钮样式.jpg")
-
-导航栏扩展
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215650_b93452ad_4835367.jpeg "导航栏.jpg")
-
-卡片扩展
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1205/233054_a25bbcdc_4835367.jpeg "卡片.jpg")
-
-登陆页面
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215706_c07895ac_4835367.jpeg "登陆页面.jpg")
-
-扩展组件
-
-消息通知
-
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1204/215726_34e2729f_4835367.jpeg "消息通知.jpg")
 
 等相关页面
 
