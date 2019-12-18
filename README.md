@@ -25,9 +25,11 @@
 PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API接口初始化就可以, 遇到问题及时拍板，加群讨论，如有意愿加入开源的
 伙伴可群内私信作者，第三期更新订版时会推出相关API文档
 
-系统初始化
+标签页样式
 
-![输入图片说明](https://images.gitee.com/uploads/images/2019/1217/000438_0697e6c2_4835367.png "系统配置.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232841_576d0c8e_4835367.png "选项卡一.png")![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232849_b45ce511_4835367.png "选项卡二.png")
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232900_c87d7e5b_4835367.png "选项卡三.png")![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/232915_3706ff7f_4835367.png "选项卡4.png")
 
 多标签 / 单标签 切换 单系统菜单 / 多系统模式
 
