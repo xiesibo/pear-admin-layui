@@ -10,6 +10,6 @@
   {"id":"001002","title": "株洲市","checkArr": "0","parentId": "001"},
   {"id":"001003","title": "湘潭市","checkArr": "0","parentId": "001"},
   {"id":"001004","title": "衡阳市","checkArr": "0","parentId": "001"},
-  {"id":"001005","title": "郴州市","checkArr": "0","iconClass": "dtree-icon-caidan_xunzhang","parentId": "001"}
+  {"id":"001005","title": "郴州市","checkArr": "0","iconClass": "layui-icon layui-icon-home","parentId": "001"}
 ]
 }

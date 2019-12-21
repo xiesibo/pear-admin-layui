@@ -7,22 +7,61 @@
 		<link href="../../component/layui/css/layui.css" rel="stylesheet" />
 		<link href="../../component/font-awesome/css/font-awesome.css" rel="stylesheet" />
 		<script src="../../component/layui/layui.js"></script>
+		<link rel="stylesheet" href="../../assets/css/button.css" />
 		<style>
-			
-		
-		    body{
+			body{
 				margin:10px;
+				background-color: lightgray;
+			}
+			.layui-link{
+				color: #409eff;
+			    padding:5px 12px;
+				border-radius: 4px;
+			    border:1px solid transparent;
+			}
+			.layui-link:hover{
+				padding: 5px 12px;
+				
+				background-color: whitesmoke;
+				color: #409eff;
+			    border: 1px solid #409eff;
 			}
 		</style>
 	</head>
-	<body class="layui-bg-gray">
+	<body >
 		
 		<div class="layui-row layui-col-space10">
+			<div class="layui-col-md12">
+				<div class="layui-card">
+					<div class="layui-card-header">新</div>
+					<div class="layui-card-body">
+						<div class="layui-row">
+							
+							<div class="layui-col-md12">
+								
+								        <a class="layui-link"  lay-event="editPassword">修改密码</a>
+								        <a class="layui-link" lay-event="edit">编辑</a>
+								        <a class="layui-link"  lay-event="del">删除</a>
+								<button class="layui-btn layui-bg-whit">默认按钮</button>
+								<button class="layui-btn layui-bg-green">百搭按钮</button>
+								<button class="layui-btn layui-bg-blue">警告按钮</button>
+								<button class="layui-btn layui-bg-orange">危险按钮</button>
+								<button class="layui-btn layui-bg-red">主要按钮</button>
+							<button class="layui-btn layui-bg-cyan">主要按钮</button>
+							<button class="layui-btn layui-bg-black">黑色</button>
+							</div>
+					
+						</div>
+					
+					</div>
+				</div>
+			</div>
 			<div class="layui-col-md12">
 				<div class="layui-card">
 					<div class="layui-card-header">经典样式</div>
 					<div class="layui-card-body">
 						<div class="layui-row">
+							
 							<div class="layui-col-md12">
 								<button class="layui-btn">默认按钮</button>
 								<button class="layui-btn layui-btn-normal">百搭按钮</button>
@@ -43,65 +82,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="layui-col-md12">
-				<div class="layui-card">
-					<div class="layui-card-header">线形样式</div>
-					<div class="layui-card-body">
-						<div class="layui-row">
-							<div class="layui-col-md12">
-								<button class="layui-btn layui-btn-dark-inline layui-btn-coarse">黑色按钮</button>
-								<button class="layui-btn layui-btn-inline">默认按钮</button>
-								<button class="layui-btn layui-btn-normal-inline">百搭按钮</button>
-								<button class="layui-btn layui-btn-warm-inline">警告按钮</button>
-								<button class="layui-btn layui-btn-danger-inline">危险按钮</button>
-							</div>
-							
-						
-							
-							<div class="layui-col-md12" style="margin-top: 20px;">
-								<button class="layui-btn layui-btn-dark-inline layui-btn-radius layui-btn-coarse">黑色按钮</button>
-								<button class="layui-btn layui-btn-inline layui-btn-radius  layui-btn-coarse">默认按钮</button>
-								<button class="layui-btn layui-btn-normal-inline layui-btn-radius  layui-btn-coarse">百搭按钮</button>
-								<button class="layui-btn layui-btn-warm-inline layui-btn-radius  layui-btn-coarse">警告按钮</button>
-								<button class="layui-btn layui-btn-danger-inline layui-btn-radius  layui-btn-coarse">危险按钮</button>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			
-			<div class="layui-col-md12">
-				<div class="layui-card" style="height: 200px;">
-					<div class="layui-card-header">立体样式</div>
-					<div class="layui-card-body">
-						<div class="layui-row">
-							<div class="layui-col-md12">
-								<button class="layui-btn layui-btn-3d">默认立体</button>
-								<button class="layui-btn layui-btn-normal-3d">百搭立体</button>
-								<button class="layui-btn layui-btn-warm-3d">警告立体</button>
-								<button class="layui-btn layui-btn-danger-3d">危险立体</button>
-							</div>
-							<div class="layui-col-md12" style="margin-top: 20px;">
-								<button class="layui-btn layui-btn-3d"><i class="fa fa-play"></i></button>
-								<button class="layui-btn layui-btn-normal-3d"><i class="fa fa-pause"></i></button>
-								<button class="layui-btn layui-btn-warm-3d"><i class="fa fa-backward"></i></button>
-								<button class="layui-btn layui-btn-danger-3d"><i class="fa fa-forward"></i></button>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-			<div class="layui-col-md6">
-				<div class="layui-card">
-					<div class="layui-card-header">扩展样式</div>
-					<div class="layui-card-body">
-						<button class="layui-btn layui-btn-dark">黑色按钮</button>
-					    <button class="layui-btn layui-btn-default">亮色按钮</button>
-					</div>
-				</div>
-			</div>
+
 			<div class="layui-col-md6">
 				<div class="layui-card">
 					<div class="layui-card-header">
@@ -132,9 +113,6 @@
 						    <dd data-id="delete" title="删除选中文章到回收站"><i class="layui-icon"></i> 批量删除</dd>
 						    <dd data-id="move" title="移动选中文章到某栏目"><i class="layui-icon"></i> 批量移动</dd>
 						    <dd data-id="set" title="统一设置选中文章"><i class="layui-icon"></i> 批量设置</dd>
-						    <dd data-id="Audit" title="审核选中文章"><i class="layui-icon"></i> 批量审核</dd>
-						    <dd data-id="CancelAudit" title="取消审核选中文章"><i class="layui-icon">ဆ</i> 取消审核</dd>
-						    <dd data-id="replace" title="替换选中文章"><i class="layui-icon"></i> 批量替换</dd>
 						  </dl>
 						</button>
 					</div>

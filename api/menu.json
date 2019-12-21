@@ -22,14 +22,6 @@
 		"type":1,
 	    "href": "views/system/welcome.html",
 	    "spread": true
-	  },
-	  {
-	  		"id":3242,
-	    "title": "更新日志",
-	    "icon": "layui-icon layui-icon-water",
-	  		"type":1,
-	    "href": "views/system/update.html",
-	    "spread": true
 	  }
 	]
   },

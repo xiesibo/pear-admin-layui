@@ -1,3 +1,6 @@
+/**
+ * Author: 就眠仪式
+ * */
 layui.define(["element", "jquery", "layer", "form"], function(exports) {
 	var element = layui.element,
 		$ = layui.$,
@@ -9,6 +12,41 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		return layer.alert("请先将项目部署至web容器（Apache/Tomcat/Nginx/IIS/等），否则部分数据将无法显示");
 	}
 
+
+	$('body').on('click', '[data-bgcolor]', function() {
+		var loading = layer.load(0, {
+			shade: false,
+			time: 2 * 1000
+		});
+		var clientHeight = (document.documentElement.clientHeight) - 95;
+		var bgColorHtml = pearone.buildBgColorHtml();
+		var html = '<div class="pearone-color">\n' +
+			'<div class="color-title">\n' +
+			'<span>配色方案</span>\n' +
+			'</div>\n' +
+			'<div class="color-content">\n' +
+			'<ul>\n' + bgColorHtml + '</ul>\n' +
+			'</div>\n' +
+			'</div>';
+		layer.open({
+			type: 1,
+			title: false,
+			closeBtn: 0,
+			shade: 0.2,
+			anim: 2,
+			shadeClose: true,
+			id: 'pearoneBgColor',
+			area: ['340px', clientHeight + 'px'],
+			offset: 'rb',
+			content: html,
+			end: function() {
+				$('.pearone-select-bgcolor').removeClass('layui-this');
+			}
+		});
+		layer.close(loading);
+	});
+
+
 	pearone = new function() {
 
 		/**
@@ -19,7 +57,9 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		var config = {
 			multileTab: true,
 			homeInfo: 'views/system/console.html',
-			menuInfo: 'api/menu.json'
+			menuInfo: 'api/menu.json',
+			BgColorDefault: 5,
+			menuType:true
 		};
 
 
@@ -36,31 +76,36 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 				config.multileTab = b;
 			},
+			this.setConfig = function(name,value){
+				config[name] = value;
+			}
 			this.init = function(option) {
+
+                pearone.setConfig("menuType",option.menuType);
+
 				if (option.menuType) {
 					pearone.initMenuPlus(option.menuInfo);
-
 				} else {
 					pearone.initMenu(option.menuInfo);
 				}
 				pearone.initHome(option.homeInfo);
-
 				pearone.initTab(option.multileTab);
-				
-				if(option.tabType==1){
-								  
-								  className = "layui-tab-button";
-								  
-				}else if(option.tabType==2){
-								  
-								  className = "layui-tab-topline";
-								  
-				}else if(option.tabType==3){
-								  
-								  className = "layui-tab-circular";
-								  
+				pearone.initBgColor()
+
+				if (option.tabType == 1) {
+
+					className = "layui-tab-button";
+
+				} else if (option.tabType == 2) {
+
+					className = "layui-tab-topline";
+
+				} else if (option.tabType == 3) {
+
+					className = "layui-tab-circular";
+
 				}
-				
+
 				$(".layui-tab").removeClass("layui-tab-button");
 				$(".layui-tab").removeClass("layui-tab-topline");
 				$(".layui-tab").removeClass("layui-tab-circular");
@@ -190,26 +235,6 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				})
 				$.ajaxSettings.async = true;
 
-
-				/* $.get(url, function(result){
-				 
-				        $.each(result,function(i,item){
-						             var content='<li class="layui-nav-item">';
-						             if(item.type==0){
-									    content+='<a  href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
-						             }else if(item.type==1){
-										content+='<a class="site-demo-active" data-url="'+item.href+'" data-id="'+item.id+'" data-title="'+item.title+'" href="javascript:;" href="javascript:;"><i class="'+item.icon+'"></i><span>'+item.title+'</span></a>';
-										 
-									 }
-									 //这里是添加所有的子菜单
-						             content+=pearone.loadchild(item);
-						             content+='</li>';
-						             $("#menu").append(content);
-				        });
-						element.init();
-				        pearone.initTab(pearone.config('multileTab'));
-				}); */
-
 			}
 		this.loadchild = function(obj) {
 				if (obj == null) {
@@ -256,6 +281,33 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				}
 				console.log(content);
 				return content;
+			},
+			/**
+			 * 初始化背景色
+			 */
+			this.initBgColor = function() {
+				var bgcolorId = sessionStorage.getItem('pearoneBgcolorId');
+				if (bgcolorId == null || bgcolorId == undefined || bgcolorId == '') {
+					bgcolorId = pearone.config('BgColorDefault');
+				}
+				var bgcolorData = pearone.bgColorConfig(bgcolorId);
+				var styleHtml = '.layui-layout-admin .layui-header{background-color:' + bgcolorData.headerRight +
+					'!important;}\n' +
+					'.layui-header>#topMenu>.layui-nav-item.layui-this,.pearone-tool i:hover{background-color:' + bgcolorData.headerRightThis +
+					'!important;}\n' +
+					'.layui-layout-admin .layui-logo {background-color:' + bgcolorData.headerLogo + '!important;}\n' +
+					'.layui-side.layui-bg-black,.layui-side .layui-nav,.layui-side.layui-bg-black>.layui-left-menu>ul{background-color:' +
+					bgcolorData.menuLeft + '!important;}\n' +
+					'.layui-left-menu .layui-nav .layui-nav-child a:hover:not(.layui-this) {background-color:' + bgcolorData.menuLeftHover +
+					';}\n' +
+					'.layui-layout-admin .layui-nav-tree .layui-this, .layui-layout-admin .layui-nav-tree .layui-this>a, .layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-bar,.layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this a {\n' +
+					'background-color: ' + bgcolorData.menuLeftThis +
+					' !important;}\n .layui-layout-admin .layui-header .layui-nav .layui-nav-item>a{color:' + bgcolorData.headerColor +
+					'!important;}\n .layui-header .layui-nav-bar {background-color:' + bgcolorData.headerHover +
+					'!important;}\n .layui-tab-title .layui-this,.layui-tab-title li:hover{color:' + bgcolorData.tabThis +
+					'!important;}\n' +
+					'}';
+				$('#pearone-bg-color').html(styleHtml);
 			},
 			this.initTab = function(b) {
 
@@ -355,8 +407,9 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					$('.site-demo-active').on('click', function() {
 
 						var url = $(this).attr("data-url");
-                       
-					    $("#oneTab-title").html("<i class='layui-icon layui-icon-console'></i>&nbsp;&nbsp;<span>"+$(this).attr("data-title")+"</span>");
+
+						$("#oneTab-title").html("<i class='layui-icon layui-icon-console'></i>&nbsp;&nbsp;<span>" + $(this).attr(
+							"data-title") + "</span>");
 
 						$("#mainFrame").attr("src", url);
 					})
@@ -452,47 +505,161 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				pearone.rollPage();
 			},
 
-                //封装请求
-             this.request = function(url,type,data,success){
-     	        var loading =  layer.load();
-     	        $.ajax({
-                    url:url,
-                    type:type,
-                    dataType:'json',
-                    data:data,
-                    success:function(data){
-                        layer.close(loading);
-                        if(data.success){
-                            success(data);
-                        }else{
-                            pearone.error(data.msg);
-                        }
-                    },
-                    error:function(xhr, textstatus, thrown){
-                        layer.close(loading);
-                        var errorMsg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
-                        pearone.error(errorMsg);
-                    }
-                })
+			//封装请求
+			this.request = function(url, type, data, success) {
+				var loading = layer.load();
+				$.ajax({
+					url: url,
+					type: type,
+					dataType: 'json',
+					data: data,
+					success: function(data) {
+						layer.close(loading);
+						if (data.success) {
+							success(data);
+						} else {
+							pearone.error(data.msg);
+						}
+					},
+					error: function(xhr, textstatus, thrown) {
+						layer.close(loading);
+						var errorMsg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
+						pearone.error(errorMsg);
+					}
+				})
 
 
-             },
-             this.get = function(url,data,success){
+			},
+			this.get = function(url, data, success) {
 
-     	        pearone.request(url,'get',data,success);
-             },
-             this.post = function(url,data,success){
-     	        pearone.request(url,'post',data,success);
-             },
-             this.put = function(url,data,success){
-     	        pearone.request(url,'put',data,success);
-             },
-             this.delete = function(url,data,success){
-     	        pearone.request(url,'delete',data,success);
-             }
+				pearone.request(url, 'get', data, success);
+			},
+			this.post = function(url, data, success) {
+				pearone.request(url, 'post', data, success);
+			},
+			this.put = function(url, data, success) {
+				pearone.request(url, 'put', data, success);
+			},
+			this.delete = function(url, data, success) {
+				pearone.request(url, 'delete', data, success);
+			},
+			/**
+			 * 配色方案配置项(默认选中第一个方案)
+			 * @param bgcolorId
+			 */
+			this.bgColorConfig = function(bgcolorId) {
+				var bgColorConfig = [{
+						headerRight: '#1aa094',
+						headerRightThis: '#197971',
+						headerLogo: '#20222A',
+						menuLeft: '#20222A',
+						menuLeftThis: '#1aa094',
+						menuLeftHover: '#3b3f4b',
+						headerColor: 'white',
+						headerHover: 'white',
+						tabThis: '#1aa094',
+					},
+					{
+						headerRight: '#AA3130',
+						headerRightThis: '',
+						headerLogo: '#28333E',
+						menuLeft: '#28333E',
+						menuLeftThis: '#AA3130',
+						menuLeftHover: '#3b3f4b',
+						headerColor: 'white',
+						headerHover: 'white',
+						tabThis: 'black',
+					},
+					{
+						headerRight: 'white',
+						headerRightThis: '',
+						headerLogo: '#344058',
+						menuLeft: '#344058',
+						menuLeftThis: '#409EFF',
+						menuLeftHover: '#1f1f1f',
+						headerColor: 'black',
+						headerHover: 'black',
+						tabThis: 'black',
+					},
+					{
+						headerRight: '#409EFF',
+						headerRightThis: '',
+						headerLogo: '#344058',
+						menuLeft: '#344058',
+						menuLeftThis: '#409EFF',
+						menuLeftHover: '#3b3f4b',
+						headerColor: 'white',
+						headerHover: 'white',
+						tabThis: '#409EFF',
+					},
+					{
+						headerRight: '#F78400',
+						headerRightThis: '',
+						headerLogo: '#F78400',
+						menuLeft: '#28333E',
+						menuLeftThis: '#F78400',
+						menuLeftHover: '#F78400',
+						headerColor: 'white',
+						headerHover: '#F78400',
+						tabThis: '#F78400',
+					},
+					{
+						headerRight: 'white',
+						headerRightThis: '',
+						headerLogo: '#28333E',
+						menuLeft: '#28333E',
+						menuLeftThis: '#1aa094',
+						menuLeftHover: '#1aa094',
+						headerColor: 'black',
+						headerHover: '#1aa094',
+						tabThis: '#1aa094',
+					}
+				];
 
+				if (bgcolorId == undefined) {
+					return bgColorConfig;
+				} else {
+					return bgColorConfig[bgcolorId];
+				}
+			},
 
+			/**
+			 * 构建背景颜色选择
+			 * @returns {string}
+			 */
+			this.buildBgColorHtml = function() {
+				var html = '';
+				var bgcolorId = sessionStorage.getItem('pearoneBgcolorId');
+				if (bgcolorId == null || bgcolorId == undefined || bgcolorId == '') {
+					bgcolorId = 0;
+				}
+				var bgColorConfig = pearone.bgColorConfig();
+				$.each(bgColorConfig, function(key, val) {
+					if (key == bgcolorId) {
+						html += '<li class="layui-this" data-select-bgcolor="' + key + '">\n';
+					} else {
+						html += '<li  data-select-bgcolor="' + key + '">\n';
+					}
+					html += '<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">\n' +
+						'<div><span style="display:block; width: 20%; float: left; height: 12px; background: ' + val.headerLogo +
+						';"></span><span style="display:block; width: 80%; float: left; height: 12px; background: ' + val.headerRight +
+						';"></span></div>\n' +
+						'<div><span style="display:block; width: 20%; float: left; height: 40px; background: ' + val.menuLeft +
+						';"></span><span style="display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;"></span></div>\n' +
+						'</a>\n' +
+						'</li>';
+				});
+				return html;
+			}
 	}
+
+	$('body').on('click', '[data-select-bgcolor]', function() {
+		var bgcolorId = $(this).attr('data-select-bgcolor');
+		$('.pearone-color .color-content ul .layui-this').attr('class', '');
+		$(this).attr('class', 'layui-this');
+		sessionStorage.setItem('pearoneBgcolorId', bgcolorId);
+		parent.pearone.initBgColor();
+	});
 
 
 	/**
@@ -547,7 +714,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			closeBtn: false, //不显示关闭按钮
 			shade: [0],
 			shadeClose: true,
-			area: ['300px', 'calc(100% - 90px)'],
+			area: ['350px', 'calc(100% - 90px)'],
 			offset: 'rb', //右下角弹出
 			time: 0, //2秒后自动关闭
 			anim: -1,
@@ -585,6 +752,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			console.log(_con2);
 		}
 	});
+
 
 
 	exports("pearone", pearone);
