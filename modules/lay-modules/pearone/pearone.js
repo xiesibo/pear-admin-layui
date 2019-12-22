@@ -113,7 +113,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 			},
 			this.initMenu = function(url) {
-
+                $(".modules-pe").html("");
 				console.log("初始化单系统菜单")
 				//清空菜单栏
 				$(".layui-side #menuEnd").html("");
@@ -157,6 +157,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			},
 			this.initMenuPlus = function(url) {
 				//顶部菜单
+				
+				
 				var headHtml = "";
 				//左边菜单
 				var leftHtml = "";
@@ -164,12 +166,13 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
                 $(".layui-header-mini-menu").html("");
+				$(".modules-pe").html("");
 				$.ajaxSettings.async = false;
 				$.get(url, function(result) {
 					//每一个菜单
 					var leftMenuEnd = '<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
 
-					var headerMobileMenuHtml = "";
+					var headerMobileMenuHtml = ' <li class="layui-nav-item"> <a href="javascript:;">选择模块</a><dl class="layui-nav-child layui-header-mini-menu">';
 					//遍历第一层,既顶部菜单
 					$.each(result, function(i, item) {
 						//设置每一个菜单的唯一值
@@ -228,8 +231,10 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 
 					});
+					
+					headerMobileMenuHtml+='</dl></li>';
 
-					$(".layui-header-mini-menu").append(headerMobileMenuHtml);
+					$(".modules-pe").append(headerMobileMenuHtml);
 
 					$(".layui-header-mini-menu dd a").click(function() {
 						console.log("触发");
