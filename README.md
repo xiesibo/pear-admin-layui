@@ -27,12 +27,20 @@ PearOne 目前支持单页面与多标签页的切换，仅仅通过简单的API
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1221/141018_ad1a231a_4835367.png "高度自定义配色方案.png")
 
+
+移动端兼容适配
+
+|![](https://images.gitee.com/uploads/images/2019/1222/230452_a5f04358_4835367.png "}_{DLHJHBS9GX57RPGN2GT5.png")    | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1222/230506_0af576ed_4835367.png "1~2T`U87$T7~{GKK%4I~P54.png")    |
+| --- | --- |
+|![](https://images.gitee.com/uploads/images/2019/1222/230513_fb12f05f_4835367.png "J~_IQ$JOZ6G2OBN[G)_B)2M.png")     | ![输入图片说明](https://images.gitee.com/uploads/images/2019/1222/230521_16de68fe_4835367.png "S[F@B5}1HYICC6U]UU`PNYS.png")    |
+
+
+
 多标签页 单标签页 内置 四种标签页样式
 
 |  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234520_84da85c0_4835367.png "选项卡一.png")   |   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234529_85c5ee2f_4835367.png "选项卡二.png")  |
 | --- | --- |
 |  ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234536_3d33cf79_4835367.png "选项卡三.png")   |   ![输入图片说明](https://images.gitee.com/uploads/images/2019/1218/234544_52c8c116_4835367.png "选项卡4.png")  |
-
 
 菜单模式
 
