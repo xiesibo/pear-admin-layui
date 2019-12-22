@@ -59,7 +59,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			homeInfo: 'views/system/console.html',
 			menuInfo: 'api/menu.json',
 			BgColorDefault: 5,
-			menuType:true
+			menuType: true
 		};
 
 
@@ -76,12 +76,12 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 				config.multileTab = b;
 			},
-			this.setConfig = function(name,value){
+			this.setConfig = function(name, value) {
 				config[name] = value;
 			}
-			this.init = function(option) {
+		this.init = function(option) {
 
-                pearone.setConfig("menuType",option.menuType);
+				pearone.setConfig("menuType", option.menuType);
 
 				if (option.menuType) {
 					pearone.initMenuPlus(option.menuInfo);
@@ -163,15 +163,20 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				console.log("初始化多系统菜单");
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
-
+                $(".layui-header-mini-menu").html("");
 				$.ajaxSettings.async = false;
 				$.get(url, function(result) {
 					//每一个菜单
 					var leftMenuEnd = '<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
+
+					var headerMobileMenuHtml = "";
 					//遍历第一层,既顶部菜单
 					$.each(result, function(i, item) {
 						//设置每一个菜单的唯一值
 						leftMenuEnd = '<ul  class="layui-nav layui-nav-tree leftMenu" id="lay-' + item.id + '" lay-filter="test">';
+
+						headerMobileMenuHtml += '<dd><a href="javascript:;" id="lay-' + item.id + '" data-menu="' + item.id +
+							'"><i class="' + item.icon + '"></i> ' + item.title + '</a></dd>\n';
 
 						var content = '<li class="layui-nav-item" id="lay-' + item.id + '">';
 						if (item.type == 0) {
@@ -188,6 +193,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						$.each(item.children, function(j, item1) {
 
 							var leftMenu = '<li class="layui-nav-item">';
+
 
 							if (item1.type == 0) {
 								leftMenu += '<a  href="javascript:;" href="javascript:;"><i class="' + item1.icon + '"></i><span>' +
@@ -212,7 +218,6 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 						content += '</li>';
 						$("#topMenu").append(content);
-
 						$("#topMenu li").click(function() {
 							var menuId = $(this).attr("id");
 							$(".layui-side .leftMenu").addClass("layui-hide");
@@ -221,11 +226,25 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 							$(".layui-side #" + menuId).removeClass("layui-hide");
 						})
 
+
 					});
+
+					$(".layui-header-mini-menu").append(headerMobileMenuHtml);
+
+					$(".layui-header-mini-menu dd a").click(function() {
+						console.log("触发");
+						var menuId = $(this).attr("id");
+						console.log("菜单编号:"+menuId);
+						$(".layui-side .leftMenu").addClass("layui-hide");
+						$(".layui-side .leftMenu").removeClass("layui-show");
+						$(".layui-side #" + menuId).addClass("layui-show");
+						$(".layui-side #" + menuId).removeClass("layui-hide");
+					})
 
 					$("#menuEnd").append(leftHtml);
 					element.init();
 					pearone.initTab(pearone.config('multileTab'));
+
 
 					$("#topMenu li:first-child").addClass("layui-this");
 					$(".layui-side .leftMenu").addClass("layui-hide");
@@ -650,6 +669,16 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						'</li>';
 				});
 				return html;
+			},
+			this.isPc = function(){
+				
+				
+				if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+					return false;
+				} else {
+					return true;
+				}
+				
 			}
 	}
 
@@ -697,6 +726,9 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$(this).children(".layui-nav-child").css(css);
 			})
 
+            if(true){
+				$('.pearone-layout .layui-side .layui-nav-item').off('mouseenter').unbind('mouseleave');
+			}
 
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");

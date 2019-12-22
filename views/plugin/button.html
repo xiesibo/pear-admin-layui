@@ -26,6 +26,19 @@
 				color: #409eff;
 			    border: 1px solid #409eff;
 			}
+			
+			.layui-link + .layui-link-primary{
+				color:#409EFF ;
+			}
+			.layui-link + .layui-link-success{
+				color:#67C23A;
+			}
+			.layui-link + .layui-link-danger{
+				color:#F56C6C;
+			}
+			.layui-link + .layui-link-warm{
+				color:#E6A23C;
+			}
 		</style>
 	</head>
 	<body >
@@ -39,9 +52,11 @@
 							
 							<div class="layui-col-md12">
 								
-								        <a class="layui-link"  lay-event="editPassword">修改密码</a>
-								        <a class="layui-link" lay-event="edit">编辑</a>
-								        <a class="layui-link"  lay-event="del">删除</a>
+								<a class="layui-link layui-link-primary"  lay-event="editPassword">修改密码</a>
+								<a class="layui-link layui-link-success" lay-event="edit">编辑</a>
+								<a class="layui-link layui-link-danger"  lay-event="del">删除</a>
+								<a class="layui-link layui-link-success" lay-event="edit">编辑</a>
+								<a class="layui-link"  lay-event="del">删除</a>
 								<button class="layui-btn layui-bg-whit">默认按钮</button>
 								<button class="layui-btn layui-bg-green">百搭按钮</button>
 								<button class="layui-btn layui-bg-blue">警告按钮</button>

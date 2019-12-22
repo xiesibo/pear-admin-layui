@@ -144,7 +144,7 @@
    }
 
 
-   .pearone-menu-hover {
+   .pearone-mini .pearone-menu-hover {
    	position: fixed !important;
    	left: 62px !important;
 /*   	top: 50px !important; */
@@ -157,16 +157,15 @@
 
    }
    
-   .pearone-menu-hover a i{
+   .pearone-mini .pearone-menu-hover a i{
 	   display: none!important;
    }
-  .pearone-menu-hover a span{
+   .pearone-mini .pearone-menu-hover a span{
 	   margin: 0px!important;
    }
 
 
-   .layui-nav-itemed>.pearone-menu-hover {
-   	background-color: #20222A !important;
+   .pearone-mini  .layui-nav-itemed>.pearone-menu-hover {
    }
 
 
@@ -532,5 +531,38 @@
    .pearone-color .color-content li.layui-this:after, .pearone-color .color-content li:hover:after {width: 100%;height: 100%;padding: 4px;top: -5px;left: -5px;border-color: #d8d8d8;opacity: 1;}
    .pearone-color .color-content li:after {content: '';position: absolute;z-index: 20;top: 50%;left: 50%;width: 1px;height: 0;border: 1px solid #f2f2f2;transition: all .3s;-webkit-transition: all .3s;opacity: 0;}
    
-   
+   /**移动端适应*/
+ @media screen and (max-width:768px) {
+	  
+	 .layui-header .layui-logo{
+	 	width: 0px!important;
+	 }
+	 .layui-side{
+		 width: 0px!important;
+	 }
+	 .layui-body{
+		 left: 0px!important;
+	 }
+	 .layui-header .layui-layout-left{
+		 left: 0px!important;
+	 }
+	 .pearone-mini .layui-side{
+		 width:220px!important;
+	 }
+	 .pearone-mini .layui-side .layui-nav-item>a span{
+		 display: inline-block;
+	 } 
+	
+	 .layui-header-menu{
+		 left:100px!important;
+	 }
+	 .layui-layout-admin .layui-body{
+		bottom:0px!important!important; 
+	 }
+	 .layui-layout-admin .layui-logo{
+		 display: none;
+	 }
+	 
+
+ }  
 
