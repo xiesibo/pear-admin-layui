@@ -327,7 +327,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					'.layui-layout-admin .layui-nav-tree .layui-this, .layui-layout-admin .layui-nav-tree .layui-this>a, .layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this,.layui-nav-tree .layui-nav-bar,.layui-layout-admin .layui-nav-tree .layui-nav-child dd.layui-this a {\n' +
 					'background-color: ' + bgcolorData.menuLeftThis +
 					' !important;}\n .layui-layout-admin .layui-header .layui-nav .layui-nav-item>a{color:' + bgcolorData.headerColor +
-					'!important;}\n .layui-header .layui-nav-bar {background-color:' + bgcolorData.headerHover +
+					'!important;}\n .layui-header .layui-nav-bar,#topMenu .layui-this:after {background-color:' + bgcolorData.headerHover +
 					'!important;}\n .layui-tab-title .layui-this,.layui-tab-title li:hover{color:' + bgcolorData.tabThis +
 					'!important;}\n' +
 					'}';
@@ -731,7 +731,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$(this).children(".layui-nav-child").css(css);
 			})
 
-           
+            
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");
 			$(this).attr("show-data", 0);
