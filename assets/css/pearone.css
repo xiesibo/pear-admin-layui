@@ -534,29 +534,31 @@
    /**移动端适应*/
  @media screen and (max-width:768px) {
 	  
-	 .layui-header .layui-logo{
+	  .layui-header .layui-logo{
 	 	width: 0px!important;
+		transition: all .4s;
 	 }
-	 .layui-side{
+	 .pearone-mini .layui-side{
 		 width: 0px!important;
 	 }
-	 .layui-body{
+	  .layui-body{
 		 left: 0px!important;
 	 }
 	 .layui-header .layui-layout-left{
 		 left: 0px!important;
 	 }
-	 .pearone-mini .layui-side{
+	 .layui-side{
 		 width:220px!important;
 	 }
-	 .pearone-mini .layui-side .layui-nav-item>a span{
+	 
+	 .layui-side .layui-nav-item>a span{
 		 display: inline-block;
 	 } 
 	
-	 .modules-pe{
+	  .modules-pe{
 		 left:100px!important;
 	 }
-	 .layui-layout-admin .layui-body{
+	 .pearone-mini .layui-layout-admin .layui-body{
 		bottom:0px!important!important; 
 	 }
 	 .layui-layout-admin .layui-logo{

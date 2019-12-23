@@ -731,10 +731,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$(this).children(".layui-nav-child").css(css);
 			})
 
-            if(true){
-				$('.pearone-layout .layui-side .layui-nav-item').off('mouseenter').unbind('mouseleave');
-			}
-
+           
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");
 			$(this).attr("show-data", 0);
