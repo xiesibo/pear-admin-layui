@@ -113,7 +113,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 			},
 			this.initMenu = function(url) {
-                $(".modules-pe").html("");
+				$(".modules-pe").html("");
 				console.log("初始化单系统菜单")
 				//清空菜单栏
 				$(".layui-side #menuEnd").html("");
@@ -148,31 +148,26 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$.ajaxSettings.async = true;
 
 				//重新注入灵魂
-
-
-
-
-
-
-			},
+            },
 			this.initMenuPlus = function(url) {
 				//顶部菜单
-				
-				
+
+
 				var headHtml = "";
 				//左边菜单
 				var leftHtml = "";
 				console.log("初始化多系统菜单");
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
-                $(".layui-header-mini-menu").html("");
+				$(".layui-header-mini-menu").html("");
 				$(".modules-pe").html("");
 				$.ajaxSettings.async = false;
 				$.get(url, function(result) {
 					//每一个菜单
 					var leftMenuEnd = '<ul class="layui-nav layui-nav-tree leftMenu" id="leftMenu" lay-filter="test">';
 
-					var headerMobileMenuHtml = ' <li class="layui-nav-item"> <a href="javascript:;">选择模块</a><dl class="layui-nav-child layui-header-mini-menu">';
+					var headerMobileMenuHtml =
+						' <li class="layui-nav-item"> <a href="javascript:;">选择模块</a><dl class="layui-nav-child layui-header-mini-menu">';
 					//遍历第一层,既顶部菜单
 					$.each(result, function(i, item) {
 						//设置每一个菜单的唯一值
@@ -228,29 +223,23 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 							$(".layui-side #" + menuId).addClass("layui-show");
 							$(".layui-side #" + menuId).removeClass("layui-hide");
 						})
-
-
-					});
-					
-					headerMobileMenuHtml+='</dl></li>';
+                    });
+					headerMobileMenuHtml += '</dl></li>';
 
 					$(".modules-pe").append(headerMobileMenuHtml);
 
 					$(".layui-header-mini-menu dd a").click(function() {
 						console.log("触发");
 						var menuId = $(this).attr("id");
-						console.log("菜单编号:"+menuId);
+						console.log("菜单编号:" + menuId);
 						$(".layui-side .leftMenu").addClass("layui-hide");
 						$(".layui-side .leftMenu").removeClass("layui-show");
 						$(".layui-side #" + menuId).addClass("layui-show");
 						$(".layui-side #" + menuId).removeClass("layui-hide");
 					})
-
-					$("#menuEnd").append(leftHtml);
+                    $("#menuEnd").append(leftHtml);
 					element.init();
 					pearone.initTab(pearone.config('multileTab'));
-
-
 					$("#topMenu li:first-child").addClass("layui-this");
 					$(".layui-side .leftMenu").addClass("layui-hide");
 					$("#menuEnd ul:first-child").addClass("layui-show");
@@ -675,15 +664,15 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				});
 				return html;
 			},
-			this.isPc = function(){
-				
-				
+			this.isPc = function() {
+
+
 				if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
 					return false;
 				} else {
 					return true;
 				}
-				
+
 			}
 	}
 
@@ -731,7 +720,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$(this).children(".layui-nav-child").css(css);
 			})
 
-            
+
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");
 			$(this).attr("show-data", 0);
@@ -786,8 +775,5 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			console.log(_con2);
 		}
 	});
-
-
-
-	exports("pearone", pearone);
+    exports("pearone", pearone);
 });

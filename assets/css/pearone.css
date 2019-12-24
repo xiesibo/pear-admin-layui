@@ -144,7 +144,6 @@
    }
    #topMenu .layui-this:after{
 	   display: inline;
-	   background: #000000;
    }
 
 
@@ -377,6 +376,16 @@
    	height: 2px !important;
    }
 
+
+.pearone-layout .layui-side-scroll::-webkit-scrollbar{
+width: 2px;
+background: none;
+}
+
+.pearone-layout .layui-side{
+	overflow-x: hidden;
+		overflow-y: hidden;
+}
 
 	       .layui-tab-circular {
 				padding: 0px;
