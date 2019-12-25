@@ -1,5 +1,17 @@
 /**主页布局*/
 
+   /**
+	* 隐藏页脚
+	*/
+    
+   .pearone-hide-footer  .layui-body{
+	   bottom:0px!important;
+   }
+   .pearone-hide-footer .layui-footer{
+	   display: none!important;
+   }
+
+
    /**通用 Header Logo */
    .pearone-layout .layui-header .layui-logo {
    	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
@@ -75,6 +87,10 @@
 
    .pearone-layout .layui-logo .title {
    	margin-left: 15px;
+   }
+   
+   .pearone-layout .layui-body .layui-tab-title{
+	   transition: all .4s;
    }
    
     .pearone-layout .layui-nav-item{

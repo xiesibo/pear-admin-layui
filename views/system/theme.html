@@ -31,6 +31,13 @@
 					  
 				  </div>
 			  </div>
+			  <div class="layui-row layui-col-space10">
+			  <div class="layui-col-md6 layui-col-sm6 layui-col-xs6">
+			  	   显示脚：<input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="footer" lay-text="开启|关闭">
+			  					  
+			  </div>
+			  </div>
+			  
 	          <div class="layui-form-item">
 			     选项卡：
 			      <input type="radio" name="sex"  lay-filter="radioTest" value="0" title="圆角" checked>
@@ -78,6 +85,16 @@
 		  				     window.parent.pearone.initMenu(pearone.config('menuInfo'));	
 		  				}else{
 		  					 window.parent.pearone.initMenuPlus(pearone.config('menuInfo'));	
+		  				}
+		        
+		  });
+		  
+		  form.on('switch(footer)', function(data){
+		  		
+		        if(this.checked){
+		  				     window.parent.pearone.initFooter(true);	
+		  				}else{
+		  					 window.parent.pearone.initFooter(false);	
 		  				}
 		        
 		  });

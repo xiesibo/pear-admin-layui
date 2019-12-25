@@ -13,38 +13,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 	}
 
 
-	$('body').on('click', '[data-bgcolor]', function() {
-		var loading = layer.load(0, {
-			shade: false,
-			time: 2 * 1000
-		});
-		var clientHeight = (document.documentElement.clientHeight) - 95;
-		var bgColorHtml = pearone.buildBgColorHtml();
-		var html = '<div class="pearone-color">\n' +
-			'<div class="color-title">\n' +
-			'<span>配色方案</span>\n' +
-			'</div>\n' +
-			'<div class="color-content">\n' +
-			'<ul>\n' + bgColorHtml + '</ul>\n' +
-			'</div>\n' +
-			'</div>';
-		layer.open({
-			type: 1,
-			title: false,
-			closeBtn: 0,
-			shade: 0.2,
-			anim: 2,
-			shadeClose: true,
-			id: 'pearoneBgColor',
-			area: ['340px', clientHeight + 'px'],
-			offset: 'rb',
-			content: html,
-			end: function() {
-				$('.pearone-select-bgcolor').removeClass('layui-this');
-			}
-		});
-		layer.close(loading);
-	});
+
 
 
 	pearone = new function() {
@@ -59,7 +28,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			homeInfo: 'views/system/console.html',
 			menuInfo: 'api/menu.json',
 			BgColorDefault: 5,
-			menuType: true
+			menuType: true,
+			showFooter: false
 		};
 
 
@@ -91,6 +61,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				pearone.initHome(option.homeInfo);
 				pearone.initTab(option.multileTab);
 				pearone.initBgColor()
+				pearone.initFooter(option.showFooter);
 
 				if (option.tabType == 1) {
 
@@ -148,7 +119,14 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$.ajaxSettings.async = true;
 
 				//重新注入灵魂
-            },
+			},
+			this.initFooter = function(b) {
+				if (!b) {
+					$(".pearone-layout").addClass("pearone-hide-footer");
+				} else {
+					$(".pearone-layout").removeClass("pearone-hide-footer");
+				}
+			},
 			this.initMenuPlus = function(url) {
 				//顶部菜单
 
@@ -223,7 +201,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 							$(".layui-side #" + menuId).addClass("layui-show");
 							$(".layui-side #" + menuId).removeClass("layui-hide");
 						})
-                    });
+					});
 					headerMobileMenuHtml += '</dl></li>';
 
 					$(".modules-pe").append(headerMobileMenuHtml);
@@ -237,7 +215,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						$(".layui-side #" + menuId).addClass("layui-show");
 						$(".layui-side #" + menuId).removeClass("layui-hide");
 					})
-                    $("#menuEnd").append(leftHtml);
+					$("#menuEnd").append(leftHtml);
 					element.init();
 					pearone.initTab(pearone.config('multileTab'));
 					$("#topMenu li:first-child").addClass("layui-this");
@@ -492,6 +470,9 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				var left = $tabTitle.scrollLeft();
 				if ('left' === d) {
 					$tabTitle.scrollLeft(left - 300);
+					/* $tabTitle.animate({scrollLeft: left-300}, 500); */
+
+
 				} else if ('auto' === d) {
 					var autoLeft = 0;
 					$tabTitle.children("li").each(function() {
@@ -503,8 +484,12 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					});
 					// console.log(autoLeft);
 					$tabTitle.scrollLeft(autoLeft - 47);
+
+					/* $tabTitle.animate({scrollLeft: autoLeft - 47}, 500); */
 				} else {
 					$tabTitle.scrollLeft(left + 300);
+					/* $tabTitle.animate({scrollLeft: autoLeft + 300}, 500); */
+
 				}
 			},
 			// 左滑动tab
@@ -757,7 +742,16 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 	})
 
 
+	element.on('tab(mainFrame)', function(data) {
+        if (data.elem.context.attributes != undefined) {
+			var id = data.elem.context.attributes[0].nodeValue;
 
+			layui.each($(".layui-side"), function() {
+				$(this).find(".layui-this").removeClass("layui-this");
+			});
+			$("[data-id='" + id + "']").attr("class", "layui-this");
+		}
+	});
 
 	/**
 	 * 通用下拉按钮实现
@@ -775,5 +769,5 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			console.log(_con2);
 		}
 	});
-    exports("pearone", pearone);
+	exports("pearone", pearone);
 });
