@@ -640,5 +640,32 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			$("[data-id='" + id + "']").attr("class", "layui-this");
 		}
 	});
+	
+	
+	$(".layui-side").on("click", ".layui-nav-item a", function () {
+		if (!$(this).attr("lay-id")) {
+			var superEle = $(this).parent();
+			var ele = $(this).next('.layui-nav-child');
+			var height = ele.height();
+	 		 /* ele.css({"display": "block"}); */
+			// 是否是展开状态
+			if (superEle.is(".layui-nav-itemed")) {
+				$(".pearone-layout .layui-side .layui-nav-itemed").removeClass("layui-nav-itemed");
+				superEle.addClass("layui-nav-itemed");
+				ele.height(0);
+				console.log("展开");
+				
+				ele.animate({height: height + "px"}, function () {
+					ele.css({height: "auto"});
+				});
+			} else {
+					console.log("隐藏");
+				ele.animate({height: 0}, function () {
+					ele.removeAttr("style");
+				});
+			}
+		}
+	});
+	
 	exports("pearone", pearone);
 });
