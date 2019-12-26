@@ -710,12 +710,12 @@ background: none;
  				  color: gray!important;
   }
   .layui-layer{
- 				  border-radius: 6px!important;
+ 				  border-radius: 4px!important;
   } 
   .layui-layer .layui-layer-title{
  				 /* background-color: white!important; */
- 				  border-top-right-radius:6px;
- 				  border-top-left-radius: 6px;
+ 				  border-top-right-radius:4px;
+ 				  border-top-left-radius: 4px;
  				 /* border-bottom: none; */
   }
 
