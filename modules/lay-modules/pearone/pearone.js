@@ -22,7 +22,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			multileTab: true,
 			homeInfo: 'views/system/console.html',
 			menuInfo: 'api/menu.json',
-			BgColorDefault: 5,
+			BgColorDefault: 2,
 			menuType: true,
 			showFooter: false
 		};
