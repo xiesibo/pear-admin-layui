@@ -694,4 +694,28 @@ background: none;
 	 
 
  }  
+ 
+ /* 弹窗全局样式 */
+ .layui-layer-btn a {
+    height: 30px;
+    text-align: center;
+    color: white;
+    font-size: 13px;
+    border-radius: 4px;
+    padding-left: 30px;
+ 				padding-right: 30px;
+  }
+  
+  .alert-skin .layui-layer-btn1{
+ 				  color: gray!important;
+  }
+  .layui-layer{
+ 				  border-radius: 7px!important;
+  } 
+  .layui-layer .layui-layer-title{
+ 				  background-color: white!important;
+ 				  border-top-right-radius:7px;
+ 				  border-top-left-radius: 7px;
+ 				  border-bottom: none;
+  }
 

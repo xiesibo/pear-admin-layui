@@ -12,13 +12,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		return layer.alert("请先将项目部署至web容器（Apache/Tomcat/Nginx/IIS/等），否则部分数据将无法显示");
 	}
 
-
-
-
-
-	pearone = new function() {
-
-		/**
+    pearone = new function() {
+        /**
 		 *  系统配置
 		 * @param name 
 		 * @returns {{BgColorDefault: number, urlSuffixDefault: boolean}|*}
@@ -31,12 +26,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			menuType: true,
 			showFooter: false
 		};
-
-
 		this.config = function(name) {
-
-
-				if (name == undefined) {
+                if (name == undefined) {
 					return config;
 				} else {
 					return config[name];
@@ -76,8 +67,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					className = "layui-tab-circular";
 
 				}
-
-				$(".layui-tab").removeClass("layui-tab-button");
+                $(".layui-tab").removeClass("layui-tab-button");
 				$(".layui-tab").removeClass("layui-tab-topline");
 				$(".layui-tab").removeClass("layui-tab-circular");
 				$(".layui-tab").addClass(className);
@@ -85,11 +75,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			},
 			this.initMenu = function(url) {
 				$(".modules-pe").html("");
-				
-				//清空菜单栏
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
-
 				var leftHtml = '<ul class="layui-nav layui-nav-tree" id="menu" lay-filter="test">'
 				$.ajaxSettings.async = false;
 				$.get(url, function(result) {
@@ -106,9 +93,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						//这里是添加所有的子菜单
 						content += pearone.loadchild(item);
 						content += '</li>';
-
-
-						leftHtml += content;
+                        leftHtml += content;
 
 					});
 					leftHtml += "</ul>";
@@ -117,8 +102,6 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					pearone.initTab(pearone.config('multileTab'));
 				});
 				$.ajaxSettings.async = true;
-
-				//重新注入灵魂
 			},
 			this.initFooter = function(b) {
 				if (!b) {
@@ -128,11 +111,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				}
 			},
 			this.initMenuPlus = function(url) {
-				//顶部菜单
-
-
 				var headHtml = "";
-				//左边菜单
 				var leftHtml = "";
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
@@ -244,20 +223,12 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						if (note.type == 0) {
 
 							content += '<a  href="javascript:;"><i class="' + note.icon + '"></i><span>' + note.title + '</span></a>';
-
-
-						} else if (note.type == 1) {
-
-						
-
-							content += '<a class="site-demo-active" data-url="' + note.href + '" data-id="' + note.id +
+                        } else if (note.type == 1) {
+                                content += '<a class="site-demo-active" data-url="' + note.href + '" data-id="' + note.id +
 								'" data-title="' + note.title + '" data-icon="' + note.icon + '" href="javascript:;"><i class="' + note.icon +
 								'"></i><span>' + note.title + '</span></a>';
-
-						}
-
-
-						if (note.children == null) {
+                        }
+                        if (note.children == null) {
 							return;
 						}
 						content += pearone.loadchild(note);
@@ -340,14 +311,10 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						//最后不管是否新增tab，最后都转到要打开的选项页面上
 						pearone.tabChange(dataid.attr("data-id"));
 					});
-
-
-					//绑定下拉菜单事件
+                    //绑定下拉菜单事件
 					$("#closeThisTabs").on("click", function() {
-
-						var currentTabId = $(".pearone-layout .layui-body .layui-tab-title .layui-this").attr("lay-id");
-
-						if (currentTabId != 1) {
+                        var currentTabId = $(".pearone-layout .layui-body .layui-tab-title .layui-this").attr("lay-id");
+                        if (currentTabId != 1) {
 							pearone.tabDelete(currentTabId);
 						}
 					});
@@ -365,12 +332,9 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					});
 
 					$("#closeAllTabs").on("click", function() {
-
-						var tabtitle = $(".layui-tab-title li");
-
-						$.each(tabtitle, function(i) {
-
-							if ($(this).attr("lay-id") != 1) {
+                        var tabtitle = $(".layui-tab-title li");
+                        $.each(tabtitle, function(i) {
+                            if ($(this).attr("lay-id") != 1) {
 								pearone.tabDelete($(this).attr("lay-id"))
 							}
 						})
@@ -383,10 +347,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					$("#rightPage").on("click", function() {
 						pearone.rightPage();
 					})
-
-
-
-					pearone.initHome(pearone.config('homeInfo'));
+                    pearone.initHome(pearone.config('homeInfo'));
 
 				} else {
 
@@ -400,16 +361,10 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 						$("#mainFrame").attr("src", url);
 					})
-
-
 					$("#oneTab").show();
-
 					$("#multileTab").hide();
-
 					pearone.initHome(pearone.config('homeInfo'));
-
-
-				}
+			    }
 
 			},
 			this.initHome = function(url) {
@@ -456,10 +411,6 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				$.each(ids, function(i, item) {
 					element.tabDelete("mainFrame", item); //ids是一个数组，里面存放了多个id，调用tabDelete方法分别删除
 				})
-			},
-			this.setTheme = function() {
-
-
 			},
 			this.rollPage = function(d) {
 				var $tabTitle = $('.layui-body .layui-tab .layui-tab-title');
@@ -603,9 +554,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				return html;
 			},
 			this.isPc = function() {
-
-
-				if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
 					return false;
 				} else {
 					return true;
@@ -633,32 +582,21 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			$(this).attr("show-data", 1);
 		} else {
 			$(".layui-side .layui-nav-item").hover(function() {
-
-				$(this).children(".layui-nav-child").addClass("pearone-menu-hover");
-
-				var top = $(this).offset().top;
-
-
-				var css = {
-
+                $(this).children(".layui-nav-child").addClass("pearone-menu-hover");
+                var top = $(this).offset().top;
+                var css = {
 					top: top + 'px'
 				}
-
 				$(this).children(".layui-nav-child").css(css);
 
 			}, function() {
 
 				$(this).children(".layui-nav-child").removeClass("pearone-menu-hover");
-
-				var css = {
-
-					top: '0px'
+                var css = {
+                    top: '0px'
 				}
-
 				$(this).children(".layui-nav-child").css(css);
 			})
-
-
 			$(".pearone-layout .layui-side .layui-nav-item").removeClass("layui-nav-itemed");
 			$("body").addClass("pearone-mini");
 			$(this).attr("show-data", 0);
@@ -666,10 +604,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 	})
 
 	$(".setTheme").click(function() {
-
-
-
-		layer.open({
+        layer.open({
 			type: 2,
 			title: false,
 			closeBtn: false, //不显示关闭按钮
@@ -693,20 +628,14 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		});
 
 	})
-
-
-	element.on('tab(mainFrame)', function(data) {
+    element.on('tab(mainFrame)', function(data) {
         if (data.elem.context.attributes != undefined) {
 			var id = data.elem.context.attributes[0].nodeValue;
-
-			layui.each($(".layui-side"), function() {
+            layui.each($(".layui-side"), function() {
 				$(this).find(".layui-this").removeClass("layui-this");
 			});
 			$("[data-id='" + id + "']").attr("class", "layui-this");
 		}
 	});
-
-	
-	
 	exports("pearone", pearone);
 });
