@@ -416,7 +416,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				var $tabTitle = $('.layui-body .layui-tab .layui-tab-title');
 				var left = $tabTitle.scrollLeft();
 				if ('left' === d) {
-					$tabTitle.scrollLeft(left - 300);
+		/* 			$tabTitle.scrollLeft(left - 300); */
+					$tabTitle.animate({scrollLeft:left - 450},400);
 					/* $tabTitle.animate({scrollLeft: left-300}, 500); */
 					} else if ('auto' === d) {
 					var autoLeft = 0;
@@ -428,11 +429,13 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 						}
 					});
 				
-					$tabTitle.scrollLeft(autoLeft - 47);
+				/* 	$tabTitle.scrollLeft(autoLeft - 47); */
+					$tabTitle.animate({scrollLeft:left - 47},400);
 
 					/* $tabTitle.animate({scrollLeft: autoLeft - 47}, 500); */
 				} else {
-					$tabTitle.scrollLeft(left + 300);
+					/* $tabTitle.scrollLeft(left + 300); */
+					$tabTitle.animate({scrollLeft:left + 450},400);
 					/* $tabTitle.animate({scrollLeft: autoLeft + 300}, 500); */
 
 				}

@@ -706,16 +706,20 @@ background: none;
  				padding-right: 30px;
   }
   
-  .alert-skin .layui-layer-btn1{
+   .layui-layer-btn1{
  				  color: gray!important;
   }
   .layui-layer{
- 				  border-radius: 7px!important;
+ 				  border-radius: 6px!important;
   } 
   .layui-layer .layui-layer-title{
- 				  background-color: white!important;
- 				  border-top-right-radius:7px;
- 				  border-top-left-radius: 7px;
- 				  border-bottom: none;
+ 				 /* background-color: white!important; */
+ 				  border-top-right-radius:6px;
+ 				  border-top-left-radius: 6px;
+ 				 /* border-bottom: none; */
   }
 
+ #multileTab .layui-tab-bar{
+	 display: none;
+	 height: 0px;
+ }
