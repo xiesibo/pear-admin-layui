@@ -8,10 +8,10 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		form = layui.form;
 
 	// 判断是否在web容器中打开
-	if (!/http(s*):\/\//.test(location.href)) {
+ 	if (!/http(s*):\/\//.test(location.href)) {
 		return layer.alert("请先将项目部署至web容器（Apache/Tomcat/Nginx/IIS/等），否则部分数据将无法显示");
 	}
-
+ 
     pearone = new function() {
         /**
 		 *  系统配置
@@ -451,15 +451,15 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			 */
 			this.bgColorConfig = function(bgcolorId) {
 				var bgColorConfig = [{
-						headerRight: '#1aa094',
-						headerRightThis: '#197971',
-						headerLogo: '#20222A',
-						menuLeft: '#20222A',
-						menuLeftThis: '#1aa094',
-						menuLeftHover: '#3b3f4b',
-						headerColor: 'white',
-						headerHover: 'white',
-						tabThis: '#1aa094',
+						headerRight: '#1aa094',   //头部背景色
+						headerRightThis: '#197971',   //头部选中色
+						headerLogo: '#20222A',  //图标背景色
+						menuLeft: '#20222A',  //左侧菜单背景
+						menuLeftThis: '#1aa094', //左侧菜单选中色
+						menuLeftHover: '#3b3f4b', //左侧菜单焦点色
+						headerColor: 'white',  //头部背景色
+						headerHover: 'white', //头部焦点色
+						tabThis: '#1aa094', //选项卡选中色
 					},
 					{
 						headerRight: '#AA3130',
