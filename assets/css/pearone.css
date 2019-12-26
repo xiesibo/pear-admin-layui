@@ -179,6 +179,15 @@
    .pearone-mini .pearone-menu-hover a i{
 	   display: none!important;
    }
+   
+/*   .pearone-mini .pearone-menu-hover .layui-nav-item{
+	   height: 30px!important;
+	   line-height: 30px!important;
+   }
+   .pearone-mini .pearone-menu-hover .layui-this{
+   	   height: 30px!important;
+	    line-height: 30px!important;
+   } */
    .pearone-mini .pearone-menu-hover a span{
 	   margin: 0px!important;
    }
@@ -274,8 +283,8 @@
    
    /**菜单栏美化*/
    .layui-nav-child dd{
-	   padding-top:5px ;
-	   padding-bottom: 5px;
+	   padding-top:4px ;
+	   padding-bottom: 4px;
    }
 
 
@@ -336,12 +345,16 @@
    	color: dodgerblue;
    	border: none !important;
    	border-radius: 5px;
-	box-shadow: 0px 0px 3px gray;
+	/* box-shadow: 0px 0px 3px gray; */
    }
 
    /** 选中后 */
    .layui-tab-button .layui-this:after {
    	border: none;
+   }
+   
+   .layui-logo .title{
+	   display: none;
    }
 
    .layui-tab-title li .layui-tab-close {

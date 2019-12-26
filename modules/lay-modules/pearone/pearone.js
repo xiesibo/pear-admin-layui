@@ -85,7 +85,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			},
 			this.initMenu = function(url) {
 				$(".modules-pe").html("");
-				console.log("初始化单系统菜单")
+				
 				//清空菜单栏
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
@@ -134,7 +134,6 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				var headHtml = "";
 				//左边菜单
 				var leftHtml = "";
-				console.log("初始化多系统菜单");
 				$(".layui-side #menuEnd").html("");
 				$(".layui-header #topMenu").html("");
 				$(".layui-header-mini-menu").html("");
@@ -207,9 +206,8 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 					$(".modules-pe").append(headerMobileMenuHtml);
 
 					$(".layui-header-mini-menu dd a").click(function() {
-						console.log("触发");
+				
 						var menuId = $(this).attr("id");
-						console.log("菜单编号:" + menuId);
 						$(".layui-side .leftMenu").addClass("layui-hide");
 						$(".layui-side .leftMenu").removeClass("layui-show");
 						$(".layui-side #" + menuId).addClass("layui-show");
@@ -250,9 +248,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 						} else if (note.type == 1) {
 
-							console.log("标题:" + note.title);
-
-							console.log("链接:" + note.href);
+						
 
 							content += '<a class="site-demo-active" data-url="' + note.href + '" data-id="' + note.id +
 								'" data-title="' + note.title + '" data-icon="' + note.icon + '" href="javascript:;"><i class="' + note.icon +
@@ -270,7 +266,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 
 					content += '</dl>';
 				}
-				console.log(content);
+			
 				return content;
 			},
 			/**
@@ -435,7 +431,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			},
 			this.tabAdd = function(url, id, name) {
 				//查询该编号是否存在,如果存在进行相应替换
-				console.log("添加TaB:" + url);
+				
 
 				element.tabAdd('mainFrame', {
 					title: name,
@@ -471,9 +467,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 				if ('left' === d) {
 					$tabTitle.scrollLeft(left - 300);
 					/* $tabTitle.animate({scrollLeft: left-300}, 500); */
-
-
-				} else if ('auto' === d) {
+					} else if ('auto' === d) {
 					var autoLeft = 0;
 					$tabTitle.children("li").each(function() {
 						if ($(this).hasClass('layui-this')) {
@@ -482,7 +476,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 							autoLeft += $(this).outerWidth();
 						}
 					});
-					// console.log(autoLeft);
+				
 					$tabTitle.scrollLeft(autoLeft - 47);
 
 					/* $tabTitle.animate({scrollLeft: autoLeft - 47}, 500); */
@@ -494,54 +488,13 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 			},
 			// 左滑动tab
 			this.leftPage = function() {
-				console.log("左滑");
 				pearone.rollPage("left");
 			},
 			// 右滑动tab
 			this.rightPage = function() {
-				console.log("右滑");
-				pearone.rollPage();
+			    pearone.rollPage();
 			},
-
-			//封装请求
-			this.request = function(url, type, data, success) {
-				var loading = layer.load();
-				$.ajax({
-					url: url,
-					type: type,
-					dataType: 'json',
-					data: data,
-					success: function(data) {
-						layer.close(loading);
-						if (data.success) {
-							success(data);
-						} else {
-							pearone.error(data.msg);
-						}
-					},
-					error: function(xhr, textstatus, thrown) {
-						layer.close(loading);
-						var errorMsg = 'Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！';
-						pearone.error(errorMsg);
-					}
-				})
-
-
-			},
-			this.get = function(url, data, success) {
-
-				pearone.request(url, 'get', data, success);
-			},
-			this.post = function(url, data, success) {
-				pearone.request(url, 'post', data, success);
-			},
-			this.put = function(url, data, success) {
-				pearone.request(url, 'put', data, success);
-			},
-			this.delete = function(url, data, success) {
-				pearone.request(url, 'delete', data, success);
-			},
-			/**
+            /**
 			 * 配色方案配置项(默认选中第一个方案)
 			 * @param bgcolorId
 			 */
@@ -753,21 +706,7 @@ layui.define(["element", "jquery", "layer", "form"], function(exports) {
 		}
 	});
 
-	/**
-	 * 通用下拉按钮实现
-	 * */
-	$(".downpanel").on("click", ".layui-select-title", function(e) {
-		$(".layui-form-select").not($(this).parents(".layui-form-select")).removeClass("layui-form-selected");
-		$(this).parents(".layui-form-select").toggleClass("layui-form-selected");
-		e.stopPropagation();
-	});
-	$(document).click(function(event) {
-		//搜索框
-		var _con2 = $(".downpanel");
-		if (!_con2.is(event.target) && (_con2.has(event.target).length === 0)) {
-			_con2.removeClass("layui-form-selected");
-			console.log(_con2);
-		}
-	});
+	
+	
 	exports("pearone", pearone);
 });

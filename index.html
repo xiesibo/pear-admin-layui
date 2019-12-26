@@ -10,12 +10,15 @@
 	    <link rel="stylesheet" href="assets/css/examples.css" rel="stylesheet" type="text/css">
 		<style id="pearone-bg-color">
 		</style>
+		<style>
+			.layui-anim.layui-anim-upbit{-webkit-animation-name: layui-upbit-new; animation-name: layui-upbit-new;}
+		</style>
 	</head>
 	
 	<body class="layui-layout-body pearone-layout">
 	   <div class="layui-layout layui-layout-admin">
 			<div class="layui-header">
-				<div class="layui-logo"><i class="fa fa-gitlab"></i><span class="title"></span></div>
+				<div class="layui-logo"><i class="fa fa-gitlab"></i>&nbsp;&nbsp;<span class="title">Pear One Frame</span></div>
 				<ul class="layui-nav layui-nav-topinline layui-layout-left">
 					<li class="layui-nav-item"><a href="#" show-data="1" class="layui-icon layui-icon-shrink-right zoom-tool"></a></li>
 					<li class="layui-nav-item"><a href="#" data-bgcolor="配色方案" class="layui-icon layui-icon-refresh-1"></a></li>
@@ -32,7 +35,7 @@
 				</ul>
 				
 				<ul class="layui-nav layui-nav-topinline layui-layout-right">
-				    
+				    <li class="layui-nav-item"><a href="#" class="layui-icon layui-icon-notice"></a></li>
 					<li class="layui-nav-item">
 						<a href="javascript:;">
 							<img src="assets/images/avatar.jpg" class="layui-nav-img">
@@ -48,7 +51,7 @@
 			</div>
 
 			<div class="layui-side layui-bg-black" >
-				<div class="layui-side-scroll" id="menuEnd" >
+				 <div class="layui-side-scroll" id="menuEnd" >
 				</div>
 			</div>
 
@@ -98,34 +101,24 @@
 			</div>
 		
 		</div>
-	
+	 <div class="yy"></div>
 	<!--Preloader element -->
-	<div id="preloader">
+ 	<div id="preloader">
 	    <div id="preloader-inner"></div>
 	</div>
-	
+	    <script src="component/loading/okLoading.js"></script>
 		<script src="component/layui/layui.js"></script>
 		<script src="modules/lay-config.js"></script>
 		<script>
 			//JavaScript代码区域
-			layui.use(['element', 'jquery', 'pearone', 'layer','notice','form'], function() {
+			layui.use(['element', 'jquery', 'pearone'], function() {
 				var element = layui.element,
 					$ = layui.jquery,
-					pearone = layui.pearone,
-					layer = layui.layer,
-					notice = layui.notice,
-					form = layui.form;
-                    setTimeout(function() {
-					notice.success("登陆成功!");
-					
-				}, 2300);
-				
-	
-				
-				
+					pearone = layui.pearone;
+                
 				pearone.init({
 					menuInfo:'api/menu.json',   //菜单数据地址
-					menuType:true,     //菜单模式,true:多系统菜单 false:单系统菜单模式
+					menuType:false,     //菜单模式,true:多系统菜单 false:单系统菜单模式
 					homeInfo:'views/system/console.html',     //主页地址
 					multileTab:true, //多标签页是否开启,true:开启  false:关闭
 					tabType:1, //标签页样式 1.2.3 三种样式
@@ -137,9 +130,9 @@
 		</script>
 		<script src="assets/js/jquery-2.1.1.min.js"></script>
 		<script src="assets/js/jquery.preloader.js" type="text/javascript"></script>
-		<script type="text/javascript">
+	 	<script>
 			$(window).preloader({
-			        delay: 800
+			        delay: 0
 			});
 		</script>
 	</body>
