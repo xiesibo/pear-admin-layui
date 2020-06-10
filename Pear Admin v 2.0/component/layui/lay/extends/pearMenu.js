@@ -35,8 +35,8 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 		// 根 据 请 求 方 式 获 取 数 据
 		if (option.async) {
 			option.data = getData(option.url);
-			if (option.parseData != false) {
-				option.parseData(option.data);
+			if (option.parseData) {
+				option.data = option.parseData(option.data);
 			}
 		}
 

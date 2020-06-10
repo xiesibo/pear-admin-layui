@@ -42,7 +42,7 @@ layui.define(['table', 'jquery', 'element', 'form', 'pearTab', 'pearMenu', 'pear
 				defaultOpen: 0, //默认打开菜单
 				accordion: true,
 				url: option.data, //数据地址
-				parseData: false, //请求后是否进行数据解析 函数
+				parseData: option.parseData, //请求后是否进行数据解析 函数
 				change: option.change
 			})
 
