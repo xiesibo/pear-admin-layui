@@ -164,7 +164,8 @@
 }
 
 .pear-tab .layui-tab-tool .layui-this a {
-	background-color: #009688;
+	background-color: #fff !important;
+	color: black !important;
 }
 
 .pear-tab-loading {
