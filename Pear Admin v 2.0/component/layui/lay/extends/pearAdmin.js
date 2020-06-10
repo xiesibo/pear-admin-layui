@@ -200,6 +200,11 @@ layui.define(['table', 'jquery', 'element', 'form', 'pearTab', 'pearMenu', 'pear
 			// 自 定 义 加 载 配 色
 			style += '#preloader{background-color:' + color + '!important;}';
 
+			// 自 定 义 样 式 选 择 边 框 配 色
+			style += '.pearone-color .color-content li.layui-this:after, .pearone-color .color-content li:hover:after {border: ' + color + ' 2px solid!important;}';
+
+			style += '.layui-nav .layui-nav-child dd a:hover{background-color: ' + color + ' !important;color:white !important;}';
+
 			// 自 定 义 滚 动 条 样 式
 
 			localStorage.setItem("theme-color", color);
@@ -370,8 +375,11 @@ layui.define(['table', 'jquery', 'element', 'form', 'pearTab', 'pearMenu', 'pear
 
 	$("body").on("click", ".setting", function() {
 
+		//拿到当前的菜单
+		var menu = localStorage.getItem("theme-menu");
+
 		var bgColorHtml =
-			'<li class="layui-this" data-select-bgcolor="dark-theme">' +
+			'<li ' + (menu === "dark-theme" ? 'class="layui-this"' : '') + ' data-select-bgcolor="dark-theme">' +
 			'<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">' +
 			'<div><span style="display:block; width: 20%; float: left; height: 12px; background: #28333E;"></span><span style="display:block; width: 80%; float: left; height: 12px; background: white;"></span></div>' +
 			'<div><span style="display:block; width: 20%; float: left; height: 40px; background: #28333E;"></span><span style="display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;"></span></div>' +
@@ -380,7 +388,7 @@ layui.define(['table', 'jquery', 'element', 'form', 'pearTab', 'pearMenu', 'pear
 
 
 		bgColorHtml +=
-			'<li  data-select-bgcolor="light-theme">' +
+			'<li ' + (menu === "light-theme" ? 'class="layui-this"' : '') + ' data-select-bgcolor="light-theme">' +
 			'<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">' +
 			'<div><span style="display:block; width: 20%; float: left; height: 12px; background: white;"></span><span style="display:block; width: 80%; float: left; height: 12px; background: white;"></span></div>' +
 			'<div><span style="display:block; width: 20%; float: left; height: 40px; background: white;"></span><span style="display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;"></span></div>' +
@@ -433,6 +441,19 @@ layui.define(['table', 'jquery', 'element', 'form', 'pearTab', 'pearMenu', 'pear
 			move: false,
 			content: html,
 			success: function(layero, index) {
+
+				//初始化颜色选择器的状态
+				$(".select-color-item").removeClass("layui-icon")
+				.removeClass("layui-icon-ok");
+
+				var color = localStorage.getItem("theme-color");
+
+				$(".select-color-item").each(function () {
+					if ($(this).css("background-color") === color) {
+							$(this).addClass("layui-icon").addClass("layui-icon-ok");
+					}
+				});
+
 				$('#layui-layer-shade' + index).click(function() {
 					var $layero = $('#layui-layer' + index);
 					$layero.animate({
