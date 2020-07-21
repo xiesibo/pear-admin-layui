@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>多选下拉</title>
+		<link href="../../../component/layui/css/layui.css" rel="stylesheet" />
+		<link href="../../../admin/css/pearSelect.css" rel="stylesheet" />
+		<style>
+			body {
+				margin: 10px;
+				background-color: whitesmoke;
+			}
+			
+			.xm-select-size{
+				vertical-align: top;
+				display: inline-block;
+				width: 150px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class="layui-card">
+			<div class="layui-card-header">
+				基础多选
+			</div>
+			<div class="layui-card-body">
+				<div id="xm-base"></div>
+			</div>
+		</div>
+		
+		<div class="layui-card">
+			<div class="layui-card-header">
+				带有工具条和分页的
+			</div>
+			<div class="layui-card-body">
+				<div id="xm-more"></div>
+			</div>
+		</div>
+		
+		<div class="layui-card">
+			<div class="layui-card-header">
+				下拉树
+			</div>
+			<div class="layui-card-body">
+				<div id="xm-tree"></div>
+			</div>
+		</div>
+		
+		<div class="layui-card">
+			<div class="layui-card-header">
+				下拉任意
+			</div>
+			<div class="layui-card-body">
+				<div id="xm-custom"></div>
+			</div>
+		</div>
+		
+		<div class="layui-card">
+			<div class="layui-card-header">
+				不同尺寸
+			</div>
+			<div class="layui-card-body">
+				<div id="demo1" class="xm-select-size"></div>
+				<div id="demo2" class="xm-select-size"></div>
+				<div id="demo3" class="xm-select-size"></div>
+				<div id="demo4" class="xm-select-size"></div>
+			</div>
+		</div>
+
+		<script src="../../../component/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['xmSelect', 'code', 'table'], function(xmSelect, code, table) {
+				
+				//基础多选
+				xmSelect.render({
+					el: '#xm-base',
+					data: [
+						{ name: '张三', value: '1' },
+						{ name: '李四', value: '2', selected: true },
+						{ name: '王五', value: '3', disabled: true },
+						{ name: '赵六', value: '4', selected: true, disabled: true },
+					]
+				})
+				
+				//带有工具条和分页的
+				xmSelect.render({
+					el: '#xm-more',
+					toolbar: {
+						show: true,
+					},
+					theme: {
+						color: '#f37b1d'
+					},
+					paging: true,
+					pageSize: 3,
+					data: [
+						{ name: '张三', value: '1' },
+						{ name: '李四', value: '2', selected: true },
+						{ name: '王五', value: '3', disabled: true },
+						{ name: '赵六', value: '4', selected: true, disabled: true },
+					]
+				})
+				
+				//下拉树
+				xmSelect.render({
+					el: '#xm-tree', 
+					autoRow: true,
+					filterable: true,
+					tree: {
+						show: true,
+						showFolderIcon: true,
+						showLine: true,
+						indent: 20,
+						expandedKeys: [ -3 ],
+					},
+					toolbar: {
+						show: true,
+						list: ['ALL', 'REVERSE', 'CLEAR']
+					},
+					filterable: true,
+					height: 'auto',
+					data: [
+						{name: '销售员', value: -1, disabled: true, children: [
+							{name: '张三1', value: 1, selected: true, children: []},
+							{name: '李四1', value: 2, selected: true},
+							{name: '王五1', value: 3, disabled: true},
+						]},
+						{name: '奖品', value: -2, children: [
+							{name: '奖品3', value: -3, children: [
+								{name: '苹果3', value: 14, selected: true},
+								{name: '香蕉3', value: 15},
+								{name: '葡萄3', value: 16},
+							]},
+							{name: '苹果2', value: 4, selected: true, disabled: true},
+							{name: '香蕉2', value: 5},
+							{name: '葡萄2', value: 6},
+						]},
+					]
+				})
+				
+				//下拉自定义
+				var xmCustom = xmSelect.render({
+					el: '#xm-custom', 
+					prop: {
+						name: 'username',
+						value: 'username',
+					},
+					content: `
+						<table class="layui-table" lay-filter="demo">
+						  <thead>
+							<tr>
+							  <th lay-data="{field:'username', width:80}">昵称</th>
+							  <th lay-data="{field:'experience', width:50, sort:true}">积分</th>
+							  <th lay-data="{field:'sign', width: 200}">签名</th>
+							</tr> 
+						  </thead>
+						  <tbody>
+							<tr>
+							  <td>贤心1</td>
+							  <td>66</td>
+							  <td>人生就像是一场修行a</td>
+							</tr>
+							<tr>
+							  <td>贤心2</td>
+							  <td>88</td>
+							  <td>人生就像是一场修行b</td>
+							</tr>
+							<tr>
+							  <td>贤心3</td>
+							  <td>33</td>
+							  <td>人生就像是一场修行c</td>
+							</tr>
+						  </tbody>
+						</table>
+					`,
+					height: 'auto',
+				})
+				
+				table.init('demo', {
+					done: function(res){
+						xmCustom.update({ data: res.data })
+					}
+				}).on('row(demo)', function(obj){
+					var values = xmCustom.getValue();
+					var item = obj.data;
+					var has = values.find(function(i){
+						return i.username === item.username
+					})
+					if(has){
+						xmCustom.delete([ item ]);
+					}else{
+						xmCustom.append([ item ]);
+					}
+				})
+				
+				//不同尺寸
+				var demo1 = xmSelect.render({
+					el: '#demo1', 
+					size: 'large',
+					data: [
+						{name: 'large', value: 1, selected: true},
+						{name: '李四1', value: 2},
+						{name: '王五1', value: 3, disabled: true},
+						{name: '苹果2', value: 4},
+					]
+				})
+				
+				var demo2 = xmSelect.render({
+					el: '#demo2', 
+					size: 'medium',
+					data: [
+						{name: 'medium', value: 1, selected: true},
+						{name: '李四1', value: 2},
+						{name: '默认尺寸', value: 3, selected: true, disabled: true},
+						{name: '苹果2', value: 4},
+					]
+				})
+				
+				var demo3 = xmSelect.render({
+					el: '#demo3', 
+					size: 'small',
+					data: [
+						{name: 'small', value: 1, selected: true},
+						{name: '李四1', value: 2},
+						{name: '王五1', value: 3, disabled: true},
+						{name: '苹果2', value: 4},
+					]
+				})
+				
+				var demo4 = xmSelect.render({
+					el: '#demo4', 
+					size: 'mini',
+					data: [
+						{name: 'mini', value: 1, selected: true},
+						{name: '李四1', value: 2},
+						{name: '王五1', value: 3, disabled: true},
+						{name: '苹果2', value: 4},
+					]
+				})
+				
+				
+
+				layui.code()
+			});
+		</script>
+	</body>
+
+</html>

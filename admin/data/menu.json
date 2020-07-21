@@ -125,7 +125,7 @@
 						"icon": "layui-icon layui-icon-face-smile",
 						"type": 1,
 						"openType": "_iframe",
-						"href": "view/common/basic/formSelects.html"
+						"href": "view/common/basic/xm-select.html"
 					},
 					{
 						"id": 217,
