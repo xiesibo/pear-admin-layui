@@ -67,6 +67,7 @@
 			echartsTheme:"extends/echartsTheme",
 			formSelects:'extends/formSelects-v4',
 			treetable:"extends/treetable",
+			xmSelect:"extends/xm-select",
 			"layui.all": "../layui.all"
 		};
 	o.prototype.cache = n, o.prototype.define = function(e, t) {
