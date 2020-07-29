@@ -437,7 +437,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 
 				var superEle = $(this).parent();
 				var ele = $(this).next('.layui-nav-child');
-				var height = ele.height();
+				var height = ele.children("dd").length * 48;
 				if ($(this).parent().is(".layui-nav-itemed")) {
 
 					if (option.accordion) {
