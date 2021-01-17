@@ -174,7 +174,7 @@ layui.define(['table', 'jquery', 'element'], function(exports) {
 			if (item.type == 0) {
 				// 创 建 目 录 结 构
 				content += '<a  href="javascript:;" menu-type="' + item.type + '" menu-id="' + item.id + '" href="' + href +
-					'" ' + target + '><i class="' + item.icon + '"></i><span>' + item.title +
+					'" ' + target + '><i class="layui-icon' + item.icon + '"></i><span>' + item.title +
 					'</span></a>';
 			} else if (item.type == 1) {
 				content += '<a class="' + className + '" menu-type="' + item.type + '" menu-url="' + item.href + '" menu-id="' +
