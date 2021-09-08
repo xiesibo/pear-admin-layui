@@ -75,6 +75,14 @@
 	margin-right: 12px;
 }
 
+.pear-nav-tree .layui-nav-item dd a i {
+    margin-left: 24px;
+}
+
+.pear-nav-tree .layui-nav-item dd dl dd a i {
+    margin-left: 36px;
+}
+
 .pear-nav-tree .layui-nav-item a span {
 	letter-spacing: 2px;
 	font-size: 13.5px;
@@ -160,14 +168,20 @@
 	display: none;
 }
 .pear-nav-tree .layui-nav-child dd a span {
-	margin-left: 30px !important;
+	margin-left: 0px !important;
 }
+/*菜单图标隐藏/显示*/
+/*
 .pear-nav-tree .layui-nav-child dd a i {
-	display: none;
-}
+	visibility:hidden
+}*/
 .pear-nav-tree .layui-nav-hover dd a span {
 	margin-left: 0px !important;
 }
+
+
+
+
 /** 亮 样 式*/
 
 /** 亮 样 式*/
@@ -239,6 +253,7 @@
 	display: inline-block;
 	transition: all .2s;
 	-webkit-transition: all .2s;
+	visibility:visible;
 }
 
 .pear-nav-tree.arrow .layui-nav-child .layui-nav-more {
