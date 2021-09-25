@@ -37,7 +37,8 @@ layui.config({
 	http: "http",			// ajax请求组件
 	theme: "theme",			// 主题转换
 	message: "message",     // 通知组件
-	toast: "toast"          // 消息通知
+	toast: "toast",          // 消息通知
+    cookie: "cookie"		// jquery cookie
 }).use(['layer', 'theme'], function () {
 	layui.theme.changeTheme(window, false);
 });
