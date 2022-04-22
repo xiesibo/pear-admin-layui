@@ -226,7 +226,10 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 	function getData(url) {
 		var defer = $.Deferred();
-		$.get(url + "?fresh=" + Math.random(), function (result) {
+        // 先判断是否已存在 ? 如果存在，则使用 &fresh=value 连接，否则使用 ?fresh=value
+        // 防止在异步获取数据，若地址中已传递参数，再在此处添加“?”，从而导致后端无法获取到正确的参数
+        // 举例： 在 pear.config.yml 中 menu: data: /index/getmenu?role=admin ,那么在此处就会被错误设置为了 /index/getmenu?role=admin?fresh=
+		$.get(url +(url.indexOf('?')>-1?'&':'?')+ "fresh=" + Math.random(), function (result) {
 			defer.resolve(result)
 		});
 		return defer.promise();
@@ -234,7 +237,10 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 	function postData(url) {
 		var defer = $.Deferred();
-		$.post(url + "?fresh=" + Math.random(), function (result) {
+        // 先判断是否已存在 ? 如果存在，则使用 &fresh=value 连接，否则使用 ?fresh=value
+        // 防止在异步获取数据，若地址中已传递参数，再在此处添加“?”，从而导致后端无法获取到正确的参数
+        // 举例： 在 pear.config.yml 中 menu: data: /index/getmenu?role=admin ,那么在此处就会被错误设置为了 /index/getmenu?role=admin?fresh=
+		$.post(url +(url.indexOf('?')>-1?'&':'?')+ "fresh=" + Math.random(), function (result) {
 			defer.resolve(result)
 		}, "json");
 		return defer.promise();
