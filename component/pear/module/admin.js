@@ -83,7 +83,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					height: '100%',
 					method: param.menu.method,
 					control: isControl(param) === 'true' || isControl(param) === true ? 'control' : false, // control
-					controlWidth: param.menu.controlWidth,
+					controlWidth: param.menu.controlWidth?param.menu.controlWidth:$(window).width()-265-230-130,//配置文件中如果没有设置固定宽度，系统自动根据屏幕宽度设置
 					defaultMenu: 0,
 					accordion: param.menu.accordion,
 					url: param.menu.data,
@@ -776,6 +776,17 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		window.onresize = function() {
 			if (!isFullscreen()) {
 				$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
+			}
+            
+            var windowWidth= $(window).width();
+			var controlWidth= windowWidth-265-230-130;
+            $('#control .control').css('width',controlWidth+'px');
+            
+            //小屏幕时隐藏标题
+			if (windowWidth >= 768) {
+				$('.layui-logo .title').css('display','inline-block');
+			}else{
+				$('.layui-logo .title').css('display','none');
 			}
 		}
 		exports('admin', pearAdmin);
