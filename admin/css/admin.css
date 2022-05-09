@@ -465,3 +465,22 @@ body,
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
 	line-height: 30px;
 }
+
+.miniscrollbar::-webkit-scrollbar {
+    width: 6px;
+	height: 6px;
+}
+
+.miniscrollbar::-webkit-scrollbar-track {
+	background: white;
+	border-radius: 2px;
+}
+
+.miniscrollbar::-webkit-scrollbar-thumb {
+	background: #E6E6E6;
+	border-radius: 2px;
+}
+
+.miniscrollbar::-webkit-scrollbar-thumb:hover {
+	background: #E6E6E6;
+}
