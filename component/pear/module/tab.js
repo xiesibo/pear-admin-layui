@@ -219,6 +219,26 @@ layui.define(['jquery', 'element'], function(exports) {
 		}
 	}
 
+    // 当tab数量到达配置的最大数量时, 添加一个Tab自动删除最先打开的第一个tab
+	pearTab.prototype.delFirstTabByElem = function(elem, callback) {
+		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr("lay-id");
+		var tabtitle = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title li");
+		
+		    var $firstTabtitle=$(tabtitle[1]);
+			
+			if ($firstTabtitle.attr("lay-id") != currentId) {
+				if ($firstTabtitle.find("span").is(".able-close")) {
+					tabDelete(elem, $firstTabtitle.attr("lay-id"), callback);
+				}
+			}
+			else{
+				$firstTabtitle=$(tabtitle[2]);
+				if ($firstTabtitle.find("span").is(".able-close")) {
+					tabDelete(elem, $firstTabtitle.attr("lay-id"), callback);
+				}
+			}
+	}
+
 	// 通过过滤 filter 标识, 新增标签页
 	pearTab.prototype.addTabOnlyByElem = function(elem, opt, time) {
 		var title = '';
@@ -343,12 +363,17 @@ layui.define(['jquery', 'element'], function(exports) {
 			if (isData == false) {
 
 				if ($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]").length >= this.option.tabMax) {
+					/*
 					layer.msg("最多打开" + this.option.tabMax + "个标签页", {
 						icon: 2,
 						time: 1000,
 						shift: 6
 					});
 					return false;
+					*/
+					pearTab.prototype.delFirstTabByElem('content', function(id){
+						sideMenu.selectItem(id);
+					});
 				}
 
 				if (time != false && time != 0) {
