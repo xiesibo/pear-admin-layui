@@ -1,7 +1,7 @@
 layui.define(['layer', 'form', 'laytpl'], function (exports) {
     "use strict";
   
-    let $ = layui.$
+    var $ = layui.jquery
         , form = layui.form
         , layarea = {
       _id: 0

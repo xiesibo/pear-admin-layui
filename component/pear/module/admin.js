@@ -834,7 +834,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				}
 				timerID = setTimeout(function () {
 					fn(arg)
-				}, await)
+				}, await);
 			}
 		}
 		exports('admin', pearAdmin);

@@ -244,7 +244,25 @@
 					"href": "view/document/topBar.html"
 				}
 			]
-		}]
+		},
+		{
+			"id": 333,
+			"title": "其它示例",
+			"icon": "layui-icon layui-icon-console",
+			"type": 0,
+			"children": [{
+					"id": 3331,
+					"title": "模板引擎",
+					"icon": "layui-icon layui-icon-face-cry",
+					"type": 1,
+					"openType": "_iframe",
+					"href": "view/document/tpl.html"
+				}
+				
+			]
+		}
+	
+	]
 	},
 	{
 		"id": "result",
