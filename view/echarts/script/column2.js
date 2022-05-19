@@ -10,9 +10,9 @@ layui.use(['echarts'], function() {
 	        text: 'ETC交易成功率',
 	        left: 'center',
 	        top: 2,
-	        textStyle: {
+	        //textStyle: {
 	            fontSize: 20
-	        },
+	        //},
 	    },
 	    color: ['#fed46b','#2194ff', ],
 	    tooltip: {

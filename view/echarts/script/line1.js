@@ -8,10 +8,10 @@ layui.use(['echarts'], function() {
 		backgroundColor: '#fff',
 		title: {
 			text: '全国6月销售统计',
-			textStyle: {
+			//textStyle: {
 				fontSize: 12,
-				fontWeight: 400
-			},
+				fontWeight: 400,
+			//},
 			left: 'center',
 			top: '5%'
 		},
@@ -21,9 +21,9 @@ layui.use(['echarts'], function() {
 			right: '5%',
 			itemWidth: 6,
 			itemGap: 20,
-			textStyle: {
+			//textStyle: {
 				color: '#556677'
-			}
+			//}
 		},
 		tooltip: {
 			trigger: 'axis',
@@ -41,9 +41,9 @@ layui.use(['echarts'], function() {
 				}
 			},
 			backgroundColor: '#fff',
-			textStyle: {
-				color: '#5c6c7c'
-			},
+			//textStyle: {
+				color: '#5c6c7c',
+			//},
 			padding: [10, 10],
 			extraCssText: 'box-shadow: 1px 0 2px 0 rgba(163,163,163,0.5)'
 		},
@@ -63,9 +63,9 @@ layui.use(['echarts'], function() {
 			},
 			axisLabel: {
 				interval: 0,
-				textStyle: {
-					color: '#556677'
-				},
+				//textStyle: {
+					color: '#556677',
+				//},
 				// 默认x轴字体大小
 				fontSize: 12,
 				// margin:文字到x轴的距离
@@ -119,9 +119,9 @@ layui.use(['echarts'], function() {
 				}
 			},
 			axisLabel: {
-				textStyle: {
-					color: '#556677'
-				}
+				//textStyle: {
+					color: '#556677',
+				//}
 			},
 			splitLine: {
 				show: false
@@ -133,9 +133,9 @@ layui.use(['echarts'], function() {
 				show: false
 			},
 			axisLabel: {
-				textStyle: {
-					color: '#556677'
-				},
+				//textStyle: {
+					color: '#556677',
+				//},
 				formatter: '{value}'
 			},
 			axisLine: {
@@ -173,10 +173,10 @@ layui.use(['echarts'], function() {
 					shadowOffsetY: 20
 				},
 				itemStyle: {
-					normal: {
+					//normal: {
 						color: colorList[0],
 						borderColor: colorList[0]
-					}
+					//}
 				}
 			}, {
 				name: 'Nike',
@@ -203,10 +203,10 @@ layui.use(['echarts'], function() {
 					shadowOffsetY: 20
 				},
 				itemStyle: {
-					normal: {
+					//normal: {
 						color: colorList[1],
 						borderColor: colorList[1]
-					}
+					//}
 				}
 			},
 			{
@@ -234,10 +234,10 @@ layui.use(['echarts'], function() {
 					shadowOffsetY: 20
 				},
 				itemStyle: {
-					normal: {
+					//normal: {
 						color: colorList[2],
 						borderColor: colorList[2]
-					}
+					//}
 				}
 			}
 		]

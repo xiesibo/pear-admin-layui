@@ -11,11 +11,11 @@ layui.use(['echarts'], function() {
 			text: "告警数",
 			left: "18px",
 			top: "0",
-			textStyle: {
+			//textStyle: {
 				color: "#999",
 				fontSize: 12,
 				fontWeight: '400'
-			}
+			//}
 		},
 		color: ['#73A0FA', '#73DEB3', '#FFB761'],
 		tooltip: {
@@ -62,9 +62,9 @@ layui.use(['echarts'], function() {
 			type: 'value',
 			axisLabel: {
 				color: '#999',
-				textStyle: {
+				//textStyle: {
 					fontSize: 12
-				},
+				//},
 			},
 			splitLine: {
 				show: true,

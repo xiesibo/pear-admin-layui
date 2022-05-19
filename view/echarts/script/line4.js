@@ -32,12 +32,12 @@ layui.use(['echarts'], function() {
 			axisLabel: { //坐标轴刻度标签的相关设置。
 				interval: 0,//设置为 1，表示『隔一个标签显示一个标签』
 			//	margin:15,
-				textStyle: {
+				//textStyle: {
 					color: '#1B253A',
 					fontStyle: 'normal',
 					fontFamily: '微软雅黑',
 					fontSize: 12,
-				},
+				//},
 				formatter:function(params) {
 	                var newParamsName = "";
 	                var paramsNameNumber = params.length;
@@ -85,12 +85,12 @@ layui.use(['echarts'], function() {
 				type: 'value',
 				splitNumber: 5,
 				axisLabel: {
-					textStyle: {
+					//textStyle: {
 						color: '#a8aab0',
 						fontStyle: 'normal',
 						fontFamily: '微软雅黑',
 						fontSize: 12,
-					}
+					//}
 				},
 				axisLine:{
 					show: false
@@ -113,7 +113,7 @@ layui.use(['echarts'], function() {
 	            name: '2018',
 	            type: 'line',
 	            itemStyle: {
-			        normal: {
+			        //normal: {
 						color:'#3A84FF',
 			            lineStyle: {
 							color: "#3A84FF",
@@ -128,7 +128,7 @@ layui.use(['echarts'], function() {
 								color: 'rgba(58,132,255,0.35)'
 							}]),
 			            }
-			        }
+			        //}
 				},
 	            data: [ 1, 2, 3, 3, 5, 6, 5, 3, 6, 5, 5, 4]
 	        },
@@ -136,7 +136,7 @@ layui.use(['echarts'], function() {
 	            name: '2019',
 	            type: 'line',
 	            itemStyle: {
-			        normal: {
+			        //normal: {
 			            color:'rgba(255,80,124,1)',
 			            lineStyle: {
 							color: "rgba(255,80,124,1)",
@@ -151,7 +151,7 @@ layui.use(['echarts'], function() {
 								color: 'rgba(255,80,124,0.35)'
 							}]),
 			            }
-			        }
+			        //}
 				},
 	            data: [9, 5,7,8,6,7,8,7,7,6,8,6]
 	        }

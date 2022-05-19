@@ -8,11 +8,11 @@ layui.use(['echarts'], function() {
 			text:"描边柱状图",
 			top:10,
 			left:15,
-			textStyle:{
+			//textStyle:{
 				color:"#35598d",
 				fontSize:16,
 				fontWeight:'normal'
-			}
+			//}
 		},
 	    tooltip: {
 	    	trigger: 'axis',
@@ -29,9 +29,9 @@ layui.use(['echarts'], function() {
             type : 'category',
             data : ['策略1','策略2','策略3','策略4','策略5','策略6','策略7','策略8','策略9'],
             axisLabel:{          //坐标轴字体颜色
-            	textStyle:{
+            	//textStyle:{
 	                color: '#9eaaba'
-	            }
+	           // }
             },
             axisLine:{
                 lineStyle:{
@@ -49,9 +49,9 @@ layui.use(['echarts'], function() {
 	    yAxis :{
             type : 'value',
             axisLabel:{        //坐标轴字体颜色
-            	textStyle:{
+            	//textStyle:{
 	                color: '#9eaaba'
-	            }
+	            //}
             },
             axisLine:{
             	show:false,
@@ -72,11 +72,11 @@ layui.use(['echarts'], function() {
             type:'bar',
             barWidth : '40%',  //柱子宽度
             itemStyle:{  //柱子颜色
-                normal:{
+                //normal:{
 	                borderWidth: 2,
 	                borderColor: 'rgb(79, 116, 223)',
                     color:'rgba(79, 116, 223, .3)',
-                }
+                //}
            	},
             data:[320, 332, 301, 334, 390, 330, 320, 230, 156]
         }

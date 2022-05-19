@@ -13,9 +13,9 @@ option = {
         backgroundColor: 'rgba(0,0,0,0.5)',
         axisPointer: {
             type: "shadow",
-            textStyle: {
+            //textStyle: {
                 color: "#fff"
-            }
+            //}
         }
     },
     legend: {
@@ -25,7 +25,7 @@ option = {
         textStyle: {
             color: "#333",
             fontSize: 14,
-            fontWeight: 200
+            fontWeight: 200,
         },
         itemWidth: 14,
         itemHeight: 14,
@@ -86,10 +86,10 @@ option = {
         barWidth: 22, //柱子宽度
         barGap: 1, //柱子之间间距
         itemStyle: {
-            normal: {
+            //normal: {
                 color: '#0071c8',
                 opacity: 1,
-            }
+            //}
         }
     }, {
         name: '激活会员',
@@ -98,10 +98,10 @@ option = {
         barWidth: 22,
         barGap: 1,
         itemStyle: {
-            normal: {
+            //normal: {
                 color: '#fdc508',
                 opacity: 1,
-            }
+            //}
         }
     }, {
         name: '关闭会员',
@@ -110,10 +110,10 @@ option = {
         barWidth: 22,
         barGap: 1,
         itemStyle: {
-            normal: {
+            //normal: {
                 color: '#dfeafc',
                 opacity: 1,
-            }
+            //}
         }
     }]
 };

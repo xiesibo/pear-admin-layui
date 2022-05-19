@@ -1,10 +1,12 @@
-window.rootPath = (function(src) {
-	src = document.currentScript.src || document.scripts[document.scripts.length - 1].src ;
+window.rootPath = (function (src) {
+	src = document.currentScript
+		? document.currentScript.src
+		: document.scripts[document.scripts.length - 1].src;
 	return src.substring(0, src.lastIndexOf("/") + 1);
 })();
 layui.config({
 	base: rootPath + "module/",
-	version: "3.9.6"
+	version: "3.9.10"
 }).extend({
 	admin: "admin", 	// 框架布局组件
 	menu: "menu",		// 数据菜单组件

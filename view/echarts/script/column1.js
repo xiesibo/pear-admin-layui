@@ -7,20 +7,20 @@ option = {
         trigger: 'axis',
         axisPointer: { 
             type: 'shadow' ,
-            textStyle: {
+            //textStyle: {
                 color: '#fff',
                 fontSize: '26'
-            },
+            //},
         }
     },
     legend: {
         top:'5%',
         right:'10%',
         data: ['猕猴桃', '香蕉'],
-        textStyle:{
+        //textStyle:{
             fontSize:12,
-            color:'#808080'
-        },
+            color:'#808080',
+        //},
         icon:'rect'
     },
     grid: {
@@ -88,7 +88,7 @@ option = {
                 fontWeight:'bold'
             },
             barMaxWidth:60,
-            itemStyle:{
+            //itemStyle:{
                 color: {
                     type: 'linear',
                     x: 0,
@@ -100,8 +100,8 @@ option = {
                     }, {
                         offset: 1, color: '#CCF2FF' // 100% 处的颜色
                     }]
-                }
-            },
+                },
+            //},
             data: [60, 110, 180, 100]
         }, 
         {
@@ -115,7 +115,7 @@ option = {
                 fontWeight:'bold'
             },
             barMaxWidth:60,
-            itemStyle:{
+            //itemStyle:{
                 color: {
                     type: 'linear',
                     x: 0,
@@ -127,8 +127,8 @@ option = {
                     }, {
                         offset: 1, color: '#CCE2FF' // 100% 处的颜色
                     }]
-                }
-            },
+                },
+            //},
             data: [90, 130, 170, 130]
         }
     ]

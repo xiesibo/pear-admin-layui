@@ -28,10 +28,10 @@ layui.use(['echarts'], function() {
 	                },
 	                axisLabel: {
 	                    margin: 10,
-	                    textStyle: {
+	                    //textStyle: {
 	                        fontSize: 14,
 	                        color: 'rgba(#999)',
-	                    }
+	                   // }
 	                },
 	                splitLine: {
 	                    show: true,
@@ -55,10 +55,10 @@ layui.use(['echarts'], function() {
 	                },
 	                axisLabel: {
 	                    margin: 10,
-	                    textStyle: {
+	                    //textStyle: {
 	                        fontSize: 14,
 	                        color: '#999',
-	                    }
+	                   // }
 	                },
 	                splitLine: {
 	                    show: false
@@ -90,7 +90,7 @@ layui.use(['echarts'], function() {
 	                        shadowOffsetY: 4
 	                },
 	                areaStyle: {
-	                    normal: {
+	                    //normal: {
 	                        color: {
 	                            type: 'linear',
 	                            x: 0,
@@ -103,7 +103,7 @@ layui.use(['echarts'], function() {
 	                                offset: 1, color: 'rgba(248,251,252,.3)' // 100% 处的颜色
 	                            }]
 	                        }
-	                    }
+	                   // }
 	                },
 	                smooth: true,
 	                data: [20, 56, 17, 40, 68, 42]
