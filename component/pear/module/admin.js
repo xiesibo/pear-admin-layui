@@ -156,19 +156,25 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				} else {
 					bodyFrame = pearFrame.render({
 						elem: 'content',
-						title: '首页',
-						url: param.tab.index.href,
+						session: param.tab.session,
 						width: '100%',
 						height: '100%',
+						data: {
+							id: param.tab.index.id,
+							title: param.tab.index.title,
+							url: param.tab.index.href,
+						},
 						done: function(data){
-							setTimeout(function () {
-								sideMenu.selectItem(data.id);
-							}, 0)
+							if(param.tab.session){
+								setTimeout(function () {
+									sideMenu.selectItem(data.id);
+								}, 0)
+							}
 						}
 					});
 
 					sideMenu.click(function(dom, data) {
-						bodyFrame.changePage(data.menuId, data.menuUrl, true);
+						bodyFrame.changePage(data.menuId, data.menuTitle, data.menuUrl, true);
 						compatible();
 					})
 				}
@@ -395,7 +401,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					return;
 				} else {
 					sideMenu.selectItem(id);
-					bodyFrame.changePage(id, url, true);
+					bodyFrame.changePage(id, title, url, true);
 				}
 			}
 
@@ -457,9 +463,12 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		}
 
 		body.on("click", ".logout", function() {
-			if (logout() && bodyTab) {
+			if (bodyTab) {
 				bodyTab.clear();
+			} else if (bodyFrame){
+				bodyFrame.clear();
 			}
+			logout();
 		})
 
 		body.on("click", ".collapse,.pear-cover", function() {
@@ -673,16 +682,19 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		});
 
 		body.on("click", '[user-menu-id]', function() {
+			var id = $(this).attr("user-menu-id");
+			var title = $(this).attr("user-menu-title");
+			var url = $(this).attr("user-menu-url");
 			if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
 				bodyTab.addTabOnly({
-					id: $(this).attr("user-menu-id"),
-					title: $(this).attr("user-menu-title"),
-					url: $(this).attr("user-menu-url"),
+					id: id,
+					title: title,
+					url: url,
 					icon: "",
 					close: true
 				}, 300);
 			} else {
-				bodyFrame.changePage($(this).attr("user-menu-id"), $(this).attr("user-menu-url"), true);
+				bodyFrame.changePage(id, title, url, true);
 			}
 		});
 
