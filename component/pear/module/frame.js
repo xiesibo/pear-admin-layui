@@ -14,19 +14,25 @@ layui.define(['jquery', 'element'], function (exports) {
 			title: opt.title,
 			width: opt.width,
 			height: opt.height,
-			done: opt.done ? opt.done : function () { console.log("菜单渲染成功"); }
+			done: opt.done ? opt.done : function (data) { console.log("菜单渲染成功"); }
+		}
+		var cacheInfo = frameCache(option.elem);
+		if (cacheInfo) {
+			option.url = cacheInfo.url;
 		}
 		createFrameHTML(option);
 		$("#" + option.elem).width(option.width);
 		$("#" + option.elem).height(option.height);
+		option.done(cacheInfo);
 		return new pearFrame(option);
 	}
 
-	pearFrame.prototype.changePage = function (url, loading) {
+	pearFrame.prototype.changePage = function (id, url, loading) {
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem + " iframe");
 		$frame.attr("src", url);
 		frameLoading($frame, $frameLoad, loading);
+		frameCache(this.option.elem, {id: id,url: url });
 	}
 
 	pearFrame.prototype.changePageByElement = function (elem, url, title, loading) {
@@ -60,6 +66,14 @@ layui.define(['jquery', 'element'], function (exports) {
 			iframeEl.load(function () {
 				loadingEl.fadeOut(1000);
 			})
+		}
+	}
+
+	function frameCache(elem, data){
+		if (data){
+			sessionStorage.setItem(elem + "-pear-frame-data-current", JSON.stringify(data));
+		}else{
+			return JSON.parse(sessionStorage.getItem(elem + "-pear-frame-data-current"));
 		}
 	}
 

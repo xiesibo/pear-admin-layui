@@ -130,7 +130,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 								setTimeout(function() {
 									sideMenu.selectItem(id);
 									bodyTab.positionTab();
-								}, 500)
+								}, 0)
 							}
 						}
 					});
@@ -159,12 +159,17 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						title: '首页',
 						url: param.tab.index.href,
 						width: '100%',
-						height: '100%'
+						height: '100%',
+						done: function(data){
+							setTimeout(function () {
+								sideMenu.selectItem(data.id);
+							}, 0)
+						}
 					});
 
 					sideMenu.click(function(dom, data) {
-						bodyFrame.changePage(data.menuUrl, true);
-						compatible()
+						bodyFrame.changePage(data.menuId, data.menuUrl, true);
+						compatible();
 					})
 				}
 			}
@@ -360,7 +365,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					return;
 				}
 			}
-			
+
 			this.closeOtherTab = function() {
 				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
 					pearTab.delOtherTabByElem('content', function(id){
@@ -370,7 +375,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					return;
 				}
 			}
-			
+
 			this.closeAllTab = function() {
 				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
 					pearTab.delAllTabByElem('content', function(id){
@@ -380,17 +385,17 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					return;
 				}
 			}
-			
+
 			this.changeTabTitle = function(id, title) {
 				pearTab.changeTabTitleById('content', id ,title);
 			}
-			
+
 			this.changeIframe = function(id, title, url) {
 				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
 					return;
 				} else {
 					sideMenu.selectItem(id);
-					bodyFrame.changePage(url, true);
+					bodyFrame.changePage(id, url, true);
 				}
 			}
 
@@ -401,7 +406,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					pearAdmin.changeIframe(id, title, url)
 				}
 			}
-			
+
 			this.fullScreen = function() {
 				if ($(".fullScreen").hasClass("layui-icon-screen-restore")) {
 					screenFun(2).then(function() {
@@ -556,7 +561,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					var $noData = $(".menu-search-no-data");
 					var $list = $(".menu-search-list");
 					var menuData = sideMenu.option.data;
-					
+
 
 					$layer.css("border-radius", "6px");
 					$input.off("focus").focus();
@@ -564,7 +569,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					$input.off("input").on("input", debounce(function(){
 						var keywords = $input.val().trim();
 						var filteredMenus = filterHandle(menuData, keywords);
-						
+
 						if(filteredMenus.length){
 							var tiledMenus = tiledHandle(filteredMenus);
 							var listHtml = createList(tiledMenus);
@@ -585,13 +590,13 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						var menuUrl = $(this).attr("smenu-url");
 						var menuIcon = $(this).attr("smenu-icon");
 						var menuTitle = $(this).attr("smenu-title");
-						
+
 						if(sideMenu.isCollapse){
 							collapse();
 						}
-						
+
 						pearAdmin.jump(menuId,menuTitle,menuUrl)
-						
+
 						compatible();
 						layer.close(layeridx);
 					})
@@ -603,7 +608,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						$(this).removeClass("this");
 					})
 
-					// 监听键盘事件 
+					// 监听键盘事件
 					// Enter:13 Spacebar:32 UpArrow:38 DownArrow:40
 					$(document).off("keydown").keydown(function (e) {
 						if (e.keyCode === 13 || e.keyCode === 32) {
@@ -637,8 +642,8 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				}
 			})
 		});
-		
-		
+
+
 		body.on("click", ".fullScreen", function() {
 			if ($(this).hasClass("layui-icon-screen-restore")) {
 				screenFun(2).then(function() {
@@ -661,7 +666,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					close: true
 				}, 300);
 			} else {
-				bodyFrame.changePage($(this).attr("user-menu-url"), true);
+				bodyFrame.changePage($(this).attr("user-menu-id"), $(this).attr("user-menu-url"), true);
 			}
 		});
 
@@ -996,14 +1001,14 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
 			}
 		}
- 
+
 		$(window).on('resize', debounce(function () {
 			if (!sideMenu.isCollapse && $(window).width() <= 768) {
 				collapse();
 			}
 		},50));
 
-		function debounce(fn,await) {
+		function debounce(fn,awaitTime) {
 			var timerID = null
 			return function () {
 				var arg = arguments[0]
@@ -1012,7 +1017,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				}
 				timerID = setTimeout(function () {
 					fn(arg)
-				}, await)
+				}, awaitTime)
 			}
 		}
 		exports('admin', pearAdmin);
