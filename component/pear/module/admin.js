@@ -463,12 +463,10 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		}
 
 		body.on("click", ".logout", function() {
-			if (bodyTab) {
-				bodyTab.clear();
-			} else if (bodyFrame){
-				bodyFrame.clear();
+			if(logout()){
+				if(bodyTab) bodyTab.clear();
+				if(bodyFrame) bodyFrame.clear();
 			}
-			logout();
 		})
 
 		body.on("click", ".collapse,.pear-cover", function() {
