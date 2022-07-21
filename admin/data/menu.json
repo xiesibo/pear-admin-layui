@@ -242,6 +242,13 @@
 					"type": 1,
 					"openType": "_iframe",
 					"href": "view/document/topBar.html"
+				},
+				{
+					"id": 2046,
+					"title": "水印组件",
+					"type": 1,
+					"openType": "_iframe",
+					"href": "view/document/watermark.html"
 				}
 			]
 		}]

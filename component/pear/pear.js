@@ -40,7 +40,8 @@ layui.config({
 	message: "message",     // 通知组件
 	toast: "toast",         // 消息通知
 	iconPicker: "iconPicker",// 图标选择
-	nprogress: "nprogress"  // 进度过渡
+	nprogress: "nprogress",  // 进度过渡
+	watermark:"watermark/watermark" //水印
 }).use(['layer', 'theme'], function () {
 	layui.theme.changeTheme(window, false);
 });
