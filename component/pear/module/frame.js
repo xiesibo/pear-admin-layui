@@ -45,7 +45,7 @@ layui.define(['jquery', 'element'], function (exports) {
 	}
 
 	function createFrameHTML(option) {
-		var iframe = "<iframe class='pear-frame-content' style='width:100%;height:100%;'  scrolling='auto' frameborder='0' src='" + option.url + "' ></iframe>";
+		var iframe = "<iframe class='pear-frame-content' style='width:100%;height:100%;'  scrolling='auto' frameborder='0' src='" + option.url + "' allowfullscreen='true' ></iframe>";
 		var loading = '<div class="pear-frame-loading">' +
 			'<div class="ball-loader">' +
 			'<span></span><span></span><span></span><span></span>' +

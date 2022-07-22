@@ -249,6 +249,13 @@
 					"type": 1,
 					"openType": "_iframe",
 					"href": "view/document/watermark.html"
+				},
+				{
+					"id": 2047,
+					"title": "全屏组件",
+					"type": 1,
+					"openType": "_iframe",
+					"href": "view/document/fullscreen.html"
 				}
 			]
 		}]

@@ -1,4 +1,4 @@
-layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'convert'],
+layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'convert','fullscreen'],
 	function(exports) {
 		"use strict";
 
@@ -11,7 +11,8 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			pearMenu = layui.menu,
 			pearFrame = layui.frame,
 			pearTheme = layui.theme,
-			message = layui.message;
+			message = layui.message,
+			fullscreen=layui.fullscreen;
 
 		var bodyFrame;
 		var sideMenu;
@@ -87,7 +88,10 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					accordion: param.menu.accordion,
 					url: param.menu.data,
 					data: param.menu.data,
-					parseData: false,
+					parseData: function(data){
+						data = data.data;
+						return data;
+					},
 					change: function() {
 						compatible();
 					},
@@ -657,11 +661,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 
 		body.on("click", ".fullScreen", function() {
 			if ($(this).hasClass("layui-icon-screen-restore")) {
-				screenFun(2).then(function() {
+				fullscreen.fullClose().then(function() {
 					$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
 				});
 			} else {
-				screenFun(1).then(function() {
+				fullscreen.fullScreen().then(function() {
 					$(".fullScreen").eq(0).addClass("layui-icon-screen-restore");
 				});
 			}
@@ -931,46 +935,6 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			}
 		}
 
-		function screenFun(num) {
-			num = num || 1;
-			num = num * 1;
-			var docElm = document.documentElement;
-			switch (num) {
-				case 1:
-					if (docElm.requestFullscreen) {
-						docElm.requestFullscreen();
-					} else if (docElm.mozRequestFullScreen) {
-						docElm.mozRequestFullScreen();
-					} else if (docElm.webkitRequestFullScreen) {
-						docElm.webkitRequestFullScreen();
-					} else if (docElm.msRequestFullscreen) {
-						docElm.msRequestFullscreen();
-					}
-					break;
-				case 2:
-					if (document.exitFullscreen) {
-						document.exitFullscreen();
-					} else if (document.mozCancelFullScreen) {
-						document.mozCancelFullScreen();
-					} else if (document.webkitCancelFullScreen) {
-						document.webkitCancelFullScreen();
-					} else if (document.msExitFullscreen) {
-						document.msExitFullscreen();
-					}
-					break;
-			}
-			return new Promise(function(res, rej) {
-				res("返回值");
-			});
-		}
-
-		function isFullscreen() {
-			return document.fullscreenElement ||
-				document.msFullscreenElement ||
-				document.mozFullScreenElement ||
-				document.webkitFullscreenElement || false;
-		}
-
 		function isControl(option) {
 			if (option.theme.allowCustom) {
 				if (localStorage.getItem("control") != null) {
@@ -1008,13 +972,13 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		}
 
 		window.onresize = function() {
-			if (!isFullscreen()) {
+			if (!fullscreen.isFullscreen()) {
 				$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
 			}
 		}
 
 		$(window).on('resize', debounce(function () {
-			if (!sideMenu.isCollapse && $(window).width() <= 768) {
+			if (sideMenu && !sideMenu.isCollapse && $(window).width() <= 768) {
 				collapse();
 			}
 		},50));

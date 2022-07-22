@@ -182,7 +182,7 @@ layui.define(['jquery', 'element'], function(exports) {
 			title: title,
 			content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
 				'" scrolling="auto" frameborder="0" src="' +
-				opt.url + '" style="width:100%;height:100%;"></iframe>',
+				opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></>',
 			id: opt.id
 		});
 		tabData.push(opt);
@@ -255,7 +255,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				title: title,
 				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
 					'" scrolling="auto" frameborder="0" src="' +
-					opt.url + '" style="width:100%;height:100%;"></iframe>',
+					opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
 				id: opt.id
 			});
 			if (time != false && time != 0) {
@@ -276,7 +276,7 @@ layui.define(['jquery', 'element'], function(exports) {
 					title: title,
 					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
 						'" scrolling="auto" frameborder="0" src="' +
-						opt.url + '" style="width:100%;height:100%;"></iframe>',
+						opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
 					id: opt.id
 				});
 				if (time != false && time != 0) {
@@ -307,7 +307,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				title: title,
 				content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
 					'" scrolling="auto" frameborder="0" src="' +
-					opt.url + '" style="width:100%;height:100%;"></iframe>',
+					opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
 				id: opt.id
 			});
 			if (time != false && time != 0) {
@@ -342,7 +342,7 @@ layui.define(['jquery', 'element'], function(exports) {
 					title: title,
 					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
 						'" scrolling="auto" frameborder="0" src="' +
-						opt.url + '" style="width:100%;height:100%;"></iframe>',
+						opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
 					id: opt.id
 				});
 				if (time != false && time != 0) {
@@ -487,7 +487,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				content += '<div class="layui-show layui-tab-item"><iframe id="' + item.id +
 					'" data-frameid="' + item.id +
 					'"  src="' + item.url +
-					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;"></iframe></div>'
+					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;" allowfullscreen="true"></iframe></div>'
 			} else {
 				if (!option.preload) {
 					item.url = "about:blank";
@@ -496,7 +496,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				content += '<div class="layui-tab-item"><iframe id="' + item.id + '" data-frameid="' +
 					item.id + '"  src="' +
 					item.url +
-					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;"></iframe></div>'
+					'" frameborder="no" border="0" marginwidth="0" marginheight="0" style="width: 100%;height: 100%;" allowfullscreen="true"></iframe></div>'
 			}
 			index++;
 		});
