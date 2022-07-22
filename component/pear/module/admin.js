@@ -88,10 +88,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 					accordion: param.menu.accordion,
 					url: param.menu.data,
 					data: param.menu.data,
-					parseData: function(data){
-						data = data.data;
-						return data;
-					},
+					parseData: false,
 					change: function() {
 						compatible();
 					},
