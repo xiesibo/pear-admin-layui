@@ -1,14 +1,6 @@
 /* global Watermark */
-
-(function (root, factory) {
-    if (typeof define === 'function' && define.amd) {
-        define([], factory());
-    } else if (typeof module === 'object' && module.exports) {
-        module.exports = factory();
-    } else {
-        root['Watermark'] = factory();
-    }
-})(this, function () {
+layui.define(['jquery', 'element'], function(exports) {
+    var $=layui.$;
     var _parentEle;
     var _wmContainer;
     var _wmObserver;
@@ -228,9 +220,5 @@
             this._container.parentNode.removeChild(this._container);
         };
     }
-    return Watermark;
-});
-
-layui.define([], function(exports) {
-    exports('watermark', Watermark);
-});
+    exports("watermark",Watermark);
+})

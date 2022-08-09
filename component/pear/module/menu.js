@@ -166,8 +166,8 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents(".pear-nav-tree").find(".layui-this").removeClass(
 			"layui-this");
 		if (!$("#" + this.option.elem).is(".pear-nav-mini")) {
-			let openEle = null;
-			let openEleHeight = 0;
+			var openEle = null;
+			var openEleHeight = 0;
 			$($("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents('.layui-nav-child').get().reverse()).each(function () {
 				if (!$(this).parent().is('.layui-nav-itemed')) {
 					if (openEleHeight == 0) {

@@ -6,7 +6,7 @@ window.rootPath = (function (src) {
 })();
 layui.config({
 	base: rootPath + "module/",
-	version: "3.9.10"
+	version: "3.9.14"
 }).extend({
 	admin: "admin", 	// 框架布局组件
 	menu: "menu",		// 数据菜单组件
@@ -42,7 +42,8 @@ layui.config({
 	iconPicker: "iconPicker",// 图标选择
 	nprogress: "nprogress",  // 进度过渡
 	watermark:"watermark/watermark", //水印
-	fullscreen:"fullscreen"  //全屏组件
+	fullscreen:"fullscreen",  //全屏组件
+	popover:"popover/popover" //汽泡组件
 }).use(['layer', 'theme'], function () {
 	layui.theme.changeTheme(window, false);
 });

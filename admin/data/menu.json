@@ -256,6 +256,13 @@
 					"type": 1,
 					"openType": "_iframe",
 					"href": "view/document/fullscreen.html"
+				},
+				{
+					"id": 2048,
+					"title": "汽泡组件",
+					"type": 1,
+					"openType": "_iframe",
+					"href": "view/document/popover.html"
 				}
 			]
 		}]

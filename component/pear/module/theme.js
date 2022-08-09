@@ -7,8 +7,8 @@ layui.define(["jquery","layer"], function (exports) {
 
 	theme.changeTheme = function (target, autoHead) {
 		this.autoHead = autoHead;
-		const color = localStorage.getItem("theme-color-color");
-		const second = localStorage.getItem("theme-color-second");
+		var color = localStorage.getItem("theme-color-color");
+		var second = localStorage.getItem("theme-color-second");
 		this.colorSet(color, second);
 		if (target.frames.length == 0) return;
 		for (var i = 0; i < target.frames.length; i++) {
@@ -24,7 +24,7 @@ layui.define(["jquery","layer"], function (exports) {
 
 	theme.colorSet = function(color, second) {
 		
-		let style = '';
+		var style = '';
 		style += '.light-theme .pear-nav-tree .layui-this a:hover,.light-theme .pear-nav-tree .layui-this,.light-theme .pear-nav-tree .layui-this a,.pear-nav-tree .layui-this a,.pear-nav-tree .layui-this{background-color: ' +color + '!important;}';
 		style += '.pear-admin .layui-logo .title{color:' + color + '!important;}';
 		style += '.pear-frame-title .dot,.pear-tab .layui-this .pear-tab-active{background-color: ' + color +'!important;}';
