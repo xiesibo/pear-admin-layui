@@ -49,19 +49,20 @@
 							<pre class="layui-code" lay-encode="true">
 								layui.use(['watermark'], function() {
 								    var watermark = layui.watermark;
-                                    var mark_node=new watermark({
-                                        content: "单行水印"
-                                    });
 
-								    new watermark({
-                                        content: "多行水印1<br>多行水印2",
-                                        height:40
-                                    });
+    var mark_node=new watermark({
+        content: "单行水印"
+    });
 
-                                    new watermark({
-                                        content: "指定容器上",
-                                        appendTo:'#water_div',
-                                    });
+    new watermark({
+        content: "多行水印1<br>多行水印2",
+        height:40
+    });
+
+    new watermark({
+        content: "指定容器上",
+        appendTo:'#water_div',
+    });
 
 								})
 							</pre>

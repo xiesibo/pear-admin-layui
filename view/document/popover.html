@@ -51,8 +51,8 @@
 								<pre class="layui-code" lay-encode="true">
 									layui.use(['popover', 'jquery', 'layer', 'code'], function() {
 									   var popover = layui.popover;
-                                        popover.show('#el1');
-                                        popover.hide('#el1'); //或 $('#el1').webuiPopover('hide');
+    popover.show('#el1');
+    popover.hide('#el1'); //或 $('#el1').webuiPopover('hide');
 
 
 									})
@@ -81,17 +81,17 @@
 								<pre class="layui-code" lay-encode="true">
 									layui.use(['toast', 'jquery', 'layer', 'code'], function() {
 									    var popover = layui.popover;
-                                        popover.create('#el1',{title:' hello popover-manual',content:'这里显示内容',trigger:'manual',placement:'auto',
-                                            animation:'pop',
-                                            closeable:true,
-                                            delay: {
-                                                //show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
-                                                show: null,
-                                                hide: 100
-                                            },
-                                            opacity:0.98,
-                                            type:'html',//content type, values:'html','iframe','async'
-                                        });
+    popover.create('#el1',{title:' hello popover-manual',content:'这里显示内容',trigger:'manual',placement:'auto',
+        animation:'pop',
+        closeable:true,
+        delay: {
+            //show and hide delay time of the popover, works only when trigger is 'hover',the value can be number or object
+            show: null,
+            hide: 100
+        },
+        opacity:0.98,
+        type:'html',//content type, values:'html','iframe','async'
+    });
 
 									})
 								</pre>

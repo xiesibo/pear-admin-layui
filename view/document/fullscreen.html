@@ -49,17 +49,16 @@
       <div class="layui-colla-item">
         <h2 class="layui-colla-title">显示代码</h2>
         <div class="layui-colla-content">
-							<pre class="layui-code" lay-encode="true">
-								layui.use(['fullscreen'], function() {
-								    var fullscreen = layui.fullscreen;
+			<pre class="layui-code" lay-encode="true">
+				layui.use(['fullscreen'], function() {
+    var fullscreen = layui.fullscreen;
+     fullscreen.fullScreen();
+	    fullscreen.fullClose();
+	    fullscreen.fullScreen("#fulltarget");
+	    fullscreen.isFullscreen();
 
-								    fullscreen.fullScreen();
-                                    fullscreen.fullClose();
-                                    fullscreen.fullScreen("#fulltarget");
-                                    fullscreen.isFullscreen();
-
-								})
-							</pre>
+			})
+			</pre>
         </div>
       </div>
     </div>
