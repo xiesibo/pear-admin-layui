@@ -13,7 +13,6 @@
 
   [预 览](http://layui.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)  |   [文档](http://www.pearadmin.com/doc) |   [layui 镜像站](http://layui-doc.pearadmin.com)
 
-
 </div>
 
 <p align="center">
@@ -27,7 +26,9 @@
         <img src="https://img.shields.io/badge/Layui-2.7.0+-green.svg" alt="Layui Version">
     </a>
 </p>
+
 <br>
+
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="admin/images/show.png" />
 </div>
