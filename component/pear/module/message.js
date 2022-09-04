@@ -99,9 +99,12 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 			$.each(item.children, function (i, note) {
 				noticeContent += '<div class="pear-notice-item" notice-form="' + note.form + '" notice-context="' + note.context +
-					'" notice-title="' + note.title + '" notice-id="' + note.id + '">' +
-					'<img src="' + note.avatar + '"/>' +
-					'<div style="display:inline-block;">' + note.title + '</div>' +
+					'" notice-title="' + note.title + '" notice-id="' + note.id + '">' ;
+                    
+                if (note.avatar)
+					noticeContent +='<img src="' + note.avatar + '"/>';
+
+				noticeContent +='<div style="display:inline-block;">' + note.title + '</div>' +
 					'<div class="pear-notice-end">' + note.time + '</div>' +
 					'</div>';
 			})
