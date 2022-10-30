@@ -33,12 +33,19 @@ layui.define(['laypage', 'form'], function(exports) {
 			click = opts.click,
 			// 渲染成功后的回调
 			success = opts.success,
+			// 前缀 默认使用 layui-icon
+			ICON_prefix = opts.prefix == null ? "layui-icon" : opts.prefix,
+			// 异步获取外部字体图标数据
+			ICON_url = opts.url ,
 			// json数据
 			data = {},
 			// 唯一标识
 			tmp = new Date().getTime(),
 			// 是否使用的class数据
 			isFontClass = opts.type === 'fontClass',
+			// 是否使用自定义图标数据
+			isCustom = opts.url !=null && opts.prefix != null,
+
 			// 初始化时input的值
 			ORIGINAL_ELEM_VALUE = $(elem).val(),
 			TITLE = 'layui-select-title',
@@ -52,8 +59,12 @@ layui.define(['laypage', 'form'], function(exports) {
 
 		var a = {
 			init: function() {
-				data = common.getData[type]();
-
+				if(isCustom)
+				{
+					data = common.ajaxData(ICON_url,ICON_prefix);
+				}else{
+					data = common.getData[type]();
+				}
 				a.hideElem().createSelect().createBody().toggleSelect();
 				a.preventEvent().inputListen();
 				common.loadCss();
@@ -95,8 +106,8 @@ layui.define(['laypage', 'form'], function(exports) {
 					}
 				}
 
-				if (isFontClass) {
-					oriIcon = '<i class="layui-icon ' + ORIGINAL_ELEM_VALUE + '">';
+				if (isFontClass || isCustom) {
+					oriIcon = '<i class="'+ ICON_prefix + ' ' + ORIGINAL_ELEM_VALUE + '">';
 				} else {
 					oriIcon += ORIGINAL_ELEM_VALUE;
 				}
@@ -200,9 +211,10 @@ layui.define(['laypage', 'form'], function(exports) {
 					// 每个图标dom
 					var icon = '<div class="layui-iconpicker-icon-item" title="' + obj + '" ' +
 						style + '>';
-					if (isFontClass) {
-						icon += '<i class="layui-icon ' + obj + '"></i>';
-					} else {
+					if (isFontClass || isCustom)
+					{
+						icon += '<i class="'+ ICON_prefix + ' ' + obj + '"></i>';
+					}else{
 						icon += '<i class="layui-icon">' + obj.replace('amp;', '') + '</i>';
 					}
 					icon += '</div>';
@@ -312,13 +324,14 @@ layui.define(['laypage', 'form'], function(exports) {
 			check: function() {
 				var item = '#' + PICKER_BODY + ' .layui-iconpicker-icon-item';
 				a.event('click', item, function(e) {
-					var el = $(e.currentTarget).find('.layui-icon'),
+					var el = $(e.currentTarget).find('.' + ICON_prefix),
 						icon = '';
-					if (isFontClass) {
+					console.log( el.attr('class'));
+					if (isFontClass || isCustom) {
 						var clsArr = el.attr('class').split(/[\s\n]/),
 							cls = clsArr[1],
 							icon = cls;
-						$('#' + TITLE_ID).find('.layui-iconpicker-item .layui-icon').html(
+						$('#' + TITLE_ID).find('.layui-iconpicker-item .' + ICON_prefix).html(
 							'').attr('class', clsArr.join(' '));
 					} else {
 						var cls = el.html(),
@@ -354,7 +367,6 @@ layui.define(['laypage', 'form'], function(exports) {
 				$(BODY).on(evt, el, fn);
 			}
 		};
-
 		var common = {
 			/**
 			 * 加载样式表
@@ -460,7 +472,29 @@ layui.define(['laypage', 'form'], function(exports) {
 						"&amp;#xe606;", "&amp;#xe604;", "&amp;#xe600;", "&amp;#xe658;",
 						"&amp;#x1007;", "&amp;#x1006;", "&amp;#x1005;", "&amp;#xe608;"
 					];
-				}
+				},
+
+			},
+			//通过异步获取自定义图标数据源
+			ajaxData:function (url,prefix){
+				var iconlist = [];
+				$.ajax({
+					url: url,
+					type: 'get',
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					async: false,
+					success: function (ret) {
+						var exp = eval("/"+prefix+"-(.*):/ig");
+						var result;
+						while ((result = exp.exec(ret)) != null) {
+							iconlist.push(prefix + '-' + result[1]);
+						}
+					},
+					error: function (xhr, textstatus, thrown) {
+						layer.msg('自定义图标接口有误');
+					}
+				});
+				return iconlist;
 			}
 		};
 
