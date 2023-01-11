@@ -1,4 +1,4 @@
-layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'convert','fullscreen'],
+layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'convert','fullscreen', 'translate'],
 	function(exports) {
 		"use strict";
 
@@ -12,7 +12,8 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			pearFrame = layui.frame,
 			pearTheme = layui.theme,
 			message = layui.message,
-			fullscreen=layui.fullscreen;
+			fullscreen=layui.fullscreen,
+			translate = layui.translate;
 
 		var bodyFrame;
 		var sideMenu;
@@ -413,6 +414,19 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						$(".fullScreen").eq(0).addClass("layui-icon-screen-restore");
 					});
 				}
+			},
+			this.translate = function(option){
+				if(typeof(option.translate) == 'undefined'){
+					return;
+				}
+				window.pearTranslateConfig = option.translate; //暴露 pear.config.yml 中的 translate 配置出来，以便子页面在pear中获取配置信息。
+				
+				/*
+				
+				因为所有页面中都有 pear.js，但admin.js只有主页面中才有，但翻译能力是需要所有页面都具备的，故而放到pear.js 之中，老哥看是否合理，或怎么进行一下调整。
+				
+				 */
+			
 			}
 		};
 
@@ -895,6 +909,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			if (param.header.message != false) {
 				pearAdmin.messageRender(param);
 			}
+			pearAdmin.translate(param);
 		}
 
 		function getColorById(id) {

@@ -66,5 +66,11 @@
 	},
 	"header": {
 		"message": "admin/data/message.json"
+	},
+	"translate": {
+		"localLanguage": "chinese_simplified",
+		"autoDiscriminateLocalLanguage": false,
+		"ignoreClass": "ignore,test1,layui-logo",
+		"ignoreTag": "script,pre,code"
 	}
 }
