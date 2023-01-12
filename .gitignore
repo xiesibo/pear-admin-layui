@@ -1,0 +1,27 @@
+### common ###
+HELP.md
+
+### IntelliJ ###
+.idea
+/out/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+.history/
+bin/
+
+### temp ###
+temp/
+logs/
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+### system ignore ###
+.DS_Store
+Thumbs.db
