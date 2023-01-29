@@ -19,20 +19,20 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<input placeholder="账 户 : admin " lay-verify="required" hover class="layui-input"  />
+				<input type="text" placeholder="账 户 : admin " name="loginname" lay-verify="required" hover class="layui-input" />
 			</div>
 			<div class="layui-form-item">
-				<input placeholder="密 码 : admin " lay-verify="required" hover class="layui-input"  />
+				<input type="password" placeholder="密 码 : admin " name="password" lay-verify="required" hover class="layui-input" />
 			</div>
 			<div class="layui-form-item">
-				<input placeholder="验证码 : "  hover  lay-verify="required" class="code layui-input layui-input-inline"  />
-				<img src="admin/images/captcha.gif" class="codeImage" />
+				<input placeholder="验证码 : " name="code" lay-verify="required" hover class="code layui-input layui-input-inline" />
+				<canvas id="canvas" class="codeImage"></canvas>
 			</div>
 			<div class="layui-form-item">
 				<input type="checkbox" name="" title="记住密码" lay-skin="primary" checked>
 			</div>
 			<div class="layui-form-item">
-				<button type="button" class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
+				<button class="pear-btn pear-btn-success login" lay-submit lay-filter="login">
 					登 入
 				</button>
 			</div>
@@ -41,14 +41,39 @@
 		<script src="component/layui/layui.js"></script>
 		<script src="component/pear/pear.js"></script>
 		<script>
-			layui.use(['form', 'button', 'popup'], function() {
-				var form = layui.form;
-				var button = layui.button;
-				var popup = layui.popup;
-				
+            layui.use(['button', 'popup'], function () {
+                var $ = layui.$,
+				    form = layui.form,
+				    button = layui.button,
+				    popup = layui.popup;
+
+                //画布内容
+                var show_num = [];
+                //验证码初始化
+                draw(show_num);
+
+                //判断一下当前是不是最顶层，如果不是，则做一下顶层页面重定向
+                if (window != top) {
+                    top.location.href = location.href;
+				}
+
+                //更换验证码
+                $("#canvas").on('click', function () {
+                    draw(show_num);
+                })
+
                 // 登录事件
-				form.on('submit(login)', function(data) {
-					
+                form.on('submit(login)', function (data) {
+                    //验证码大写
+                    var code = data.field.code.toUpperCase();
+                    //判断验证码是否正确
+                    if (code != show_num.join("")) {
+                        popup.failure("验证码错误!");
+                        draw(show_num);
+                        document.getElementsByName("code")[0].value = "";
+                        return;
+                    }
+
 					// 登录逻辑
 					
 					// 登录过渡
@@ -61,8 +86,75 @@
 							});
 						}
 					})
+					// 防止二次跳转
 					return false;
 				});
+
+                //生成验证码
+                function draw(show_num) {
+                    var canvas_width = $('#canvas').width();
+                    var canvas_height = $('#canvas').height();
+                    //获取到canvas的对象
+                    var canvas = document.getElementById("canvas");
+                    //获取到canvas画图的环境
+                    var content = canvas.getContext("2d");
+                    canvas.width = canvas_width;
+                    canvas.height = canvas_height;
+                    var sCode = "A,B,C,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,W,X,Y,Z,1,2,3,4,5,6,7,8,9,0";
+                    var aCode = sCode.split(",");
+                    //获取到数组的长度
+                    var aLength = aCode.length;
+
+                    for (var i = 0; i <= 3; i++) {
+                        //获取到随机的索引值
+                        var j = Math.floor(Math.random() * aLength);
+                        //产生0~30之间的随机弧度
+                        var deg = Math.random() * 30 * Math.PI / 180;
+                        //得到随机的一个内容
+                        var txt = aCode[j];
+                        show_num[i] = txt;
+                        //文字在canvas上的x坐标
+                        var x = 10 + i * 20;
+                        //文字在canvas上的y坐标
+                        var y = 20 + Math.random() * 8;
+                        content.font = "bold 23px 微软雅黑";
+
+                        content.translate(x, y);
+                        content.rotate(deg);
+
+                        content.fillStyle = randomColor();
+                        content.fillText(txt, 0, 0);
+
+                        content.rotate(-deg);
+                        content.translate(-x, -y);
+                    }
+                    //验证码上显示线条
+                    for (var i = 0; i <= 5; i++) {
+                        content.strokeStyle = randomColor();
+                        content.beginPath();
+                        content.moveTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                        content.lineTo(Math.random() * canvas_width, Math.random() * canvas_height);
+                        content.stroke();
+                    }
+                    //验证码上显示小点
+                    for (var i = 0; i <= 30; i++) {
+                        content.strokeStyle = randomColor();
+                        content.beginPath();
+                        var x = Math.random() * canvas_width;
+                        var y = Math.random() * canvas_height;
+                        content.moveTo(x, y);
+                        content.lineTo(x + 1, y + 1);
+                        content.stroke();
+                    }
+                }
+
+                //得到随机的颜色值
+                function randomColor() {
+                    var r = Math.floor(Math.random() * 256);
+                    var g = Math.floor(Math.random() * 256);
+                    var b = Math.floor(Math.random() * 256);
+                    return "rgb(" + r + "," + g + "," + b + ")";
+                }
 			})
 		</script>
 	</body>
