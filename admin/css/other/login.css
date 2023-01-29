@@ -89,8 +89,10 @@ body {
 .codeImage {
 	float: right;
 	height: 42px;
+	width: 120px;
 	border: #e6e6e6 1px solid;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 @media (max-width:768px){

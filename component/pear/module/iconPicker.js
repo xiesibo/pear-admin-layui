@@ -97,14 +97,14 @@ layui.define(['laypage', 'form'], function(exports) {
 			createSelect: function() {
 				var oriIcon = '<i class="layui-icon">';
 
-				// 默认图标
-				if (ORIGINAL_ELEM_VALUE === '') {
-					if (isFontClass) {
-						ORIGINAL_ELEM_VALUE = 'layui-icon-circle-dot';
-					} else {
-						ORIGINAL_ELEM_VALUE = '&#xe617;';
-					}
-				}
+				// 默认图标(暂时注释)
+				//if (ORIGINAL_ELEM_VALUE === '') {
+				//	if (isFontClass) {
+				//		ORIGINAL_ELEM_VALUE = 'layui-icon-circle-dot';
+				//	} else {
+				//		ORIGINAL_ELEM_VALUE = '&#xe617;';
+				//	}
+				//}
 
 				if (isFontClass || isCustom) {
 					oriIcon = '<i class="'+ ICON_prefix + ' ' + ORIGINAL_ELEM_VALUE + '">';
@@ -248,19 +248,20 @@ layui.define(['laypage', 'form'], function(exports) {
 					$('#' + PICKER_BODY).addClass('layui-iconpicker-body-page');
 					pageHtml = '<div class="layui-iconpicker-page" id="' + PAGE_ID + '">' +
 						'<div class="layui-iconpicker-page-count">' +
-						'<span id="' + PAGE_ID + '-current">1</span>/' +
-						'<span id="' + PAGE_ID + '-pages">' + _pages + '</span>' +
-						' (<span id="' + PAGE_ID + '-length">' + l + '</span>)' +
+						'<span id="' + PAGE_ID + '-length">总共 ' + l + ' 个</span>' +
 						'</div>' +
 						'<div class="layui-iconpicker-page-operate">' +
 						'<i class="layui-icon" id="' + PAGE_ID +
 						'-prev" data-index="0" prev>&#xe603;</i> ' +
+						'<span class="layui-iconpicker-right-page">' +
+						'<span id="' + PAGE_ID + '-current">1</span> / ' +
+						'<span id="' + PAGE_ID + '-pages">' + _pages + '</span>' +
+						'</span>' +
 						'<i class="layui-icon" id="' + PAGE_ID +
 						'-next" data-index="2" next>&#xe602;</i> ' +
 						'</div>' +
 						'</div>';
 				}
-
 
 				$('#' + ICON_BODY).find('.layui-anim').find('.' + LIST_BOX).html('').append(
 					listHtml).append(pageHtml);
@@ -326,7 +327,7 @@ layui.define(['laypage', 'form'], function(exports) {
 				a.event('click', item, function(e) {
 					var el = $(e.currentTarget).find('.' + ICON_prefix),
 						icon = '';
-					console.log( el.attr('class'));
+					console.log(el.attr('class'));
 					if (isFontClass || isCustom) {
 						var clsArr = el.attr('class').split(/[\s\n]/),
 							cls = clsArr[1],
@@ -373,7 +374,7 @@ layui.define(['laypage', 'form'], function(exports) {
 			 */
 			loadCss: function() {
 				var css =
-					'.layui-iconpicker {max-width: 280px;}.layui-iconpicker .layui-anim{display:none;position:absolute;left:0;top:42px;padding:5px 0;z-index:899;min-width:100%;border:1px solid #d2d2d2;max-height:300px;overflow-y:auto;background-color:#fff;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.12);box-sizing:border-box;}.layui-iconpicker-item{border:1px solid #e6e6e6;width:90px;height:38px;border-radius:4px;cursor:pointer;position:relative;}.layui-iconpicker-icon{border-right:1px solid #e6e6e6;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;width:60px;height:100%;float:left;text-align:center;background:#fff;transition:all .3s;}.layui-iconpicker-icon i{line-height:38px;font-size:18px;}.layui-iconpicker-item > .layui-edge{left:70px;}.layui-iconpicker-item:hover{border-color:#D2D2D2!important;}.layui-iconpicker-item:hover .layui-iconpicker-icon{border-color:#D2D2D2!important;}.layui-iconpicker.layui-form-selected .layui-anim{display:block;}.layui-iconpicker-body{padding:6px;}.layui-iconpicker .layui-iconpicker-list{background-color:#fff;border:1px solid #ccc;border-radius:4px;}.layui-iconpicker .layui-iconpicker-icon-item{display:inline-block;width:21.1%;line-height:36px;text-align:center;cursor:pointer;vertical-align:top;height:36px;margin:4px;border:1px solid #ddd;border-radius:2px;transition:300ms;}.layui-iconpicker .layui-iconpicker-icon-item i.layui-icon{font-size:17px;}.layui-iconpicker .layui-iconpicker-icon-item:hover{background-color:#eee;border-color:#ccc;-webkit-box-shadow:0 0 2px #aaa,0 0 2px #fff inset;-moz-box-shadow:0 0 2px #aaa,0 0 2px #fff inset;box-shadow:0 0 2px #aaa,0 0 2px #fff inset;text-shadow:0 0 1px #fff;}.layui-iconpicker-search{position:relative;margin:0 0 6px 0;border:1px solid #e6e6e6;border-radius:2px;transition:300ms;}.layui-iconpicker-search:hover{border-color:#D2D2D2!important;}.layui-iconpicker-search .layui-input{cursor:text;display:inline-block;width:86%;border:none;padding-right:0;margin-top:1px;}.layui-iconpicker-search .layui-icon{position:absolute;top:11px;right:4%;}.layui-iconpicker-tips{text-align:center;padding:8px 0;cursor:not-allowed;}.layui-iconpicker-page{margin-top:6px;margin-bottom:-6px;font-size:12px;padding:0 2px;}.layui-iconpicker-page-count{display:inline-block;}.layui-iconpicker-page-operate{display:inline-block;float:right;cursor:default;}.layui-iconpicker-page-operate .layui-icon{font-size:12px;cursor:pointer;}.layui-iconpicker-body-page .layui-iconpicker-icon-limit{display:none;}.layui-iconpicker-body-page .layui-iconpicker-icon-limit:first-child{display:block;}';
+					'.layui-iconpicker {max-width: 280px;}.layui-iconpicker .layui-anim{display:none;position:absolute;left:0;top:42px;padding:5px 0;z-index:899;min-width:100%;border:1px solid #d2d2d2;max-height:300px;overflow-y:auto;background-color:#fff;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.12);box-sizing:border-box;}.layui-iconpicker-item{border:1px solid #e6e6e6;width:90px;height:38px;border-radius:4px;cursor:pointer;position:relative;}.layui-iconpicker-icon{border-right:1px solid #e6e6e6;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:block;width:60px;height:100%;float:left;text-align:center;background:#fff;transition:all .3s;}.layui-iconpicker-icon i{line-height:38px;font-size:18px;}.layui-iconpicker-item > .layui-edge{left:70px;}.layui-iconpicker-item:hover{border-color:#D2D2D2!important;}.layui-iconpicker-item:hover .layui-iconpicker-icon{border-color:#D2D2D2!important;}.layui-iconpicker.layui-form-selected .layui-anim{display:block;}.layui-iconpicker-body{padding:6px;}.layui-iconpicker .layui-iconpicker-list{background-color:#fff;border:1px solid #ccc;border-radius:4px;}.layui-iconpicker .layui-iconpicker-icon-item{display:inline-block;width:21.1%;line-height:36px;text-align:center;cursor:pointer;vertical-align:top;height:36px;margin:4px;border:1px solid #ddd;border-radius:2px;transition:300ms;}.layui-iconpicker .layui-iconpicker-icon-item i.layui-icon{font-size:17px;}.layui-iconpicker .layui-iconpicker-icon-item:hover{background-color:#eee;border-color:#ccc;-webkit-box-shadow:0 0 2px #aaa,0 0 2px #fff inset;-moz-box-shadow:0 0 2px #aaa,0 0 2px #fff inset;box-shadow:0 0 2px #aaa,0 0 2px #fff inset;text-shadow:0 0 1px #fff;}.layui-iconpicker-search{position:relative;margin:0 0 6px 0;border:1px solid #e6e6e6;border-radius:2px;transition:300ms;}.layui-iconpicker-search:hover{border-color:#D2D2D2!important;}.layui-iconpicker-search .layui-input{cursor:text;display:inline-block;width:86%;border:none;padding-right:0;margin-top:1px;}.layui-iconpicker-search .layui-icon{position:absolute;top:11px;right:4%;}.layui-iconpicker-tips{text-align:center;padding:8px 0;cursor:not-allowed;}.layui-iconpicker-page{margin-top:6px;margin-bottom:-6px;font-size:12px;padding:0 2px;height:30px;}.layui-iconpicker-page-count{display:inline-block;line-height:30px;}.layui-iconpicker-page-operate{display:flex;float:right;cursor:default;}.layui-iconpicker-page-operate .layui-icon{font-size:14px;cursor:pointer;display:inline-block;padding:0 10px;line-height:28px;border:1px solid #ddd2d2;}.layui-iconpicker-right-page{line-height:28px;background-color:#36b368;color:#fff;width:50px;text-align:center;display:inline-block;padding-top:2px;}.layui-iconpicker-body-page .layui-iconpicker-icon-limit{display:none;}.layui-iconpicker-body-page .layui-iconpicker-icon-limit:first-child{display:block;}';
 				var $style = $('head').find('style[iconpicker]');
 				if ($style.length === 0) {
 					$('head').append('<style rel="stylesheet" iconpicker>' + css + '</style>');
@@ -384,7 +385,7 @@ layui.define(['laypage', 'form'], function(exports) {
 			 */
 			getData: {
 				fontClass: function() {
-					var arr = ["layui-icon-rate-half", "layui-icon-rate", "layui-icon-rate-solid",
+					var arr = ["", "layui-icon-rate-half", "layui-icon-rate", "layui-icon-rate-solid",
 						"layui-icon-cellphone", "layui-icon-vercode", "layui-icon-login-wechat",
 						"layui-icon-login-qq", "layui-icon-login-weibo", "layui-icon-password",
 						"layui-icon-username", "layui-icon-refresh-3", "layui-icon-auz",
@@ -436,7 +437,7 @@ layui.define(['laypage', 'form'], function(exports) {
 					return arr;
 				},
 				unicode: function() {
-					return ["&amp;#xe6c9;", "&amp;#xe67b;", "&amp;#xe67a;", "&amp;#xe678;",
+					return ["", "&amp;#xe6c9;", "&amp;#xe67b;", "&amp;#xe67a;", "&amp;#xe678;",
 						"&amp;#xe679;", "&amp;#xe677;", "&amp;#xe676;", "&amp;#xe675;",
 						"&amp;#xe673;", "&amp;#xe66f;", "&amp;#xe9aa;", "&amp;#xe672;",
 						"&amp;#xe66b;", "&amp;#xe668;", "&amp;#xe6b1;", "&amp;#xe702;",

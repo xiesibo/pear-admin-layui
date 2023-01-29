@@ -40,11 +40,13 @@
 					<li class="layui-nav-item layui-hide-xs message"></li>
 					<li class="layui-nav-item user">
 						<!-- 头 像 -->
-						<a class="layui-icon layui-icon-username" href="javascript:;"></a>
+						<a href="javascript:;">
+							<img id="userImg" src="" class="layui-nav-img" /><span id="userName"></span>
+						</a>
 						<!-- 功 能 菜 单 -->
 						<dl class="layui-nav-child">
-							<dd><a user-menu-url="view/system/person.html" user-menu-id="5555" user-menu-title="基本资料">基本资料</a></dd>
-							<dd><a href="javascript:void(0);" class="logout">注销登录</a></dd>
+							<dd><a href="#" class="layui-icon layui-icon-username" user-menu-url="view/system/person.html" user-menu-id="5555" user-menu-title="基本资料">基本资料</a></dd>
+							<dd><a href="javascript:void(0);" class="logout layui-icon layui-icon-logout">注销登录</a></dd>
 						</dl>
 					</li>
 					<!-- 主 题 配 置 -->
@@ -106,7 +108,15 @@
 				admin.setConfigPath("config/pear.config.yml");
 				
 				admin.render();
-				
+
+                //用户姓名
+                var username = "管理员";
+                $("#userName").html(username);
+
+                //用户头像
+                var userimg = "admin/images/avatar.jpg";
+                $('#userImg').attr('src', userimg);
+
 				// 登出逻辑 
 				admin.logout(function(){
 					popup.success("注销成功",function(){
