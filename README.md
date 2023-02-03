@@ -91,7 +91,7 @@ Pear Admin Layui
 │
 ├─index.html 入口
 │
-└─login.html 登录页
+└─login.html 登录
 
 ```
 
