@@ -11,7 +11,7 @@
     开 箱 即 用 的 前 后 端 解 决 方 案
   </h4> 
 
-  [预 览](http://layui.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)  |   [文档](http://www.pearadmin.com/doc) |   [layui 镜像站](http://layui-doc.pearadmin.com)
+  [预 览](http://layui.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)  |   [文档](http://www.pearadmin.com/doc)
 
 </div>
 
@@ -38,13 +38,13 @@
 
 <p style="padding:10px;"  width="90%">
 
-Pear Admin 是一款开箱即用的前端开发模板，扩展Layui原生UI样式，整合第三方开源组件，提供便捷快速的开发方式，延续LayuiAdmin
+Pear Admin 是一款开箱即用的前端开发模板，扩展Layui原生UI样式，集成第三方开源组件，提供便捷快速的开发方式，延续 Admin 的设计规范。
 
-的设计风格，持续完善的样式与组件的维护，基于异步Ajax的菜单构建，相对完善的多标签页，单标签页的共存，为使用者提
+异步 Ajax 的菜单构建，完善的多标签页，单标签页的共存，丰富自由的布局方式，为研发者提供相对完善的前端解决方案。
 
-供相对完善的开发方案，只为成为更好的轮子，项目不定时更新，建议 Star watch 一份
+若你需要更多版本 (Java Go Think 等)，请前往 [Pear Admin 社区](https://gitee.com/pear-admin)
 
-若你需要更多版本，请前往 [Pear Admin](https://gitee.com/pear-admin)
+项目不定时更新，建议 Star watch 一份
 
 </p>
 
@@ -65,9 +65,9 @@ Pear Admin Layui
 │    │
 │    ├─code 设计器
 │    │
-│    ├─layui 框架
+│    ├─layui 核心框架
 │    │
-│    └─pear 封装
+│    └─pear 扩展组件
 │
 ├─config 配置
 │    │
@@ -89,9 +89,9 @@ Pear Admin Layui
 │    │
 │    └─system 系统管理
 │
-├─index 入口
+├─index.html 入口
 │
-└─login 登录
+└─login.html 登录页
 
 ```
 
