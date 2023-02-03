@@ -48,6 +48,18 @@ Pear Admin 是一款开箱即用的前端开发模板，扩展Layui原生UI样�
 
 </p>
 
+### Branch 说明
+
+<p style="padding:10px;"  width="90%">
+
+main: 最新的功能，主要维护的版本。
+
+package: 通过 gulp.js 提供打包构建，适合对资源加载和编译速度有要求的项目。
+
+i18n: 集成 translate.js 提供 i18n 国际化功能的版本。
+
+</p>
+
 ### 项目结构
 
 ```
