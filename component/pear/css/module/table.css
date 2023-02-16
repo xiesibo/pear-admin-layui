@@ -33,10 +33,6 @@
 	background-color: #5FB878 !important;
 }
 
-.layui-table-view .layui-table{
-	width: 100%;
-}
-
 .layui-table tr {
 	height: 34px;
 	line-height: 34px;
