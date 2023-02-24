@@ -10,7 +10,7 @@ layui.define(['jquery', 'element','table'], function(exports) {
 		element = layui.element;
 
 	var common = new function() {
-		
+
 		/**
 		 * 获取当前表格选中字段
 		 * @param obj 表格回调参数
@@ -25,21 +25,18 @@ layui.define(['jquery', 'element','table'], function(exports) {
 			for (let i = 0; i < data.length; i++) {
 				ids += data[i][field] + ",";
 			}
-			ids = ids.substr(0, ids.length - 1);
+			ids = ids.substring(0, ids.length - 1);
 			return ids;
 		}
-		
+
 		/**
 		 * 当前是否为与移动端
 		 * */
 		this.isModile = function(){
-			if ($(window).width() <= 768) {
-				return true;
-			}
-			return false;
+			return $(window).width() <= 768;
 		}
-		
-		
+
+
 		/**
 		 * 提交 json 数据
 		 * @param href 		必选 提交接口
@@ -52,14 +49,12 @@ layui.define(['jquery', 'element','table'], function(exports) {
 		 * @param is_cache 	可选 浏览器是否缓存被请求页面。默认是 true
 		 * */
 		this.submit = function(href,data,ajaxtype,table,callback,dataType,is_async,is_cache){
-			if(ajaxtype=='' || ajaxtype==undefined){ ajaxtype='get';}
-
 			if(data!==undefined){
 				$.ajaxSetup({data:JSON.stringify(data)});
 			}else {
 				$.ajaxSetup({data:''});
 			}
-			if(is_cache!==undefined){
+			if(dataType!==undefined){
 				$.ajaxSetup({dataType:dataType });
 			}
 			if(is_async!==undefined){
@@ -71,40 +66,43 @@ layui.define(['jquery', 'element','table'], function(exports) {
 			$.ajax({
 			    url:href,
 			    contentType:'application/json',
-			    type:ajaxtype,
+			    type:ajaxtype || 'get',
 				success:callback !=null?callback:function(result){
-			        if(result.code==1){
+			        if(result.code===1){
 			            layer.msg(result.msg,{icon:1,time:1000},function(){
-			            	if(parent.layer.getFrameIndex(window.name)!=undefined){
-								parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
-								if(table!=null){parent.layui.table.reload(table);}
-							}else {
-								if(table!=null){layui.table.reload(table);}
+							let frameIndex = parent.layer.getFrameIndex(window.name);
+							if(frameIndex){
+								parent.layer.close(frameIndex);//关闭当前页
 							}
+							table && parent.layui.table.reload(table);
 			            });
 			        }else{
 			            layer.msg(result.msg,{icon:2,time:1000});
 			        }
 			    },
 				error:function(xhr){
-					if(xhr.status==401)
+					if(xhr.status===401)
 					{
 						layer.msg('权限不足，您无法访问受限资源或数据',{icon: 5});
+						return;
 					}
-					if(xhr.status==404)
+					if(xhr.status===404)
 					{
 						layer.msg('请求url地址错误，请确认后刷新重试',{icon: 5});
+						return;
 					}
-					if(xhr.status==419)
+					if(xhr.status===419)
 					{
 						layer.msg('长时间未操作，自动刷新后重试！',{icon: 5});
 						setTimeout(function () { window.location.reload();}, 2000);
+						return;
 					}
-					if(xhr.status==429)
+					if(xhr.status===429)
 					{
 						layer.msg('尝试次数太多，请一分钟后再试',{icon: 5});
+						return;
 					}
-					if(xhr.status==500)
+					if(xhr.status===500)
 					{
 						layer.msg(xhr.responseJSON.message,{icon: 5});
 					}
