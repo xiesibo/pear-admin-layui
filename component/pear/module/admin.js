@@ -1,4 +1,4 @@
-layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'convert', 'fullscreen'],
+layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'fullscreen'],
 	function (exports) {
 		"use strict";
 
@@ -7,7 +7,6 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			element = layui.element,
 			yaml = layui.yaml,
 			pearTab = layui.tab,
-			convert = layui.convert,
 			pearMenu = layui.menu,
 			pearFrame = layui.frame,
 			pearTheme = layui.theme,
@@ -96,12 +95,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			}
 
 			this.messageRender = function (option) {
-				var option = {
+				msgInstance = message.render({
 					elem: '.message',
 					url: option.header.message,
 					height: '250px'
-				};
-				msgInstance = message.render(option);
+				});
 			}
 
 			this.logoRender = function (param) {

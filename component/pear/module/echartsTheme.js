@@ -1,4 +1,4 @@
-layui.define(function(exports) {
+layui.define(function (exports) {
     exports('echartsTheme',
         {
             "color": [
@@ -21,10 +21,10 @@ layui.define(function(exports) {
             },
             "line": {
                 "itemStyle": {
-                        "borderWidth": "3"
+                    "borderWidth": "3"
                 },
                 "lineStyle": {
-                        "width": "4"
+                    "width": "4"
                 },
                 "symbolSize": "10",
                 "symbol": "emptyCircle",
@@ -32,10 +32,10 @@ layui.define(function(exports) {
             },
             "radar": {
                 "itemStyle": {
-                        "borderWidth": "3"
+                    "borderWidth": "3"
                 },
                 "lineStyle": {
-                        "width": "4"
+                    "width": "4"
                 },
                 "symbolSize": "10",
                 "symbol": "emptyCircle",
@@ -43,8 +43,8 @@ layui.define(function(exports) {
             },
             "bar": {
                 "itemStyle": {
-                        "barBorderWidth": 0,
-                        "barBorderColor": "#ccc"
+                    "barBorderWidth": 0,
+                    "barBorderColor": "#ccc"
                 },
                 "emphasis": {
                     "itemStyle": {
@@ -55,8 +55,8 @@ layui.define(function(exports) {
             },
             "pie": {
                 "itemStyle": {
-                        "borderWidth": 0,
-                        "borderColor": "#ccc"
+                    "borderWidth": 0,
+                    "borderColor": "#ccc"
                 },
                 "emphasis": {
                     "itemStyle": {
@@ -67,8 +67,8 @@ layui.define(function(exports) {
             },
             "scatter": {
                 "itemStyle": {
-                        "borderWidth": 0,
-                        "borderColor": "#ccc"
+                    "borderWidth": 0,
+                    "borderColor": "#ccc"
                 },
                 "emphasis": {
                     "itemStyle": {
@@ -81,7 +81,7 @@ layui.define(function(exports) {
                 "itemStyle": {
                     "borderWidth": 0,
                     "borderColor": "#ccc"
-                    
+
                 },
                 "emphasis": {
                     "itemStyle": {
@@ -92,8 +92,8 @@ layui.define(function(exports) {
             },
             "parallel": {
                 "itemStyle": {
-                        "borderWidth": 0,
-                        "borderColor": "#ccc"
+                    "borderWidth": 0,
+                    "borderColor": "#ccc"
                 },
                 "emphasis": {
                     "itemStyle": {
@@ -153,8 +153,8 @@ layui.define(function(exports) {
                     "borderColor": "#ccc"
                 },
                 "lineStyle": {
-                        "width": "1",
-                        "color": "#cccccc"
+                    "width": "1",
+                    "color": "#cccccc"
                 },
                 "symbolSize": "10",
                 "symbol": "emptyCircle",
@@ -167,8 +167,8 @@ layui.define(function(exports) {
                     "#c4ebad",
                     "#96dee8"
                 ],
-                "label": {                       
-                    "color": "#ffffff"                        
+                "label": {
+                    "color": "#ffffff"
                 }
             },
             "map": {
@@ -177,7 +177,7 @@ layui.define(function(exports) {
                     "borderColor": "#aaaaaa",
                     "borderWidth": 0.5
                 },
-                "label": {                    
+                "label": {
                     "color": "#ffffff"
                 },
                 "emphasis": {
@@ -186,7 +186,7 @@ layui.define(function(exports) {
                         "borderColor": "#3fb1e3",
                         "borderWidth": 1
                     },
-                    "label":{
+                    "label": {
                         "color": "rgb(63,177,227)"
                     }
                 }
@@ -206,7 +206,7 @@ layui.define(function(exports) {
                         "borderColor": "#3fb1e3",
                         "borderWidth": 1
                     },
-                    "label":{
+                    "label": {
                         "color": "rgb(63,177,227)"
                     }
                 }
@@ -226,9 +226,9 @@ layui.define(function(exports) {
                 },
                 "axisLabel": {
                     "show": true,
-                   
+
                     "color": "#999999"
-                    
+
                 },
                 "splitLine": {
                     "show": true,
@@ -262,9 +262,9 @@ layui.define(function(exports) {
                     }
                 },
                 "axisLabel": {
-                    "show": true,                    
+                    "show": true,
                     "color": "#999999"
-                    
+
                 },
                 "splitLine": {
                     "show": true,
@@ -298,9 +298,9 @@ layui.define(function(exports) {
                     }
                 },
                 "axisLabel": {
-                    "show": true,                   
+                    "show": true,
                     "color": "#999999"
-                    
+
                 },
                 "splitLine": {
                     "show": true,
@@ -335,9 +335,9 @@ layui.define(function(exports) {
                 },
                 "axisLabel": {
                     "show": true,
-                   
+
                     "color": "#999999"
-                    
+
                 },
                 "splitLine": {
                     "show": true,
@@ -359,7 +359,7 @@ layui.define(function(exports) {
             },
             "toolbox": {
                 "iconStyle": {
-                    "borderColor": "#999999"                   
+                    "borderColor": "#999999"
                 },
                 "emphasis": {
                     "iconStyle": {
@@ -389,33 +389,33 @@ layui.define(function(exports) {
                     "color": "#626c91",
                     "width": 1
                 },
-                "itemStyle": {               
+                "itemStyle": {
                     "color": "#626c91",
-                    "borderWidth": 1                
-                  
-                },                
-                "controlStyle": {                    
+                    "borderWidth": 1
+
+                },
+                "controlStyle": {
                     "color": "#626c91",
                     "borderColor": "#626c91",
-                    "borderWidth": 0.5                   
+                    "borderWidth": 0.5
                 },
                 "checkpointStyle": {
                     "color": "#3fb1e3",
                     "borderColor": "rgba(63,177,227,0.15)"
                 },
-                "label": {                   
-                    "color": "#626c91"                    
+                "label": {
+                    "color": "#626c91"
                 },
                 "emphasis": {
                     "itemStyle": {
                         "color": "#626c91"
                     },
-                    "controlStyle":{
+                    "controlStyle": {
                         "color": "#626c91",
                         "borderColor": "#626c91",
                         "borderWidth": 0.5
                     },
-                    "label":{
+                    "label": {
                         "color": "#626c91"
                     }
                 }
@@ -437,8 +437,8 @@ layui.define(function(exports) {
                 }
             },
             "markPoint": {
-                "label": {                    
-                    "color": "#ffffff"                        
+                "label": {
+                    "color": "#ffffff"
                 },
                 "emphasis": {
                     "label": {

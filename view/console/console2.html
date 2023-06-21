@@ -207,43 +207,6 @@
 				table = layui.table,
 				carousel = layui.carousel;
 
-			let cols = [
-				[{
-					type: 'checkbox'
-				},
-				{
-					title: '角色名',
-					field: 'roleName',
-					align: 'center',
-					width: 100
-				},
-				{
-					title: 'Key值',
-					field: 'roleCode',
-					align: 'center'
-				},
-				{
-					title: '描述',
-					field: 'details',
-					align: 'center'
-				},
-				{
-					title: '是否可用',
-					field: 'enable',
-					align: 'center',
-					templet: '#role-enable'
-				}
-				]
-			]
-
-			table.render({
-				elem: '#role-table',
-				url: '../../admin/data/role.json',
-				page: true,
-				cols: cols,
-				skin: 'line'
-			});
-
 
 			var echartsRecords = echarts.init(document.getElementById('echarts-records'), 'walden');
 
@@ -480,12 +443,10 @@
 				}]
 			};
 
-			echartsRecords.setOption(option);
-
-			window.onresize = function () {
+			setTimeout(() => {
+				echartsRecords.setOption(option);
 				echartsRecords.resize();
-			}
-
+			}, 500);
 		});
 	</script>
 </body>
