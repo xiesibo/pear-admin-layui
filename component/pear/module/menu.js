@@ -21,14 +21,15 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			defaultSelect: opt.defaultSelect,
 			control: opt.control,
 			controlWidth: opt.controlWidth ? opt.controlWidth : "auto",
-			defaultMenu: opt.defaultMenu,
+			defaultMenu: opt.defaultMenu || 0,
 			accordion: opt.accordion,
-			height: opt.height,
-			theme: opt.theme,
+			height: opt.height || "100%",
+			theme: opt.theme || "dark-theme",
 			data: opt.data ? opt.data : [],
 			change: opt.change ? opt.change : function () { },
 			done: opt.done ? opt.done : function () { }
 		}
+
 		var tempDone = option.done;
 		option.done = function(){
 			if (option.control) {
@@ -96,7 +97,8 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 				menuPath: dom.attr("menu-title"),
 				menuIcon: dom.attr("menu-icon"),
 				menuUrl: dom.attr("menu-url"),
-				openType: dom.attr("open-type")
+				menuType: dom.attr("menu-type"),
+				menuOpenType: dom.attr("menu-open-type")
 			};
 			var doms = hash(dom);
 			if (doms != null) {
@@ -304,7 +306,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 					'" ' + target + '><i class="' + item.icon + '"></i><span>' + item.title +
 					'</span></a>';
 			} else if (item.type == 1) {
-				content += '<a class="' + className + '" menu-type="' + item.type + '" menu-url="' + item.href + '" menu-id="' +
+				content += '<a class="' + className + '" menu-type="' + item.type + '" menu-open-type="'+ item.openType +'"  menu-url="' + item.href + '" menu-id="' +
 					item.id +
 					'" menu-title="' + item.title + '"  href="' + href + '"  ' + target + '><i class="' + item.icon +
 					'"></i><span>' + item.title + '</span></a>';
@@ -374,7 +376,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 						'</span></a>';
 				} else if (note.type == 1) {
 					// 创 建 菜 单 结 构
-					content += '<a ' + target + ' class="' + className + '" menu-type="' + note.type + '" menu-url="' + note.href +
+					content += '<a ' + target + ' class="' + className + '" menu-open-type="'+ note.openType +'" menu-type="' + note.type + '" menu-url="' + note.href +
 						'" menu-id="' + note.id +
 						'" menu-title="' + note.title + '" href="' + href + '"><i class="' + note.icon +
 						'"></i><span>' + note.title + '</span></a>';
@@ -433,7 +435,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 						'"><i class="' + note.icon + '"></i><span>' + note.title + '</span></a>';
 				} else if (note.type == 1) {
 					// 创 建 菜 单 结 构
-					content += '<a ' + target + ' class="' + className + '" menu-type="' + note.type + '" menu-url="' + note.href +
+					content += '<a ' + target + ' class="' + className + '" menu-open-type="' + note.openType + '" menu-type="' + note.type + '" menu-url="' + note.href +
 						'" menu-id="' + note.id + '" menu-title="' + note.title + '" menu-icon="' + note.icon + '" href="' + href +
 						'" ><i class="' + note.icon + '"></i><span>' + note.title + '</span></a>';
 				}

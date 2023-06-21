@@ -18,12 +18,10 @@ layui.config({
 	echartsTheme: "echartsTheme",// 数据图表主题
 	encrypt: "encrypt",		     // 数据加密组件
 	select: "select",	         // 下拉多选组件
-	drawer: "drawer",	         // 抽屉弹层组件
 	notice: "notice",	         // 消息提示组件
 	step:"step",		         // 分布表单组件
 	tag:"tag",			         // 多标签页组件
 	popup:"popup",               // 弹层封装
-	treetable:"treetable",       // 树状表格
 	dtree:"dtree",			     // 树结构
 	tinymce:"tinymce/tinymce",   // 编辑器
 	area:"area",			     // 省市级联  
@@ -45,7 +43,8 @@ layui.config({
 	nprogress: "nprogress",      // 进度过渡
 	watermark:"watermark/watermark", //水印组件
 	fullscreen:"fullscreen",     //全屏组件
-	popover:"popover/popover"    //汽泡组件
+	popover:"popover/popover",    //汽泡组件
+	darkreader: "darkreader"
 }).use(['layer', 'theme'], function () {
 	layui.theme.changeTheme(window, false);
 });

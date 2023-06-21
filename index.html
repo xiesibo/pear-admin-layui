@@ -3,12 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>主页</title>
+		<title>Pear Admin 4.0</title>
 		<!-- 依 赖 样 式 -->
 		<link rel="stylesheet" href="component/pear/css/pear.css" />
 		<!-- 加 载 样 式 -->
 		<link rel="stylesheet" href="admin/css/loader.css" />
 		<!-- 布 局 样 式 -->
+		<link rel="stylesheet" href="admin/css/admin.css" />
+		<!-- 全 局 变 量 -->
 		<link rel="stylesheet" href="admin/css/admin.css" />
 	</head>
 	<!-- 结 构 代 码 -->
@@ -22,7 +24,7 @@
 					<!-- 图 标 -->
 					<img class="logo">
 					<!-- 标 题 -->
-					<span class="title"></span>
+					<span class="text"></span>
 				</div>
 				<!-- 顶 部 左 侧 功 能 -->
 				<ul class="layui-nav layui-layout-left">
@@ -35,7 +37,6 @@
 				<ul class="layui-nav layui-layout-right">
 					<li class="layui-nav-item layui-hide-xs"><a href="#" class="menuSearch layui-icon layui-icon-search"></a></li>
 					<li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
-					<li class="layui-nav-item layui-hide-xs"><a href="http://www.pearadmin.com" class="layui-icon layui-icon-website"></a></li>
 					<li class="layui-nav-item layui-hide-xs message"></li>
 					<li class="layui-nav-item user">
 						<!-- 头 像 -->
@@ -57,11 +58,11 @@
 					<!-- 图 标 -->
 					<img class="logo">
 					<!-- 标 题 -->
-					<span class="title"></span>
+					<span class="text"></span>
 				</div>
 				<!-- 菜 单 内 容 -->
 				<div class="layui-side-scroll">
-					<div id="sideMenu"></div>
+					<div id="menu"></div>
 				</div>
 			</div>
 			<!-- 视 图 页 面 -->
@@ -70,15 +71,7 @@
 				<div id="content"></div>
 			</div>
 			<!-- 页脚 -->
-			<div class="layui-footer layui-text">
-				<span class="left">
-					Released under the MIT license.
-				</span>
-				<span class="center"></span>
-				<span class="right">
-					Copyright © 2021-2022 pearadmin.com
-				</span>
-			</div>
+			<div class="layui-footer layui-text"></div>
 			<!-- 遮 盖 层 -->
 			<div class="pear-cover"></div>
 			<!-- 加 载 动 画 -->
@@ -96,27 +89,28 @@
 		<script src="component/pear/pear.js"></script>
 		<!-- 框 架 初 始 化 -->
 		<script>
-			layui.use(['admin','jquery','popup','drawer'], function() {
+			layui.use(['admin','jquery','popup', 'darkreader'], function() {
 				var $ = layui.jquery;
 				var admin = layui.admin;
 				var popup = layui.popup;
-				
-				admin.setConfigType("yml");
-				admin.setConfigPath("config/pear.config.yml");
+				var darkreader = layui.darkreader;
+			
+				admin.setConfigurationPath("config/pear.config.yml");
 				
 				admin.render();
 				
 				// 登出逻辑 
 				admin.logout(function(){
+
 					popup.success("注销成功",function(){
 						location.href = "login.html";
 					})
-					// 注销逻辑 返回 true / false
-					return true;
+
+					// 清空 tabs 缓存
+					return new Promise((resolve) => {
+						resolve(true)
+					});
 				})
-				
-				// 消息点击回调
-				admin.message(function(id, title, context, form) {});
 			})
 		</script>		
 	</body>

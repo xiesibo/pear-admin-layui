@@ -128,7 +128,6 @@ layui.define(['jquery', 'element'], function(exports) {
                 return out;
             };
 
-
             // The actual plugin constructor
             function WebuiPopover(element, options) {
                 this.$element = $(element);

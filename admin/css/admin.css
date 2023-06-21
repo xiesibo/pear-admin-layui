@@ -63,10 +63,6 @@ body,
 	display: none;
 }
 
-.pear-admin .layui-logo .title {
-	font-size: 20px;
-}
-
 .pear-admin .layui-layout-right .layui-nav-child {
 	border: 1px solid whitesmoke;
 	border-radius: 4px;
@@ -92,12 +88,13 @@ body,
 }
 
 .pear-admin .layui-logo {
-	width: 230px;
-	height: 59px;
-	line-height: 59px;
-	position: relative;
+	box-sizing: border-box;
 	background-color: #28333E;
 	border-bottom: 1px solid rgba(0, 0, 0, .12);
+	width: 230px;
+	height: 60px;
+	line-height: 60px;
+	position: relative;
 }
 
 .pear-admin .layui-logo img {
@@ -105,10 +102,10 @@ body,
 	height: 34px;
 }
 
-.pear-admin .layui-logo .title {
+.pear-admin .layui-logo .text {
 	font-size: 21px;
 	font-weight: 550;
-	color: #5FB878;
+	color: var(--global-primary-color);
 	position: relative;
 	top: 5px;
 	margin-left: 5px;
@@ -143,9 +140,15 @@ body,
 }
 
 .pear-admin .layui-body {
-	left: 230px;
 	bottom: 0px;
 	padding-bottom: 0px;
+	height: calc(100% - 60px);
+	overflow-y: auto;
+	left: 230px;
+}
+
+.pear-admin .layui-body > div {
+	height: 100%;
 }
 
 .pear-admin .layui-layout-left {
@@ -229,18 +232,18 @@ body,
 }
 
 .pear-collapsed-pe {
-	display: none;
-	width: 50px;
-	position: absolute;
-	z-index: 400000;
-	bottom: 30px;
 	right: 30px;
+	bottom: 30px;
+	z-index: 400000;
+	position: absolute;
 	background-color: #5FB878 !important;
-	height: 50px;
-	line-height: 50px;
+	box-shadow: 2px 0 6px rgba(0, 21, 41, .20);
 	text-align: center;
-	border-radius: 50px;
-	box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+	border-radius: 4px;
+	line-height: 50px;
+	display: none;
+	height: 50px;
+	width: 50px;
 }
 
 .pear-collapsed-pe a {
@@ -481,17 +484,17 @@ body,
 }
 
 .select-color .select-color-content .select-color-item {
-	background-color: gray;
-	width: 30px;
-	height: 30px;
-	border-radius: 3px;
-	float: left;
-	margin-left: 20px;
+	width: 24px;
+	height: 24px;
 	color: white;
-	font-size: 18px;
-	text-align: center;
+	margin-left: 24px;
+	border-radius: 3px;
+	background-color: gray;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .15);
-	line-height: 30px;
+	text-align: center;
+	line-height: 24px;
+	font-size: 14px;
+	float: left;
 }
 
 .message .layui-tab-title li:not(:last-child) {

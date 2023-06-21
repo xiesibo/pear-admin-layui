@@ -1,9 +1,9 @@
 ## 网站配置
-logo: 
+information: 
   ## 网站名称
-  title: "Pear Admin"
+  name: "Pear Admin"
   ## 网站图标
-  image: "admin/images/logo.png"
+  logo: "admin/images/logo.png"
 ## 菜单配置
 menu: 
   ## 菜单数据来源
@@ -54,7 +54,7 @@ theme:
 ## 主题色配置列表
 colors: 
 - id: "1"
-  color: "#2d8cf0"
+  color: "#16baaa"
   second: "#ecf5ff"
 - id: "2"
   color: "#36b368"
@@ -68,6 +68,9 @@ colors:
 - id: "5"
   color: "#3963bc"
   second: "#ecf5ff"
+- id: "6"
+  color: "#009688"
+  second: "#f0f9eb"
 ## 其他配置
 other: 
   ## 主页动画时长
