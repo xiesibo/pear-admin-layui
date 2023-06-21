@@ -4,8 +4,10 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 
 		var $ = layui.jquery,
 			form = layui.form,
+			element = layui.element,
 			yaml = layui.yaml,
 			pearTab = layui.tab,
+			convert = layui.convert,
 			pearMenu = layui.menu,
 			pearFrame = layui.frame,
 			pearTheme = layui.theme,
@@ -85,60 +87,38 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			 */
 			this.render = (options) => {
 				if (options !== undefined) {
-					this.renderFramework(options);
+					applyConfig(options);
 				} else {
 					this.configurationProvider().then((result) => {
-						this.renderFramework(result);
+						applyConfig(result);
 					})
 				}
 			}
 
-			/**
-			 * @since Pear Admin 4.0 
-			 */
-			this.renderFramework = (options) => {
-
-				this.renderInformation(options.information);
-
-				this.renderMenu(options);
-
-				this.renderContent(options);
-
-				// 
-
-
-				// TODO 机制
-				$(".loader-main").fadeOut(360, () => {
-					$(".loader-main").remove();
-				});
+			this.messageRender = function (option) {
+				var option = {
+					elem: '.message',
+					url: option.header.message,
+					height: '250px'
+				};
+				msgInstance = message.render(option);
 			}
 
-			/**
-			 * @since Pear Admin 4.0
-			 * 
-			 * 初始化 Web information 网站信息
-			 */
-			this.renderInformation = (informationOptions) => {
-				const $logo = $(".pear-admin .layui-logo .logo");
-				if(informationOptions && informationOptions.logo) {
-					$logo.attr("src", informationOptions.logo);
-				}
-				const $text = $(".pear-admin .layui-logo .text");
-				if(informationOptions && informationOptions.name) {
-					$text.html(informationOptions.name);
-				}
+			this.logoRender = function (param) {
+				$(".layui-logo .logo").attr("src", param.logo.image);
+				$(".layui-logo .title").html(param.logo.title);
 			}
 
-			this.renderMenu = (param) => {
-
-				const isControl = filterStorage("control", param, param.menu.control);
-
+			this.menuRender = function (param) {
 				sideMenu = pearMenu.render({
-					elem: 'menu',
+					elem: 'sideMenu',
 					async: param.menu.async !== undefined ? param.menu.async : true,
+					theme: "dark-theme",
+					height: '100%',
 					method: param.menu.method,
-					control: isControl == true ? 'control' : false,
+					control: isControl(param) === 'true' || isControl(param) === true ? 'control' : false, // control
 					controlWidth: param.menu.controlWidth,
+					defaultMenu: 0,
 					accordion: param.menu.accordion,
 					url: param.menu.data,
 					data: param.menu.data,
@@ -154,7 +134,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				});
 			}
 
-			this.renderContent = function (param) {
+			this.bodyRender = function (param) {
+
+				body.on("click", ".refresh", function () {
+					refresh();
+				})
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
 					bodyTab = pearTab.render({
@@ -209,7 +193,6 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						compatible();
 					})
 				} else {
-					
 					bodyFrame = pearFrame.render({
 						elem: 'content',
 						title: '首页',
@@ -229,25 +212,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				}
 			}
 
-			function applyConfig(param) {
-				config = param;
-				pearAdmin.logoRender(param);
-				pearAdmin.menuRender(param);
-				pearAdmin.bodyRender(param);
-				pearAdmin.themeRender(param);
-				pearAdmin.keepLoad(param);
-				if (param.header.message != false) {
-					pearAdmin.messageRender(param);
-				}
-			}
-
-			this.messageRender = function (option) {
-				var option = {
-					elem: '.message',
-					url: option.header.message,
-					height: '250px'
-				};
-				msgInstance = message.render(option);
+			this.keepLoad = function (param) {
+				compatible()
+				setTimeout(function () {
+					$(".loader-main").fadeOut(200);
+				}, param.other.keepLoad)
 			}
 
 			this.themeRender = function (option) {
@@ -386,6 +355,105 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			this.message = function (callback) {
 				if (callback != null) {
 					msgInstance.click(callback);
+				}
+			}
+
+			this.collapseSide = function () {
+				collapse()
+			}
+
+			this.refreshThis = function () {
+				refresh()
+			}
+
+			this.refresh = function (id) {
+				$("iframe[id='" + id + "']").attr('src', $("iframe[id='" + id + "']").attr('src'));
+			}
+
+			this.addTab = function (id, title, url) {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					bodyTab.addTabOnly({
+						id: id,
+						title: title,
+						url: url,
+						icon: null,
+						close: true
+					}, 400);
+				} else {
+					return;
+				}
+			}
+
+			this.closeTab = function (id) {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					pearTab.delTabByElem('content', id, function (currentId) {
+						sideMenu.selectItem(currentId);
+					});
+				} else {
+					return;
+				}
+			}
+
+			this.closeCurrentTab = function () {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					pearTab.delCurrentTabByElem('content', function (id) {
+						sideMenu.selectItem(id);
+					});
+				} else {
+					return;
+				}
+			}
+
+			this.closeOtherTab = function () {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					pearTab.delOtherTabByElem('content', function (id) {
+						sideMenu.selectItem(id);
+					});
+				} else {
+					return;
+				}
+			}
+
+			this.closeAllTab = function () {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					pearTab.delAllTabByElem('content', function (id) {
+						sideMenu.selectItem(id);
+					});
+				} else {
+					return;
+				}
+			}
+
+			this.changeTabTitle = function (id, title) {
+				pearTab.changeTabTitleById('content', id, title);
+			}
+
+			this.changeIframe = function (id, title, url) {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					return;
+				} else {
+					sideMenu.selectItem(id);
+					bodyFrame.changePage(url, true);
+				}
+			}
+
+			this.jump = function (id, title, url) {
+				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+					pearAdmin.addTab(id, title, url)
+				} else {
+					pearAdmin.changeIframe(id, title, url)
+				}
+			}
+
+			this.fullScreen = function () {
+				if ($(".fullScreen").hasClass("layui-icon-screen-restore")) {
+					screenFun(2).then(function () {
+						$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
+					});
+				} else {
+					screenFun(1).then(function () {
+						$(".fullScreen").eq(0).addClass("layui-icon-screen-restore");
+					});
 				}
 			}
 		};
@@ -925,19 +993,6 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			if ($(window).width() <= 768) {
 				collapse()
 			}
-		}
-
-		/**
-		 * @since Pear Admin 4.0 
-		 */
-		function filterStorage (optionName, options, optionValue) {
-			if (options.theme.allowCustom) {
-				const storageValue = localStorage.getItem(optionName);
-				if(optionValue != undefined && optionValue != null) {
-					return storageValue;
-				}
-			}
-			return optionValue;
 		}
 
 		function isControl(option) {

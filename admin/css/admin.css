@@ -63,6 +63,10 @@ body,
 	display: none;
 }
 
+.pear-admin .layui-logo .title {
+	font-size: 20px;
+}
+
 .pear-admin .layui-layout-right .layui-nav-child {
 	border: 1px solid whitesmoke;
 	border-radius: 4px;
@@ -88,13 +92,12 @@ body,
 }
 
 .pear-admin .layui-logo {
-	box-sizing: border-box;
+	width: 230px;
+	height: 59px;
+	line-height: 59px;
+	position: relative;
 	background-color: #28333E;
 	border-bottom: 1px solid rgba(0, 0, 0, .12);
-	width: 230px;
-	height: 60px;
-	line-height: 60px;
-	position: relative;
 }
 
 .pear-admin .layui-logo img {
@@ -102,10 +105,10 @@ body,
 	height: 34px;
 }
 
-.pear-admin .layui-logo .text {
+.pear-admin .layui-logo .title {
 	font-size: 21px;
 	font-weight: 550;
-	color: var(--global-primary-color);
+	color: #5FB878;
 	position: relative;
 	top: 5px;
 	margin-left: 5px;

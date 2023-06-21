@@ -10,8 +10,6 @@
 		<link rel="stylesheet" href="admin/css/loader.css" />
 		<!-- 布 局 样 式 -->
 		<link rel="stylesheet" href="admin/css/admin.css" />
-		<!-- 全 局 变 量 -->
-		<link rel="stylesheet" href="admin/css/admin.css" />
 	</head>
 	<!-- 结 构 代 码 -->
 	<body class="layui-layout-body pear-admin">
@@ -24,7 +22,7 @@
 					<!-- 图 标 -->
 					<img class="logo">
 					<!-- 标 题 -->
-					<span class="text"></span>
+					<span class="title"></span>
 				</div>
 				<!-- 顶 部 左 侧 功 能 -->
 				<ul class="layui-nav layui-layout-left">
@@ -58,11 +56,11 @@
 					<!-- 图 标 -->
 					<img class="logo">
 					<!-- 标 题 -->
-					<span class="text"></span>
+					<span class="title"></span>
 				</div>
 				<!-- 菜 单 内 容 -->
 				<div class="layui-side-scroll">
-					<div id="menu"></div>
+					<div id="sideMenu"></div>
 				</div>
 			</div>
 			<!-- 视 图 页 面 -->
@@ -94,7 +92,7 @@
 				var admin = layui.admin;
 				var popup = layui.popup;
 				var darkreader = layui.darkreader;
-			
+				
 				admin.setConfigurationPath("config/pear.config.yml");
 				
 				admin.render();
@@ -111,6 +109,9 @@
 						resolve(true)
 					});
 				})
+				
+				// 消息点击回调
+				admin.message(function(id, title, context, form) {});
 			})
 		</script>		
 	</body>
