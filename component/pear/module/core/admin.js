@@ -1,14 +1,14 @@
-layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'menu', 'frame', 'theme', 'fullscreen'],
+layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
 	function (exports) {
 		"use strict";
 
 		var $ = layui.jquery,
 			form = layui.form,
-			element = layui.element,
 			yaml = layui.yaml,
-			pearTab = layui.tab,
-			pearMenu = layui.menu,
-			pearFrame = layui.frame,
+			page = layui.page,
+			tabPage = layui.tabPage,
+			menu = layui.menu,
+
 			pearTheme = layui.theme,
 			message = layui.message,
 			fullscreen = layui.fullscreen;
@@ -108,7 +108,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 			}
 
 			this.menuRender = function (param) {
-				sideMenu = pearMenu.render({
+				sideMenu = menu.render({
 					elem: 'sideMenu',
 					async: param.menu.async !== undefined ? param.menu.async : true,
 					theme: "dark-theme",
@@ -139,7 +139,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 				})
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
-					bodyTab = pearTab.render({
+					bodyTab = tabPage.render({
 						elem: 'content',
 						roll: true,
 						tool: true,
@@ -191,7 +191,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						compatible();
 					})
 				} else {
-					bodyFrame = pearFrame.render({
+					bodyFrame = page.render({
 						elem: 'content',
 						title: '首页',
 						url: param.tab.index.href,

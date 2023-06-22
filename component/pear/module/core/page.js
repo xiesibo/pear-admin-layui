@@ -4,11 +4,11 @@ layui.define(['jquery', 'element'], function (exports) {
 	var $ = layui.jquery;
 	var element = layui.element;
 
-	var frame = function (opt) {
+	var page = function (opt) {
 		this.option = opt;
 	};
 
-	frame.prototype.render = function (opt) {
+	page.prototype.render = function (opt) {
 		var option = {
 			url: opt.url,
 			elem: opt.elem,
@@ -23,7 +23,7 @@ layui.define(['jquery', 'element'], function (exports) {
 		return new frame(option);
 	}
 
-	frame.prototype.changePage = function (url, loading) {
+	page.prototype.changePage = function (url, loading) {
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem + " .pear-frame-content");
 		if(loading) {
@@ -47,7 +47,7 @@ layui.define(['jquery', 'element'], function (exports) {
 		});
 	}
 
-	frame.prototype.changePageByElement = function (elem, url, loading) {
+	page.prototype.changePageByElement = function (elem, url, loading) {
 		var $frameLoad = $("#" + elem).find(".pear-frame-loading");
 		var $frame = $("#" + elem + " .pear-frame-content");
 		if(loading) {
@@ -71,7 +71,7 @@ layui.define(['jquery', 'element'], function (exports) {
 		});
 	}
 
-	frame.prototype.refresh = function (loading) {
+	page.prototype.refresh = function (loading) {
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem).find(".pear-frame-content");
 		if(loading) {
@@ -126,5 +126,5 @@ layui.define(['jquery', 'element'], function (exports) {
 		});
 	}
 
-	exports('frame', new frame());
+	exports('page', new page());
 });

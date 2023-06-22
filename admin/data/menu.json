@@ -3,7 +3,6 @@
 		"title": "工作空间",
 		"icon": "layui-icon layui-icon-console",
 		"type": 0,
-		"href": "",
 		"children": [{
 			"id": 10,
 			"title": "控制后台",
@@ -19,6 +18,21 @@
 			"openType": "_iframe",
 			"href": "view/console/console2.html"
 		}]
+	},
+	{
+		"id": 2,
+		"title": "扩展组件",
+		"icon": "layui-icon layui-icon-auz",
+		"type": 0,
+		"children": [{
+				"id": 21,
+				"title": "消息通知",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/components/toast.html"
+			}
+		]
 	},
 	{
 		"id": "result",
@@ -45,8 +59,40 @@
 		]
 	},
 	{
+		"id": "exception",
+		"title": "异常页面",
+		"icon": "layui-icon layui-icon-auz",
+		"type": 0,
+		"href": "",
+		"children": [{
+				"id": "403",
+				"title": "403",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/exception/403.html"
+			},
+			{
+				"id": "404",
+				"title": "404",
+				"icon": "layui-icon layui-icon-face-cry",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/exception/404.html"
+			},
+			{
+				"id": "500",
+				"title": "500",
+				"icon": "layui-icon layui-icon-face-cry",
+				"type": 1,
+				"openType": "_iframe",
+				"href": "view/exception/500.html"
+			}
+		]
+	},
+	{
 		"id": "open",
-		"title": "更多功能",
+		"title": "菜单模式",
 		"icon": "layui-icon layui-icon-auz",
 		"type": 0,
 		"href": "",

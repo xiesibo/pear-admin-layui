@@ -5,11 +5,11 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		$ = layui.jquery,
 		element = layui.element;
 
-	var pearMenu = function (opt) {
+	var menu = function (opt) {
 		this.option = opt;
 	};
 
-	pearMenu.prototype.render = function (opt) {
+	menu.prototype.render = function (opt) {
 
 		var option = {
 			elem: opt.elem,
@@ -84,10 +84,10 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			});
 		}, 1000)
 
-    return new pearMenu(option);
+    return new menu(option);
 	}
 
-	pearMenu.prototype.click = function (clickEvent) {
+	menu.prototype.click = function (clickEvent) {
 		var _this = this;
 		$("body").on("click", "#" + _this.option.elem + " .site-demo-active", function () {
 			var dom = $(this);
@@ -141,14 +141,14 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		return d;
 	}
 
-	pearMenu.prototype.skin = function (skin) {
+	menu.prototype.skin = function (skin) {
 		var menu = $(".pear-nav-tree[lay-filter='" + this.option.elem + "']").parent();
 		menu.removeClass("dark-theme");
 		menu.removeClass("light-theme");
 		menu.addClass(skin);
 	}
 
-	pearMenu.prototype.selectItem = function (pearId) {
+	menu.prototype.selectItem = function (pearId) {
 		if (this.option.control != false) {
 			$("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents(".layui-side-scroll ").find("ul").css({
 				display: "none"
@@ -211,7 +211,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 	}
 
 	var activeMenus;
-	pearMenu.prototype.collapse = function (time) {
+	menu.prototype.collapse = function (time) {
 		var elem = this.option.elem;
 		var config = this.option;
 		if ($("#" + this.option.elem).is(".pear-nav-mini")) {
@@ -569,5 +569,5 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		});
 	}
 
-	exports(MOD_NAME, new pearMenu());
+	exports(MOD_NAME, new menu());
 })
