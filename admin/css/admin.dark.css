@@ -87,6 +87,11 @@
     color: #ffffff;
 }
 
+/** search */
+.pear-admin-dark .menu-search-no-data {
+    color: #ffffff;
+}
+
 /** button */
 .pear-admin-dark .layui-btn {
     color: #ffffff;
