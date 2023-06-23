@@ -494,7 +494,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				      <input type="text" name="menuSearch" value="" placeholder="搜索菜单" autocomplete="off" class="layui-input" lay-affix="clear">
 				    </div>
 				  </div>
-				  <div class="menu-search-no-data">暂无信息</div>
+				  <div class="menu-search-no-data">暂 无 信 息</div>
 				  <ul class="menu-search-list">
 				  </ul>
 				</div>`
