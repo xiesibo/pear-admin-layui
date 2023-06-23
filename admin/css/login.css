@@ -10,6 +10,7 @@
 	height: 40px;
 	line-height: 40px;
 	font-size: 14px;
+	border-radius: 4px;
 }
 
 .layui-form-checked[lay-skin=primary] i {

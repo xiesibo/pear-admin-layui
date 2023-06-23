@@ -8,8 +8,7 @@ layui.define(["jquery","layer"], function (exports) {
 	theme.changeTheme = function (target, autoHead) {
 		this.autoHead = autoHead;
 		var color = localStorage.getItem("theme-color-color");
-		var second = localStorage.getItem("theme-color-second");
-		this.colorSet(color, second);
+		this.colorSet(color);
 		if (target.frames.length == 0) return;
 		for (var i = 0; i < target.frames.length; i++) {
 			try {
@@ -22,7 +21,7 @@ layui.define(["jquery","layer"], function (exports) {
 		}
 	}
 
-	theme.colorSet = function(color, second) {
+	theme.colorSet = function(color) {
 		
 		var style = '';
 		style += '.light-theme .pear-nav-tree .layui-this a:hover,.light-theme .pear-nav-tree .layui-this,.light-theme .pear-nav-tree .layui-this a,.pear-nav-tree .layui-this a,.pear-nav-tree .layui-this{background-color: ' +color + '!important;}';
@@ -58,29 +57,13 @@ layui.define(["jquery","layer"], function (exports) {
 		style += '.pear-back{background-color:'+ color +'!important}';
 		style += '.pear-collapsed-pe{background-color:'+color+'!important}'
 		style += '.layui-form-select dl dd.layui-this{color:'+color+'!important;}'
-		style += '.tag-item-normal{background:'+color+'!important}';
-		style += '.step-item-head.step-item-head-active{background-color:'+color+'}'
-		style += '.step-item-head{border: 3px solid '+color+';}'
-		style += '.step-item-tail i{background-color:'+color+'}'
-		style += '.step-item-head{color:' + color + '}'
-		style += 'div[xm-select-skin=normal] .xm-select-title div.xm-select-label>span i {background-color:'+color+'!important}'
-		style += 'div[xm-select-skin=normal] .xm-select-title div.xm-select-label>span{border: 1px solid '+color+'!important;background-color:'+color+'!important}'
-		style += 'div[xm-select-skin=normal] dl dd:not(.xm-dis-disabled) i{border-color:'+color+'!important}'
-		style += 'div[xm-select-skin=normal] dl dd.xm-select-this:not(.xm-dis-disabled) i{color:'+color+'!important}'
-		style += 'div[xm-select-skin=normal].xm-form-selected .xm-select, div[xm-select-skin=normal].xm-form-selected .xm-select:hover{border-color:'+color+'!important}'
 		style += '.layui-layer-btn a:first-child{border-color:'+color+';background-color:'+color+'!important}';
 		style += '.layui-form-checkbox[lay-skin=primary]:hover i{border-color:'+color+'!important}'
 		style += '.pear-tab-menu .item:hover{background-color:'+color+'!important}'
 		style += '.layui-form-danger:focus {border-color:#FF5722 !important}'
 		style += '.pear-admin .user .layui-this a:hover{color:white!important}'
 		style += '.pear-admin .user  a:hover{color:'+color+'!important}'
-		style += '.pear-notice .layui-this{color:'+color+'!important}'
         style += '.layui-form-radio:hover *, .layui-form-radioed, .layui-form-radioed>i{color:' + color + ' !important}';
-		style += '.pear-btn:hover {color: '+color+';background-color: ' + second + ';}'
-		style += '.pear-btn-primary[plain] {color: '+ color +' !important;background: ' + second + ' !important;}'
-		style += '.pear-btn-primary[plain]:hover {background-color: ' + color + '!important}'
-		style += '.light-theme .pear-nav-tree .layui-this a:hover,.light-theme .pear-nav-tree .layui-this,.light-theme .pear-nav-tree .layui-this a {background-color:'+second+'!important;color:'+color+'!important;}'
-		style += '.light-theme .pear-nav-tree .layui-this{ border-right: 3px solid '+color+'!important}'
 		style += '.loader:after {background:'+color+'}'
 		style += '.layui-laydate .layui-this, .layui-laydate .layui-this>div{background:'+color+'!important}'
 		if(this.autoHead === true || this.autoHead === "true"){
@@ -88,7 +71,7 @@ layui.define(["jquery","layer"], function (exports) {
 			style += '.pear-admin.banner-layout .layui-header{ box-shadow: 2px 0 6px rgb(0 21 41 / 35%) }'
 			style += '.pear-admin .layui-header .layui-layout-control .layui-this *,.pear-admin.banner-layout .layui-header .layui-layout-control .layui-this *{ background-color: rgba(0,0,0,.1)!important;}'
 		}
-    style += '.menu-search-list li:hover,.menu-search-list li.this{background-color:'+ color +'}'
+    	style += '.menu-search-list li:hover,.menu-search-list li.this{background-color:'+ color +'}'
 		var colorPane = $("#pear-admin-color");
 		if(colorPane.length>0){
 			colorPane.html(style);

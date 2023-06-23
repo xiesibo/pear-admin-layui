@@ -1,10 +1,8 @@
-layui.define(['layer', 'jquery', 'element'], function(exports) {
+layui.define(['layer'], function(exports) {
 	"use strict";
 
 	var MOD_NAME = 'popup',
-		$ = layui.jquery,
-		layer = layui.layer,
-		element = layui.element;
+		layer = layui.layer;
 
 	var popup = new function() {
 

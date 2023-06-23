@@ -1,8 +1,9 @@
-layui.define(['jquery', 'element'], function (exports) {
+layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	"use strict";
 
 	var MOD_NAME = 'tabPage',
 		$ = layui.jquery,
+		dropdown = layui.dropdown,
 		element = layui.element;
 
 	var tabPage = function (opt) {
@@ -55,7 +56,7 @@ layui.define(['jquery', 'element'], function (exports) {
 			rollPage("right", option);
 		})
 		element.init();
-		toolEvent(option);
+
 		$("#" + option.elem).width(opt.width);
 		$("#" + option.elem).height(opt.height);
 		$("#" + option.elem).css({
@@ -65,24 +66,79 @@ layui.define(['jquery', 'element'], function (exports) {
 
 		option.success(sessionStorage.getItem(option.elem + "-pear-tab-data-current"));
 
+		dropdown.render({
+			elem: `#${option.elem} .layui-icon-down`,
+			trigger: 'hover',
+			data: [{
+				title: '关 闭 当 前',
+				id: 1
+			}, {
+				title: '关 闭 其 他',
+				id: 2
+			}, {
+				title: '关 闭 全 部',
+				id: 3
+			}],
+			click: function (obj) {
+
+				const id = obj.id;
+
+				if (id === 1) {
+					var currentTab = $(".layui-tab[lay-filter='" + option.elem +
+						"'] .layui-tab-title .layui-this");
+					if (currentTab.find("span").is(".able-close")) {
+						var currentId = currentTab.attr("lay-id");
+						tabDelete(option.elem, currentId, option.closeEvent, option);
+					} else {
+						layer.msg("当前页面不允许关闭", {
+							icon: 3,
+							time: 1000
+						})
+					}
+				} else if (id === 2) {
+					var currentId = $(".layui-tab[lay-filter='" + option.elem +
+						"'] .layui-tab-title .layui-this").attr("lay-id");
+					var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
+					$.each(tabtitle, function (i) {
+						if ($(this).attr("lay-id") != currentId) {
+							if ($(this).find("span").is(".able-close")) {
+								tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent,
+									option);
+							}
+						}
+					})
+				} else {
+					var currentId = $(".layui-tab[lay-filter='" + option.elem +
+						"'] .layui-tab-title .layui-this").attr("lay-id");
+					var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
+					$.each(tabtitle, function (i) {
+						if ($(this).find("span").is(".able-close")) {
+							tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent, option);
+						}
+					})
+				}
+
+			}
+		})
+
 		$("body .layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title").on("contextmenu", "li",
 			function (e) {
-				// 获取当前元素位置
 				var top = e.clientY;
 				var left = e.clientX;
 				var menuWidth = 100;
 				var currentId = $(this).attr("lay-id");
-				var menu = "<ul><li class='item' id='" + option.elem +
-					"closeThis'>关闭当前</li><li class='item' id='" + option.elem +
-					"closeOther'>关闭其他</li><li class='item' id='" + option.elem +
-					"closeAll'>关闭所有</li></ul>";
+				var menu = `<ul>
+								<li class='item' id='${option.elem}closeThis'>关闭当前</li>
+								<li class='item' id='${option.elem}closeOther'>关闭其他</li>
+								<li class='item' id='${option.elem}closeAll'>关闭所有</li>
+							</ul>`;
 
 				contextTabDOM = $(this);
 				var isOutsideBounds = (left + menuWidth) > $(window).width();
 				if (isOutsideBounds) {
 					left = $(window).width() - menuWidth;
 				}
-				// 初始化
+
 				layer.open({
 					type: 1,
 					title: false,
@@ -94,7 +150,7 @@ layui.define(['jquery', 'element'], function (exports) {
 					anim: false,
 					isOutAnim: false,
 					offset: [top, left],
-					content: menu, //iframe的url,
+					content: menu,
 					success: function (layero, index) {
 						layer.close(lastIndex);
 						lastIndex = index;
@@ -110,11 +166,9 @@ layui.define(['jquery', 'element'], function (exports) {
 							clearTimeout(timer);
 						});
 
-						// 清除 item 右击
 						$(layero).on('contextmenu', function () {
 							return false;
 						})
-
 					}
 				});
 				return false;
@@ -202,7 +256,7 @@ layui.define(['jquery', 'element'], function (exports) {
 			tabDelete(elem, currentId, callback);
 		}
 	}
-	
+
 	/**
 	 * @since Pear Admin 4.0
 	 * 
@@ -210,7 +264,9 @@ layui.define(['jquery', 'element'], function (exports) {
 	 */
 	tabPage.prototype.addTabOnly = function (opt, time) {
 
-		var title = `<span class="pear-tab-active"></span><span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span><i class="layui-icon layui-unselect layui-tab-close">ဆ</i>`;
+		var title = `<span class="pear-tab-active"></span>
+					 <span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span>
+					 <i class="layui-icon layui-unselect layui-tab-close">ဆ</i>`;
 
 		if ($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]").length <=
 			0) {
@@ -225,9 +281,7 @@ layui.define(['jquery', 'element'], function (exports) {
 				success: function (data) {
 					element.tabAdd(that.option.elem, {
 						title: title,
-						content: '<div id="' + opt.id + '" data-frameid="' + opt.id +
-							'" src="' +
-							opt.url + '">' + data + '</div>',
+						content: `<div id="${opt.id}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
 						id: opt.id
 					});
 				},
@@ -249,7 +303,7 @@ layui.define(['jquery', 'element'], function (exports) {
 						isData = true;
 					}
 				})
-			
+
 			if (isData == false) {
 
 				if (this.option.tabMax != false) {
@@ -394,23 +448,14 @@ layui.define(['jquery', 'element'], function (exports) {
 		var control = `<div class="layui-tab-control">
 							<li class="layui-tab-prev layui-icon layui-icon-left"></li>
 							<li class="layui-tab-next layui-icon layui-icon-right"></li>
-							<li class="layui-tab-tool layui-icon layui-icon-down">
-								<ul class="layui-nav" lay-filter=""><li class="layui-nav-item">
-									<a href="javascript:;"></a>
-									<dl class="layui-nav-child">
-										<dd id="closeThis"><a href="#">关 闭 当 前</a></dd>
-										<dd id="closeOther"><a href="#">关 闭 其 他</a></dd>
-										<dd id="closeAll"><a href="#">关 闭 全 部</a></dd>
-									</dl>
-								</ul>
-							</li>
+							<li class="layui-tab-tool layui-icon layui-icon-down"></li>
 						</div>`;
 
 		// 处 理 选 项 卡 头 部
 		var index = 0;
 		$.each(option.data, function (i, item) {
-			
-			var titleItem =  `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
+
+			var titleItem = `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
 								<span class="pear-tab-active"></span>
 								<span class="${item.close ? 'able-close' : 'disable-close'} title">
 									${item.title}
@@ -527,47 +572,6 @@ layui.define(['jquery', 'element'], function (exports) {
 				}
 			})
 			layer.close(index);
-		})
-	}
-
-	function toolEvent(option) {
-		$("body .layui-tab[lay-filter='" + option.elem + "']").on("click", "#closeThis", function () {
-			var currentTab = $(".layui-tab[lay-filter='" + option.elem +
-				"'] .layui-tab-title .layui-this");
-			if (currentTab.find("span").is(".able-close")) {
-				var currentId = currentTab.attr("lay-id");
-				tabDelete(option.elem, currentId, option.closeEvent, option);
-			} else {
-				layer.msg("当前页面不允许关闭", {
-					icon: 3,
-					time: 800
-				})
-			}
-		})
-
-		$("body .layui-tab[lay-filter='" + option.elem + "']").on("click", "#closeOther", function () {
-			var currentId = $(".layui-tab[lay-filter='" + option.elem +
-				"'] .layui-tab-title .layui-this").attr("lay-id");
-			var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
-			$.each(tabtitle, function (i) {
-				if ($(this).attr("lay-id") != currentId) {
-					if ($(this).find("span").is(".able-close")) {
-						tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent,
-							option);
-					}
-				}
-			})
-		})
-
-		$("body .layui-tab[lay-filter='" + option.elem + "']").on("click", "#closeAll", function () {
-			var currentId = $(".layui-tab[lay-filter='" + option.elem +
-				"'] .layui-tab-title .layui-this").attr("lay-id");
-			var tabtitle = $(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-title li");
-			$.each(tabtitle, function (i) {
-				if ($(this).find("span").is(".able-close")) {
-					tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent, option);
-				}
-			})
 		})
 	}
 

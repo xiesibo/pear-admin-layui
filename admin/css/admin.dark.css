@@ -20,7 +20,7 @@
 
 /** side */
 .pear-admin-dark .layui-side {
-    box-shadow: 0 3px 4px rgba(0, 0, 0, .6);;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .6) !important;
 }
 
 .pear-admin-dark .layui-logo {
@@ -31,6 +31,22 @@
 .pear-admin-dark .layui-side .layui-side-scroll, 
 .pear-admin-dark .layui-side .layui-side-scroll .layui-nav-tree{
     background-color: #141414 !important;
+}
+
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav-tree .layui-nav-child {
+    background-color: rgba(0,0,0,.3)!important;
+}
+
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-item a,
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-item a > .layui-nav-more {
+    color: rgba(255,255,255,.7) !important;
+}
+
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-child dd.layui-this a,
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-itemed > a,
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-itemed > a > .layui-nav-more,
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav .layui-nav-item > a:hover {
+    color: #ffffff !important;
 }
 
 /** body */
@@ -50,9 +66,30 @@
     background-color: #434343;
 }
 
+.pear-admin-dark .layui-body .layui-tab .layui-nav-child.layui-anim {
+    border-color: #141414;
+    background-color: #141414 !important;
+}
+
+.pear-admin-dark .layui-body .layui-tab .layui-nav-child.layui-anim a {
+    color: #ffffff;
+}
+
+.pear-admin-dark .layui-body .layui-tab .layui-nav-child.layui-anim a:hover {
+    background-color: #0a0a0a;
+}
+
 /** layer */
 .pear-admin-dark .layui-layer {
     background-color: #141414;
+}
+
+.pear-admin-dark .layui-layer-msg {
+    border-color: #141414;
+}
+
+.pear-admin-dark .layui-layer-msg .layui-layer-content {
+    color: #E5EAF3;
 }
 
 .pear-admin-dark .layui-layer .layui-layer-setwin > span,
@@ -74,10 +111,28 @@
 .pear-admin-dark .layui-input {
     background-color: transparent;
     color: #ffffff;
+    border-color: rgba(0, 0, 0, .30) !important;
 }
 
 /** switch */
 .pear-admin-dark .layui-form-switch {
     border-color: #484849;
     background-color: rgba(255,255,255,.08);
+}
+
+/** panel */
+.pear-admin-dark .layui-panel {
+    background-color: #1d1e1f !important;
+    border-color: #1d1e1f !important;
+}
+
+/** menu */
+.pear-admin-dark .layui-menu {
+    background-color: #1d1e1f !important;
+}
+
+.pear-admin-dark .layui-menu .layui-menu-body-title,
+.pear-admin-dark .layui-menu .layui-menu-body-title:hover  {
+    color: white;
+    background-color: #1d1e1f !important;
 }

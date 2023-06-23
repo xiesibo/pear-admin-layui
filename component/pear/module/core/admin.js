@@ -1,4 +1,4 @@
-layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
+layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
 	function (exports) {
 		"use strict";
 
@@ -7,7 +7,6 @@ layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'ta
 			yaml = layui.yaml,
 			page = layui.page,
 			tabPage = layui.tabPage,
-			messageCenter = layui.messageCenter,
 			menu = layui.menu,
 
 			pearTheme = layui.theme,
@@ -92,14 +91,6 @@ layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'ta
 						applyConfig(result);
 					})
 				}
-			}
-
-			this.messageRender = function (option) {
-				msgInstance = messageCenter.render({
-					elem: '.message',
-					url: option.header.message,
-					height: '250px'
-				});
 			}
 
 			this.logoRender = function (param) {
@@ -367,12 +358,6 @@ layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'ta
 
 			this.logout = function (callback) {
 				logout = callback;
-			}
-
-			this.message = function (callback) {
-				if (callback != null) {
-					msgInstance.click(callback);
-				}
 			}
 		};
 
@@ -887,9 +872,6 @@ layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'ta
 			pearAdmin.bodyRender(param);
 			pearAdmin.themeRender(param);
 			pearAdmin.keepLoad(param);
-			if (param.header.message != false) {
-				pearAdmin.messageRender(param);
-			}
 		}
 
 		function getColorById(id) {
