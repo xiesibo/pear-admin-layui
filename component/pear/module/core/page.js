@@ -20,7 +20,7 @@ layui.define(['jquery', 'element'], function (exports) {
 			}
 		}
 		renderContent(option);
-		return new frame(option);
+		return new page(option);
 	}
 
 	page.prototype.changePage = function (url, loading) {

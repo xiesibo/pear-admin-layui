@@ -51,6 +51,7 @@ theme:
   allowCustom: true
   ## 通栏配置
   banner: false
+  dark: true
 ## 主题色配置列表
 colors: 
 - id: "1"

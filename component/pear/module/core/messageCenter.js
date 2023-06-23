@@ -1,7 +1,7 @@
 layui.define(['table', 'jquery', 'element'], function (exports) {
 	"use strict";
 
-	var MOD_NAME = 'message',
+	var MOD_NAME = 'messageCenter',
 		$ = layui.jquery,
 		element = layui.element;
 

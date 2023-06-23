@@ -40,7 +40,6 @@ layui.define(["jquery","layer"], function (exports) {
 		style += '.pear-admin .pe-collapse {background-color:' + color + '!important}';
 		style += '.layui-fixbar li {background-color:' + color + '!important}';
 		style += '.pear-btn-primary {background-color:' + color + '!important}';
-		style += '.layui-input:focus,.layui-textarea:focus {border-color: ' + color + '!important;box-shadow: 0 0 0 3px ' + second + ' !important;}'
 		style += '.layui-form-checkbox[lay-skin=primary]:hover span {background-color: initial;}'
 		style += '.layui-form-checked[lay-skin=primary] i {border-color: ' + color + '!important;background-color: ' + color + ';}'
 		style += '.layui-form-checked,.layui-form-checked:hover {border-color: ' + color + '!important;}'

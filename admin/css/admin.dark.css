@@ -1,0 +1,83 @@
+/** loader */
+.pear-admin-dark .loader-wrapper,
+.pear-admin-dark .loader-wrapper .loader {
+    background-color: #141414;
+}
+
+/** header */
+.pear-admin-dark .layui-header {
+    background-color: #141414 !important;
+    border-color:#414243 !important;
+}
+
+.pear-admin-dark .layui-header * {
+    color: #ffffff !important;
+}
+
+.pear-admin-dark .layui-header .pear-nav-control .layui-this a{
+    background-color: #0c0c0c !important;
+}
+
+/** side */
+.pear-admin-dark .layui-side {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .6);;
+}
+
+.pear-admin-dark .layui-logo {
+    border-color: rgba(0, 0, 0, .30) !important;
+}
+
+.pear-admin-dark .layui-side .layui-logo,
+.pear-admin-dark .layui-side .layui-side-scroll, 
+.pear-admin-dark .layui-side .layui-side-scroll .layui-nav-tree{
+    background-color: #141414 !important;
+}
+
+/** body */
+.pear-admin-dark .layui-body {
+    background-color: #0a0a0a !important;
+}
+
+.pear-admin-dark .layui-body .layui-tab .layui-tab-title,
+.pear-admin-dark .layui-body .layui-tab .layui-tab-title li,
+.pear-admin-dark .layui-body .layui-tab .layui-tab-control li {
+    background-color: #141414 !important;
+    border-color:rgba(0, 0, 0, .30) !important;
+    color: #ffffff;
+}
+
+.pear-admin-dark .layui-body .layui-tab .layui-tab-title li > span:first-child {
+    background-color: #434343;
+}
+
+/** layer */
+.pear-admin-dark .layui-layer {
+    background-color: #141414;
+}
+
+.pear-admin-dark .layui-layer .layui-layer-setwin > span,
+.pear-admin-dark .layui-layer .layui-layer-title {
+    color: white;
+}
+
+/** card */
+.pear-admin-dark .layui-card {
+    background-color: #1d1e1f !important;
+}
+
+.pear-admin-dark .layui-card .layui-card-header {
+    border-bottom-color: #414243;
+    color: #ffffff;
+}
+
+/** input */
+.pear-admin-dark .layui-input {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/** switch */
+.pear-admin-dark .layui-form-switch {
+    border-color: #484849;
+    background-color: rgba(255,255,255,.08);
+}

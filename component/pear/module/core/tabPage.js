@@ -154,28 +154,6 @@ layui.define(['jquery', 'element'], function (exports) {
 		sessionStorage.removeItem(this.option.elem + "-pear-tab-data-current");
 	}
 
-	tabPage.prototype.addTab = function (opt) {
-		var title = '';
-		if (opt.close) {
-			title += '<span class="pear-tab-active"></span><span class="able-close title">' + opt.title +
-				'</span><i class="layui-icon layui-unselect layui-tab-close">ဆ</i>';
-		} else {
-			title += '<span class="pear-tab-active"></span><span class="disable-close title">' + opt.title +
-				'</span><i class="layui-icon layui-unselect layui-tab-close">ဆ</i>';
-		}
-		element.tabAdd(this.option.elem, {
-			title: title,
-			content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
-				'" src="' +
-				opt.url + '"></iframe>',
-			id: opt.id
-		});
-		tabData.push(opt);
-		sessionStorage.setItem(this.option.elem + "-pear-tab-data", JSON.stringify(tabData));
-		sessionStorage.setItem(this.option.elem + "-pear-tab-data-current", opt.id);
-		element.tabChange(this.option.elem, opt.id);
-	}
-
 	var index = 0;
 	// 根据过滤 fliter 标识, 重置选项卡标题
 	tabPage.prototype.changeTabTitleById = function (elem, id, title) {
@@ -392,6 +370,9 @@ layui.define(['jquery', 'element'], function (exports) {
 		tabContent.remove();
 	}
 
+	/**
+	 * @since Pear Admin 4.0
+	 */
 	function createTab(option) {
 
 		var type = "";
@@ -407,32 +388,38 @@ layui.define(['jquery', 'element'], function (exports) {
 		}
 		var tab = '<div class="pear-tab ' + types + type + ' layui-tab" lay-filter="' + option.elem +
 			'" lay-allowClose="true">';
+
 		var title = '<ul class="layui-tab-title">';
 		var content = '<div class="layui-tab-content">';
-		var control = '<div class="layui-tab-control"><li class="layui-tab-prev layui-icon layui-icon-left"></li><li class="layui-tab-next layui-icon layui-icon-right"></li><li class="layui-tab-tool layui-icon layui-icon-down"><ul class="layui-nav" lay-filter=""><li class="layui-nav-item"><a href="javascript:;"></a><dl class="layui-nav-child">';
+		var control = `<div class="layui-tab-control">
+							<li class="layui-tab-prev layui-icon layui-icon-left"></li>
+							<li class="layui-tab-next layui-icon layui-icon-right"></li>
+							<li class="layui-tab-tool layui-icon layui-icon-down">
+								<ul class="layui-nav" lay-filter=""><li class="layui-nav-item">
+									<a href="javascript:;"></a>
+									<dl class="layui-nav-child">
+										<dd id="closeThis"><a href="#">关 闭 当 前</a></dd>
+										<dd id="closeOther"><a href="#">关 闭 其 他</a></dd>
+										<dd id="closeAll"><a href="#">关 闭 全 部</a></dd>
+									</dl>
+								</ul>
+							</li>
+						</div>`;
 
 		// 处 理 选 项 卡 头 部
 		var index = 0;
 		$.each(option.data, function (i, item) {
-			var TitleItem = '';
-			if (option.index == index) {
-				TitleItem += '<li lay-id="' + item.id +
-					'" class="layui-this"><span class="pear-tab-active"></span>';
-			} else {
-				TitleItem += '<li lay-id="' + item.id + '" ><span class="pear-tab-active"></span>';
-			}
+			
+			var titleItem =  `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
+								<span class="pear-tab-active"></span>
+								<span class="${item.close ? 'able-close' : 'disable-close'} title">
+									${item.title}
+								</span>
+							</li>`;
 
-			if (item.close) {
-				// 当 前 选 项 卡 可 以 关 闭
-				TitleItem += '<span class="able-close title">' + item.title + '</span>';
-			} else {
-				// 当 前 选 项 卡 不 允 许 关 闭
-				TitleItem += '<span class="disable-close title">' + item.title + '</span>';
-			}
-			TitleItem += '<i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li>';
-			title += TitleItem;
-			if (option.index == index) {
+			title += titleItem;
 
+			if (option.index == index) {
 				$.ajax({
 					url: item.url,
 					type: 'get',
@@ -448,9 +435,7 @@ layui.define(['jquery', 'element'], function (exports) {
 						return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
 					}
 				});
-
 			} else {
-
 				$.ajax({
 					url: item.url,
 					type: 'get',
@@ -472,10 +457,6 @@ layui.define(['jquery', 'element'], function (exports) {
 
 		title += '</ul>';
 		content += '</div>';
-		control += '<dd id="closeThis"><a href="#">关 闭 当 前</a></dd>'
-		control += '<dd id="closeOther"><a href="#">关 闭 其 他</a></dd>'
-		control += '<dd id="closeAll"><a href="#">关 闭 全 部</a></dd>'
-		control += '</dl></li></ul></li></div>';
 
 		tab += title;
 		tab += control;

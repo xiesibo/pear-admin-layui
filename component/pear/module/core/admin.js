@@ -1,4 +1,4 @@
-layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
+layui.define(['messageCenter', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
 	function (exports) {
 		"use strict";
 
@@ -7,10 +7,10 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 			yaml = layui.yaml,
 			page = layui.page,
 			tabPage = layui.tabPage,
+			messageCenter = layui.messageCenter,
 			menu = layui.menu,
 
 			pearTheme = layui.theme,
-			message = layui.message,
 			fullscreen = layui.fullscreen;
 
 		var bodyFrame;
@@ -95,7 +95,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 			}
 
 			this.messageRender = function (option) {
-				msgInstance = message.render({
+				msgInstance = messageCenter.render({
 					elem: '.message',
 					url: option.header.message,
 					height: '250px'
@@ -213,7 +213,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 			this.keepLoad = function (param) {
 				compatible()
 				setTimeout(function () {
-					$(".loader-main").fadeOut(200);
+					$(".loader-wrapper").fadeOut(200);
 				}, param.other.keepLoad)
 			}
 
@@ -291,6 +291,15 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 					}
 				}
 
+				var dark = localStorage.getItem("dark");
+				if(dark === null) {
+					dark = option.theme.dark;
+				} else {
+					if(option.theme.allowCustom === false) {
+						dark = option.theme.dark;
+					}
+				}
+
 				localStorage.setItem("muilt-tab", muiltTab);
 				localStorage.setItem("theme-banner", banner);
 				localStorage.setItem("theme-menu", menu);
@@ -298,9 +307,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 				localStorage.setItem("auto-head", autoHead);
 				localStorage.setItem("control", control);
 				localStorage.setItem("footer", footer);
+				localStorage.setItem("dark", dark);
 				this.menuSkin(menu);
 				this.headerSkin(header);
 				this.bannerSkin(banner);
+				this.enableDark(dark);
 				this.footer(footer);
 			}
 
@@ -321,6 +332,14 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 				pearAdmin.removeClass("banner-layout");
 				if (theme === true || theme === "true") {
 					pearAdmin.addClass("banner-layout");
+				}
+			}
+
+			this.enableDark = function (checked) {
+				var $pearAdmin = $(".pear-admin");
+				$pearAdmin.removeClass("pear-admin-dark");
+				if(checked === true || checked === "true") {
+					$pearAdmin.addClass("pear-admin-dark");
 				}
 			}
 
@@ -353,105 +372,6 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 			this.message = function (callback) {
 				if (callback != null) {
 					msgInstance.click(callback);
-				}
-			}
-
-			this.collapseSide = function () {
-				collapse()
-			}
-
-			this.refreshThis = function () {
-				refresh()
-			}
-
-			this.refresh = function (id) {
-				$("iframe[id='" + id + "']").attr('src', $("iframe[id='" + id + "']").attr('src'));
-			}
-
-			this.addTab = function (id, title, url) {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					bodyTab.addTabOnly({
-						id: id,
-						title: title,
-						url: url,
-						icon: null,
-						close: true
-					}, 400);
-				} else {
-					return;
-				}
-			}
-
-			this.closeTab = function (id) {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					pearTab.delTabByElem('content', id, function (currentId) {
-						sideMenu.selectItem(currentId);
-					});
-				} else {
-					return;
-				}
-			}
-
-			this.closeCurrentTab = function () {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					pearTab.delCurrentTabByElem('content', function (id) {
-						sideMenu.selectItem(id);
-					});
-				} else {
-					return;
-				}
-			}
-
-			this.closeOtherTab = function () {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					pearTab.delOtherTabByElem('content', function (id) {
-						sideMenu.selectItem(id);
-					});
-				} else {
-					return;
-				}
-			}
-
-			this.closeAllTab = function () {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					pearTab.delAllTabByElem('content', function (id) {
-						sideMenu.selectItem(id);
-					});
-				} else {
-					return;
-				}
-			}
-
-			this.changeTabTitle = function (id, title) {
-				pearTab.changeTabTitleById('content', id, title);
-			}
-
-			this.changeIframe = function (id, title, url) {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					return;
-				} else {
-					sideMenu.selectItem(id);
-					bodyFrame.changePage(url, true);
-				}
-			}
-
-			this.jump = function (id, title, url) {
-				if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
-					pearAdmin.addTab(id, title, url)
-				} else {
-					pearAdmin.changeIframe(id, title, url)
-				}
-			}
-
-			this.fullScreen = function () {
-				if ($(".fullScreen").hasClass("layui-icon-screen-restore")) {
-					screenFun(2).then(function () {
-						$(".fullScreen").eq(0).removeClass("layui-icon-screen-restore");
-					});
-				} else {
-					screenFun(1).then(function () {
-						$(".fullScreen").eq(0).addClass("layui-icon-screen-restore");
-					});
 				}
 			}
 		};
@@ -807,6 +727,9 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 			moreItem +=
 				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="footer" lay-filter="footer" lay-skin="switch" lay-text="开|关"></div><span class="set-text">开启页脚</span></div>';
 
+			moreItem +=
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="dark" lay-filter="dark" lay-skin="switch" lay-text="开|关"></div><span class="set-text">夜间模式</span></div>';
+
 			var moreHtml = '<br><div class="pearone-color">\n' +
 				'<div class="color-title">更多设置</div>\n' +
 				'<div class="color-content">\n' +
@@ -883,6 +806,11 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 						pearAdmin.footer(this.checked);
 					})
 
+					form.on('switch(dark)', function (data) {
+						localStorage.setItem("dark", this.checked);
+						pearAdmin.enableDark(this.checked);
+					})
+
 					if (localStorage.getItem('theme-banner') === 'true') {
 						$('input[name="banner"]').attr('checked', 'checked')
 					} else {
@@ -905,6 +833,12 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tabPage'
 						$('input[name="footer"]').attr('checked', 'checked')
 					} else {
 						$('input[name="footer"]').removeAttr('checked')
+					}
+
+					if (localStorage.getItem('dark') === 'true') {
+						$('input[name="dark"]').attr('checked', 'checked')
+					} else {
+						$('input[name="dark"]').removeAttr('checked')
 					}
 
 					form.render('checkbox');

@@ -54,6 +54,10 @@
 	display: none;
 }
 
+.pear-tab .layui-nav-more {
+	display: none;
+}
+
 .pear-tab .layui-tab-title .layui-this:after {
 	display: none;
 }
@@ -95,10 +99,9 @@
 	height: 40px;
 	line-height: 40px;
 	width: 40px;
-	text-align: center;
-	background-color: white;
 	border-top: whitesmoke 1px solid;
 	border-bottom: whitesmoke 1px solid;
+	text-align: center;
 }
 
 .pear-tab .layui-tab-prev {
