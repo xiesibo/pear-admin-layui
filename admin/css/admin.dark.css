@@ -79,6 +79,12 @@
     background-color: #0a0a0a;
 }
 
+/** button */
+.pear-admin-dark .layui-btn {
+    color: #ffffff;
+    border-color: #4C4D4F;
+}
+
 /** layer */
 .pear-admin-dark .layui-layer {
     background-color: #141414;
@@ -133,6 +139,25 @@
 
 .pear-admin-dark .layui-menu .layui-menu-body-title,
 .pear-admin-dark .layui-menu .layui-menu-body-title:hover  {
-    color: white;
+    color: #ffffff;
     background-color: #1d1e1f !important;
+}
+
+/** 403 404 500*/
+.pear-admin-dark .pear-exception-title p{
+    color: #E5EAF3 !important;
+}
+
+/** success failure */
+.pear-admin-dark .pear-result .content {
+    background-color: rgba(153, 153, 153, 0.12);
+    color: #E5EAF3;
+}
+
+.pear-admin-dark .pear-result .title{
+    color: #ffffff;
+}
+
+.pear-admin-dark .pear-result .description{
+    color: #8D9095;
 }
