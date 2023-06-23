@@ -8,17 +8,10 @@ layui.define(["jquery","layer"], function (exports) {
 	theme.changeTheme = function (target, autoHead) {
 		this.autoHead = autoHead;
 		var color = localStorage.getItem("theme-color-color");
+		
+		document.documentElement.style.setProperty("--global-primary-color", color);
+		
 		this.colorSet(color);
-		if (target.frames.length == 0) return;
-		for (var i = 0; i < target.frames.length; i++) {
-			try {
-				if(target.frames[i].layui == undefined) continue;
-				target.frames[i].layui.theme.changeTheme(target.frames[i], autoHead);
-			}
-			catch (error) {
-				console.log(error);
-			}
-		}
 	}
 
 	theme.colorSet = function(color) {
@@ -32,13 +25,11 @@ layui.define(["jquery","layer"], function (exports) {
 		style += '.pear-admin .layui-header .layui-nav .layui-nav-bar{background-color: ' + color + '!important;}'
 		style += '.ball-loader>span,.signal-loader>span {background-color: ' + color + '!important;}';
 		style += '.layui-header .layui-nav-child .layui-this a{background-color:' + color +'!important;color:white!important;}';
-		style += '#preloader{background-color:' + color + '!important;}';
 		style += '.pearone-color .color-content li.layui-this:after, .pearone-color .color-content li:hover:after {border: ' +color + ' 3px solid!important;}';
 		style += '.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this{background-color:' + color + ';color:white;}';	
 		style += '.pear-social-entrance {background-color:' + color + '!important}';
 		style += '.pear-admin .pe-collapse {background-color:' + color + '!important}';
 		style += '.layui-fixbar li {background-color:' + color + '!important}';
-		style += '.pear-btn-primary {background-color:' + color + '!important}';
 		style += '.layui-form-checkbox[lay-skin=primary]:hover span {background-color: initial;}'
 		style += '.layui-form-checked[lay-skin=primary] i {border-color: ' + color + '!important;background-color: ' + color + ';}'
 		style += '.layui-form-checked,.layui-form-checked:hover {border-color: ' + color + '!important;}'

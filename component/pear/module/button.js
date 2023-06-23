@@ -12,6 +12,8 @@ layui.define(['jquery'], function(exports) {
 	};
 
     /**
+	 * @since Pear Admin 4.0
+	 * 
 	 * Button start loading
 	 * */
 	button.prototype.load = function(opt) {
@@ -41,6 +43,8 @@ layui.define(['jquery'], function(exports) {
 	}
 	
 	/**
+	 * @since Pear Admin 4.0
+	 * 
 	 * Button stop loaded
 	 * */
 	button.prototype.stop = function(success) {

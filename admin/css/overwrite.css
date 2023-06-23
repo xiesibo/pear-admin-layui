@@ -5,3 +5,15 @@
 .layui-input {
     border-radius: var(--global-border-radius);
 }
+
+.layui-btn {
+    background-color: var(--global-primary-color);
+}
+
+.layui-btn.layui-btn-primary {
+    background-color: transparent;
+}
+
+.layui-card {
+    border-radius: var(--global-border-radius);
+}

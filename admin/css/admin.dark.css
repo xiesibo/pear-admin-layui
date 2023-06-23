@@ -50,7 +50,8 @@
 }
 
 /** body */
-.pear-admin-dark .layui-body {
+.pear-admin-dark .layui-body,
+.pear-admin-dark .layui-body .pear-tab-loading {
     background-color: #0a0a0a !important;
 }
 
@@ -77,6 +78,13 @@
 
 .pear-admin-dark .layui-body .layui-tab .layui-nav-child.layui-anim a:hover {
     background-color: #0a0a0a;
+}
+
+/** theme */
+.pear-admin-dark .set-text,
+.pear-admin-dark .select-color-title,
+.pear-admin-dark .color-title {
+    color: #ffffff;
 }
 
 /** button */

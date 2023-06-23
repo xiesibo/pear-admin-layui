@@ -19,7 +19,8 @@ layui.config({
 	yaml:"extends/yaml",			     
 	nprogress: "extends/nprogress",      
 	toast: "extends/toast",          	      
-	popup:"extends/popup",              
+	popup:"extends/popup",     
+	count:"extends/count",         
 
 	button: "button",		     
 	fullscreen:"fullscreen",      
