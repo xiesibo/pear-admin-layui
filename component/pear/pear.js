@@ -9,22 +9,20 @@ layui.config({
 	base: rootPath + "module/",
 	version: "3.40.0"
 }).extend({
-	admin: "core/admin", 	       
-	page: "core/page",			   
-	tabPage: "core/tabPage",			
-	menu: "core/menu",		    
-
+	admin: "admin", 	       
+	page: "page",			   
+	tabPage: "tabPage",			
+	menu: "menu",		    
+	fullscreen:"fullscreen",    
+	button: "button",		       
+	theme: "theme",		
 	echarts: "extends/echarts",          
 	echartsTheme: "extends/echartsTheme",
 	yaml:"extends/yaml",			     
 	nprogress: "extends/nprogress",      
 	toast: "extends/toast",          	      
 	popup:"extends/popup",     
-	count:"extends/count",         
-
-	button: "button",		     
-	fullscreen:"fullscreen",      
-	theme: "theme",			     
+	count:"extends/count",         	     
 
 }).use(['layer', 'theme'], function () {
 

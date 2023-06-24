@@ -34,8 +34,8 @@ body::-webkit-scrollbar-corner {
 	background: #f6f6f6;
 }
 
-.pear-row::before,
-.pear-row::after {
+.pear-row::after,
+.pear-row::before {
 	content: "";
 	display: table;
 	clear: both;
