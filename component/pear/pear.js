@@ -14,6 +14,7 @@ layui.config({
 	tabPage: "tabPage",			
 	menu: "menu",		    
 	fullscreen:"fullscreen",    
+	messageCenter: "messageCenter",
 	button: "button",		       
 	theme: "theme",		
 	echarts: "extends/echarts",          

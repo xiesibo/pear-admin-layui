@@ -1,4 +1,4 @@
-layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen'],
+layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen', 'messageCenter'],
 	function (exports) {
 		"use strict";
 
@@ -6,19 +6,25 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			form = layui.form,
 			yaml = layui.yaml,
 			page = layui.page,
-			tabPage = layui.tabPage,
 			menu = layui.menu,
-
-			pearTheme = layui.theme,
-			fullscreen = layui.fullscreen;
+			messageCenter = layui.messageCenter,
+			fullscreen = layui.fullscreen,
+			tabPage = layui.tabPage,
+			theme = layui.theme;
 
 		var bodyFrame;
+		
 		var sideMenu;
+		
 		var bodyTab;
+		
 		var config;
+		
 		var logout = function () { };
-		var msgInstance;
+
 		var body = $('body');
+
+		var msgInstance;
 
 		var pearAdmin = new function () {
 
@@ -91,6 +97,14 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 						applyConfig(result);
 					})
 				}
+			}
+
+			this.messageRender = function(options) {
+				msgInstance = messageCenter.render({
+					elem: '.message',
+					url: options.header.message,
+					height: '250px'
+				});
 			}
 
 			this.logoRender = function (param) {
@@ -217,7 +231,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				localStorage.setItem("theme-color", currentColor.id);
 				localStorage.setItem("theme-color-color", currentColor.color);
 				localStorage.setItem("theme-color-second", currentColor.second);
-				pearTheme.changeTheme(window, isAutoHead(config));
+				theme.changeTheme(window, isAutoHead(config));
 
 				var menu = localStorage.getItem("theme-menu");
 				if (menu === null) {
@@ -544,7 +558,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 					$list.off("click").on("click", "li", function () {
 						var menuId = $(this).attr("smenu-id");
 						var menuUrl = $(this).attr("smenu-url");
-						var menuIcon = $(this).attr("smenu-icon");
 						var menuTitle = $(this).attr("smenu-title");
 						var menuType = $(this).attr("smenu-type");
 						var openableWindow = menuType === "1" || menuType === 1;
@@ -778,7 +791,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 
 					form.on('switch(auto-head)', function (data) {
 						localStorage.setItem("auto-head", this.checked);
-						pearTheme.changeTheme(window, this.checked);
+						theme.changeTheme(window, this.checked);
 					})
 
 					form.on('switch(banner)', function (data) {
@@ -846,10 +859,10 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			localStorage.setItem("theme-header", theme);
 			if (theme == "auto-theme") {
 				localStorage.setItem("auto-head", true);
-				pearTheme.changeTheme(window, true);
+				theme.changeTheme(window, true);
 			} else {
 				localStorage.setItem("auto-head", false);
-				pearTheme.changeTheme(window, false);
+				theme.changeTheme(window, false);
 			}
 			pearAdmin.headerSkin(theme);
 		});
@@ -862,7 +875,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			localStorage.setItem("theme-color", currentColor.id);
 			localStorage.setItem("theme-color-color", currentColor.color);
 			localStorage.setItem("theme-color-second", currentColor.second);
-			pearTheme.changeTheme(window, isAutoHead(config));
+			theme.changeTheme(window, isAutoHead(config));
 		});
 
 		function applyConfig(param) {
@@ -871,6 +884,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			pearAdmin.menuRender(param);
 			pearAdmin.bodyRender(param);
 			pearAdmin.themeRender(param);
+			pearAdmin.messageRender(param);
 			pearAdmin.keepLoad(param);
 		}
 
