@@ -3,15 +3,14 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
 
     var MOD_NAME = 'messageCenter',
         $ = layui.jquery,
-        dropdown = layui.dropdown,
-        element = layui.element;
+        element = layui.element,
+        dropdown = layui.dropdown;
 
     var message = function (opt) {
         this.option = opt;
     };
 
     message.prototype.render = function (opt) {
-        //默认配置值
         var option = {
             elem: opt.elem,
             url: opt.url ? opt.url : false,
@@ -19,21 +18,21 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
             data: opt.data
         }
         if (option.url != false) {
-            option.data = getData(option.url);
-
-            $(`${opt.elem}`).append(`<li class="layui-nav-item" lay-unselect="">
-            <a href="#" class="notice layui-icon layui-icon-notice"></a>
-            </li>`);
-            
-            var messageContent = createHtml(option);
-
-            dropdown.render({
-                elem: option.elem,
-                align: "center",
-                content: messageContent,
-            })
+            $.get(option.url, function (result) {
+                const { code, success, data } = result;
+                $(`${opt.elem}`).append(`<li class="layui-nav-item" lay-unselect="">
+                    <a href="#" class="notice layui-icon layui-icon-notice"></a>
+                    </li>`);
+                if (code == 200 || success) {
+                    option.data = data;
+                    dropdown.render({
+                        elem: option.elem,
+                        align: "center",
+                        content: createHtml(option),
+                    })
+                }
+            });
         }
-        
         return new message(option);
     }
 
@@ -48,17 +47,6 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
         })
     }
 
-    /** 同 步 请 求 获 取 数 据 */
-    function getData(url) {
-        $.ajaxSettings.async = false;
-        var data = null;
-        $.get(url, function (result) {
-            data = result;
-        });
-        $.ajaxSettings.async = true;
-        return data;
-    }
-
     function createHtml(option) {
 
         var count = 0;
@@ -68,9 +56,9 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
 
         $.each(option.data, function (i, item) {
 
-            noticeTitle += `<li class="${i === 0 ? 'layui-this':''}">${item.title}</li>`;
+            noticeTitle += `<li class="${i === 0 ? 'layui-this' : ''}">${item.title}</li>`;
             noticeContent += '<div class="layui-tab-item layui-show">';
-          
+
 
             $.each(item.children, function (i, note) {
                 count++;
