@@ -68,7 +68,7 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
 
         $.each(option.data, function (i, item) {
 
-            noticeTitle += '<li>' + item.title + '</li>';
+            noticeTitle += `<li class="${i === 0 ? 'layui-this':''}">${item.title}</li>`;
             noticeContent += '<div class="layui-tab-item layui-show">';
           
 
