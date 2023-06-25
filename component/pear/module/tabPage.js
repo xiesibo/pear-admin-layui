@@ -259,8 +259,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	/**
 	 * @since Pear Admin 4.0
-	 * 
-	 * 
 	 */
 	tabPage.prototype.addTabOnly = function (opt, time) {
 
@@ -278,7 +276,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				element.tabAdd(this.option.elem, {
 					id: opt.id,
 					title: title,
-					content: `<iframe id="${opt.id}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
+					content: `<iframe id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
 				});
 
 			} else {
@@ -292,7 +290,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 						element.tabAdd(that.option.elem, {
 							id: opt.id,
 							title: title,
-							content: `<div id="${opt.id}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
+							content: `<div id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
 						});
 					},
 					error: function (xhr, textstatus, thrown) {
@@ -334,7 +332,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					element.tabAdd(this.option.elem, {
 						id: opt.id,
 						title: title,
-						content: `<iframe id="${opt.id}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
+						content: `<iframe id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
 					});
 				} else {
 					$.ajax({
@@ -346,7 +344,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 							element.tabAdd(that.option.elem, {
 								id: opt.id,
 								title: title,
-								content: `<div id="${opt.id}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
+								content: `<div id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
 							});
 						},
 						error: function (xhr, textstatus, thrown) {
@@ -365,7 +363,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	// 刷 新 指 定 的 选 项 卡
 	tabPage.prototype.refresh = function (time) {
-		var $iframe = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show > div");
+		var $iframe = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show > *");
 		var $iframeLoad;
 
 		if (time != false && time != 0) {
@@ -376,22 +374,31 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			});
 		}
 
-		$.ajax({
-			url: $iframe.attr("src"),
-			type: 'get',
-			dataType: 'html',
-			success: function (data) {
-				$iframe.html(data);
-				if ($iframeLoad != undefined) {
-					$iframeLoad.fadeOut(1000, function () {
-						$iframeLoad.remove();
-					});
+		if($iframe.attr("type") === "_iframe") {
+			$iframe.attr("src", $iframe.attr("src"));
+			$iframe.on("load", function() {
+				$iframeLoad.fadeOut(1000, function() {
+					$iframeLoad.remove();
+				});
+			})
+		} else {
+			$.ajax({
+				url: $iframe.attr("src"),
+				type: 'get',
+				dataType: 'html',
+				success: function (data) {
+					$iframe.html(data);
+					if ($iframeLoad != undefined) {
+						$iframeLoad.fadeOut(1000, function () {
+							$iframeLoad.remove();
+						});
+					}
+				},
+				error: function (xhr) {
+					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
 				}
-			},
-			error: function (xhr) {
-				return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
-			}
-		});
+			});
+		}
 	}
 
 	function tabDelete(elem, id, callback, option) {
@@ -482,7 +489,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 			if (item.type === "_iframe") {
 
-				content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><iframe id="${item.id}" data-frameid="${item.id}" scrolling="auto" frameborder="0" src="${item.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe></div>`
+				content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><iframe id="${item.id}" type="${item.type}" data-frameid="${item.id}" scrolling="auto" frameborder="0" src="${item.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe></div>`
 
 			} else {
 
@@ -492,7 +499,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					dataType: 'html',
 					async: false,
 					success: function (data) {
-						content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><div id="${item.id}" data-frameid="${item.id}"  src="${item.url}">${data}</div></div>`;
+						content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><div id="${item.id}" type="${item.type}" data-frameid="${item.id}"  src="${item.url}">${data}</div></div>`;
 					},
 					error: function (xhr) {
 						return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
