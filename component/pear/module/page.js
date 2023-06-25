@@ -13,92 +13,97 @@ layui.define(['jquery', 'element'], function (exports) {
 			url: opt.url,
 			elem: opt.elem,
 			title: opt.title,
-			width: opt.width,
 			height: opt.height,
-			done: opt.done ? opt.done : function () {
-				console.log("菜单渲染成功");
-			}
+			width: opt.width
 		}
 		renderContent(option);
 		return new page(option);
 	}
 
-	page.prototype.changePage = function (url, loading) {
+	page.prototype.changePage = function (url, loading, type) {
+
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem + " .pear-frame-content");
-		if(loading) {
-			$frameLoad.css({
-				display: 'block'
-			});
-		}
-		$.ajax({
-			url: url,
-			type: 'get',
-			dataType: 'html',
-			success: function (data) {
-				$frame.html(data)
-				$frame.attr("src", url);
-				$frameLoad.fadeOut(1000);
-				element.init();
-			},
-			error: function (xhr, textstatus, thrown) {
-				return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
-			}
-		});
-	}
 
-	page.prototype.changePageByElement = function (elem, url, loading) {
-		var $frameLoad = $("#" + elem).find(".pear-frame-loading");
-		var $frame = $("#" + elem + " .pear-frame-content");
-		if(loading) {
+		if (loading) {
 			$frameLoad.css({
 				display: 'block'
 			});
 		}
-		$.ajax({
-			url: url,
-			type: 'get',
-			dataType: 'html',
-			success: function (data) {
-				$frame.html(data)
-				$frame.attr("src", url);
+
+		if (type === "_iframe") {
+
+			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${url}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+
+			const $contentFrame = $frame.find("iframe");
+
+			$contentFrame.on("load", () => {
 				$frameLoad.fadeOut(1000);
-				element.init();
-			},
-			error: function (xhr, textstatus, thrown) {
-				return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
-			}
-		});
+			})
+
+		} else {
+
+			$.ajax({
+				url: url,
+				type: 'get',
+				dataType: 'html',
+				success: function (data) {
+					$frame.html(data)
+					$frameLoad.fadeOut(1000);
+					element.init();
+				},
+				error: function (xhr) {
+					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
+				}
+			});
+		}
+
+		$frame.attr("type", type);
+		$frame.attr("src", url);
 	}
 
 	page.prototype.refresh = function (loading) {
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem).find(".pear-frame-content");
-		if(loading) {
+
+		if (loading) {
 			$frameLoad.css({
 				display: 'block'
 			});
 		}
-		$.ajax({
-			url: $frame.attr("src"),
-			type: 'get',
-			dataType: 'html',
-			success: function (data) {
-				$frame.html(data)
+
+		if ($frame.attr("type") === "_iframe") {
+
+			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${$frame.attr("src")}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+
+			const $contentFrame = $frame.find("iframe");
+
+			$contentFrame.on("load", () => {
 				$frameLoad.fadeOut(1000);
-				element.init();
-			},
-			error: function (xhr, textstatus, thrown) {
-				return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
-			}
-		});
+			})
+
+		} else {
+			$.ajax({
+				type: 'get',
+				url: $frame.attr("src"),
+				dataType: 'html',
+				success: function (data) {
+					$frame.html(data)
+					$frameLoad.fadeOut(1000);
+					element.init();
+				},
+				error: function (xhr) {
+					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
+				}
+			});
+		}
 	}
 
 	function renderContent(option) {
 
 		$("#" + option.elem).html(`
 			<div class='pear-frame'>
-				<div class='pear-frame-content'></div>
+				<div class='pear-frame-content' type='${option.type}' src='${option.url}'></div>
 				<div class="pear-frame-loading">
 					<div class="ball-loader">
 						<span></span>
@@ -108,22 +113,24 @@ layui.define(['jquery', 'element'], function (exports) {
 					</div>
 				</div>
 			</div>`);
-		
+
 		var $frame = $("#" + option.elem).find(".pear-frame-content");
 
-		$.ajax({
-			url: option.url,
-			type: 'get',
-			dataType: 'html',
-			success: function (data) {
-				$frame.html(data);
-				$frame.attr("src", option.url);
-				element.init();
-			},
-			error: function (xhr, textstatus, thrown) {
-				return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
-			}
-		});
+		if (option.type === "_iframe") {
+			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${option.url}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+		} else {
+			$.ajax({
+				url: option.url,
+				type: 'get',
+				dataType: 'html',
+				success: function (data) {
+					$frame.html(data);
+				},
+				error: function (xhr) {
+					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
+				}
+			});
+		}
 	}
 
 	exports('page', new page());

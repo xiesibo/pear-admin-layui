@@ -211,7 +211,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyFrame.changePage(data.menuUrl, true);
+							bodyFrame.changePage(data.menuUrl, true, data.menuOpenType);
 						}
 						compatible()
 					})
