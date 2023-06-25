@@ -6,7 +6,9 @@ layui.define(["jquery","layer"], function (exports) {
 	theme.autoHead = false;
 
 	theme.changeTheme = function (target, autoHead) {
+
 		this.autoHead = autoHead;
+		
 		var color = localStorage.getItem("theme-color-color");
 		
 		document.documentElement.style.setProperty("--global-primary-color", color);

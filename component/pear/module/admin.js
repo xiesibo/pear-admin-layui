@@ -853,10 +853,10 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 		});
 
 		body.on('click', '[data-select-header]', function () {
-			var theme = $(this).attr('data-select-header');
+			var headerColor = $(this).attr('data-select-header');
 			$('[data-select-header]').removeClass("layui-this");
 			$(this).addClass("layui-this");
-			localStorage.setItem("theme-header", theme);
+			localStorage.setItem("theme-header", headerColor);
 			if (theme == "auto-theme") {
 				localStorage.setItem("auto-head", true);
 				theme.changeTheme(window, true);
@@ -864,7 +864,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				localStorage.setItem("auto-head", false);
 				theme.changeTheme(window, false);
 			}
-			pearAdmin.headerSkin(theme);
+			pearAdmin.headerSkin(headerColor);
 		});
 
 		body.on('click', '.select-color-item', function () {
