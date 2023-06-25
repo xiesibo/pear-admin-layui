@@ -144,6 +144,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				})
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
+
 					bodyTab = tabPage.render({
 						elem: 'content',
 						roll: true,
@@ -190,11 +191,13 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 								title: data.menuTitle,
 								url: data.menuUrl,
 								icon: data.menuIcon,
+								type: data.menuOpenType,
 								close: true
 							}, 300);
 						}
 						compatible();
 					})
+
 				} else {
 					bodyFrame = page.render({
 						elem: 'content',
