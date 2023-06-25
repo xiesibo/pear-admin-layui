@@ -10,36 +10,25 @@ layui.define(['jquery', 'element'], function (exports) {
 
 	page.prototype.render = function (opt) {
 		var option = {
-			url: opt.url,
 			elem: opt.elem,
-			title: opt.title,
-			height: opt.height,
-			width: opt.width
+			url: opt.url,
+			width: opt.width || "100%",
+			height: opt.height || "100%",
+			title: opt.title
 		}
 		renderContent(option);
 		return new page(option);
 	}
 
-	page.prototype.changePage = function (url, loading, type) {
+	page.prototype.changePage = function (url, type) {
 
-		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
-		var $frame = $("#" + this.option.elem + " .pear-frame-content");
-
-		if (loading) {
-			$frameLoad.css({
-				display: 'block'
-			});
-		}
+		const $frame = $("#" + this.option.elem + " .pear-frame-content");
+		$frame.attr("type", type);
+		$frame.attr("src", url);
 
 		if (type === "_iframe") {
 
 			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${url}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
-
-			const $contentFrame = $frame.find("iframe");
-
-			$contentFrame.on("load", () => {
-				$frameLoad.fadeOut(1000);
-			})
 
 		} else {
 
@@ -49,20 +38,16 @@ layui.define(['jquery', 'element'], function (exports) {
 				dataType: 'html',
 				success: function (data) {
 					$frame.html(data)
-					$frameLoad.fadeOut(1000);
-					element.init();
 				},
 				error: function (xhr) {
 					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
 				}
 			});
 		}
-
-		$frame.attr("type", type);
-		$frame.attr("src", url);
 	}
 
 	page.prototype.refresh = function (loading) {
+
 		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
 		var $frame = $("#" + this.option.elem).find(".pear-frame-content");
 

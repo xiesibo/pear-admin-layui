@@ -202,16 +202,14 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 					bodyFrame = page.render({
 						elem: 'content',
 						title: '首页',
-						url: param.tab.index.href,
-						width: '100%',
-						height: '100%'
+						url: param.tab.index.href
 					});
 
 					sideMenu.click(function (dom, data) {
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyFrame.changePage(data.menuUrl, true, data.menuOpenType);
+							bodyFrame.changePage(data.menuUrl, data.menuOpenType);
 						}
 						compatible()
 					})
