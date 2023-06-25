@@ -51,7 +51,8 @@
 
 /** body */
 .pear-admin-dark .layui-body,
-.pear-admin-dark .layui-body .pear-tab-loading {
+.pear-admin-dark .layui-body .pear-tab-loading,
+.pear-admin-dark .layui-body .pear-frame-loading {
     background-color: #0a0a0a !important;
 }
 
@@ -96,6 +97,7 @@
 .pear-admin-dark .pear-message-center .layui-tab-title,
 .pear-admin-dark .pear-message-center .message-item {
     border-color: rgba(0, 0, 0, .30) !important;
+    color: #ffffff;
 }
 
 /** button */

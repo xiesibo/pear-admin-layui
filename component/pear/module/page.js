@@ -8,6 +8,11 @@ layui.define(['jquery', 'element'], function (exports) {
 		this.option = opt;
 	};
 
+	/**
+	 * @since Pear Admin 4.0
+	 * 
+	 * 创建 Page 页面
+	 */
 	page.prototype.render = function (opt) {
 		var option = {
 			elem: opt.elem,
@@ -20,20 +25,23 @@ layui.define(['jquery', 'element'], function (exports) {
 		return new page(option);
 	}
 
-	page.prototype.changePage = function (url, type) {
+	/**
+	 * @since Pear Admin 4.0
+	 * 
+	 * 切换 Page 页面 
+	 */
+	page.prototype.changePage = function (href, type) {
 
-		const $frame = $("#" + this.option.elem + " .pear-frame-content");
-		$frame.attr("type", type);
-		$frame.attr("src", url);
+		const $frame = $(`#${this.option.elem} .pear-frame-content`);
 
 		if (type === "_iframe") {
 
-			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${url}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+			$frame.html(`<iframe src='${href}' scrolling='auto' frameborder='0' allowfullscreen='true'></iframe>`);
 
 		} else {
 
 			$.ajax({
-				url: url,
+				url: href,
 				type: 'get',
 				dataType: 'html',
 				success: function (data) {
@@ -44,12 +52,15 @@ layui.define(['jquery', 'element'], function (exports) {
 				}
 			});
 		}
+
+		$frame.attr("type", type);
+		$frame.attr("href", href);
 	}
 
 	page.prototype.refresh = function (loading) {
 
-		var $frameLoad = $("#" + this.option.elem).find(".pear-frame-loading");
-		var $frame = $("#" + this.option.elem).find(".pear-frame-content");
+		var $frameLoad = $(`#${this.option.elem} .pear-frame-loading`);
+		var $frame = $(`#${this.option.elem} .pear-frame-content`);
 
 		if (loading) {
 			$frameLoad.css({
@@ -59,7 +70,7 @@ layui.define(['jquery', 'element'], function (exports) {
 
 		if ($frame.attr("type") === "_iframe") {
 
-			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${$frame.attr("src")}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+			$frame.html(`<iframe src='${$frame.attr("href")}' scrolling='auto' frameborder='0' allowfullscreen='true'></iframe>`);
 
 			const $contentFrame = $frame.find("iframe");
 
@@ -70,7 +81,7 @@ layui.define(['jquery', 'element'], function (exports) {
 		} else {
 			$.ajax({
 				type: 'get',
-				url: $frame.attr("src"),
+				url: $frame.attr("href"),
 				dataType: 'html',
 				success: function (data) {
 					$frame.html(data)
@@ -88,7 +99,7 @@ layui.define(['jquery', 'element'], function (exports) {
 
 		$("#" + option.elem).html(`
 			<div class='pear-frame'>
-				<div class='pear-frame-content' type='${option.type}' src='${option.url}'></div>
+				<div class='pear-frame-content' type='${option.type}' href='${option.url}'></div>
 				<div class="pear-frame-loading">
 					<div class="ball-loader">
 						<span></span>
@@ -102,7 +113,8 @@ layui.define(['jquery', 'element'], function (exports) {
 		var $frame = $("#" + option.elem).find(".pear-frame-content");
 
 		if (option.type === "_iframe") {
-			$frame.html(`<iframe scrolling='auto' frameborder='0' src='${option.url}' style='width:100%;height:100%;' allowfullscreen='true'></iframe>`);
+
+			$frame.html(`<iframe src='${option.url}' scrolling='auto' frameborder='0' allowfullscreen='true'></iframe>`);
 		} else {
 			$.ajax({
 				url: option.url,

@@ -22,9 +22,14 @@
 	border: whitesmoke 1px solid;
 }
 
-.pear-frame .pear-frame-content {
+.pear-frame .pear-frame-content,
+.pear-frame .pear-frame-content iframe {
 	width: 100%;
 	height: calc(100% - 0px) !important;
+}
+
+.pear-frame .pear-frame-content iframe {
+	height: calc(100% - 4px) !important;
 }
 
 .pear-frame-loading {
@@ -32,9 +37,9 @@
 	display: none;
 	width: 100%;
 	height: calc(100% - 0px) !important;
+	background-color: #fff;
 	top: 0px;
 	z-index: 19;
-	background-color: #fff
 }
 
 .pear-frame-loading.close {
