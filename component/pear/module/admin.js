@@ -199,6 +199,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 					})
 
 				} else {
+					
 					bodyFrame = page.render({
 						elem: 'content',
 						title: '首页',

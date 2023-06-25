@@ -92,6 +92,12 @@
     color: #ffffff;
 }
 
+/** message center */
+.pear-admin-dark .pear-message-center .layui-tab-title,
+.pear-admin-dark .pear-message-center .message-item {
+    border-color: rgba(0, 0, 0, .30) !important;
+}
+
 /** button */
 .pear-admin-dark .layui-btn {
     color: #ffffff;
@@ -113,7 +119,7 @@
 
 .pear-admin-dark .layui-layer .layui-layer-setwin > span,
 .pear-admin-dark .layui-layer .layui-layer-title {
-    color: white;
+    color: #ffffff;
 }
 
 /** card */
