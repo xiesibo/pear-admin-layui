@@ -160,56 +160,6 @@
     background-color: #1d1e1f !important;
 }
 
-/** console1 console2 */
-.pear-admin-dark .top-panel-number {
-    color: #ffffff !important;
-    border-color: #414243 !important;
-}
-
-.pear-admin-dark .list .list-item {
-    color: #ffffff;
-}
-
-.pear-admin-dark .list .list-item:hover {
-    background-color: #0a0a0a !important;
-}
-
-.pear-admin-dark .layuiadmin-card-status p {
-    color: #ffffff !important;
-}
-
-.pear-admin-dark .layuiadmin-card-status dd {
-    border-color: rgba(0, 0, 0, .40) !important;
-}
-
-.pear-admin-dark .pear-card,
-.pear-admin-dark .pear-card2 {
-    background-color: #0a0a0a !important;
-    color: #ffffff !important;
-}
-
-.pear-admin-dark .pear-card:hover {
-    box-shadow: none !important;
-}
-
-.pear-admin-dark .pear-card-title {
-    color: #ffffff !important;
-}
-
-.pear-admin-dark .pear-card-status li p {
-    color: #ffffff;
-}
-
-.pear-admin-dark .pear-card-status li {
-    border-color: rgba(0, 0, 0, .40) !important;
-}
-
-
-/** 403 404 500*/
-.pear-admin-dark .pear-exception-title p{
-    color: #E5EAF3 !important;
-}
-
 /** success failure */
 .pear-admin-dark .pear-result .content {
     background-color: rgba(153, 153, 153, 0.12);
@@ -222,4 +172,9 @@
 
 .pear-admin-dark .pear-result .description{
     color: #8D9095;
+}
+
+/** 403 404 500*/
+.pear-admin-dark .pear-exception .title p{
+    color: #E5EAF3 !important;
 }

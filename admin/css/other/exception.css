@@ -8,21 +8,21 @@
     padding: 70px 40px
 }
 
-.pear-exception-title {
+.pear-exception .title {
     margin-top: 20px;
 }
 
-.pear-exception-title p {
+.pear-exception .title p {
     color: rgb(0, 0, 0);
     font-size: 20px;
 }
 
-.pear-exception-description {
+.pear-exception .description {
     margin-top: 10px;
     color: #8D9095;
     font-size: 14px;
 }
 
-.pear-exception-extra {
+.pear-exception .extra {
     margin: 30px;
 }
