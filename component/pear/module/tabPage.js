@@ -278,9 +278,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				element.tabAdd(this.option.elem, {
 					id: opt.id,
 					title: title,
-					content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
-						'" scrolling="auto" frameborder="0" src="' +
-						opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
+					content: `<iframe id="${opt.id}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
 				});
 
 			} else {
@@ -336,9 +334,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					element.tabAdd(this.option.elem, {
 						id: opt.id,
 						title: title,
-						content: '<iframe id="' + opt.id + '" data-frameid="' + opt.id +
-							'" scrolling="auto" frameborder="0" src="' +
-							opt.url + '" style="width:100%;height:100%;" allowfullscreen="true"></iframe>',
+						content: `<iframe id="${opt.id}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
 					});
 				} else {
 					$.ajax({
@@ -350,9 +346,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 							element.tabAdd(that.option.elem, {
 								id: opt.id,
 								title: title,
-								content: '<div id="' + opt.id + '" data-frameid="' + opt.id +
-									'" src="' +
-									opt.url + '">' + data + '</div>',
+								content: `<div id="${opt.id}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
 							});
 						},
 						error: function (xhr, textstatus, thrown) {
@@ -406,7 +400,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var nextNode = removeTab.next("li");
 		if (!removeTab.hasClass("layui-this")) {
 			removeTab.remove();
-			var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("div[id='" + id + "']")
+			var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("*[id='" + id + "']")
 				.parent();
 			tabContent.remove();
 
@@ -441,7 +435,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 		removeTab.remove();
 		// 删除 content
-		var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("div[id='" + id + "']").parent();
+		var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("*[id='" + id + "']").parent();
 		// 删除
 		tabContent.remove();
 	}
