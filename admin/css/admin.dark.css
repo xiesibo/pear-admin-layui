@@ -186,3 +186,13 @@
 .pear-admin-dark .pear-exception .title p{
     color: #E5EAF3 !important;
 }
+
+/** scroll */
+.pear-admin-dark *::-webkit-scrollbar-thumb {
+	background: #141414;
+	border-radius: 4px;
+}
+
+.pear-admin-dark *::-webkit-scrollbar-thumb:hover {
+	background: #0a0a0a;
+}
