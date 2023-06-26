@@ -3,12 +3,8 @@ layui.define(["jquery","layer"], function (exports) {
 	    $ = layui.jquery;
 
 	var theme = {};
-	
-	theme.autoHead = false;
 
-	theme.changeTheme = function (target, autoHead) {
-
-		this.autoHead = autoHead;
+	theme.changeTheme = function () {
 		
 		var color = localStorage.getItem("theme-color-color");
 		
