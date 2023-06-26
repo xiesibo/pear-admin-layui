@@ -32,10 +32,10 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		}
 
 		if (option.session) {
-			if (sessionStorage.getItem(option.elem + "-pear-tab-data") != null) {
-				tabData = JSON.parse(sessionStorage.getItem(option.elem + "-pear-tab-data"));
-				option.data = JSON.parse(sessionStorage.getItem(option.elem + "-pear-tab-data"));
-				tabDataCurrent = sessionStorage.getItem(option.elem + "-pear-tab-data-current");
+			if (sessionStorage.getItem(option.elem + "-pear-tab-page-data") != null) {
+				tabData = JSON.parse(sessionStorage.getItem(option.elem + "-pear-tab-page-data"));
+				option.data = JSON.parse(sessionStorage.getItem(option.elem + "-pear-tab-page-data"));
+				tabDataCurrent = sessionStorage.getItem(option.elem + "-pear-tab-page-data-current");
 				tabData.forEach(function (item, index) {
 					if (item.id == tabDataCurrent) {
 						option.index = index;
@@ -64,7 +64,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		});
 		closeEvent(option);
 
-		option.success(sessionStorage.getItem(option.elem + "-pear-tab-data-current"));
+		option.success(sessionStorage.getItem(option.elem + "-pear-tab-page-data-current"));
 
 		dropdown.render({
 			elem: `#${option.elem} .layui-icon-down`,
@@ -143,7 +143,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					type: 1,
 					title: false,
 					shade: false,
-					skin: 'pear-tab-menu',
+					skin: 'pear-tab-page-menu',
 					closeBtn: false,
 					area: [menuWidth + 'px', '108px'],
 					fixed: true,
@@ -183,7 +183,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var elem = this.option.elem;
 		element.on('tab(' + this.option.elem + ')', function (data) {
 			var id = $("#" + elem + " .layui-tab-title .layui-this").attr("lay-id");
-			sessionStorage.setItem(option.elem + "-pear-tab-data-current", id);
+			sessionStorage.setItem(option.elem + "-pear-tab-page-data-current", id);
 			callback(id);
 		});
 	}
@@ -204,8 +204,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	tabPage.prototype.clear = function () {
-		sessionStorage.removeItem(this.option.elem + "-pear-tab-data");
-		sessionStorage.removeItem(this.option.elem + "-pear-tab-data-current");
+		sessionStorage.removeItem(this.option.elem + "-pear-tab-page-data");
+		sessionStorage.removeItem(this.option.elem + "-pear-tab-page-data-current");
 	}
 
 	var index = 0;
@@ -262,7 +262,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	 */
 	tabPage.prototype.addTabOnly = function (opt, time) {
 
-		var title = `<span class="pear-tab-active"></span>
+		var title = `<span class="pear-tab-page-active"></span>
 					 <span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span>
 					 <i class="layui-icon layui-unselect layui-tab-close">ဆ</i>`;
 
@@ -300,8 +300,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			}
 
 			tabData.push(opt);
-			sessionStorage.setItem(that.option.elem + "-pear-tab-data", JSON.stringify(tabData));
-			sessionStorage.setItem(that.option.elem + "-pear-tab-data-current", opt.id);
+			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data", JSON.stringify(tabData));
+			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data-current", opt.id);
 
 		} else {
 
@@ -353,12 +353,12 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					});
 				}
 				tabData.push(opt);
-				sessionStorage.setItem(that.option.elem + "-pear-tab-data", JSON.stringify(tabData));
-				sessionStorage.setItem(that.option.elem + "-pear-tab-data-current", opt.id);
+				sessionStorage.setItem(that.option.elem + "-pear-tab-page-data", JSON.stringify(tabData));
+				sessionStorage.setItem(that.option.elem + "-pear-tab-page-data-current", opt.id);
 			}
 		}
 		element.tabChange(this.option.elem, opt.id);
-		sessionStorage.setItem(this.option.elem + "-pear-tab-data-current", opt.id);
+		sessionStorage.setItem(this.option.elem + "-pear-tab-page-data-current", opt.id);
 	}
 
 	// 刷 新 指 定 的 选 项 卡
@@ -367,8 +367,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var $iframeLoad;
 
 		if (time != false && time != 0) {
-			$iframe.parent().append(`<div id="pear-tab-loading${index}" class="pear-tab-loading"><div class="ball-loader"><span></span><span></span><span></span><span></span></div></div>`);
-			$iframeLoad = $("#" + this.option.elem).find("#pear-tab-loading" + index++);
+			$iframe.parent().append(`<div id="pear-tab-page-loading${index}" class="pear-tab-page-loading"><div class="ball-loader"><span></span><span></span><span></span><span></span></div></div>`);
+			$iframeLoad = $("#" + this.option.elem).find("#pear-tab-page-loading" + index++);
 			$iframeLoad.css({
 				display: "block"
 			});
@@ -411,12 +411,12 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				.parent();
 			tabContent.remove();
 
-			tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-data"));
-			tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-data-current");
+			tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-page-data"));
+			tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-page-data-current");
 			tabData = tabData.filter(function (item) {
 				return item.id != id;
 			})
-			sessionStorage.setItem(elem + "-pear-tab-data", JSON.stringify(tabData));
+			sessionStorage.setItem(elem + "-pear-tab-page-data", JSON.stringify(tabData));
 			return false;
 		}
 
@@ -432,13 +432,13 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			$("#" + elem + " [id='" + currId + "']").parent().addClass("layui-show");
 		}
 		callback(currId);
-		tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-data"));
-		tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-data-current");
+		tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-page-data"));
+		tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-page-data-current");
 		tabData = tabData.filter(function (item) {
 			return item.id != id;
 		})
-		sessionStorage.setItem(elem + "-pear-tab-data", JSON.stringify(tabData));
-		sessionStorage.setItem(elem + "-pear-tab-data-current", currId);
+		sessionStorage.setItem(elem + "-pear-tab-page-data", JSON.stringify(tabData));
+		sessionStorage.setItem(elem + "-pear-tab-page-data-current", currId);
 
 		removeTab.remove();
 		// 删除 content
@@ -463,7 +463,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		if (option.roll == true && option.tool != false) {
 			type = "layui-tab-rollTool";
 		}
-		var tab = '<div class="pear-tab ' + types + type + ' layui-tab" lay-filter="' + option.elem +
+		var tab = '<div class="pear-tab-page ' + types + type + ' layui-tab" lay-filter="' + option.elem +
 			'" lay-allowClose="true">';
 
 		var title = '<ul class="layui-tab-title">';
@@ -479,7 +479,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		$.each(option.data, function (i, item) {
 
 			var titleItem = `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
-								<span class="pear-tab-active"></span>
+								<span class="pear-tab-page-active"></span>
 								<span class="${item.close ? 'able-close' : 'disable-close'} title">
 									${item.title}
 								</span>

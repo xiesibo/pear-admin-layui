@@ -51,8 +51,8 @@
 
 /** body */
 .pear-admin-dark .layui-body,
-.pear-admin-dark .layui-body .pear-tab-loading,
-.pear-admin-dark .layui-body .pear-frame-loading {
+.pear-admin-dark .layui-body .pear-tab-page-loading,
+.pear-admin-dark .layui-body .pear-page-loading {
     background-color: #0a0a0a !important;
 }
 

@@ -1,25 +1,25 @@
-.pear-tab {
+.pear-tab-page {
 	margin: 0px;
 	overflow: hidden;
 	height: 100% !important;
 }
 
-.pear-tab .layui-tab-content {
+.pear-tab-page .layui-tab-content {
 	height: calc(100% - 42px) !important;
 }
 
-.pear-tab .layui-tab-content .layui-tab-item {
+.pear-tab-page .layui-tab-content .layui-tab-item {
 	overflow-y: auto;
 	height: 100%;
 }
 
-.pear-tab-menu{
+.pear-tab-page-menu{
 	box-shadow: none;
 	border-radius: 4px!important;
 	overflow: hidden;
 }
 
-.pear-tab-menu .item{
+.pear-tab-page-menu .item{
 	height: 20px;
 	padding-left: 18px;
 	padding-top: 7px;
@@ -29,40 +29,40 @@
 	line-height: 20px;
     cursor:pointer;
 }
-.pear-tab-menu .item:hover{
+.pear-tab-page-menu .item:hover{
 	background: #36b368;
 	color: white;
 }
 
-.pear-tab .layui-tab-content {
+.pear-tab-page .layui-tab-content {
 	padding: 0px;
 }
 
-.pear-tab .layui-tab-title {
+.pear-tab-page .layui-tab-title {
 	border: none;
 	border: 1px solid whitesmoke;
 	background-color: white;
 }
 
-.pear-tab .layui-tab-title li {
+.pear-tab-page .layui-tab-title li {
 	border-right: 1px solid whitesmoke;
 	color: dimgray;
 	font-size: 13.5px;
 }
 
-.pear-tab .layui-tab-title .layui-tab-bar {
+.pear-tab-page .layui-tab-title .layui-tab-bar {
 	display: none;
 }
 
-.pear-tab .layui-nav-more {
+.pear-tab-page .layui-nav-more {
 	display: none;
 }
 
-.pear-tab .layui-tab-title .layui-this:after {
+.pear-tab-page .layui-tab-title .layui-this:after {
 	display: none;
 }
 
-.pear-tab .layui-tab-title .pear-tab-active {
+.pear-tab-page .layui-tab-title .pear-tab-page-active {
 	display: inline-block;
 	background-color: lightgray;
 	width: 8px;
@@ -71,96 +71,97 @@
 	margin-right: 12px;
 }
 
-.pear-tab .layui-tab-title .layui-this .pear-tab-active {
-	background-color: #5FB878;
+.pear-tab-page .layui-tab-title .layui-this .pear-tab-page-active {
+	background-color: var(--global-primary-color) !important;
 }
 
-.pear-tab .layui-tab-title .layui-tab-close:hover {
+.pear-tab-page .layui-tab-title .layui-tab-close:hover {
 	background-color: white;
 	line-height: 19px;
 	color: gray;
 }
 
-.pear-tab .layui-tab-title .disable-close+.layui-tab-close {
+.pear-tab-page .layui-tab-title .disable-close+.layui-tab-close {
 	display: none;
 }
 
-.pear-tab .layui-tab-title .able-close+.layui-tab-close {
+.pear-tab-page .layui-tab-title .able-close+.layui-tab-close {
 	display: inline-block;
 }
 
-.pear-tab .layui-tab-close{
+.pear-tab-page .layui-tab-close{
 	font-size: 13px;
 }
 
-.pear-tab .layui-tab-control>li {
+.pear-tab-page .layui-tab-control>li {
 	position: absolute;
 	top: 0px;
 	height: 40px;
 	line-height: 40px;
 	width: 40px;
+	background-color: white;
 	border-top: whitesmoke 1px solid;
 	border-bottom: whitesmoke 1px solid;
 	text-align: center;
 }
 
-.pear-tab .layui-tab-prev {
+.pear-tab-page .layui-tab-prev {
 	left: 0px;
 	border-right: whitesmoke 1px solid;
 }
 
-.pear-tab .layui-tab-next {
+.pear-tab-page .layui-tab-next {
 	right: 40px;
 	border-left: 1px solid whitesmoke;
 }
 
-.pear-tab .layui-tab-tool {
+.pear-tab-page .layui-tab-tool {
 	right: 0px;
 	border-left: 1px solid whitesmoke;
 }
 
-.pear-tab .layui-tab-control .layui-tab-tool,
-.pear-tab .layui-tab-control .layui-tab-prev,
-.pear-tab .layui-tab-control .layui-tab-next {
+.pear-tab-page .layui-tab-control .layui-tab-tool,
+.pear-tab-page .layui-tab-control .layui-tab-prev,
+.pear-tab-page .layui-tab-control .layui-tab-next {
 	display: none;
 }
 
-.pear-tab.layui-tab-roll .layui-tab-control .layui-tab-prev,
-.pear-tab.layui-tab-roll .layui-tab-control .layui-tab-next {
+.pear-tab-page.layui-tab-roll .layui-tab-control .layui-tab-prev,
+.pear-tab-page.layui-tab-roll .layui-tab-control .layui-tab-next {
 	display: block;
 }
 
-.pear-tab.layui-tab-roll .layui-tab-control .layui-tab-next {
+.pear-tab-page.layui-tab-roll .layui-tab-control .layui-tab-next {
 	right: 0px;
 	border-right: 1px solid whitesmoke;
 }
 
-.pear-tab.layui-tab-roll .layui-tab-title {
+.pear-tab-page.layui-tab-roll .layui-tab-title {
 	padding-left: 40px;
 	padding-right: 40px;
 }
 
-.pear-tab.layui-tab-tool .layui-tab-control .layui-tab-tool {
+.pear-tab-page.layui-tab-tool .layui-tab-control .layui-tab-tool {
 	display: block;
 }
 
-.pear-tab.layui-tab-tool .layui-tab-title {
+.pear-tab-page.layui-tab-tool .layui-tab-title {
 	padding-left: 0px;
 	padding-right: 40px;
 }
 
-.pear-tab.layui-tab-rollTool .layui-tab-title {
+.pear-tab-page.layui-tab-rollTool .layui-tab-title {
 	padding-left: 40px;
 	padding-right: 80px;
 }
 
-.pear-tab.layui-tab-rollTool .layui-tab-control .layui-tab-prev,
-.pear-tab.layui-tab-rollTool .layui-tab-control .layui-tab-next,
-.pear-tab.layui-tab-rollTool .layui-tab-control .layui-tab-tool {
+.pear-tab-page.layui-tab-rollTool .layui-tab-control .layui-tab-prev,
+.pear-tab-page.layui-tab-rollTool .layui-tab-control .layui-tab-next,
+.pear-tab-page.layui-tab-rollTool .layui-tab-control .layui-tab-tool {
 	display: block;
 }
 
-.pear-tab .layui-tab-tool .layui-nav {
+.pear-tab-page .layui-tab-tool .layui-nav {
 	position: absolute;
 	height: 43px !important;
 	top: 0;
@@ -170,15 +171,15 @@
 	background: 0 0;
 }
 
-.pear-tab .layui-tab-tool .layui-nav-item {
+.pear-tab-page .layui-tab-tool .layui-nav-item {
 	height: 40px;
 }
 
-.pear-tab .layui-tab-tool .layui-nav-bar {
+.pear-tab-page .layui-tab-tool .layui-nav-bar {
 	display: none;
 }
 
-.pear-tab .layui-tab-tool .layui-nav-child {
+.pear-tab-page .layui-tab-tool .layui-nav-child {
 	left: auto;
 	top: 45px;
 	right: 3px;
@@ -186,11 +187,11 @@
 	border: 1px solid whitesmoke;
 }
 
-.pear-tab .layui-tab-tool .layui-this a {
+.pear-tab-page .layui-tab-tool .layui-this a {
 	background-color: #009688;
 }
 
-.pear-tab-loading {
+.pear-tab-page-loading {
 	position: absolute;
 	display: none;
 	width: 100%;
@@ -200,7 +201,7 @@
 	background-color: #fff
 }
 
-.pear-tab-loading.close {
+.pear-tab-page-loading.close {
 	animation: close 1s;
 	-webkit-animation: close 1s;
 	animation-fill-mode: forwards;
@@ -217,7 +218,7 @@
 
 .ball-loader>span,
 .signal-loader>span {
-	background-color: #4aca85 !important;
+	background-color: var(--global-primary-color) !important;
 	display: inline-block
 }
 

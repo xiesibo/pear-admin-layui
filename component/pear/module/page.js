@@ -32,7 +32,7 @@ layui.define(['jquery', 'element'], function (exports) {
 	 */
 	page.prototype.changePage = function (href, type) {
 
-		const $frame = $(`#${this.option.elem} .pear-frame-content`);
+		const $frame = $(`#${this.option.elem} .pear-page-content`);
 
 		if (type === "_iframe") {
 
@@ -59,8 +59,8 @@ layui.define(['jquery', 'element'], function (exports) {
 
 	page.prototype.refresh = function (loading) {
 
-		var $frameLoad = $(`#${this.option.elem} .pear-frame-loading`);
-		var $frame = $(`#${this.option.elem} .pear-frame-content`);
+		var $frameLoad = $(`#${this.option.elem} .pear-page-loading`);
+		var $frame = $(`#${this.option.elem} .pear-page-content`);
 
 		if (loading) {
 			$frameLoad.css({
@@ -98,9 +98,9 @@ layui.define(['jquery', 'element'], function (exports) {
 	function renderContent(option) {
 
 		$("#" + option.elem).html(`
-			<div class='pear-frame'>
-				<div class='pear-frame-content' type='${option.type}' href='${option.url}'></div>
-				<div class="pear-frame-loading">
+			<div class='pear-page'>
+				<div class='pear-page-content' type='${option.type}' href='${option.url}'></div>
+				<div class="pear-page-loading">
 					<div class="ball-loader">
 						<span></span>
 						<span></span>
@@ -110,7 +110,7 @@ layui.define(['jquery', 'element'], function (exports) {
 				</div>
 			</div>`);
 
-		var $frame = $("#" + option.elem).find(".pear-frame-content");
+		var $frame = $("#" + option.elem).find(".pear-page-content");
 
 		if (option.type === "_iframe") {
 

@@ -367,8 +367,9 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 
 			this.headerSkin = function (theme) {
 				var pearAdmin = $(".pear-admin .layui-header");
-				pearAdmin.removeClass("light-theme");
 				pearAdmin.removeClass("dark-theme");
+				pearAdmin.removeClass("light-theme");
+				pearAdmin.removeClass("auto-theme");
 				pearAdmin.addClass(theme);
 			}
 
@@ -702,7 +703,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			headItem +=
 				'<li  data-select-header="auto-theme" >' +
 				'<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">' +
-				'<div><span style="display:block; width: 20%; float: left; height: 12px; background: #28333E;"></span><span style="display:block; width: 80%; float: left; height: 12px;" class="pear-back"></span></div>' +
+				'<div><span style="display:block; width: 20%; float: left; height: 12px; background: #28333E;"></span><span style="display:block; width: 80%; float: left; height: 12px; background: var(--global-primary-color);" ></span></div>' +
 				'<div><span style="display:block; width: 20%; float: left; height: 40px; background: #28333E;"></span><span style="display:block; width: 80%; float: left; height: 40px; background: #f4f5f7;"></span></div>' +
 				'</a>' +
 				'</li>';

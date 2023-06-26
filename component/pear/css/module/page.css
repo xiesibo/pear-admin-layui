@@ -1,11 +1,11 @@
-.pear-frame {
+.pear-page {
 	width: 100%;
 	position: relative;
 	overflow-y: auto;
 	height: 100%;
 }
 
-.pear-frame .dot {
+.pear-page .dot {
 	width: 5px;
 	height: 24px;
 	background-color: #5FB878;
@@ -15,24 +15,24 @@
 	display: inline-block;
 }
 
-.pear-frame .pear-frame-title {
+.pear-page .pear-page-title {
 	height: 40px;
 	line-height: 40px;
 	background-color: white;
 	border: whitesmoke 1px solid;
 }
 
-.pear-frame .pear-frame-content,
-.pear-frame .pear-frame-content iframe {
+.pear-page .pear-page-content,
+.pear-page .pear-page-content iframe {
 	width: 100%;
 	height: calc(100% - 0px) !important;
 }
 
-.pear-frame .pear-frame-content iframe {
+.pear-page .pear-page-content iframe {
 	height: calc(100% - 4px) !important;
 }
 
-.pear-frame-loading {
+.pear-page-loading {
 	position: absolute;
 	display: none;
 	width: 100%;
@@ -42,7 +42,7 @@
 	z-index: 19;
 }
 
-.pear-frame-loading.close {
+.pear-page-loading.close {
 	animation: close 1s;
 	-webkit-animation: close 1s;
 	animation-fill-mode: forwards;
