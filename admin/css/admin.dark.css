@@ -5,17 +5,27 @@
 }
 
 /** header */
-.pear-admin-dark .layui-header {
+.pear-admin-dark .layui-header,
+.pear-admin-dark .layui-header .layui-logo {
     background-color: #141414 !important;
-    border-color:#414243 !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
-.pear-admin-dark .layui-header * {
+.pear-admin-dark .layui-header {
+    border: 1px solid rgba(0, 0, 0, .40) !important;
+}
+
+.pear-admin-dark .layui-header .layui-nav * {
     color: #ffffff !important;
 }
 
 .pear-admin-dark .layui-header .pear-nav-control .layui-this a{
     background-color: #0c0c0c !important;
+}
+
+.pear-admin-dark .auto-theme .layui-logo .title{
+    color: var(--global-primary-color) !important;
 }
 
 /** side */
