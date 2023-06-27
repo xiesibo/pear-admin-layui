@@ -24,8 +24,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 
 		var body = $('body');
 
-		var msgInstance;
-
 		var pearAdmin = new function () {
 
 			this.configuration = {};
@@ -100,7 +98,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			}
 
 			this.messageRender = function(options) {
-				msgInstance = messageCenter.render({
+				messageCenter.render({
 					elem: '.message',
 					url: options.header.message,
 					height: '250px'
