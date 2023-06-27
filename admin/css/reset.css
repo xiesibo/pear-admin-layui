@@ -6,6 +6,10 @@
     border-radius: var(--global-border-radius);
 }
 
+.layui-form-onswitch {
+    background-color: var(--global-primary-color) !important;
+}
+
 .layui-btn {
     background-color: var(--global-primary-color);
 }

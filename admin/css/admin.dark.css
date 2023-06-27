@@ -4,6 +4,11 @@
     background-color: #141414;
 }
 
+/** layout */
+.pear-admin-dark .layui-layout {
+    background-color: #141414;
+}
+
 /** header */
 .pear-admin-dark .layui-header,
 .pear-admin-dark .layui-header .layui-logo {
