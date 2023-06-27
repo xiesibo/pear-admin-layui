@@ -3,7 +3,6 @@ layui.define(['table', 'jquery', 'element', 'dropdown'], function (exports) {
 
     var MOD_NAME = 'messageCenter',
         $ = layui.jquery,
-        element = layui.element,
         dropdown = layui.dropdown;
 
     var message = function (opt) {
