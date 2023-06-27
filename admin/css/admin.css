@@ -388,8 +388,8 @@ body,
 }
 
 .layer-anim-right {
-	-webkit-animation: am-horizontal-roll_show .6s ease-out;
-	animation: am-horizontal-roll_show .6s ease-out;
+	-webkit-animation: am-horizontal-roll_show .5s ease-out;
+	animation: am-horizontal-roll_show .5s ease-out;
 
 }
 
