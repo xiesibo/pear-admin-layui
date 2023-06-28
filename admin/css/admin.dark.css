@@ -183,6 +183,11 @@
     background-color: #1d1e1f !important;
 }
 
+/** toast */
+.pear-admin-dark .iziToast {
+    background-color: #1f1f1f !important;
+}
+
 /** success failure */
 .pear-admin-dark .pear-result .content {
     background-color: rgba(153, 153, 153, 0.12);

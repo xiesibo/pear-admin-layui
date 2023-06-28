@@ -14,8 +14,21 @@
     background-color: var(--global-primary-color);
 }
 
+.layui-btn.layui-btn-normal {
+    background-color: #1e9fff !important;
+}
+
+.layui-btn.layui-btn-danger {
+    background-color: #ff5722 !important;
+}
+
+.layui-btn.layui-btn-warm {
+    background-color: #ffb800 !important;
+}
+
 .layui-btn.layui-btn-primary {
-    background-color: transparent;
+    background-color: transparent !important;
+    color: #5f5f5f !important;
 }
 
 .layui-card {

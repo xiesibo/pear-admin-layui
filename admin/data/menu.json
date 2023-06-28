@@ -24,13 +24,29 @@
 		"title": "扩展组件",
 		"icon": "layui-icon layui-icon-auz",
 		"type": 0,
-		"children": [{
+		"children": [
+			{
+				"id": 22,
+				"title": "数据表格",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/table.html"
+			},{
 				"id": 21,
 				"title": "24 栅格",
 				"icon": "layui-icon layui-icon-face-smile",
 				"type": 1,
 				"openType": "_component",
 				"href": "view/component/grid.html"
+			},
+			{
+				"id": 23,
+				"title": "消息提示",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/toast.html"
 			}
 		]
 	},

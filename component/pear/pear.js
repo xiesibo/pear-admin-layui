@@ -17,14 +17,13 @@ layui.config({
 	messageCenter: "messageCenter",
 	button: "button",		       
 	theme: "theme",		
+	popup:"extends/popup",     
+	count:"extends/count",      
+	toast:"extends/toast",
+	nprogress: "extends/nprogress",           
 	echarts: "extends/echarts",          
 	echartsTheme: "extends/echartsTheme",
-	yaml:"extends/yaml",			     
-	nprogress: "extends/nprogress",      
-	toast: "extends/toast",          	      
-	popup:"extends/popup",     
-	count:"extends/count",         	     
-
+	yaml:"extends/yaml"
 }).use(['layer', 'theme'], function () {
 
 });
