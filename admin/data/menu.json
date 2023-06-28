@@ -26,14 +26,21 @@
 		"type": 0,
 		"children": [
 			{
-				"id": 22,
+				"id": 21,
 				"title": "数据表格",
 				"icon": "layui-icon layui-icon-face-smile",
 				"type": 1,
 				"openType": "_component",
 				"href": "view/component/table.html"
 			},{
-				"id": 21,
+				"id": 22,
+				"title": "树形表格",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/treeTable.html"
+			},{
+				"id": 23,
 				"title": "24 栅格",
 				"icon": "layui-icon layui-icon-face-smile",
 				"type": 1,
@@ -41,7 +48,7 @@
 				"href": "view/component/grid.html"
 			},
 			{
-				"id": 23,
+				"id": 24,
 				"title": "消息提示",
 				"icon": "layui-icon layui-icon-face-smile",
 				"type": 1,

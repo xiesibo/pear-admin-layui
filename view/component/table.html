@@ -13,8 +13,12 @@
     <!-- 
 本「综合演示」包含：自定义头部工具栏、获取表格数据、表格重载、自定义模板、单双行显示、单元格编辑、自定义底部分页栏、表格相关事件与操作、与其他组件的结合等相对常用的功能，以便快速掌握 table 组件的使用。
 -->
-    <div style="padding: 16px;">
-        <table class="layui-hide" id="test" lay-filter="test"></table>
+    <div class="pear-container">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <table class="layui-hide" id="test" lay-filter="test"></table>
+            </div>
+        </div>
     </div>
     <script type="text/html" id="toolbarDemo">
   <div class="layui-btn-container">
@@ -59,7 +63,7 @@
             // 创建渲染实例
             table.render({
                 elem: '#test',
-                url: '../../admin/data/table.json',
+                url: '../../admin/data/table.json', // 此处为静态模拟数据，实际使用时需换成真实接口
                 toolbar: '#toolbarDemo',
                 defaultToolbar: ['filter', 'exports', 'print', {
                     title: '提示',
