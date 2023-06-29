@@ -4,19 +4,12 @@
 		"icon": "layui-icon layui-icon-console",
 		"type": 0,
 		"children": [{
-			"id": 10,
-			"title": "控制后台",
-			"icon": "layui-icon layui-icon-console",
-			"type": 1,
-			"openType": "_component",
-			"href": "view/console/console1.html"
-		}, {
-			"id": 13,
+			"id": "11",
 			"title": "数据分析",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_component",
-			"href": "view/console/console2.html"
+			"href": "view/console/console.html"
 		}]
 	},
 	{
@@ -26,20 +19,6 @@
 		"type": 0,
 		"children": [
 			{
-				"id": 21,
-				"title": "数据表格",
-				"icon": "layui-icon layui-icon-face-smile",
-				"type": 1,
-				"openType": "_component",
-				"href": "view/component/table.html"
-			},{
-				"id": 22,
-				"title": "树形表格",
-				"icon": "layui-icon layui-icon-face-smile",
-				"type": 1,
-				"openType": "_component",
-				"href": "view/component/treeTable.html"
-			},{
 				"id": 23,
 				"title": "24 栅格",
 				"icon": "layui-icon layui-icon-face-smile",

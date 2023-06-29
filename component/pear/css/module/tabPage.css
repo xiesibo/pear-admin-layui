@@ -38,19 +38,19 @@
 	padding: 0px;
 }
 
-.pear-tab-page .layui-tab-title {
+.pear-tab-page > .layui-tab-title {
 	border: none;
 	border: 1px solid whitesmoke;
 	background-color: white;
 }
 
-.pear-tab-page .layui-tab-title li {
+.pear-tab-page > .layui-tab-title li {
 	border-right: 1px solid whitesmoke;
 	color: dimgray;
 	font-size: 13.5px;
 }
 
-.pear-tab-page .layui-tab-title .layui-tab-bar {
+.pear-tab-page > .layui-tab-title .layui-tab-bar {
 	display: none;
 }
 
@@ -58,11 +58,11 @@
 	display: none;
 }
 
-.pear-tab-page .layui-tab-title .layui-this:after {
+.pear-tab-page > .layui-tab-title .layui-this:after {
 	display: none;
 }
 
-.pear-tab-page .layui-tab-title .pear-tab-page-active {
+.pear-tab-page > .layui-tab-title .pear-tab-page-active {
 	display: inline-block;
 	background-color: lightgray;
 	width: 8px;
@@ -71,21 +71,21 @@
 	margin-right: 12px;
 }
 
-.pear-tab-page .layui-tab-title .layui-this .pear-tab-page-active {
+.pear-tab-page > .layui-tab-title .layui-this .pear-tab-page-active {
 	background-color: var(--global-primary-color) !important;
 }
 
-.pear-tab-page .layui-tab-title .layui-tab-close:hover {
+.pear-tab-page > .layui-tab-title .layui-tab-close:hover {
 	background-color: white;
 	line-height: 19px;
 	color: gray;
 }
 
-.pear-tab-page .layui-tab-title .disable-close+.layui-tab-close {
+.pear-tab-page > .layui-tab-title .disable-close+.layui-tab-close {
 	display: none;
 }
 
-.pear-tab-page .layui-tab-title .able-close+.layui-tab-close {
+.pear-tab-page > .layui-tab-title .able-close+.layui-tab-close {
 	display: inline-block;
 }
 
@@ -150,7 +150,7 @@
 	padding-right: 40px;
 }
 
-.pear-tab-page.layui-tab-rollTool .layui-tab-title {
+.pear-tab-page.layui-tab-rollTool > .layui-tab-title {
 	padding-left: 40px;
 	padding-right: 80px;
 }

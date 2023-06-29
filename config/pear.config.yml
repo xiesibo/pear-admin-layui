@@ -19,7 +19,7 @@ menu:
   ## 顶部菜单宽度 PX
   controlWidth: 500
   ## 默认选中的菜单项
-  select: "10"
+  select: "11"
   ## 是否开启异步菜单，false 时 data 属性设置为静态数据，true 时为后端接口
   async: true
 ## 视图内容配置
@@ -36,8 +36,8 @@ tab:
   max: "30"
   ## 首页
   index: 
-    id: "10" ## 标识 ID , 建议与菜单项中的 ID 一致
-    href: "view/console/console1.html" ## 页面地址
+    id: "11" ## 标识 ID , 建议与菜单项中的 ID 一致
+    href: "view/console/console.html" ## 页面地址
     title: "首页" ## 标题
 ## 主题配置
 theme: 
