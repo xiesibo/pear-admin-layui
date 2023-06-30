@@ -25,6 +25,16 @@
     color: #ffffff !important;
 }
 
+.pear-admin-dark .layui-header .layui-nav .layui-nav-child {
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .6) !important;
+    background-color: #141414;
+    border-color: #141414;
+}
+
+.pear-admin-dark .layui-header .layui-nav .layui-nav-child dd > a:hover {
+    background-color: #141414 !important;
+}
+
 .pear-admin-dark .layui-header .pear-nav-control .layui-this a{
     background-color: #0c0c0c !important;
 }
