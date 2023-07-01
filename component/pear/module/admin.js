@@ -10,14 +10,14 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			messageCenter = layui.messageCenter,
 			fullscreen = layui.fullscreen,
 			tabPage = layui.tabPage;
-
-		var bodyFrame;
 		
 		var sideMenu;
 		
-		var bodyTab;
-		
 		var config;
+		
+		var bodyTab;
+
+		var bodyFrame;
 		
 		var logout = function () { };
 
