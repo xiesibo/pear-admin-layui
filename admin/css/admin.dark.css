@@ -222,6 +222,10 @@
     background-color: rgb(29, 30, 31) !important;
 }
 
+.pear-admin-dark .layui-timeline-item:before {
+    background-color: #414243 !important;
+}
+
 
 /** toast */
 .pear-admin-dark .iziToast {
@@ -250,6 +254,10 @@
     border-color: #414243;
 }
 
+
+.pear-admin-dark .dynamic-status dd {
+    border-color: #414243;
+}
 
 /** success failure */
 .pear-admin-dark .pear-result .content {
