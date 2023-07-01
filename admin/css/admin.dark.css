@@ -217,6 +217,12 @@
     background-color: #1d1e1f !important;
 }
 
+/** timeline */
+.pear-admin-dark .layui-timeline-axis {
+    background-color: rgb(29, 30, 31) !important;
+}
+
+
 /** toast */
 .pear-admin-dark .iziToast {
     background-color: #1f1f1f !important;
@@ -237,6 +243,13 @@
 .pear-admin-dark .message-board li {
     border-bottom: 1px solid rgba(0, 0, 0, .40) !important;
 }
+
+/** analysis */
+.pear-admin-dark .top-panel-number {
+    color: #ffffff !important;
+    border-color: #414243;
+}
+
 
 /** success failure */
 .pear-admin-dark .pear-result .content {

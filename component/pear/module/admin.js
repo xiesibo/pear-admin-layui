@@ -860,7 +860,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			$('[data-select-header]').removeClass("layui-this");
 			$(this).addClass("layui-this");
 			localStorage.setItem("theme-header", headerColor);
-			if (theme == "auto-theme") {
+			if (headerColor == "auto-theme") {
 				localStorage.setItem("auto-head", true);
 				pearAdmin.changeTheme();
 			} else {
