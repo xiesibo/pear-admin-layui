@@ -5,11 +5,27 @@
 		"type": 0,
 		"children": [{
 			"id": "11",
-			"title": "数据分析",
+			"title": "控制台",
 			"icon": "layui-icon layui-icon-console",
 			"type": 1,
 			"openType": "_component",
 			"href": "view/console/console.html"
+		},
+		{
+			"id": "12",
+			"title": "分析页",
+			"icon": "layui-icon layui-icon-console",
+			"type": 1,
+			"openType": "_component",
+			"href": "view/analysis/index.html"
+		},
+		{
+			"id": "13",
+			"title": "工作台",
+			"icon": "layui-icon layui-icon-console",
+			"type": 1,
+			"openType": "_component",
+			"href": "view/staging/index.html"
 		}]
 	},
 	{
