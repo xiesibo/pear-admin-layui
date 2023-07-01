@@ -35,13 +35,6 @@
     border-radius: var(--global-border-radius);
 }
 
-.layui-card-footer {
-    position: relative;
-    height: 42px;
-    line-height: 42px;
-    padding: 0 15px;
-    border-top: 1px solid #f8f8f8;
-    color: #333;
-    border-radius: 2px 2px 0 0;
-    font-size: 14px;
+.layui-timeline-axis {
+    color: var(--global-primary-color);
 }
