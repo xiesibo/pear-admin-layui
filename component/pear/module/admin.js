@@ -539,7 +539,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 
 					$layer.css("border-radius", "6px");
 					$input.off("focus").focus();
-					// 搜索菜单
+					// 搜索输入事件
 					$input.off("input").on("input", debounce(function () {
 						var keywords = $input.val().trim();
 						var filteredMenus = filterHandle(menuData, keywords);
@@ -558,7 +558,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 						$content.css("height", currentHeight);
 					}, 500)
 					)
-					// 搜索列表点击事件
+					// 列表点击事件
 					$list.off("click").on("click", "li", function () {
 						var menuId = $(this).attr("smenu-id");
 						var menuUrl = $(this).attr("smenu-url");
@@ -586,7 +586,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 					})
 
 					// 监听键盘事件
-					// Enter:13 Spacebar:32 UpArrow:38 DownArrow:40 Esc:27
 					$(document).off("keydown").keydown(function (e) {
 						if (e.keyCode === 13 || e.keyCode === 32) {
 							e.preventDefault();
@@ -936,18 +935,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				}
 			} else {
 				return option.menu.control
-			}
-		}
-
-		function isAutoHead(option) {
-			if (option.theme.allowCustom) {
-				if (localStorage.getItem("auto-head") != null) {
-					return localStorage.getItem("auto-head");
-				} else {
-					return option.other.autoHead;
-				}
-			} else {
-				return option.other.autoHead;
 			}
 		}
 
