@@ -16,7 +16,6 @@ layui.config({
 	fullscreen:"fullscreen",    
 	messageCenter: "messageCenter",
 	button: "button",		       
-	theme: "theme",		
 	popup:"extends/popup",     
 	count:"extends/count",      
 	toast:"extends/toast",
@@ -24,6 +23,4 @@ layui.config({
 	echarts: "extends/echarts",          
 	echartsTheme: "extends/echartsTheme",
 	yaml:"extends/yaml"
-}).use(['layer', 'theme'], function () {
-
-});
+}).use([], function () {});

@@ -1,4 +1,4 @@
-layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'theme', 'fullscreen', 'messageCenter'],
+layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'fullscreen', 'messageCenter'],
 	function (exports) {
 		"use strict";
 
@@ -9,8 +9,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 			menu = layui.menu,
 			messageCenter = layui.messageCenter,
 			fullscreen = layui.fullscreen,
-			tabPage = layui.tabPage,
-			theme = layui.theme;
+			tabPage = layui.tabPage;
 
 		var bodyFrame;
 		
@@ -222,6 +221,10 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				}, param.other.keepLoad)
 			}
 
+			this.changeTheme = function() {
+				document.documentElement.style.setProperty("--global-primary-color", localStorage.getItem("theme-color-color"));
+			}
+
 			this.themeRender = function (option) {
 				if (option.theme.allowCustom === false) {
 					$(".setting").remove();
@@ -231,7 +234,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 't
 				localStorage.setItem("theme-color", currentColor.id);
 				localStorage.setItem("theme-color-color", currentColor.color);
 				localStorage.setItem("theme-color-second", currentColor.second);
-				theme.changeTheme();
+				pearAdmin.changeTheme();
 
 				var menu = localStorage.getItem("theme-menu");
 				if (menu === null) {
