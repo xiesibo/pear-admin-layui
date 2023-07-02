@@ -191,9 +191,9 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 							bodyTab.addTabOnly({
 								id: data.menuId,
 								title: data.menuTitle,
+								type: data.menuOpenType,
 								url: data.menuUrl,
 								icon: data.menuIcon,
-								type: data.menuOpenType,
 								close: true
 							}, 300);
 						}

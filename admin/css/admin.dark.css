@@ -106,6 +106,10 @@
     background-color: #0a0a0a;
 }
 
+.pear-admin-dark .pear-tab-page-menu ul li {
+    color: #ffffff !important;
+}
+
 /** theme */
 .pear-admin-dark .set-text,
 .pear-admin-dark .select-color-title,
