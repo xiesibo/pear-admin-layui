@@ -13,7 +13,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 		
 		var sideMenu;
 		
-		var config;
+		var configurationCache;
 		
 		var bodyTab;
 
@@ -88,15 +88,26 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			 */
 			this.render = (options) => {
 				if (options !== undefined) {
-					applyConfig(options);
+					pearAdmin.apply(options);
 				} else {
 					this.configurationProvider().then((result) => {
-						applyConfig(result);
+						pearAdmin.apply(result);
 					})
 				}
 			}
 
-			this.messageRender = function(options) {
+			this.apply = function (configuration) {
+				configurationCache = configuration;
+				
+				pearAdmin.logoRender(configuration);
+				pearAdmin.menuRender(configuration);
+				pearAdmin.bodyRender(configuration);
+				pearAdmin.messageCenterRender(configuration);
+				pearAdmin.themeRender(configuration);
+				pearAdmin.keepLoad(configuration);
+			}
+
+			this.messageCenterRender = function(options) {
 				messageCenter.render({
 					elem: '.message',
 					url: options.header.message,
@@ -113,13 +124,11 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				sideMenu = menu.render({
 					elem: 'sideMenu',
 					async: param.menu.async !== undefined ? param.menu.async : true,
-					theme: "dark-theme",
-					height: '100%',
 					method: param.menu.method,
-					control: isControl(param) === 'true' || isControl(param) === true ? 'control' : false, // control
+					control: isControl(param) === 'true' || isControl(param) === true ? 'control' : false,
 					controlWidth: param.menu.controlWidth,
-					defaultMenu: 0,
 					accordion: param.menu.accordion,
+					defaultMenu: 0,
 					url: param.menu.data,
 					data: param.menu.data,
 					parseData: false,
@@ -144,10 +153,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 
 					bodyTab = tabPage.render({
 						elem: 'content',
-						roll: true,
-						tool: true,
-						width: '100%',
-						height: '100%',
 						session: param.tab.session,
 						index: 0,
 						tabMax: param.tab.max,
@@ -196,7 +201,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 					})
 
 				} else {
-					
 					bodyFrame = page.render({
 						elem: 'content',
 						title: '首页',
@@ -386,7 +390,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			refreshA.addClass("layui-anim-rotate");
 			refreshA.addClass("layui-anim-loop");
 			refreshA.addClass("layui-icon-loading");
-			if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) bodyTab.refresh(true);
+			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) bodyTab.refresh(true);
 			else bodyFrame.refresh(true);
 			setTimeout(function () {
 				refreshA.addClass("layui-icon-refresh-1");
@@ -645,7 +649,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 		});
 
 		body.on("click", '[user-menu-id]', function () {
-			if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) {
+			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) {
 				bodyTab.addTabOnly({
 					id: $(this).attr("user-menu-id"),
 					title: $(this).attr("user-menu-title"),
@@ -881,28 +885,18 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			pearAdmin.changeTheme();
 		});
 
-		function applyConfig(param) {
-			config = param;
-			pearAdmin.logoRender(param);
-			pearAdmin.menuRender(param);
-			pearAdmin.bodyRender(param);
-			pearAdmin.themeRender(param);
-			pearAdmin.messageRender(param);
-			pearAdmin.keepLoad(param);
-		}
-
 		function getColorById(id) {
 			var color;
 			var flag = false;
-			$.each(config.colors, function (i, value) {
+			$.each(configurationCache.colors, function (i, value) {
 				if (value.id === id) {
 					color = value;
 					flag = true;
 				}
 			})
-			if (flag === false || config.theme.allowCustom === false) {
-				$.each(config.colors, function (i, value) {
-					if (value.id === config.theme.defaultColor) {
+			if (flag === false || configurationCache.theme.allowCustom === false) {
+				$.each(configurationCache.colors, function (i, value) {
+					if (value.id === configurationCache.theme.defaultColor) {
 						color = value;
 					}
 				})
@@ -912,7 +906,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 
 		function buildColorHtml() {
 			var colors = "";
-			$.each(config.colors, function (i, value) {
+			$.each(configurationCache.colors, function (i, value) {
 				colors += "<span class='select-color-item' color-id='" + value.id + "' style='background-color:" + value.color +
 					";'></span>";
 			})

@@ -2,6 +2,8 @@ layui.define(['jquery'], function(exports) {
 	"use strict";
 
 	/**
+	 * @since Pear Admin 4.0
+	 * 
 	 * Button component
 	 * */
 	var MOD_NAME = 'button',

@@ -19,16 +19,16 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var option = {
 			elem: opt.elem,
 			data: opt.data,
-			tool: opt.tool,
-			roll: opt.roll,
 			index: opt.index,
-			width: opt.width,
-			height: opt.height,
-			tabMax: opt.tabMax,
+			tool: opt.tool || true,
+			roll: opt.roll || true,
+			success: opt.success ? opt.success : function (id) { },
 			session: opt.session ? opt.session : false,
 			preload: opt.preload ? opt.preload : false,
+			height: opt.height || "100%",
+			width: opt.width || "100%",
 			closeEvent: opt.closeEvent,
-			success: opt.success ? opt.success : function (id) { }
+			tabMax: opt.tabMax,
 		}
 
 		if (option.session) {
