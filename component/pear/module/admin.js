@@ -446,7 +446,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 		});
 
 		body.on("click", ".menuSearch", function () {
-			// 过滤菜单
 			var filterHandle = function (filterData, val) {
 				if (!val) return [];
 				var filteredMenus = [];
