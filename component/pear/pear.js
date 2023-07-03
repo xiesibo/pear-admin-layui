@@ -15,6 +15,7 @@ layui.config({
 	menu: "menu",		    
 	fullscreen:"fullscreen",    
 	messageCenter: "messageCenter",
+	menuSearch: "menuSearch",
 	button: "button",		       
 	popup:"extends/popup",     
 	count:"extends/count",      

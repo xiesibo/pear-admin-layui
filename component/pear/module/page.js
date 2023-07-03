@@ -30,18 +30,18 @@ layui.define(['jquery', 'element'], function (exports) {
 	 * 
 	 * 切换 Page 页面 
 	 */
-	page.prototype.changePage = function (href, type) {
+	page.prototype.changePage = function (options) {
 
 		const $frame = $(`#${this.option.elem} .pear-page-content`);
 
-		if (type === "_iframe") {
+		if (options.type === "_iframe") {
 
-			$frame.html(`<iframe src='${href}' scrolling='auto' frameborder='0' allowfullscreen='true'></iframe>`);
+			$frame.html(`<iframe src='${options.href}' scrolling='auto' frameborder='0' allowfullscreen='true'></iframe>`);
 
 		} else {
 
 			$.ajax({
-				url: href,
+				url: options.href,
 				type: 'get',
 				dataType: 'html',
 				success: function (data) {
@@ -53,8 +53,8 @@ layui.define(['jquery', 'element'], function (exports) {
 			});
 		}
 
-		$frame.attr("type", type);
-		$frame.attr("href", href);
+		$frame.attr("type", options.type);
+		$frame.attr("href", options.href);
 	}
 
 	page.prototype.refresh = function (loading) {

@@ -1,4 +1,4 @@
-layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'fullscreen', 'messageCenter'],
+layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'fullscreen', 'messageCenter', 'menuSearch'],
 	function (exports) {
 		"use strict";
 
@@ -8,17 +8,19 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			page = layui.page,
 			menu = layui.menu,
 			messageCenter = layui.messageCenter,
+			menuSearch = layui.menuSearch,
 			fullscreen = layui.fullscreen,
+			tools = layui.tools,
 			tabPage = layui.tabPage;
-		
+
 		var sideMenu;
-		
+
 		var configurationCache;
-		
+
 		var bodyTab;
 
 		var bodyFrame;
-		
+
 		var logout = function () { };
 
 		var body = $('body');
@@ -28,7 +30,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			this.configuration = {};
 
 			this.configurationPath = "pear.config.yml";
-			
+
 			/**
 			 * @since Pear Admin 4.0
 			 * 
@@ -36,12 +38,12 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			 */
 			this.configurationProvider = () => {
 				return new Promise((resolve) => {
-					if(this.configurationPath.indexOf("json") > -1) {
+					if (this.configurationPath.indexOf("json") > -1) {
 						$.ajax({
-							type: 'get', 
+							type: 'get',
 							url: this.configurationPath,
-							dataType: 'json', 
-							async: false,  
+							dataType: 'json',
+							async: false,
 							success: (result) => {
 								resolve(result);
 							}
@@ -79,7 +81,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				return this.configuration;
 			}
 
-		    /**
+			/**
 			 * @since Pear Admin 4.0
 			 * 
 			 * Core Function.
@@ -96,18 +98,64 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				}
 			}
 
+			/**
+			 * @since Pear Admin 4.0 
+			 * 
+			 * 启动构建
+			 */
 			this.apply = function (configuration) {
 				configurationCache = configuration;
-				
 				pearAdmin.logoRender(configuration);
 				pearAdmin.menuRender(configuration);
+				pearAdmin.menuSearchRender(configuration);
 				pearAdmin.bodyRender(configuration);
 				pearAdmin.messageCenterRender(configuration);
 				pearAdmin.themeRender(configuration);
 				pearAdmin.keepLoad(configuration);
 			}
 
-			this.messageCenterRender = function(options) {
+			/**
+			 * @since Pear Admin 4.0
+			 */
+			this.menuSearchRender = function (options) {
+				menuSearch.render({
+					elem: ".menuSearch",
+					dataProvider: () => sideMenu.cache(),
+					select: (node) => {
+						if (node.type == "1") {
+							sideMenu.selectItem(node.id);
+							if (node.openType === "_layer") {
+								layer.open({
+									type: 2,
+									title: data.title,
+									content: data.url,
+									area: ['80%', '80%'],
+									maxmin: true
+								})
+							} else {
+								if (isMuiltTab(options) === "true" ||
+									isMuiltTab(options) === true) {
+									bodyTab.addTabOnly({
+										id: node.id,
+										title: node.title,
+										type: node.openType,
+										url: node.url,
+										icon: node.icon,
+										close: true
+									});
+								} else {
+									bodyFrame.changePage({
+										href: node.url, 
+										type: node.openType
+									});
+								}
+							}
+						}
+					}
+				})
+			}
+
+			this.messageCenterRender = function (options) {
 				messageCenter.render({
 					elem: '.message',
 					url: options.header.message,
@@ -195,12 +243,13 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 								url: data.menuUrl,
 								icon: data.menuIcon,
 								close: true
-							}, 300);
+							});
 						}
 						compatible();
 					})
 
 				} else {
+
 					bodyFrame = page.render({
 						elem: 'content',
 						title: '首页',
@@ -211,7 +260,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyFrame.changePage(data.menuUrl, data.menuOpenType);
+							bodyFrame.changePage({ href: data.menuUrl, type: data.menuOpenType });
 						}
 						compatible()
 					})
@@ -225,8 +274,10 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				}, param.other.keepLoad)
 			}
 
-			this.changeTheme = function() {
-				document.documentElement.style.setProperty("--global-primary-color", localStorage.getItem("theme-color-color"));
+			this.changeTheme = function () {
+				const variableKey = "--global-primary-color";
+				const variableVal = localStorage.getItem("theme-color-color");
+				document.documentElement.style.setProperty(variableKey, variableVal);
 			}
 
 			this.themeRender = function (option) {
@@ -304,10 +355,10 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 				}
 
 				var dark = localStorage.getItem("dark");
-				if(dark === null) {
+				if (dark === null) {
 					dark = option.theme.dark;
 				} else {
-					if(option.theme.allowCustom === false) {
+					if (option.theme.allowCustom === false) {
 						dark = option.theme.dark;
 					}
 				}
@@ -350,7 +401,7 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			this.enableDark = function (checked) {
 				var $pearAdmin = $(".pear-admin");
 				$pearAdmin.removeClass("pear-admin-dark");
-				if(checked === true || checked === "true") {
+				if (checked === true || checked === "true") {
 					$pearAdmin.addClass("pear-admin-dark");
 				}
 			}
@@ -444,196 +495,6 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 		body.on("click", ".collapse,.pear-cover", function () {
 			collapse();
 		});
-
-		body.on("click", ".menuSearch", function () {
-			var filterHandle = function (filterData, val) {
-				if (!val) return [];
-				var filteredMenus = [];
-				filterData = $.extend(true, {}, filterData);
-				$.each(filterData, function (index, item) {
-					if (item.children && item.children.length) {
-						var children = filterHandle(item.children, val)
-						var obj = $.extend({}, item, { children: children });
-						if (children && children.length) {
-							filteredMenus.push(obj);
-						} else if (item.title.indexOf(val) >= 0) {
-							item.children = []; // 父级匹配但子级不匹配,就去除子级
-							filteredMenus.push($.extend({}, item));
-						}
-					} else if (item.title.indexOf(val) >= 0) {
-						filteredMenus.push(item);
-					}
-				})
-				return filteredMenus;
-			}
-
-			// 树转路径
-			var tiledHandle = function (data) {
-				var tiledMenus = [];
-				var treeTiled = function (data, content) {
-					var path = "";
-					var separator = " / ";
-					// 上级路径
-					if (!content) content = "";
-					$.each(data, function (index, item) {
-						if (item.children && item.children.length) {
-							path += content + item.title + separator;
-							var childPath = treeTiled(item.children, path);
-							path += childPath;
-							if (!childPath) path = ""; // 重置路径
-						} else {
-							path += content + item.title
-							tiledMenus.push({ path: path, info: item });
-							path = ""; //重置路径
-						}
-					})
-					return path;
-				};
-				treeTiled(data);
-
-				return tiledMenus;
-			}
-
-			var createList = function (data) {
-				var _listHtml = '';
-				$.each(data, function (index, item) {
-					_listHtml += '<li smenu-id="' + item.info.id + '" smenu-icon="' + item.info.icon + '" smenu-url="' + item.info.href + '" smenu-title="' + item.info.title + '" smenu-type="' + item.info.type + '">';
-					_listHtml += '  <span><i style="margin-right:10px" class=" ' + item.info.icon + '"></i>' + item.path + '</span>';
-					_listHtml += '  <i class="layui-icon layui-icon-right"></i>';
-					_listHtml += '</li>'
-				})
-				return _listHtml;
-			}
-
-			var _html = [
-				`<div class="menu-search-content">
-				  <div class="layui-form menu-search-input-wrapper">
-				    <div class=" layui-input-wrap layui-input-wrap-prefix">
-				      <div class="layui-input-prefix">
-				        <i class="layui-icon layui-icon-search"></i>
-				      </div>
-				      <input type="text" name="menuSearch" value="" placeholder="搜索菜单" autocomplete="off" class="layui-input" lay-affix="clear">
-				    </div>
-				  </div>
-				  <div class="menu-search-no-data">暂 无 信 息</div>
-				  <ul class="menu-search-list">
-				  </ul>
-				</div>`
-			].join('');
-
-			layer.open({
-				type: 1,
-				offset: "10%",
-				area: ['600px'],
-				title: false,
-				closeBtn: 0,
-				shadeClose: true,
-				anim: 0,
-				move: false,
-				content: _html,
-				success: function (layero, layeridx) {
-					var $layer = layero;
-					var $content = $(layero).children('.layui-layer-content');
-					var $input = $(".menu-search-input-wrapper input");
-					var $noData = $(".menu-search-no-data");
-					var $list = $(".menu-search-list");
-					var menuData = sideMenu.option.data;
-
-
-					$layer.css("border-radius", "6px");
-					$input.off("focus").focus();
-					// 搜索输入事件
-					$input.off("input").on("input", debounce(function () {
-						var keywords = $input.val().trim();
-						var filteredMenus = filterHandle(menuData, keywords);
-
-						if (filteredMenus.length) {
-							var tiledMenus = tiledHandle(filteredMenus);
-							var listHtml = createList(tiledMenus);
-							$noData.css("display", "none");
-							$list.html("").append(listHtml).children(":first").addClass("this")
-						} else {
-							$list.html("");
-							$noData.css("display", "flex");
-						}
-						var currentHeight = $(".menu-search-content").outerHeight()
-						$layer.css("height", currentHeight);
-						$content.css("height", currentHeight);
-					}, 500)
-					)
-					// 列表点击事件
-					$list.off("click").on("click", "li", function () {
-						var menuId = $(this).attr("smenu-id");
-						var menuUrl = $(this).attr("smenu-url");
-						var menuTitle = $(this).attr("smenu-title");
-						var menuType = $(this).attr("smenu-type");
-						var openableWindow = menuType === "1" || menuType === 1;
-
-						if (sideMenu.isCollapse) {
-							collapse();
-						}
-						if (openableWindow) {
-							pearAdmin.jump(menuId, menuTitle, menuUrl)
-						} else {
-							sideMenu.selectItem(menuId);
-						}
-						compatible();
-						layer.close(layeridx);
-					})
-
-					$list.off('mouseenter').on("mouseenter", "li", function () {
-						$(".menu-search-list li.this").removeClass("this");
-						$(this).addClass("this");
-					}).off("mouseleave").on("mouseleave", "li", function () {
-						$(this).removeClass("this");
-					})
-
-					// 监听键盘事件
-					$(document).off("keydown").keydown(function (e) {
-						if (e.keyCode === 13 || e.keyCode === 32) {
-							e.preventDefault();
-							var menuId = $(".menu-search-list li.this").attr("smenu-id");
-							var menuUrl = $(".menu-search-list li.this").attr("smenu-url");
-							var menuTitle = $(".menu-search-list li.this").attr("smenu-title");
-							var menuType = $(".menu-search-list li.this").attr("smenu-type");
-							var openableWindow = menuType === "1" || menuType === 1;
-							if (sideMenu.isCollapse) {
-								collapse();
-							}
-							if (openableWindow) {
-								pearAdmin.jump(menuId, menuTitle, menuUrl)
-							} else {
-								sideMenu.selectItem(menuId);
-							}
-							compatible();
-							layer.close(layeridx);
-						} else if (e.keyCode === 38) {
-							e.preventDefault();
-							var prevEl = $(".menu-search-list li.this").prev();
-							$(".menu-search-list li.this").removeClass("this");
-							if (prevEl.length !== 0) {
-								prevEl.addClass("this");
-							} else {
-								$list.children().last().addClass("this");
-							}
-						} else if (e.keyCode === 40) {
-							e.preventDefault();
-							var nextEl = $(".menu-search-list li.this").next();
-							$(".menu-search-list li.this").removeClass("this");
-							if (nextEl.length !== 0) {
-								nextEl.addClass("this");
-							} else {
-								$list.children().first().addClass("this");
-							}
-						} else if (e.keyCode === 27) {
-							e.preventDefault();
-							layer.close(layeridx);
-						}
-					})
-				}
-			})
-		});
-
 
 		body.on("click", ".fullScreen", function () {
 			if ($(this).hasClass("layui-icon-screen-restore")) {
@@ -949,23 +810,11 @@ layui.define(['jquery', 'element', 'yaml', 'form', 'tabPage', 'menu', 'page', 'f
 			}
 		}
 
-		$(window).on('resize', debounce(function () {
+		$(window).on('resize', tools.debounce(function () {
 			if (sideMenu && !sideMenu.isCollapse && $(window).width() <= 768) {
 				collapse();
 			}
 		}, 50));
 
-		function debounce(fn, awaitTime) {
-			var timerID = null
-			return function () {
-				var arg = arguments[0]
-				if (timerID) {
-					clearTimeout(timerID)
-				}
-				timerID = setTimeout(function () {
-					fn(arg)
-				}, awaitTime)
-			}
-		}
 		exports('admin', pearAdmin);
 	})
