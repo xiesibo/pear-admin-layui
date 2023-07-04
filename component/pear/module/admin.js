@@ -31,6 +31,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			this.configurationPath = "pear.config.yml";
 
+			this.instances = {};
+
 			/**
 			 * @since Pear Admin 4.0
 			 * 
@@ -171,15 +173,15 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			this.menuRender = function (param) {
 				sideMenu = menu.render({
 					elem: 'sideMenu',
-					async: param.menu.async !== undefined ? param.menu.async : true,
+					async: param.menu.async,
 					method: param.menu.method,
 					control: isControl(param) === 'true' || isControl(param) === true ? 'control' : false,
 					controlWidth: param.menu.controlWidth,
 					accordion: param.menu.accordion,
-					defaultMenu: 0,
-					url: param.menu.data,
 					data: param.menu.data,
+					url: param.menu.data,
 					parseData: false,
+					defaultMenu: 0,
 					change: function () {
 						compatible();
 					},
