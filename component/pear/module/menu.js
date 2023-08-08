@@ -355,6 +355,15 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 			}
 			index++;
+			if( typeof item.children == 'undefined' || item.children.length == 0 ){
+               item.children = [{
+               	 "id": item.id,
+               	 "href": item.href,
+               	 "title": item.title,
+               	 "icon": item.icon,
+               	 "type":1,
+               }];
+			}
 			$.each(item.children, function (i, note) {
 				// 创 建 每 一 个 菜 单 项
 				var content = '<li class="layui-nav-item" >';
