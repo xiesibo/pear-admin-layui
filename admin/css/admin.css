@@ -465,7 +465,13 @@ body,
 	-webkit-transition: all .3s;
 	opacity: 0;
 }
-
+@media screen and (max-width: 450px) {
+  .pearone-color .layui-form-item .layui-input-inline {
+      float: left !important;
+      width: 190px !important;
+      margin: 0 10px 0 0!important;
+  }
+}
 .select-color {
 	margin-bottom: 30px;
 }
