@@ -172,6 +172,15 @@ body,
 	display: none;
 }
 
+@media screen and (max-width: 768px) {
+  .pear-admin.banner-layout .layui-header .layui-logo {
+      display: none;
+  }
+  .pear-admin.banner-layout .layui-header .layui-layout-left {
+      left: 0px;
+  }
+}
+
 /** 收缩布局 */
 .pear-mini .layui-side .layui-logo .title {
 	display: none;
