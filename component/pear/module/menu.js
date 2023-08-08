@@ -129,6 +129,32 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			}
 			clickEvent(dom, data);
 		})
+
+		$("body").on("click","#" + _this.option.control + " .pear-nav-control [pear-id]", function () {
+			var dom = $(this);
+			if ($(this).attr("pear-href") == "javascript:;") {
+				$("#" + _this.option.elem).find(".pear-nav-tree").css({
+					display: 'none'
+				});
+				$("#" + _this.option.elem).find(".pear-nav-tree[pear-id='" + $(this).attr("pear-id") + "']").css({
+					display: 'block'
+				});
+				$("#" + _this.option.control).find(".pe-title").html($(this).attr("pear-title"));
+				$("#" + _this.option.control).find("")
+				_this.option.change($(this).attr("pear-id"), $(this).attr("pear-title"), $(this).attr("pear-href"))
+			}else{
+				var data = {
+					menuId: dom.attr("pear-id"),
+					menuTitle: dom.attr("pear-title"),
+					menuPath: dom.attr("pear-title"),
+					menuIcon: dom.attr("pear-icon"),
+					menuUrl: dom.attr("pear-href"),
+					openType: dom.attr("pear-type")
+				};
+				clickEvent(dom, data);
+
+			}
+		})
 	}
 
 	function hash(dom) {
@@ -330,30 +356,24 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		var index = 0;
 		var controlItemPe = '<dl class="layui-nav-child">';
 		$.each(option.data, function (i, item) {
+			if(item.children != null && item.children.length > 0){
+                item.href = 'javascript:;';
+			}
 			var menuItem = '';
 			var controlItem = '';
+
+			controlItem = '<li pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
+					'" class="' + (i === option.defaultMenu ? "layui-this" : "") + ' layui-nav-item"><a href="#">' + item.title + '</a></li>';
+
+		    menuItem = '<ul ' + (i === option.defaultMenu ? "" : "style='display:none'") + ' pear-id="' + item.id + '" lay-filter="' + option.elem +
+					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
+
 			if (i === option.defaultMenu) {
-				controlItem = '<li pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'" class="layui-this layui-nav-item"><a href="#">' + item.title + '</a></li>';
-				menuItem = '<ul  pear-id="' + item.id + '" lay-filter="' + option.elem +
-					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
-
 				controlPe += '<li class="layui-nav-item"><a class="pe-title" href="javascript:;" >' + item.title + '</a>';
-
-				controlItemPe += '<dd  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'"><a href="javascript:void(0);">' + item.title + '</a></dd>';
-			} else {
-
-				controlItem = '<li  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'" class="layui-nav-item"><a href="#">' + item.title + '</a></li>';
-
-				menuItem = '<ul style="display:none" pear-id="' + item.id + '" lay-filter="' + option.elem +
-					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
-
-				controlItemPe += '<dd pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'"><a href="javascript:void(0);">' + item.title + '</a></dd>';
-
 			}
+
+			controlItemPe += '<dd  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
+					'"><a href="javascript:void(0);">' + item.title + '</a></dd>';
 			index++;
 			$.each(item.children, function (i, note) {
 				// 创 建 每 一 个 菜 单 项
@@ -391,17 +411,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		$("#" + option.control).html(control + "</div>");
 		$("#" + option.control).append(controlPe);
 		$("#" + option.elem).html(menu);
-		$("#" + option.control + " .pear-nav-control").on("click", "[pear-id]", function () {
-			$("#" + option.elem).find(".pear-nav-tree").css({
-				display: 'none'
-			});
-			$("#" + option.elem).find(".pear-nav-tree[pear-id='" + $(this).attr("pear-id") + "']").css({
-				display: 'block'
-			});
-			$("#" + option.control).find(".pe-title").html($(this).attr("pear-title"));
-			$("#" + option.control).find("")
-			option.change($(this).attr("pear-id"), $(this).attr("pear-title"), $(this).attr("pear-href"))
-		})
 	}
 
 	/** 加载子菜单 (递归)*/
