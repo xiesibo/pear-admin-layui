@@ -204,6 +204,9 @@ body,
 .pear-admin .auto-theme .layui-nav * {
 	color: white !important;
 }
+.pear-admin .auto-theme .layui-nav.pear-nav-control .layui-this * {
+	color: black !important;
+}
 
 /** 收缩布局 */
 .pear-mini .layui-side .layui-logo .title {
