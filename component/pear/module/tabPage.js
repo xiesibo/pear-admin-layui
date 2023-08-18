@@ -483,6 +483,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 								<span class="${item.close ? 'able-close' : 'disable-close'} title">
 									${item.title}
 								</span>
+                                <i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li>
 							</li>`;
 
 			title += titleItem;
