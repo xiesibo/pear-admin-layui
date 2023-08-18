@@ -55,6 +55,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		$(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-next").click(function () {
 			rollPage("right", option);
 		})
+
 		element.init();
 
 		$("#" + option.elem).width(opt.width);
@@ -62,6 +63,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		$("#" + option.elem).css({
 			position: "relative"
 		});
+
 		closeEvent(option);
 
 		option.success(sessionStorage.getItem(option.elem + "-pear-tab-page-data-current"));
@@ -204,6 +206,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	tabPage.prototype.clear = function () {
+
 		sessionStorage.removeItem(this.option.elem + "-pear-tab-page-data");
 		sessionStorage.removeItem(this.option.elem + "-pear-tab-page-data-current");
 	}
@@ -265,7 +268,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var title = `<span class="pear-tab-page-active"></span>
 					 <span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span>
 					 <i class="layui-icon layui-unselect layui-tab-close">ဆ</i>`;
-
 		if ($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]").length <=
 			0) {
 
@@ -302,6 +304,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			tabData.push(opt);
 			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data", JSON.stringify(tabData));
 			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data-current", opt.id);
+
 
 		} else {
 
@@ -410,7 +413,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("*[id='" + id + "']")
 				.parent();
 			tabContent.remove();
-
 			tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-page-data"));
 			tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-page-data-current");
 			tabData = tabData.filter(function (item) {
@@ -451,7 +453,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	 * @since Pear Admin 4.0
 	 */
 	function createTab(option) {
-
 		var type = "";
 		var types = option.type + " ";
 		if (option.roll == true) {
@@ -483,10 +484,11 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 								<span class="${item.close ? 'able-close' : 'disable-close'} title">
 									${item.title}
 								</span>
+								<i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li>
 							</li>`;
 
-			title += titleItem;
 
+			title += titleItem;
 			if (item.type === "_iframe") {
 
 				content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><iframe id="${item.id}" type="${item.type}" data-frameid="${item.id}" scrolling="auto" frameborder="0" src="${item.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe></div>`
@@ -536,6 +538,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	function closeEvent(option) {
+		console.log(option.elem);
 		$(".layui-tab[lay-filter='" + option.elem + "']").on("click", ".layui-tab-close", function () {
 			var layid = $(this).parent().attr("lay-id");
 			tabDelete(option.elem, layid, option.closeEvent, option);
@@ -543,7 +546,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	function menuEvent(option, index) {
-
 		$("#" + option.elem + "closeThis").click(function () {
 			var currentTab = contextTabDOM;
 
