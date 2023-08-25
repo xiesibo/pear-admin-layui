@@ -51,7 +51,9 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 							}
 						});
 					} else {
-						resolve(yaml.load(this.configurationPath));
+						let json = yaml.load(this.configurationPath);
+						console.log(json)
+						resolve(json);
 					}
 				})
 			}
