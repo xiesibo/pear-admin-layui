@@ -116,6 +116,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				pearAdmin.messageCenterRender(configuration);
 				pearAdmin.themeRender(configuration);
 				pearAdmin.keepLoad(configuration);
+				
 			}
 
 			/**
@@ -223,6 +224,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 								setTimeout(function () {
 									sideMenu.selectItem(id);
 									bodyTab.positionTab();
+									bodyTab.handlerHash();
 								}, 500)
 							}
 						}
@@ -246,12 +248,11 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 								type: data.menuOpenType,
 								url: data.menuUrl,
 								icon: data.menuIcon,
-								close: true
+								close: true								
 							});
 						}
 						compatible();
 					})
-
 				} else {
 
 					bodyFrame = page.render({

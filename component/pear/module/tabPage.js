@@ -55,9 +55,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		$(".layui-tab[lay-filter='" + option.elem + "'] .layui-tab-next").click(function () {
 			rollPage("right", option);
 		})
-		element.init();
-		handlerTabChange(option.elem);
-		handlerHasChange(option.elem);
+		element.render("tab",option.elem);
 		$("#" + option.elem).width(opt.width);
 		$("#" + option.elem).height(opt.height);
 		$("#" + option.elem).css({
@@ -181,14 +179,12 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	tabPage.prototype.click = function (callback) {
 		var option = this.option;
-		var elem = this.option.elem;
-		element.on('tab(' + this.option.elem + ')', function (data) {
-			var id = $("#" + elem + " .layui-tab-title .layui-this").attr("lay-id");
-			 location.hash =  id;
+		element.on('tab(' + option.elem + ')', function (data) {
+			let tab= $(this);
+			let id = tab.attr("lay-id");
+			location.hash = tab.attr("lay-pageurl")||'';
 			sessionStorage.setItem(option.elem + "-pear-tab-page-data-current", id);
 			callback(id);
-
-			console.log(data.index); // 得到当前 tab 项的所在下标
 		});
 	}
 
@@ -229,8 +225,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 	// 根据过滤 filter 标识, 删除其他选项卡
 	tabPage.prototype.delOtherTabByElem = function (elem, callback) {
-		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr(
-			"lay-id");
+		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr("lay-id");
 		var tabtitle = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title li");
 		$.each(tabtitle, function (i) {
 			if ($(this).attr("lay-id") != currentId) {
@@ -243,8 +238,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	// 根据过滤 filter 标识, 删除全部选项卡
 	tabPage.prototype.delAllTabByElem = function (elem, callback) {
-		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr(
-			"lay-id");
+		//var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr("lay-id");
 		var tabtitle = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title li");
 		$.each(tabtitle, function (i) {
 			if ($(this).find("span").is(".able-close")) {
@@ -269,13 +263,13 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var title = `<span class="pear-tab-page-active"></span>
 					 <span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span>
 					 <i class="layui-icon layui-unselect layui-tab-close">ဆ</i>`;
-			var isData = false;
-			$.each($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]"),
-				function () {
-					if ($(this).attr("lay-id") == opt.id) {
-						isData = true;
-					}
-				})
+		var isData = false;
+		$.each($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]"),
+			function () {
+				if ($(this).attr("lay-id") == opt.id) {
+					isData = true;
+				}
+			})
 
 		if (isData == false) {
 
@@ -293,15 +287,15 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 			var that = this;
 			addLayuiTab(this.option.elem, title, opt);
-			tabData.push(opt);
+			tabData.push(opt);			
 			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data", JSON.stringify(tabData));
 			sessionStorage.setItem(that.option.elem + "-pear-tab-page-data-current", opt.id);
 		}
 
-		//element.tabChange(this.option.elem, opt.id);
+		element.tabChange(this.option.elem, opt.id);
 		sessionStorage.setItem(this.option.elem + "-pear-tab-page-data-current", opt.id);
 
-		
+
 	}
 
 	// 刷 新 指 定 的 选 项 卡
@@ -317,10 +311,10 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			});
 		}
 
-		if($iframe.attr("type") === "_iframe") {
+		if ($iframe.attr("type") === "_iframe") {
 			$iframe.attr("src", $iframe.attr("src"));
-			$iframe.on("load", function() {
-				$iframeLoad.fadeOut(1000, function() {
+			$iframe.on("load", function () {
+				$iframeLoad.fadeOut(1000, function () {
 					$iframeLoad.remove();
 				});
 			})
@@ -344,6 +338,39 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		}
 	}
 
+	/**
+	 * 根据url hash 地址 匹配tab
+	 */
+	tabPage.prototype.handlerHash= function () {
+		//window.onhashchange = locationHashChanged;
+		let _this = this;
+		let hash = location.hash;
+		if (!hash) {return;}
+		let pageUrl = hash.replace("#", "");
+		let tabElement = $("ul.layui-tab-title [lay-pageurl='" + pageUrl + "']");
+		if (tabElement.length > 0) {
+			let layid = tabElement.attr("lay-id");
+			if (!tabElement.hasClass("layui-this")) {
+			element.tabChange(option.elem, layid); // 切换tab
+			}
+		} else {
+			//如果没打开的话 还要打开这个页面
+			//菜单中是否有
+			let menu = $('ul[lay-filter="sideMenu"] li a[menu-url="' + pageUrl + '"]');
+			if (menu.length > 0) {
+			_this.addTabOnly({
+				id: menu.attr("menu-id"),
+				title: menu.attr("menu-title"),
+				url:pageUrl,
+				close: true,
+			});
+			} else {
+			// 404?
+			console.log(404);
+			}
+		}
+	}
+
 	function tabDelete(elem, id, callback, option) {
 		var tabTitle = $(".layui-tab[lay-filter='" + elem + "']").find(".layui-tab-title");
 		var removeTab = tabTitle.find("li[lay-id='" + id + "']");
@@ -364,16 +391,20 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		}
 
 		var currId;
+		var currPageurl;
 		if (nextNode.length) {
 			nextNode.addClass("layui-this");
 			currId = nextNode.attr("lay-id");
+			currPageurl = nextNode.attr("lay-pageurl");
 			$("#" + elem + " [id='" + currId + "']").parent().addClass("layui-show");
 		} else {
 			var prevNode = removeTab.prev("li");
 			prevNode.addClass("layui-this");
 			currId = prevNode.attr("lay-id");
+			currPageurl = prevNode.attr("lay-pageurl");
 			$("#" + elem + " [id='" + currId + "']").parent().addClass("layui-show");
 		}
+		location.hash=currPageurl??"";
 		callback(currId);
 		tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-page-data"));
 		tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-page-data-current");
@@ -423,7 +454,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var index = 0;
 		$.each(option.data, function (i, item) {
 
-			var titleItem = `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
+			var titleItem = `<li lay-id="${item.id}" lay-pageurl="${item.url??""}" class="${option.index == index ? 'layui-this' : ''}">
 								<span class="pear-tab-page-active"></span>
 								<span class="${item.close ? 'able-close' : 'disable-close'} title">
 									${item.title}
@@ -438,9 +469,9 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><iframe id="${item.id}" type="${item.type}" data-frameid="${item.id}" scrolling="auto" frameborder="0" src="${item.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe></div>`
 
 			} else {
-				$getHtml(item.url,data=>
-						content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><div id="${item.id}" type="${item.type}" data-frameid="${item.id}"  src="${item.url}">${data}</div></div>`
-					);
+				$getHtml(item.url, data =>
+					content += `<div class="${option.index == index ? 'layui-show' : ''} layui-tab-item"><div id="${item.id}" type="${item.type}" data-frameid="${item.id}"  src="${item.url}">${data}</div></div>`
+				);
 			}
 
 			index++;
@@ -464,22 +495,22 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	 * @param {any} opt
 	 */
 	function addLayuiTab(filter, title, opt) {
-			if (opt.type === "_iframe") {
+		if (opt.type === "_iframe") {
 
-				element.tabAdd(filter, {
-					id: opt.id,
-					title: title,
-					content: `<iframe id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
-				});
+			element.tabAdd(filter, {
+				id: opt.id,
+				title: title,
+				content: `<iframe id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" scrolling="auto" frameborder="0" src="${opt.url}" style="width:100%;height:100%;" allowfullscreen="true"></iframe>`
+			});
 
-			} else {
-				$getHtml(opt.url, data => element.tabAdd(filter, {
-					id: opt.id,
-					pageUrl: opt.url,
-					title: title,
-					content: `<div id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
-				}));
-			}
+		} else {
+			$getHtml(opt.url, data => element.tabAdd(filter, {
+				id: opt.id,
+				pageUrl: opt.url,
+				title: title,
+				content: `<div id="${opt.id}" type="${opt.type}" data-frameid="${opt.id}" src="${opt.url}">${data}</div>`,
+			}));
+		}
 	}
 	/**
 	 * jq ajax get方式获取html页面
@@ -520,42 +551,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			}, 200);
 		}
 	}
-	/**
-	 * tab切换事件处理函数
-	 * @param {any} filter
-	 */
-	function handlerTabChange(filter) {
-		// tab 切换事件
-		element.on('tab('+filter+')', function (data) {
-			console.log(this); // 当前 tab 标题所在的原始 DOM 元素
-			console.log(data.index); // 得到当前 tab 项的所在下标
-			console.log(data.elem); // 得到当前的 tab 容器
-		});
-	}
-	/**
-	 * url hash变更事件处理
-	 * @param {any} filter
-	 */
-	function handlerHasChange(filter) {
-		locationHashChanged();
-		window.onhashchange = locationHashChanged;
-		function locationHashChanged() {
-			let hash = location.hash;
-			if (hash) {
-				let layid = hash.replace('#', '');
-				if ($("ul.layui-tab-title [lay-id=" + filter + "]").length > 0) {
-					// 切换
-					element.tabChange(filter, layid);
-				} else {
-				//如果没打开的话 还要打开这个页面
-					//菜单中是否有
-					if (false) {
 
-					}
-				}
-			}
-		}
-	}
 	function closeEvent(option) {
 		$(".layui-tab[lay-filter='" + option.elem + "']").on("click", ".layui-tab-close", function () {
 			var layid = $(this).parent().attr("lay-id");
