@@ -580,7 +580,40 @@ body,
 	background-color: var(--global-primary-color);
 	color: white;
 }
+.menu-search-tips {
+    margin-bottom: 15px;
+    padding: 0 15px;
+    width: 100%
+}
 
+.menu-search-tips>div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 12px;
+}
+
+.menu-search-tips .mr-1 {
+    margin-right: 4px;
+}
+
+.menu-search-tips .mr-5 {
+    margin-right: 20px;
+}
+
+.menu-search-tips .w-5 {
+    width: 14px;
+}
+
+.menu-search-tips kbd {
+	line-height: 1.5;
+    border: 1px solid #e5e7eb;
+    font-size: 10px;
+    text-align: center;
+    padding: 2px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    border-radius: 5px;
+}
 /** 首屏加载 */
 .loader-wrapper {
 	position: fixed;
