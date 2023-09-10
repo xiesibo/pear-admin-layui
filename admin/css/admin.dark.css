@@ -16,6 +16,14 @@
     box-shadow: none !important;
     border: none !important;
 }
+.pear-admin-dark .layui-header.auto-theme,
+.pear-admin-dark .layui-header.auto-theme .layui-logo {
+    background-color: var(--global-primary-color) !important;
+}
+
+.pear-admin-dark .layui-header.auto-theme .layui-logo .title {
+    color: #ffffff !important;
+}
 
 .pear-admin-dark .layui-header {
     border: 1px solid rgba(0, 0, 0, .40) !important;
