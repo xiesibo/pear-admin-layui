@@ -201,12 +201,19 @@
 .pear-admin-dark .layui-table th,
 .pear-admin-dark .layui-table-view,
 .pear-admin-dark .layui-table-page,
+.pear-admin-dark .layui-table-tool,
 .pear-admin-dark .layui-table-header {
     border-color: rgba(0, 0, 0, .40) !important;
 }
 
 .pear-admin-dark .layui-laypage select,
 .pear-admin-dark .layui-laypage button {
+    border-color: rgba(0, 0, 0, .40) !important;
+    color: #ffffff !important;
+    background-color: transparent; 
+}
+
+.pear-admin-dark .layui-table-tool-self > div {
     border-color: rgba(0, 0, 0, .40) !important;
     color: #ffffff !important;
     background-color: transparent; 
