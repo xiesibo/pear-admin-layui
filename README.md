@@ -6,3 +6,4 @@
 - [新增] admin.js 模块 setConfigurationProvider 方法，用于自定义 configuration 来源。
 - [优化] admin.js 模块 logout 方法，返回值由 boolean 调整为 Promise 类型。 
 - [新增] 夜间模式适配，目前已完成整体框架兼容，layui 待完成。
+- [新增] menuSearch.js 模块，原有的菜单搜索功能。

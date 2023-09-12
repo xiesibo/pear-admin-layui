@@ -24,10 +24,19 @@
 		]
 	},
 	{
-		"id":"dataTable",
-		"title":"表格",
-		"type":0,
-		"children":[
+		"id": 9,
+		"title": "列表页面",
+		"icon": "layui-icon layui-icon-auz",
+		"type": 0,
+		"children": [
+			{
+				"id": 91,
+				"title": "查询表格",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/listing/table.html"
+			},
 			{
 				"id":"table1",
 				"title": "常用列表",
