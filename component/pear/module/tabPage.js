@@ -359,20 +359,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		}
 
 		var currId;
-		var currPageurl;
-		if (nextNode.length) {
-			nextNode.addClass("layui-this");
-			currId = nextNode.attr("lay-id");
-			currPageurl = nextNode.attr("lay-pageurl");
-			$("#" + elem + " [id='" + currId + "']").parent().addClass("layui-show");
-		} else {
-			var prevNode = removeTab.prev("li");
-			prevNode.addClass("layui-this");
-			currId = prevNode.attr("lay-id");
-			currPageurl = prevNode.attr("lay-pageurl");
-			$("#" + elem + " [id='" + currId + "']").parent().addClass("layui-show");
-		}
-		location.hash=currPageurl??"";
+		let activeNode = nextNode.length ? nextNode : removeTab.prev("li");
+		activeNode.click()
 		callback(currId);
 		tabData = JSON.parse(sessionStorage.getItem(elem + "-pear-tab-page-data"));
 		tabDataCurrent = sessionStorage.getItem(elem + "-pear-tab-page-data-current");
