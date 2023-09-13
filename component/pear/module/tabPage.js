@@ -43,6 +43,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				})
 			} else {
 				tabData = opt.data;
+				sessionStorage.setItem(option.elem + "-pear-tab-page-data",JSON.stringify(opt.data));
+				sessionStorage.setItem(option.elem + "-pear-tab-page-data-current",opt.data[opt.index].id);
 			}
 		}
 
