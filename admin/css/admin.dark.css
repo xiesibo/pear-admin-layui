@@ -118,6 +118,11 @@
     color: #ffffff !important;
 }
 
+.pear-admin-dark .layui-footer {
+    background-color: #141414;
+    border-top: 1px solid #141414;
+}
+
 /** theme */
 .pear-admin-dark .set-text,
 .pear-admin-dark .select-color-title,
@@ -129,6 +134,15 @@
 .pear-admin-dark .menu-search-no-data {
     color: #ffffff;
 }
+
+.pear-admin-dark .menu-search-tips * {
+    color: #ffffff;
+}
+
+.pear-admin-dark .menu-search-tips kbd {
+    border-color: rgba(0, 0, 0, .30) !important;
+}
+
 
 /** message center */
 .pear-admin-dark .pear-message-center .layui-tab-title,
