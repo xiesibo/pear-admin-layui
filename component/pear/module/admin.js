@@ -147,7 +147,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 									});
 								} else {
 									bodyFrame.changePage({
-										href: node.url, 
+										href: node.url,
 										type: node.openType
 									});
 								}
