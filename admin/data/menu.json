@@ -36,6 +36,14 @@
 				"type": 1,
 				"openType": "_component",
 				"href": "view/listing/table.html"
+			},
+			{
+				"id":"table1",
+				"title": "常用列表",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/table.html"
 			}
 		]
 	},
@@ -163,7 +171,7 @@
 	},
 	{
 		"id": "deep",
-		"title": "深度测试",
+		"title": "菜单深度测试",
 		"icon": "layui-icon layui-icon-auz",
 		"type": 0,
 		"href": "",

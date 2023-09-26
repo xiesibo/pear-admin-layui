@@ -13,7 +13,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 		var option = {
 			elem: opt.elem,
-			async: opt.async || true,
+			async: !!opt.async,
 			parseData: opt.parseData,
 			url: opt.url,
 			method: opt.method ? opt.method : "GET",
@@ -314,7 +314,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 					'" menu-title="' + item.title + '"  href="' + href + '"  ' + target + '><i class="' + item.icon +
 					'"></i><span>' + item.title + '</span></a>';
 			}
-			// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单 
+			// 调 用 递 归 方 法 加 载 无 限 层 级 的 子 菜 单
 			content += loadchild(item);
 			// 结 束 一 个 根 菜 单 项
 			content += '</li>';
@@ -417,7 +417,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		}
 		// 创 建 子 菜 单 结 构
 		var content = '<dl class="layui-nav-child">';
-		// 如 果 嵌 套 不 等 于 空 
+		// 如 果 嵌 套 不 等 于 空
 		if (obj.children != null && obj.children.length > 0) {
 			// 遍 历 子 项 目
 			$.each(obj.children, function (i, note) {
