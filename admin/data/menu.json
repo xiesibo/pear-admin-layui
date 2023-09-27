@@ -60,6 +60,14 @@
 				"type": 1,
 				"openType": "_component",
 				"href": "view/component/toast.html"
+			},
+			{
+				"id": 25,
+				"title": "路由过渡",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/nprogress.html"
 			}
 		]
 	},
