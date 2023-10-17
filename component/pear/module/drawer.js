@@ -4,14 +4,14 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	/**
 	 * Drawer component
 	 * */
-	var MOD_NAME = 'drawer',
+	const MOD_NAME = 'drawer',
 		$ = layui.jquery,
 		element = layui.element,
 		layer = layui.layer,
 		loading = layui.loading;
 
 
-	var drawer = new function () {
+	const drawer = new function () {
 
 		/**
 		 * open drawer
@@ -20,9 +20,10 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			//	默认使用 legacy 模式
 			if (option.legacy === undefined) {
 				option.legacy = true;
-			};
+			}
+
 			if (option.legacy) {
-				var obj = new mSlider({
+				const obj = new mSlider({
 					target: option.target,
 					dom: option.dom,
 					direction: option.direction,
@@ -41,7 +42,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 		this.style = layer.style;
 		this.close = layer.close;
 		this.closeAll = layer.closeAll;
-	}
+	};
 
 	/**
 	 *
@@ -51,10 +52,10 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	 * @returns 原生 layer 的 index
 	 */
 	function layerDrawer(option) {
-		var opt = normalizeOption(option)
+		const opt = normalizeOption(option);
 		if (opt.target) appendToTarget(opt);
 		if (opt.url) loadFragment(opt);
-		var layerIndex = layer.open(opt);
+		const layerIndex = layer.open(opt);
 
 		return layerIndex;
 	}
@@ -65,7 +66,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	 */
 	function loadFragment(option) {
 		option.success = Aspect(option.success, function (layero, index) {
-			var layerID = "#" + layero.attr("id");
+			const layerID = "#" + layero.attr("id");
 			loading.block({
 				type: 1,
 				elem: layerID,
@@ -87,8 +88,8 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	 * @param {object} opt
 	 */
 	function appendToTarget(opt) {
-		var targetDOM = $(opt.target);
-		var contentDOM = $(opt.content);
+		const targetDOM = $(opt.target);
+		const contentDOM = $(opt.content);
 		contentDOM.appendTo(targetDOM);
 		opt.skin = getDrawerAnimationClass(opt.offset, true);
 		opt.offset = calcOffset(opt.offset, opt.area, targetDOM);
@@ -98,7 +99,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 		})
 		if (opt.shade) {
 			opt.success = Aspect(opt.success, function (layero, index) {
-				var shadeDOM = $("#layui-layer-shade" + index);
+				const shadeDOM = $("#layui-layer-shade" + index);
 				shadeDOM.css("position", "absolute");
 				shadeDOM.appendTo(layero.parent());
 			})
@@ -131,7 +132,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			option.content = $(option.dom);
 		}
 		if (option.maskClose && option.shadeClose === undefined) {
-			option.shadeClose = (option.maskClose + "").toString() !== "false" ? true : false;
+			option.shadeClose = (option.maskClose + "").toString() !== "false";
 		}
 
 		option.type = 1
@@ -160,7 +161,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	 * 计算抽屉宽高
 	 * @param {string} offset 抽屉方向 l = 左, r = 右, t = 上, b = 下
 	 * @param {string[] | string} drawerArea 抽屉大小,字符串数组格式：[width, height]，字符串格式：百分比或单位 px。
-	 * @returns 抽屉宽高数组
+	 * @returns (string[]|string)[]
 	 */
 	function calcDrawerArea(offset, drawerArea) {
 		if (drawerArea instanceof Array) {
@@ -181,12 +182,12 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 	 * 获取抽屉动画类
 	 * @param {string} offset 抽屉方向
 	 * @param {boolean} 是否 absolute 布局
-	 * @returns 抽屉入场动画类
+	 * @returns string
 	 */
 	function getDrawerAnimationClass(offset, isAbsolute) {
-		var positionAbsoluteClass = "position-absolute ";
-		var prefixClass = "pear-drawer pear-drawer-anim layui-anim layer-anim-";
-		var suffix = "rl";
+		const positionAbsoluteClass = "position-absolute ";
+		let prefixClass = "pear-drawer pear-drawer-anim layui-anim layer-anim-";
+		let suffix = "rl";
 
 		if (isAbsolute) {
 			prefixClass = positionAbsoluteClass + prefixClass;
@@ -214,22 +215,22 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 		if (offset === undefined || offset === "l" || offset === "t") {
 			offset = "lt";
 		} else if (offset === "r") {
-			var left;
+			let left;
 			if (area instanceof Array) {
 				area = area[0];
 			}
-			if (area.indexOf("%") != -1) {
+			if (area.indexOf("%") !== -1) {
 				left = targetEl.innerWidth() * (1 - area.replace("%", "") / 100);
 			} else {
 				left = targetEl.innerWidth() - area;
 			}
 			offset = [0, left];
 		} else if (offset === "b") {
-			var top;
+			let top;
 			if (area instanceof Array) {
 				area = area[1];
 			}
-			if (area.indexOf("%") != -1) {
+			if (area.indexOf("%") !== -1) {
 				top = targetEl.innerHeight() * (1 - area.replace("%", "") / 100);
 			} else {
 				top = targetEl.innerHeight() - area;
@@ -274,7 +275,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			"distance": d.distance || "60%",
 			"dom": this.Q(d.dom),
 			"time": d.time || "",
-			"maskClose": (d.maskClose + "").toString() !== "false" ? true : false,
+			"maskClose": (d.maskClose + "").toString() !== "false",
 			"callback": d.callback || ""
 		};
 		this.rnd = this.rnd();
@@ -290,7 +291,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			return document.querySelectorAll(d)
 		},
 		isMobile: function () {
-			return navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i) ? true : false
+			return !!navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)
 		},
 		addEvent: function (f, e, d) {
 			if (f.attachEvent) {
@@ -303,15 +304,15 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			return Math.random().toString(36).substr(2, 6)
 		},
 		init: function () {
-			var g = this;
+			const g = this;
 			if (!g.dom) {
 				console.log("未正确绑定弹窗容器");
 				return
 			}
 			g.dom.style.display = "block";  // 兼容 layer 捕获层
-			var d = document.createElement("div");
-			var e = document.createElement("div");
-			var f = document.createElement("div");
+			const d = document.createElement("div");
+			const e = document.createElement("div");
+			const f = document.createElement("div");
 			d.setAttribute("class", "mSlider-main ms-" + g.rnd);
 			e.setAttribute("class", "mSlider-inner");
 			f.setAttribute("class", "mSlider-mask");
@@ -379,7 +380,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			g.events()
 		},
 		open: function () {
-			var d = this;
+			const d = this;
 			d.wrap.style.display = "block";
 			setTimeout(function () {
 				d.inner.style.transform = "translate3d(0,0,0)";
@@ -393,7 +394,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			}
 		},
 		close: function () {
-			var d = this;
+			const d = this;
 			d.timer && clearTimeout(d.timer);
 			d.inner.style.webkitTransform = "translate3d(" + d.translate + ")";
 			d.inner.style.transform = "translate3d(" + d.translate + ")";
@@ -405,7 +406,7 @@ layui.define(['jquery', 'element', 'layer', 'loading'], function (exports) {
 			}, 300)
 		},
 		events: function () {
-			var d = this;
+			const d = this;
 			d.addEvent(d.mask, "touchmove", function (f) {
 				f.preventDefault()
 			});
