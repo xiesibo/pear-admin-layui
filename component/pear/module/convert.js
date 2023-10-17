@@ -4,24 +4,23 @@ layui.define(['jquery', 'element'], function(exports) {
 	/**
 	 * 类 型 转 换 工 具 类
 	 * */
-	var MOD_NAME = 'convert',
+	const MOD_NAME = 'convert',
 		$ = layui.jquery,
 		element = layui.element;
 
-	var convert = new function() {
+	const convert = new function () {
 
 		// image 转 base64
-		this.imageToBase64 = function(img) {
-			var canvas = document.createElement("canvas");
+		this.imageToBase64 = function (img) {
+			const canvas = document.createElement("canvas");
 			canvas.width = img.width;
 			canvas.height = img.height;
-			var ctx = canvas.getContext("2d");
+			const ctx = canvas.getContext("2d");
 			ctx.drawImage(img, 0, 0, img.width, img.height);
-			var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-			var dataURL = canvas.toDataURL("image/"+ext);
-			return dataURL;
+			const ext = img.src.substring(img.src.lastIndexOf(".") + 1).toLowerCase();
+			return canvas.toDataURL("image/" + ext);
 		}
 
-	}
+	};
 	exports(MOD_NAME, convert);
 });

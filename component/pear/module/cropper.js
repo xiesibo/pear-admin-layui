@@ -3,10 +3,10 @@
  */
 
 layui.define(['jquery'], function (exports) {
-    var $ = layui.jquery;
+    let $ = layui.jquery;
     $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
 
-    var DEFAULTS = {
+    const DEFAULTS = {
         // Define the view mode of the cropper
         viewMode: 0, // 0, 1, 2, 3
 
@@ -102,13 +102,13 @@ layui.define(['jquery'], function (exports) {
         zoom: null
     };
 
-    var TEMPLATE = '<div class="cropper-container">' + '<div class="cropper-wrap-box">' + '<div class="cropper-canvas"></div>' + '</div>' + '<div class="cropper-drag-box"></div>' + '<div class="cropper-crop-box">' + '<span class="cropper-view-box"></span>' + '<span class="cropper-dashed dashed-h"></span>' + '<span class="cropper-dashed dashed-v"></span>' + '<span class="cropper-center"></span>' + '<span class="cropper-face"></span>' + '<span class="cropper-line line-e" data-action="e"></span>' + '<span class="cropper-line line-n" data-action="n"></span>' + '<span class="cropper-line line-w" data-action="w"></span>' + '<span class="cropper-line line-s" data-action="s"></span>' + '<span class="cropper-point point-e" data-action="e"></span>' + '<span class="cropper-point point-n" data-action="n"></span>' + '<span class="cropper-point point-w" data-action="w"></span>' + '<span class="cropper-point point-s" data-action="s"></span>' + '<span class="cropper-point point-ne" data-action="ne"></span>' + '<span class="cropper-point point-nw" data-action="nw"></span>' + '<span class="cropper-point point-sw" data-action="sw"></span>' + '<span class="cropper-point point-se" data-action="se"></span>' + '</div>' + '</div>';
+    const TEMPLATE = '<div class="cropper-container">' + '<div class="cropper-wrap-box">' + '<div class="cropper-canvas"></div>' + '</div>' + '<div class="cropper-drag-box"></div>' + '<div class="cropper-crop-box">' + '<span class="cropper-view-box"></span>' + '<span class="cropper-dashed dashed-h"></span>' + '<span class="cropper-dashed dashed-v"></span>' + '<span class="cropper-center"></span>' + '<span class="cropper-face"></span>' + '<span class="cropper-line line-e" data-action="e"></span>' + '<span class="cropper-line line-n" data-action="n"></span>' + '<span class="cropper-line line-w" data-action="w"></span>' + '<span class="cropper-line line-s" data-action="s"></span>' + '<span class="cropper-point point-e" data-action="e"></span>' + '<span class="cropper-point point-n" data-action="n"></span>' + '<span class="cropper-point point-w" data-action="w"></span>' + '<span class="cropper-point point-s" data-action="s"></span>' + '<span class="cropper-point point-ne" data-action="ne"></span>' + '<span class="cropper-point point-nw" data-action="nw"></span>' + '<span class="cropper-point point-sw" data-action="sw"></span>' + '<span class="cropper-point point-se" data-action="se"></span>' + '</div>' + '</div>';
 
-    var REGEXP_DATA_URL_HEAD = /^data:.*,/;
-    var REGEXP_USERAGENT = /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i;
-    var navigator = typeof window !== 'undefined' ? window.navigator : null;
-    var IS_SAFARI_OR_UIWEBVIEW = navigator && REGEXP_USERAGENT.test(navigator.userAgent);
-    var fromCharCode = String.fromCharCode;
+    const REGEXP_DATA_URL_HEAD = /^data:.*,/;
+    const REGEXP_USERAGENT = /(Macintosh|iPhone|iPod|iPad).*AppleWebKit/i;
+    const navigator = typeof window !== 'undefined' ? window.navigator : null;
+    const IS_SAFARI_OR_UIWEBVIEW = navigator && REGEXP_USERAGENT.test(navigator.userAgent);
+    const fromCharCode = String.fromCharCode;
 
     function isNumber(n) {
         return typeof n === 'number' && !isNaN(n);
@@ -119,7 +119,7 @@ layui.define(['jquery'], function (exports) {
     }
 
     function toArray(obj, offset) {
-        var args = [];
+        const args = [];
 
         // This is necessary for IE8
         if (isNumber(offset)) {
@@ -131,12 +131,18 @@ layui.define(['jquery'], function (exports) {
 
     // Custom proxy to avoid jQuery's guid
     function proxy(fn, context) {
-        for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+        let args = Array(_len > 2 ? _len - 2 : 0);
+        let _key = 2;
+        let _len = arguments.length;
+        for (; _key < _len; _key++) {
             args[_key - 2] = arguments[_key];
         }
 
         return function () {
-            for (var _len2 = arguments.length, args2 = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            let args2 = Array(_len2);
+            let _len2 = arguments.length;
+            let _key2 = 0;
+            for (; _key2 < _len2; _key2++) {
                 args2[_key2] = arguments[_key2];
             }
 
@@ -145,7 +151,7 @@ layui.define(['jquery'], function (exports) {
     }
 
     function objectKeys(obj) {
-        var keys = [];
+        const keys = [];
 
         $.each(obj, function (key) {
             keys.push(key);
@@ -155,13 +161,13 @@ layui.define(['jquery'], function (exports) {
     }
 
     function isCrossOriginURL(url) {
-        var parts = url.match(/^(https?:)\/\/([^:/?#]+):?(\d*)/i);
+        const parts = url.match(/^(https?:)\/\/([^:/?#]+):?(\d*)/i);
 
         return parts && (parts[1] !== location.protocol || parts[2] !== location.hostname || parts[3] !== location.port);
     }
 
     function addTimestamp(url) {
-        var timestamp = 'timestamp=' + new Date().getTime();
+        const timestamp = 'timestamp=' + new Date().getTime();
 
         return url + (url.indexOf('?') === -1 ? '?' : '&') + timestamp;
     }
@@ -174,7 +180,7 @@ layui.define(['jquery'], function (exports) {
         }
 
         // IE8: Don't use `new Image()` here (#319)
-        var newImage = document.createElement('img');
+        const newImage = document.createElement('img');
 
         newImage.onload = function load() {
             callback(this.width, this.height);
@@ -184,12 +190,12 @@ layui.define(['jquery'], function (exports) {
     }
 
     function getTransform(options) {
-        var transforms = [];
-        var translateX = options.translateX;
-        var translateY = options.translateY;
-        var rotate = options.rotate;
-        var scaleX = options.scaleX;
-        var scaleY = options.scaleY;
+        const transforms = [];
+        const translateX = options.translateX;
+        const translateY = options.translateY;
+        const rotate = options.rotate;
+        const scaleX = options.scaleX;
+        const scaleY = options.scaleY;
 
         if (isNumber(translateX) && translateX !== 0) {
             transforms.push('translateX(' + translateX + 'px)');
@@ -216,15 +222,15 @@ layui.define(['jquery'], function (exports) {
     }
 
     function getRotatedSizes(data, isReversed) {
-        var deg = Math.abs(data.degree) % 180;
-        var arc = (deg > 90 ? 180 - deg : deg) * Math.PI / 180;
-        var sinArc = Math.sin(arc);
-        var cosArc = Math.cos(arc);
-        var width = data.width;
-        var height = data.height;
-        var aspectRatio = data.aspectRatio;
-        var newWidth = void 0;
-        var newHeight = void 0;
+        const deg = Math.abs(data.degree) % 180;
+        const arc = (deg > 90 ? 180 - deg : deg) * Math.PI / 180;
+        const sinArc = Math.sin(arc);
+        const cosArc = Math.cos(arc);
+        const width = data.width;
+        const height = data.height;
+        const aspectRatio = data.aspectRatio;
+        let newWidth = void 0;
+        let newHeight = void 0;
 
         if (!isReversed) {
             newWidth = width * cosArc + height * sinArc;
@@ -241,23 +247,23 @@ layui.define(['jquery'], function (exports) {
     }
 
     function getSourceCanvas(image, data, options) {
-        var canvas = $('<canvas>')[0];
-        var context = canvas.getContext('2d');
-        var dstX = 0;
-        var dstY = 0;
-        var dstWidth = data.naturalWidth;
-        var dstHeight = data.naturalHeight;
-        var rotate = data.rotate;
-        var scaleX = data.scaleX;
-        var scaleY = data.scaleY;
-        var scalable = isNumber(scaleX) && isNumber(scaleY) && (scaleX !== 1 || scaleY !== 1);
-        var rotatable = isNumber(rotate) && rotate !== 0;
-        var advanced = rotatable || scalable;
-        var canvasWidth = dstWidth * Math.abs(scaleX || 1);
-        var canvasHeight = dstHeight * Math.abs(scaleY || 1);
-        var translateX = void 0;
-        var translateY = void 0;
-        var rotated = void 0;
+        const canvas = $('<canvas>')[0];
+        const context = canvas.getContext('2d');
+        let dstX = 0;
+        let dstY = 0;
+        const dstWidth = data.naturalWidth;
+        const dstHeight = data.naturalHeight;
+        const rotate = data.rotate;
+        const scaleX = data.scaleX;
+        const scaleY = data.scaleY;
+        const scalable = isNumber(scaleX) && isNumber(scaleY) && (scaleX !== 1 || scaleY !== 1);
+        const rotatable = isNumber(rotate) && rotate !== 0;
+        const advanced = rotatable || scalable;
+        let canvasWidth = dstWidth * Math.abs(scaleX || 1);
+        let canvasHeight = dstHeight * Math.abs(scaleY || 1);
+        let translateX = void 0;
+        let translateY = void 0;
+        let rotated = void 0;
 
         if (scalable) {
             translateX = canvasWidth / 2;
@@ -318,8 +324,8 @@ layui.define(['jquery'], function (exports) {
     }
 
     function getStringFromCharCode(dataView, start, length) {
-        var str = '';
-        var i = void 0;
+        let str = '';
+        let i = void 0;
 
         for (i = start, length += start; i < length; i += 1) {
             str += fromCharCode(dataView.getUint8(i));
@@ -329,18 +335,18 @@ layui.define(['jquery'], function (exports) {
     }
 
     function getOrientation(arrayBuffer) {
-        var dataView = new DataView(arrayBuffer);
-        var length = dataView.byteLength;
-        var orientation = void 0;
-        var exifIDCode = void 0;
-        var tiffOffset = void 0;
-        var firstIFDOffset = void 0;
-        var littleEndian = void 0;
-        var endianness = void 0;
-        var app1Start = void 0;
-        var ifdStart = void 0;
-        var offset = void 0;
-        var i = void 0;
+        const dataView = new DataView(arrayBuffer);
+        let length = dataView.byteLength;
+        let orientation = void 0;
+        let exifIDCode = void 0;
+        let tiffOffset = void 0;
+        let firstIFDOffset = void 0;
+        let littleEndian = void 0;
+        let endianness = void 0;
+        let app1Start = void 0;
+        let ifdStart = void 0;
+        let offset = void 0;
+        let i = void 0;
 
         // Only handle JPEG image (start by 0xFFD8)
         if (dataView.getUint8(0) === 0xFF && dataView.getUint8(1) === 0xD8) {
@@ -403,12 +409,12 @@ layui.define(['jquery'], function (exports) {
     }
 
     function dataURLToArrayBuffer(dataURL) {
-        var base64 = dataURL.replace(REGEXP_DATA_URL_HEAD, '');
-        var binary = atob(base64);
-        var length = binary.length;
-        var arrayBuffer = new ArrayBuffer(length);
-        var dataView = new Uint8Array(arrayBuffer);
-        var i = void 0;
+        const base64 = dataURL.replace(REGEXP_DATA_URL_HEAD, '');
+        const binary = atob(base64);
+        const length = binary.length;
+        const arrayBuffer = new ArrayBuffer(length);
+        const dataView = new Uint8Array(arrayBuffer);
+        let i = void 0;
 
         for (i = 0; i < length; i += 1) {
             dataView[i] = binary.charCodeAt(i);
@@ -419,10 +425,10 @@ layui.define(['jquery'], function (exports) {
 
     // Only available for JPEG image
     function arrayBufferToDataURL(arrayBuffer) {
-        var dataView = new Uint8Array(arrayBuffer);
-        var length = dataView.length;
-        var base64 = '';
-        var i = void 0;
+        const dataView = new Uint8Array(arrayBuffer);
+        const length = dataView.length;
+        let base64 = '';
+        let i = void 0;
 
         for (i = 0; i < length; i += 1) {
             base64 += fromCharCode(dataView[i]);
@@ -431,9 +437,9 @@ layui.define(['jquery'], function (exports) {
         return 'data:image/jpeg;base64,' + btoa(base64);
     }
 
-    var render = {
+    const render = {
         render: function render() {
-            var self = this;
+            const self = this;
 
             self.initContainer();
             self.initCanvas();
@@ -446,12 +452,12 @@ layui.define(['jquery'], function (exports) {
             }
         },
         initContainer: function initContainer() {
-            var self = this;
-            var options = self.options;
-            var $this = self.$element;
-            var $container = self.$container;
-            var $cropper = self.$cropper;
-            var hidden = 'cropper-hidden';
+            const self = this;
+            const options = self.options;
+            const $this = self.$element;
+            const $container = self.$container;
+            const $cropper = self.$cropper;
+            const hidden = 'cropper-hidden';
 
             $cropper.addClass(hidden);
             $this.removeClass(hidden);
@@ -468,20 +474,20 @@ layui.define(['jquery'], function (exports) {
 
         // Canvas (image wrapper)
         initCanvas: function initCanvas() {
-            var self = this;
-            var viewMode = self.options.viewMode;
-            var container = self.container;
-            var containerWidth = container.width;
-            var containerHeight = container.height;
-            var image = self.image;
-            var imageNaturalWidth = image.naturalWidth;
-            var imageNaturalHeight = image.naturalHeight;
-            var is90Degree = Math.abs(image.rotate) % 180 === 90;
-            var naturalWidth = is90Degree ? imageNaturalHeight : imageNaturalWidth;
-            var naturalHeight = is90Degree ? imageNaturalWidth : imageNaturalHeight;
-            var aspectRatio = naturalWidth / naturalHeight;
-            var canvasWidth = containerWidth;
-            var canvasHeight = containerHeight;
+            const self = this;
+            const viewMode = self.options.viewMode;
+            const container = self.container;
+            const containerWidth = container.width;
+            const containerHeight = container.height;
+            const image = self.image;
+            const imageNaturalWidth = image.naturalWidth;
+            const imageNaturalHeight = image.naturalHeight;
+            const is90Degree = Math.abs(image.rotate) % 180 === 90;
+            const naturalWidth = is90Degree ? imageNaturalHeight : imageNaturalWidth;
+            const naturalHeight = is90Degree ? imageNaturalWidth : imageNaturalHeight;
+            const aspectRatio = naturalWidth / naturalHeight;
+            let canvasWidth = containerWidth;
+            let canvasHeight = containerHeight;
 
             if (containerHeight * aspectRatio > containerWidth) {
                 if (viewMode === 3) {
@@ -495,7 +501,7 @@ layui.define(['jquery'], function (exports) {
                 canvasWidth = containerHeight * aspectRatio;
             }
 
-            var canvas = {
+            const canvas = {
                 naturalWidth: naturalWidth,
                 naturalHeight: naturalHeight,
                 aspectRatio: aspectRatio,
@@ -515,20 +521,20 @@ layui.define(['jquery'], function (exports) {
             self.initialCanvas = $.extend({}, canvas);
         },
         limitCanvas: function limitCanvas(isSizeLimited, isPositionLimited) {
-            var self = this;
-            var options = self.options;
-            var viewMode = options.viewMode;
-            var container = self.container;
-            var containerWidth = container.width;
-            var containerHeight = container.height;
-            var canvas = self.canvas;
-            var aspectRatio = canvas.aspectRatio;
-            var cropBox = self.cropBox;
-            var cropped = self.cropped && cropBox;
+            const self = this;
+            const options = self.options;
+            const viewMode = options.viewMode;
+            const container = self.container;
+            const containerWidth = container.width;
+            const containerHeight = container.height;
+            const canvas = self.canvas;
+            const aspectRatio = canvas.aspectRatio;
+            const cropBox = self.cropBox;
+            const cropped = self.cropped && cropBox;
 
             if (isSizeLimited) {
-                var minCanvasWidth = Number(options.minCanvasWidth) || 0;
-                var minCanvasHeight = Number(options.minCanvasHeight) || 0;
+                let minCanvasWidth = Number(options.minCanvasWidth) || 0;
+                let minCanvasHeight = Number(options.minCanvasHeight) || 0;
 
                 if (viewMode) {
                     if (viewMode > 1) {
@@ -578,8 +584,8 @@ layui.define(['jquery'], function (exports) {
 
             if (isPositionLimited) {
                 if (viewMode) {
-                    var newCanvasLeft = containerWidth - canvas.width;
-                    var newCanvasTop = containerHeight - canvas.height;
+                    const newCanvasLeft = containerWidth - canvas.width;
+                    const newCanvasTop = containerHeight - canvas.height;
 
                     canvas.minLeft = Math.min(0, newCanvasLeft);
                     canvas.minTop = Math.min(0, newCanvasTop);
@@ -613,24 +619,24 @@ layui.define(['jquery'], function (exports) {
             }
         },
         renderCanvas: function renderCanvas(isChanged) {
-            var self = this;
-            var canvas = self.canvas;
-            var image = self.image;
-            var rotate = image.rotate;
-            var naturalWidth = image.naturalWidth;
-            var naturalHeight = image.naturalHeight;
+            const self = this;
+            const canvas = self.canvas;
+            const image = self.image;
+            const rotate = image.rotate;
+            const naturalWidth = image.naturalWidth;
+            const naturalHeight = image.naturalHeight;
 
             if (self.rotated) {
                 self.rotated = false;
 
                 // Computes rotated sizes with image sizes
-                var rotated = getRotatedSizes({
+                const rotated = getRotatedSizes({
                     width: image.width,
                     height: image.height,
                     degree: rotate
                 });
-                var aspectRatio = rotated.width / rotated.height;
-                var isSquareImage = image.aspectRatio === 1;
+                const aspectRatio = rotated.width / rotated.height;
+                const isSquareImage = image.aspectRatio === 1;
 
                 if (isSquareImage || aspectRatio !== canvas.aspectRatio) {
                     canvas.left -= (rotated.width - canvas.width) / 2;
@@ -643,7 +649,7 @@ layui.define(['jquery'], function (exports) {
 
                     // Computes rotated sizes with natural image sizes
                     if (isSquareImage && rotate % 90 || rotate % 180) {
-                        var rotated2 = getRotatedSizes({
+                        const rotated2 = getRotatedSizes({
                             width: naturalWidth,
                             height: naturalHeight,
                             degree: rotate
@@ -695,10 +701,10 @@ layui.define(['jquery'], function (exports) {
             }
         },
         renderImage: function renderImage(isChanged) {
-            var self = this;
-            var canvas = self.canvas;
-            var image = self.image;
-            var reversed = void 0;
+            const self = this;
+            const canvas = self.canvas;
+            const image = self.image;
+            let reversed = void 0;
 
             if (image.rotate) {
                 reversed = getRotatedSizes({
@@ -735,12 +741,12 @@ layui.define(['jquery'], function (exports) {
             }
         },
         initCropBox: function initCropBox() {
-            var self = this;
-            var options = self.options;
-            var canvas = self.canvas;
-            var aspectRatio = options.aspectRatio;
-            var autoCropArea = Number(options.autoCropArea) || 0.8;
-            var cropBox = {
+            const self = this;
+            const options = self.options;
+            const canvas = self.canvas;
+            const aspectRatio = options.aspectRatio;
+            const autoCropArea = Number(options.autoCropArea) || 0.8;
+            const cropBox = {
                 width: canvas.width,
                 height: canvas.height
             };
@@ -771,21 +777,21 @@ layui.define(['jquery'], function (exports) {
             self.initialCropBox = $.extend({}, cropBox);
         },
         limitCropBox: function limitCropBox(isSizeLimited, isPositionLimited) {
-            var self = this;
-            var options = self.options;
-            var aspectRatio = options.aspectRatio;
-            var container = self.container;
-            var containerWidth = container.width;
-            var containerHeight = container.height;
-            var canvas = self.canvas;
-            var cropBox = self.cropBox;
-            var limited = self.limited;
+            const self = this;
+            const options = self.options;
+            const aspectRatio = options.aspectRatio;
+            const container = self.container;
+            const containerWidth = container.width;
+            const containerHeight = container.height;
+            const canvas = self.canvas;
+            const cropBox = self.cropBox;
+            const limited = self.limited;
 
             if (isSizeLimited) {
-                var minCropBoxWidth = Number(options.minCropBoxWidth) || 0;
-                var minCropBoxHeight = Number(options.minCropBoxHeight) || 0;
-                var maxCropBoxWidth = Math.min(containerWidth, limited ? canvas.width : containerWidth);
-                var maxCropBoxHeight = Math.min(containerHeight, limited ? canvas.height : containerHeight);
+                let minCropBoxWidth = Number(options.minCropBoxWidth) || 0;
+                let minCropBoxHeight = Number(options.minCropBoxHeight) || 0;
+                let maxCropBoxWidth = Math.min(containerWidth, limited ? canvas.width : containerWidth);
+                let maxCropBoxHeight = Math.min(containerHeight, limited ? canvas.height : containerHeight);
 
                 // The min/maxCropBoxWidth/Height must be less than containerWidth/Height
                 minCropBoxWidth = Math.min(minCropBoxWidth, containerWidth);
@@ -833,12 +839,12 @@ layui.define(['jquery'], function (exports) {
             }
         },
         renderCropBox: function renderCropBox() {
-            var self = this;
-            var options = self.options;
-            var container = self.container;
-            var containerWidth = container.width;
-            var containerHeight = container.height;
-            var cropBox = self.cropBox;
+            const self = this;
+            const options = self.options;
+            const container = self.container;
+            const containerWidth = container.width;
+            const containerHeight = container.height;
+            const cropBox = self.cropBox;
 
             if (cropBox.width > cropBox.maxWidth || cropBox.width < cropBox.minWidth) {
                 cropBox.left = cropBox.oldLeft;
@@ -881,7 +887,7 @@ layui.define(['jquery'], function (exports) {
             }
         },
         output: function output() {
-            var self = this;
+            const self = this;
 
             self.preview();
 
@@ -891,14 +897,14 @@ layui.define(['jquery'], function (exports) {
         }
     };
 
-    var DATA_PREVIEW = 'preview';
+    const DATA_PREVIEW = 'preview';
 
-    var preview = {
+    const preview = {
         initPreview: function initPreview() {
-            var self = this;
-            var crossOrigin = self.crossOrigin;
-            var url = crossOrigin ? self.crossOriginUrl : self.url;
-            var image = document.createElement('img');
+            const self = this;
+            const crossOrigin = self.crossOrigin;
+            const url = crossOrigin ? self.crossOriginUrl : self.url;
+            const image = document.createElement('img');
 
             if (crossOrigin) {
                 image.crossOrigin = crossOrigin;
@@ -906,14 +912,14 @@ layui.define(['jquery'], function (exports) {
 
             image.src = url;
 
-            var $clone2 = $(image);
+            const $clone2 = $(image);
 
             self.$preview = $(self.options.preview);
             self.$clone2 = $clone2;
             self.$viewBox.html($clone2);
             self.$preview.each(function (i, element) {
-                var $this = $(element);
-                var img = document.createElement('img');
+                const $this = $(element);
+                const img = document.createElement('img');
 
                 // Save the original size for recover
                 $this.data(DATA_PREVIEW, {
@@ -941,8 +947,8 @@ layui.define(['jquery'], function (exports) {
         },
         resetPreview: function resetPreview() {
             this.$preview.each(function (i, element) {
-                var $this = $(element);
-                var data = $this.data(DATA_PREVIEW);
+                const $this = $(element);
+                const data = $this.data(DATA_PREVIEW);
 
                 $this.css({
                     width: data.width,
@@ -951,16 +957,16 @@ layui.define(['jquery'], function (exports) {
             });
         },
         preview: function preview() {
-            var self = this;
-            var image = self.image;
-            var canvas = self.canvas;
-            var cropBox = self.cropBox;
-            var cropBoxWidth = cropBox.width;
-            var cropBoxHeight = cropBox.height;
-            var width = image.width;
-            var height = image.height;
-            var left = cropBox.left - canvas.left - image.left;
-            var top = cropBox.top - canvas.top - image.top;
+            const self = this;
+            const image = self.image;
+            const canvas = self.canvas;
+            const cropBox = self.cropBox;
+            const cropBoxWidth = cropBox.width;
+            const cropBoxHeight = cropBox.height;
+            const width = image.width;
+            const height = image.height;
+            const left = cropBox.left - canvas.left - image.left;
+            const top = cropBox.top - canvas.top - image.top;
 
             if (!self.cropped || self.disabled) {
                 return;
@@ -976,13 +982,13 @@ layui.define(['jquery'], function (exports) {
             });
 
             self.$preview.each(function (i, element) {
-                var $this = $(element);
-                var data = $this.data(DATA_PREVIEW);
-                var originalWidth = data.width;
-                var originalHeight = data.height;
-                var newWidth = originalWidth;
-                var newHeight = originalHeight;
-                var ratio = 1;
+                const $this = $(element);
+                const data = $this.data(DATA_PREVIEW);
+                const originalWidth = data.width;
+                const originalHeight = data.height;
+                let newWidth = originalWidth;
+                let newHeight = originalHeight;
+                let ratio = 1;
 
                 if (cropBoxWidth) {
                     ratio = originalWidth / cropBoxWidth;
@@ -1011,27 +1017,27 @@ layui.define(['jquery'], function (exports) {
     };
 
     // Globals
-    var PointerEvent = typeof window !== 'undefined' ? window.PointerEvent : null;
+    const PointerEvent = typeof window !== 'undefined' ? window.PointerEvent : null;
 
     // Events
-    var EVENT_POINTER_DOWN = PointerEvent ? 'pointerdown' : 'touchstart mousedown';
-    var EVENT_POINTER_MOVE = PointerEvent ? 'pointermove' : 'touchmove mousemove';
-    var EVENT_POINTER_UP = PointerEvent ? ' pointerup pointercancel' : 'touchend touchcancel mouseup';
-    var EVENT_WHEEL = 'wheel mousewheel DOMMouseScroll';
-    var EVENT_DBLCLICK = 'dblclick';
-    var EVENT_RESIZE = 'resize';
-    var EVENT_CROP_START = 'cropstart';
-    var EVENT_CROP_MOVE = 'cropmove';
-    var EVENT_CROP_END = 'cropend';
-    var EVENT_CROP = 'crop';
-    var EVENT_ZOOM = 'zoom';
+    const EVENT_POINTER_DOWN = PointerEvent ? 'pointerdown' : 'touchstart mousedown';
+    const EVENT_POINTER_MOVE = PointerEvent ? 'pointermove' : 'touchmove mousemove';
+    const EVENT_POINTER_UP = PointerEvent ? ' pointerup pointercancel' : 'touchend touchcancel mouseup';
+    const EVENT_WHEEL = 'wheel mousewheel DOMMouseScroll';
+    const EVENT_DBLCLICK = 'dblclick';
+    const EVENT_RESIZE = 'resize';
+    const EVENT_CROP_START = 'cropstart';
+    const EVENT_CROP_MOVE = 'cropmove';
+    const EVENT_CROP_END = 'cropend';
+    const EVENT_CROP = 'crop';
+    const EVENT_ZOOM = 'zoom';
 
-    var events = {
+    const events = {
         bind: function bind() {
-            var self = this;
-            var options = self.options;
-            var $this = self.$element;
-            var $cropper = self.$cropper;
+            const self = this;
+            const options = self.options;
+            const $this = self.$element;
+            const $cropper = self.$cropper;
 
             if ($.isFunction(options.cropstart)) {
                 $this.on(EVENT_CROP_START, options.cropstart);
@@ -1070,10 +1076,10 @@ layui.define(['jquery'], function (exports) {
             }
         },
         unbind: function unbind() {
-            var self = this;
-            var options = self.options;
-            var $this = self.$element;
-            var $cropper = self.$cropper;
+            const self = this;
+            const options = self.options;
+            const $this = self.$element;
+            const $cropper = self.$cropper;
 
             if ($.isFunction(options.cropstart)) {
                 $this.off(EVENT_CROP_START, options.cropstart);
@@ -1113,13 +1119,13 @@ layui.define(['jquery'], function (exports) {
         }
     };
 
-    var REGEXP_ACTIONS = /^(e|w|s|n|se|sw|ne|nw|all|crop|move|zoom)$/;
+    const REGEXP_ACTIONS = /^(e|w|s|n|se|sw|ne|nw|all|crop|move|zoom)$/;
 
     function getPointer(_ref, endOnly) {
-        var pageX = _ref.pageX,
+        const pageX = _ref.pageX,
             pageY = _ref.pageY;
 
-        var end = {
+        const end = {
             endX: pageX,
             endY: pageY
         };
@@ -1134,25 +1140,25 @@ layui.define(['jquery'], function (exports) {
         }, end);
     }
 
-    var handlers = {
+    const handlers = {
         resize: function resize() {
-            var self = this;
-            var options = self.options;
-            var $container = self.$container;
-            var container = self.container;
-            var minContainerWidth = Number(options.minContainerWidth) || 200;
-            var minContainerHeight = Number(options.minContainerHeight) || 100;
+            const self = this;
+            const options = self.options;
+            const $container = self.$container;
+            const container = self.container;
+            const minContainerWidth = Number(options.minContainerWidth) || 200;
+            const minContainerHeight = Number(options.minContainerHeight) || 100;
 
             if (self.disabled || container.width === minContainerWidth || container.height === minContainerHeight) {
                 return;
             }
 
-            var ratio = $container.width() / container.width;
+            const ratio = $container.width() / container.width;
 
             // Resize when width changed or height changed
             if (ratio !== 1 || $container.height() !== container.height) {
-                var canvasData = void 0;
-                var cropBoxData = void 0;
+                let canvasData = void 0;
+                let cropBoxData = void 0;
 
                 if (options.restore) {
                     canvasData = self.getCanvasData();
@@ -1172,7 +1178,7 @@ layui.define(['jquery'], function (exports) {
             }
         },
         dblclick: function dblclick() {
-            var self = this;
+            const self = this;
 
             if (self.disabled || self.options.dragMode === 'none') {
                 return;
@@ -1181,9 +1187,9 @@ layui.define(['jquery'], function (exports) {
             self.setDragMode(self.$dragBox.hasClass('cropper-crop') ? 'move' : 'crop');
         },
         wheel: function wheel(event) {
-            var self = this;
-            var e = event.originalEvent || event;
-            var ratio = Number(self.options.wheelZoomRatio) || 0.1;
+            const self = this;
+            const e = event.originalEvent || event;
+            const ratio = Number(self.options.wheelZoomRatio) || 0.1;
 
             if (self.disabled) {
                 return;
@@ -1202,7 +1208,7 @@ layui.define(['jquery'], function (exports) {
                 self.wheeling = false;
             }, 50);
 
-            var delta = 1;
+            let delta = 1;
 
             if (e.deltaY) {
                 delta = e.deltaY > 0 ? 1 : -1;
@@ -1215,16 +1221,16 @@ layui.define(['jquery'], function (exports) {
             self.zoom(-delta * ratio, event);
         },
         cropStart: function cropStart(e) {
-            var self = this;
+            const self = this;
 
             if (self.disabled) {
                 return;
             }
 
-            var options = self.options;
-            var pointers = self.pointers;
-            var originalEvent = e.originalEvent;
-            var action = void 0;
+            const options = self.options;
+            const pointers = self.pointers;
+            const originalEvent = e.originalEvent;
+            let action = void 0;
 
             if (originalEvent && originalEvent.changedTouches) {
                 // Handle touch event
@@ -1264,15 +1270,15 @@ layui.define(['jquery'], function (exports) {
             }
         },
         cropMove: function cropMove(e) {
-            var self = this;
-            var action = self.action;
+            const self = this;
+            const action = self.action;
 
             if (self.disabled || !action) {
                 return;
             }
 
-            var pointers = self.pointers;
-            var originalEvent = e.originalEvent;
+            const pointers = self.pointers;
+            const originalEvent = e.originalEvent;
 
             e.preventDefault();
 
@@ -1294,15 +1300,15 @@ layui.define(['jquery'], function (exports) {
             self.change(e);
         },
         cropEnd: function cropEnd(e) {
-            var self = this;
+            const self = this;
 
             if (self.disabled) {
                 return;
             }
 
-            var action = self.action;
-            var pointers = self.pointers;
-            var originalEvent = e.originalEvent;
+            const action = self.action;
+            const pointers = self.pointers;
+            const originalEvent = e.originalEvent;
 
             if (originalEvent && originalEvent.changedTouches) {
                 $.each(originalEvent.changedTouches, function (i, touch) {
@@ -1335,30 +1341,30 @@ layui.define(['jquery'], function (exports) {
     };
 
     // Actions
-    var ACTION_EAST = 'e';
-    var ACTION_WEST = 'w';
-    var ACTION_SOUTH = 's';
-    var ACTION_NORTH = 'n';
-    var ACTION_SOUTH_EAST = 'se';
-    var ACTION_SOUTH_WEST = 'sw';
-    var ACTION_NORTH_EAST = 'ne';
-    var ACTION_NORTH_WEST = 'nw';
+    const ACTION_EAST = 'e';
+    const ACTION_WEST = 'w';
+    const ACTION_SOUTH = 's';
+    const ACTION_NORTH = 'n';
+    const ACTION_SOUTH_EAST = 'se';
+    const ACTION_SOUTH_WEST = 'sw';
+    const ACTION_NORTH_EAST = 'ne';
+    const ACTION_NORTH_WEST = 'nw';
 
     function getMaxZoomRatio(pointers) {
-        var pointers2 = $.extend({}, pointers);
-        var ratios = [];
+        const pointers2 = $.extend({}, pointers);
+        const ratios = [];
 
         $.each(pointers, function (pointerId, pointer) {
             delete pointers2[pointerId];
 
             $.each(pointers2, function (pointerId2, pointer2) {
-                var x1 = Math.abs(pointer.startX - pointer2.startX);
-                var y1 = Math.abs(pointer.startY - pointer2.startY);
-                var x2 = Math.abs(pointer.endX - pointer2.endX);
-                var y2 = Math.abs(pointer.endY - pointer2.endY);
-                var z1 = Math.sqrt(x1 * x1 + y1 * y1);
-                var z2 = Math.sqrt(x2 * x2 + y2 * y2);
-                var ratio = (z2 - z1) / z1;
+                const x1 = Math.abs(pointer.startX - pointer2.startX);
+                const y1 = Math.abs(pointer.startY - pointer2.startY);
+                const x2 = Math.abs(pointer.endX - pointer2.endX);
+                const y2 = Math.abs(pointer.endY - pointer2.endY);
+                const z1 = Math.sqrt(x1 * x1 + y1 * y1);
+                const z2 = Math.sqrt(x2 * x2 + y2 * y2);
+                const ratio = (z2 - z1) / z1;
 
                 ratios.push(ratio);
             });
@@ -1371,29 +1377,29 @@ layui.define(['jquery'], function (exports) {
         return ratios[0];
     }
 
-    var change = {
+    const change = {
         change: function change(e) {
-            var self = this;
-            var options = self.options;
-            var pointers = self.pointers;
-            var pointer = pointers[objectKeys(pointers)[0]];
-            var container = self.container;
-            var canvas = self.canvas;
-            var cropBox = self.cropBox;
-            var action = self.action;
-            var aspectRatio = options.aspectRatio;
-            var width = cropBox.width;
-            var height = cropBox.height;
-            var left = cropBox.left;
-            var top = cropBox.top;
-            var right = left + width;
-            var bottom = top + height;
-            var minLeft = 0;
-            var minTop = 0;
-            var maxWidth = container.width;
-            var maxHeight = container.height;
-            var renderable = true;
-            var offset = void 0;
+            const self = this;
+            const options = self.options;
+            const pointers = self.pointers;
+            const pointer = pointers[objectKeys(pointers)[0]];
+            const container = self.container;
+            const canvas = self.canvas;
+            const cropBox = self.cropBox;
+            let action = self.action;
+            let aspectRatio = options.aspectRatio;
+            let width = cropBox.width;
+            let height = cropBox.height;
+            let left = cropBox.left;
+            let top = cropBox.top;
+            const right = left + width;
+            const bottom = top + height;
+            let minLeft = 0;
+            let minTop = 0;
+            let maxWidth = container.width;
+            let maxHeight = container.height;
+            let renderable = true;
+            let offset = void 0;
 
             // Locking aspect ratio in "free mode" by holding shift key (#259)
             if (!aspectRatio && e.shiftKey) {
@@ -1407,7 +1413,7 @@ layui.define(['jquery'], function (exports) {
                 maxHeight = minTop + Math.min(container.height, canvas.height, canvas.top + canvas.height);
             }
 
-            var range = {
+            const range = {
                 x: pointer.endX - pointer.startX,
                 y: pointer.endY - pointer.startY
             };
@@ -1419,7 +1425,7 @@ layui.define(['jquery'], function (exports) {
                     top += range.y;
                     break;
 
-                    // Resize crop box
+                // Resize crop box
                 case ACTION_EAST:
                     if (range.x >= 0 && (right >= maxWidth || aspectRatio && (top <= minTop || bottom >= maxHeight))) {
                         renderable = false;
@@ -1702,19 +1708,19 @@ layui.define(['jquery'], function (exports) {
 
                     break;
 
-                    // Move canvas
+                // Move canvas
                 case 'move':
                     self.move(range.x, range.y);
                     renderable = false;
                     break;
 
-                    // Zoom canvas
+                // Zoom canvas
                 case 'zoom':
                     self.zoom(getMaxZoomRatio(pointers), e.originalEvent);
                     renderable = false;
                     break;
 
-                    // Create crop box
+                // Create crop box
                 case 'crop':
                     if (!range.x || !range.y) {
                         renderable = false;
@@ -1773,12 +1779,12 @@ layui.define(['jquery'], function (exports) {
     function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length) ; i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
     function getPointersCenter(pointers) {
-        var pageX = 0;
-        var pageY = 0;
-        var count = 0;
+        let pageX = 0;
+        let pageY = 0;
+        let count = 0;
 
         $.each(pointers, function (i, _ref) {
-            var startX = _ref.startX,
+            const startX = _ref.startX,
                 startY = _ref.startY;
 
             pageX += startX;
@@ -1795,10 +1801,10 @@ layui.define(['jquery'], function (exports) {
         };
     }
 
-    var methods = {
+    const methods = {
         // Show the crop box manually
         crop: function crop() {
-            var self = this;
+            const self = this;
 
             if (!self.ready || self.disabled) {
                 return;
@@ -1821,7 +1827,7 @@ layui.define(['jquery'], function (exports) {
 
         // Reset the image and crop box to their initial states
         reset: function reset() {
-            var self = this;
+            const self = this;
 
             if (!self.ready || self.disabled) {
                 return;
@@ -1841,7 +1847,7 @@ layui.define(['jquery'], function (exports) {
 
         // Clear the crop box
         clear: function clear() {
-            var self = this;
+            const self = this;
 
             if (!self.cropped || self.disabled) {
                 return;
@@ -1874,7 +1880,7 @@ layui.define(['jquery'], function (exports) {
          * @param {Boolean} onlyColorChanged (optional)
          */
         replace: function replace(url, onlyColorChanged) {
-            var self = this;
+            const self = this;
 
             if (!self.disabled && url) {
                 if (self.isImg) {
@@ -1903,7 +1909,7 @@ layui.define(['jquery'], function (exports) {
 
         // Enable (unfreeze) the cropper
         enable: function enable() {
-            var self = this;
+            const self = this;
 
             if (self.ready) {
                 self.disabled = false;
@@ -1914,7 +1920,7 @@ layui.define(['jquery'], function (exports) {
 
         // Disable (freeze) the cropper
         disable: function disable() {
-            var self = this;
+            const self = this;
 
             if (self.ready) {
                 self.disabled = true;
@@ -1925,8 +1931,8 @@ layui.define(['jquery'], function (exports) {
 
         // Destroy the cropper and remove the instance from the image
         destroy: function destroy() {
-            var self = this;
-            var $this = self.$element;
+            const self = this;
+            const $this = self.$element;
 
             if (self.loaded) {
                 if (self.isImg && self.replaced) {
@@ -1952,8 +1958,8 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} offsetY (optional)
          */
         move: function move(offsetX, offsetY) {
-            var self = this;
-            var canvas = self.canvas;
+            const self = this;
+            const canvas = self.canvas;
 
             self.moveTo(isUndefined(offsetX) ? offsetX : canvas.left + Number(offsetX), isUndefined(offsetY) ? offsetY : canvas.top + Number(offsetY));
         },
@@ -1966,9 +1972,9 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} y (optional)
          */
         moveTo: function moveTo(x, y) {
-            var self = this;
-            var canvas = self.canvas;
-            var changed = false;
+            const self = this;
+            const canvas = self.canvas;
+            let changed = false;
 
             // If "y" is not present, its default value is "x"
             if (isUndefined(y)) {
@@ -2003,8 +2009,8 @@ layui.define(['jquery'], function (exports) {
          * @param {jQuery Event} _event (private)
          */
         zoom: function zoom(ratio, _event) {
-            var self = this;
-            var canvas = self.canvas;
+            const self = this;
+            const canvas = self.canvas;
 
             ratio = Number(ratio);
 
@@ -2025,21 +2031,21 @@ layui.define(['jquery'], function (exports) {
          * @param {jQuery Event} _event (private)
          */
         zoomTo: function zoomTo(ratio, _event) {
-            var self = this;
-            var options = self.options;
-            var pointers = self.pointers;
-            var canvas = self.canvas;
-            var width = canvas.width;
-            var height = canvas.height;
-            var naturalWidth = canvas.naturalWidth;
-            var naturalHeight = canvas.naturalHeight;
+            const self = this;
+            const options = self.options;
+            const pointers = self.pointers;
+            const canvas = self.canvas;
+            const width = canvas.width;
+            const height = canvas.height;
+            const naturalWidth = canvas.naturalWidth;
+            const naturalHeight = canvas.naturalHeight;
 
             ratio = Number(ratio);
 
             if (ratio >= 0 && self.ready && !self.disabled && options.zoomable) {
-                var newWidth = naturalWidth * ratio;
-                var newHeight = naturalHeight * ratio;
-                var originalEvent = void 0;
+                const newWidth = naturalWidth * ratio;
+                const newHeight = naturalHeight * ratio;
+                let originalEvent = void 0;
 
                 if (_event) {
                     originalEvent = _event.originalEvent;
@@ -2082,7 +2088,7 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} degree
          */
         rotate: function rotate(degree) {
-            var self = this;
+            const self = this;
 
             self.rotateTo((self.image.rotate || 0) + Number(degree));
         },
@@ -2095,7 +2101,7 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} degree
          */
         rotateTo: function rotateTo(degree) {
-            var self = this;
+            const self = this;
 
             degree = Number(degree);
 
@@ -2115,9 +2121,9 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} scaleY (optional)
          */
         scale: function scale(scaleX, scaleY) {
-            var self = this;
-            var image = self.image;
-            var changed = false;
+            const self = this;
+            const image = self.image;
+            let changed = false;
 
             // If "scaleY" is not present, its default value is "scaleX"
             if (isUndefined(scaleY)) {
@@ -2151,8 +2157,8 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} scaleX
          */
         scaleX: function scaleX(_scaleX) {
-            var self = this;
-            var scaleY = self.image.scaleY;
+            const self = this;
+            const scaleY = self.image.scaleY;
 
             self.scale(_scaleX, isNumber(scaleY) ? scaleY : 1);
         },
@@ -2164,8 +2170,8 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} scaleY
          */
         scaleY: function scaleY(_scaleY) {
-            var self = this;
-            var scaleX = self.image.scaleX;
+            const self = this;
+            const scaleX = self.image.scaleX;
 
             self.scale(isNumber(scaleX) ? scaleX : 1, _scaleY);
         },
@@ -2178,13 +2184,13 @@ layui.define(['jquery'], function (exports) {
          * @return {Object} data
          */
         getData: function getData(isRounded) {
-            var self = this;
-            var options = self.options;
-            var image = self.image;
-            var canvas = self.canvas;
-            var cropBox = self.cropBox;
-            var ratio = void 0;
-            var data = void 0;
+            const self = this;
+            const options = self.options;
+            const image = self.image;
+            const canvas = self.canvas;
+            const cropBox = self.cropBox;
+            let ratio = void 0;
+            let data = void 0;
 
             if (self.ready && self.cropped) {
                 data = {
@@ -2228,14 +2234,14 @@ layui.define(['jquery'], function (exports) {
          * @param {Object} data
          */
         setData: function setData(data) {
-            var self = this;
-            var options = self.options;
-            var image = self.image;
-            var canvas = self.canvas;
-            var cropBoxData = {};
-            var rotated = void 0;
-            var isScaled = void 0;
-            var ratio = void 0;
+            const self = this;
+            const options = self.options;
+            const image = self.image;
+            const canvas = self.canvas;
+            const cropBoxData = {};
+            let rotated = void 0;
+            let isScaled = void 0;
+            let ratio = void 0;
 
             if ($.isFunction(data)) {
                 data = data.call(self.element);
@@ -2317,9 +2323,9 @@ layui.define(['jquery'], function (exports) {
          * @return {Object} data
          */
         getCanvasData: function getCanvasData() {
-            var self = this;
-            var canvas = self.canvas;
-            var data = {};
+            const self = this;
+            const canvas = self.canvas;
+            const data = {};
 
             if (self.ready) {
                 $.each(['left', 'top', 'width', 'height', 'naturalWidth', 'naturalHeight'], function (i, n) {
@@ -2337,9 +2343,9 @@ layui.define(['jquery'], function (exports) {
          * @param {Object} data
          */
         setCanvasData: function setCanvasData(data) {
-            var self = this;
-            var canvas = self.canvas;
-            var aspectRatio = canvas.aspectRatio;
+            const self = this;
+            const canvas = self.canvas;
+            const aspectRatio = canvas.aspectRatio;
 
             if ($.isFunction(data)) {
                 data = data.call(self.$element);
@@ -2373,8 +2379,8 @@ layui.define(['jquery'], function (exports) {
          * @return {Object} data
          */
         getCropBoxData: function getCropBoxData() {
-            var self = this;
-            var cropBox = self.cropBox;
+            const self = this;
+            const cropBox = self.cropBox;
 
             return self.ready && self.cropped ? {
                 left: cropBox.left,
@@ -2391,11 +2397,11 @@ layui.define(['jquery'], function (exports) {
          * @param {Object} data
          */
         setCropBoxData: function setCropBoxData(data) {
-            var self = this;
-            var cropBox = self.cropBox;
-            var aspectRatio = self.options.aspectRatio;
-            var widthChanged = void 0;
-            var heightChanged = void 0;
+            const self = this;
+            const cropBox = self.cropBox;
+            const aspectRatio = self.options.aspectRatio;
+            let widthChanged = void 0;
+            let heightChanged = void 0;
 
             if ($.isFunction(data)) {
                 data = data.call(self.$element);
@@ -2440,7 +2446,7 @@ layui.define(['jquery'], function (exports) {
          * @return {HTMLCanvasElement} canvas
          */
         getCroppedCanvas: function getCroppedCanvas(options) {
-            var self = this;
+            const self = this;
 
             if (!self.ready || !window.HTMLCanvasElement) {
                 return null;
@@ -2454,13 +2460,13 @@ layui.define(['jquery'], function (exports) {
                 return getSourceCanvas(self.$clone[0], self.image, options);
             }
 
-            var data = self.getData();
-            var originalWidth = data.width;
-            var originalHeight = data.height;
-            var aspectRatio = originalWidth / originalHeight;
-            var scaledWidth = void 0;
-            var scaledHeight = void 0;
-            var scaledRatio = void 0;
+            const data = self.getData();
+            const originalWidth = data.width;
+            const originalHeight = data.height;
+            const aspectRatio = originalWidth / originalHeight;
+            let scaledWidth = void 0;
+            let scaledHeight = void 0;
+            let scaledRatio = void 0;
 
             if ($.isPlainObject(options)) {
                 scaledWidth = options.width;
@@ -2476,11 +2482,11 @@ layui.define(['jquery'], function (exports) {
             }
 
             // The canvas element will use `Math.Math.floor` on a float number, so Math.floor first
-            var canvasWidth = Math.floor(scaledWidth || originalWidth);
-            var canvasHeight = Math.floor(scaledHeight || originalHeight);
+            const canvasWidth = Math.floor(scaledWidth || originalWidth);
+            const canvasHeight = Math.floor(scaledHeight || originalHeight);
 
-            var canvas = $('<canvas>')[0];
-            var context = canvas.getContext('2d');
+            const canvas = $('<canvas>')[0];
+            const context = canvas.getContext('2d');
 
             canvas.width = canvasWidth;
             canvas.height = canvasHeight;
@@ -2491,24 +2497,24 @@ layui.define(['jquery'], function (exports) {
             }
 
             // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D.drawImage
-            var parameters = function () {
-                var source = getSourceCanvas(self.$clone[0], self.image, options);
-                var sourceWidth = source.width;
-                var sourceHeight = source.height;
-                var canvasData = self.canvas;
-                var params = [source];
+            const parameters = function () {
+                const source = getSourceCanvas(self.$clone[0], self.image, options);
+                const sourceWidth = source.width;
+                const sourceHeight = source.height;
+                const canvasData = self.canvas;
+                const params = [source];
 
                 // Source canvas
-                var srcX = data.x + canvasData.naturalWidth * (Math.abs(data.scaleX || 1) - 1) / 2;
-                var srcY = data.y + canvasData.naturalHeight * (Math.abs(data.scaleY || 1) - 1) / 2;
-                var srcWidth = void 0;
-                var srcHeight = void 0;
+                let srcX = data.x + canvasData.naturalWidth * (Math.abs(data.scaleX || 1) - 1) / 2;
+                let srcY = data.y + canvasData.naturalHeight * (Math.abs(data.scaleY || 1) - 1) / 2;
+                let srcWidth = void 0;
+                let srcHeight = void 0;
 
                 // Destination canvas
-                var dstX = void 0;
-                var dstY = void 0;
-                var dstWidth = void 0;
-                var dstHeight = void 0;
+                let dstX = void 0;
+                let dstY = void 0;
+                let dstWidth = void 0;
+                let dstHeight = void 0;
 
                 if (srcX <= -originalWidth || srcX > sourceWidth) {
                     srcX = 0;
@@ -2579,8 +2585,8 @@ layui.define(['jquery'], function (exports) {
          * @param {Number} aspectRatio
          */
         setAspectRatio: function setAspectRatio(aspectRatio) {
-            var self = this;
-            var options = self.options;
+            const self = this;
+            const options = self.options;
 
             if (!self.disabled && !isUndefined(aspectRatio)) {
                 // 0 -> NaN
@@ -2603,10 +2609,10 @@ layui.define(['jquery'], function (exports) {
          * @param {String} mode (optional)
          */
         setDragMode: function setDragMode(mode) {
-            var self = this;
-            var options = self.options;
-            var croppable = void 0;
-            var movable = void 0;
+            const self = this;
+            const options = self.options;
+            let croppable = void 0;
+            let movable = void 0;
 
             if (self.loaded && !self.disabled) {
                 croppable = mode === 'crop';
@@ -2623,19 +2629,35 @@ layui.define(['jquery'], function (exports) {
         }
     };
 
-    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+    const _createClass = function () {
+        function defineProperties(target, props) {
+            for (let i = 0; i < props.length; i++) {
+                const descriptor = props[i];
+                descriptor.enumerable = descriptor.enumerable || false;
+                descriptor.configurable = true;
+                if ("value" in descriptor) descriptor.writable = true;
+                Object.defineProperty(target, descriptor.key, descriptor);
+            }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+            if (protoProps) defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) defineProperties(Constructor, staticProps);
+            return Constructor;
+        };
+    }();
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    var CLASS_HIDDEN = 'cropper-hidden';
-    var REGEXP_DATA_URL = /^data:/;
-    var REGEXP_DATA_URL_JPEG = /^data:image\/jpeg;base64,/;
+    const CLASS_HIDDEN = 'cropper-hidden';
+    const REGEXP_DATA_URL = /^data:/;
+    const REGEXP_DATA_URL_JPEG = /^data:image\/jpeg;base64,/;
 
-    var Cropper = function () {
+    const Cropper = function () {
         function Cropper(element, options) {
             _classCallCheck(this, Cropper);
 
-            var self = this;
+            const self = this;
 
             self.$element = $(element);
             self.options = $.extend({}, DEFAULTS, $.isPlainObject(options) && options);
@@ -2659,9 +2681,9 @@ layui.define(['jquery'], function (exports) {
         _createClass(Cropper, [{
             key: 'init',
             value: function init() {
-                var self = this;
-                var $this = self.$element;
-                var url = void 0;
+                const self = this;
+                const $this = self.$element;
+                let url = void 0;
 
                 if ($this.is('img')) {
                     self.isImg = true;
@@ -2689,7 +2711,7 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'trigger',
             value: function trigger(type, data) {
-                var e = $.Event(type, data);
+                const e = $.Event(type, data);
 
                 this.$element.trigger(e);
 
@@ -2698,9 +2720,9 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'load',
             value: function load(url) {
-                var self = this;
-                var options = self.options;
-                var $this = self.$element;
+                const self = this;
+                const options = self.options;
+                const $this = self.$element;
 
                 if (!url) {
                     return;
@@ -2724,7 +2746,7 @@ layui.define(['jquery'], function (exports) {
                     return;
                 }
 
-                var xhr = new XMLHttpRequest();
+                const xhr = new XMLHttpRequest();
 
                 xhr.onerror = $.proxy(function () {
                     self.clone();
@@ -2746,13 +2768,13 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'read',
             value: function read(arrayBuffer) {
-                var self = this;
-                var options = self.options;
-                var orientation = getOrientation(arrayBuffer);
-                var image = self.image;
-                var rotate = 0;
-                var scaleX = 1;
-                var scaleY = 1;
+                const self = this;
+                const options = self.options;
+                const orientation = getOrientation(arrayBuffer);
+                const image = self.image;
+                let rotate = 0;
+                let scaleX = 1;
+                let scaleY = 1;
 
                 if (orientation > 1) {
                     self.url = arrayBufferToDataURL(arrayBuffer);
@@ -2763,34 +2785,34 @@ layui.define(['jquery'], function (exports) {
                             scaleX = -1;
                             break;
 
-                            // rotate left 180°
+                        // rotate left 180°
                         case 3:
                             rotate = -180;
                             break;
 
-                            // flip vertical
+                        // flip vertical
                         case 4:
                             scaleY = -1;
                             break;
 
-                            // flip vertical + rotate right 90°
+                        // flip vertical + rotate right 90°
                         case 5:
                             rotate = 90;
                             scaleY = -1;
                             break;
 
-                            // rotate right 90°
+                        // rotate right 90°
                         case 6:
                             rotate = 90;
                             break;
 
-                            // flip horizontal + rotate right 90°
+                        // flip horizontal + rotate right 90°
                         case 7:
                             rotate = 90;
                             scaleX = -1;
                             break;
 
-                            // rotate left 90°
+                        // rotate left 90°
                         case 8:
                             rotate = -90;
                             break;
@@ -2813,12 +2835,12 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'clone',
             value: function clone() {
-                var self = this;
-                var options = self.options;
-                var $this = self.$element;
-                var url = self.url;
-                var crossOrigin = '';
-                var crossOriginUrl = void 0;
+                const self = this;
+                const options = self.options;
+                const $this = self.$element;
+                const url = self.url;
+                let crossOrigin = '';
+                let crossOriginUrl = void 0;
 
                 if (options.checkCrossOrigin && isCrossOriginURL(url)) {
                     crossOrigin = $this.prop('crossOrigin');
@@ -2836,7 +2858,7 @@ layui.define(['jquery'], function (exports) {
                 self.crossOrigin = crossOrigin;
                 self.crossOriginUrl = crossOriginUrl;
 
-                var image = document.createElement('img');
+                const image = document.createElement('img');
 
                 if (crossOrigin) {
                     image.crossOrigin = crossOrigin;
@@ -2844,7 +2866,7 @@ layui.define(['jquery'], function (exports) {
 
                 image.src = crossOriginUrl || url;
 
-                var $clone = $(image);
+                const $clone = $(image);
 
                 self.$clone = $clone;
 
@@ -2861,9 +2883,9 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'start',
             value: function start() {
-                var self = this;
-                var $clone = self.$clone;
-                var $image = self.$element;
+                const self = this;
+                const $clone = self.$clone;
+                let $image = self.$element;
 
                 if (!self.isImg) {
                     $clone.off('error', self.stop);
@@ -2884,7 +2906,7 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'stop',
             value: function stop() {
-                var self = this;
+                const self = this;
 
                 self.$clone.remove();
                 self.$clone = null;
@@ -2892,10 +2914,10 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'build',
             value: function build() {
-                var self = this;
-                var options = self.options;
-                var $this = self.$element;
-                var $clone = self.$clone;
+                const self = this;
+                const options = self.options;
+                const $this = self.$element;
+                const $clone = self.$clone;
 
                 if (!self.loaded) {
                     return;
@@ -2906,9 +2928,9 @@ layui.define(['jquery'], function (exports) {
                     self.unbuild();
                 }
 
-                var $cropper = $(TEMPLATE);
-                var $cropBox = $cropper.find('.cropper-crop-box');
-                var $face = $cropBox.find('.cropper-face');
+                const $cropper = $(TEMPLATE);
+                const $cropBox = $cropper.find('.cropper-crop-box');
+                const $face = $cropBox.find('.cropper-face');
 
                 // Create cropper elements
                 self.$container = $this.parent();
@@ -2986,7 +3008,7 @@ layui.define(['jquery'], function (exports) {
         }, {
             key: 'unbuild',
             value: function unbuild() {
-                var self = this;
+                const self = this;
 
                 if (!self.ready) {
                     return;
@@ -3039,31 +3061,34 @@ layui.define(['jquery'], function (exports) {
     $.extend(Cropper.prototype, change);
     $.extend(Cropper.prototype, methods);
 
-    var NAMESPACE = 'cropper';
-    var OtherCropper = $.fn.cropper;
+    const NAMESPACE = 'cropper';
+    const OtherCropper = $.fn.cropper;
 
     $.fn.cropper = function jQueryCropper(option) {
-        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        let args = Array(_len > 1 ? _len - 1 : 0);
+        let _len = arguments.length;
+        let _key = 1;
+        for (; _key < _len; _key++) {
             args[_key - 1] = arguments[_key];
         }
 
-        var result = void 0;
+        let result = void 0;
 
         this.each(function (i, element) {
-            var $this = $(element);
-            var data = $this.data(NAMESPACE);
+            const $this = $(element);
+            let data = $this.data(NAMESPACE);
 
             if (!data) {
                 if (/destroy/.test(option)) {
                     return;
                 }
 
-                var options = $.extend({}, $this.data(), $.isPlainObject(option) && option);
+                const options = $.extend({}, $this.data(), $.isPlainObject(option) && option);
                 $this.data(NAMESPACE, data = new Cropper(element, options));
             }
 
             if (typeof option === 'string') {
-                var fn = data[option];
+                const fn = data[option];
 
                 if ($.isFunction(fn)) {
                     result = fn.apply(data, args);
