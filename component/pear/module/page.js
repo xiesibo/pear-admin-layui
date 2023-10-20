@@ -17,6 +17,7 @@ layui.define(['jquery', 'element'], function (exports) {
 		var option = {
 			elem: opt.elem,
 			url: opt.url,
+			path: opt.path,
 			width: opt.width || "100%",
 			height: opt.height || "100%",
 			title: opt.title
@@ -51,6 +52,7 @@ layui.define(['jquery', 'element'], function (exports) {
 				}
 			});
 		}
+		$('.pear-page-title .breadcrumb').html(options.path);	
 		$frame.attr("type", options.type);
 		$frame.attr("href", options.href);
 	}
@@ -95,7 +97,7 @@ layui.define(['jquery', 'element'], function (exports) {
 
 	function renderContent(option) {
 
-		$("#" + option.elem).html(`
+	/*	$("#" + option.elem).html(`
 			<div class='pear-page'>
 				<div class='pear-page-content' type='${option.type}' href='${option.url}'></div>
 				<div class="pear-page-loading">
@@ -107,6 +109,15 @@ layui.define(['jquery', 'element'], function (exports) {
 					</div>
 				</div>
 			</div>`);
+	*/
+		$("#" + option.elem).html(`
+			<div class='pear-page'>
+			    <ul class="pear-page-title">
+                  <li class="dot"></li>
+                  <li class="breadcrumb">${option.title}</li>
+                </ul>
+				<div class='pear-page-content' type='${option.type}' href='${option.url}'></div>
+			</div>`);	
 
 		var $frame = $("#" + option.elem).find(".pear-page-content");
 

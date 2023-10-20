@@ -51,6 +51,15 @@
     color: var(--global-primary-color) !important;
 }
 
+.pear-admin-dark .pear-page-title{
+   background-color: #141414 !important;
+   border: #141414 1px solid;   
+}
+
+.pear-admin-dark .pear-page-title .breadcrumb{
+	color: #fff !important;
+}
+
 /** side */
 .pear-admin-dark .layui-side {
     box-shadow: 0 3px 4px rgba(0, 0, 0, .6) !important;

@@ -262,7 +262,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyFrame.changePage({ href: data.menuUrl, type: data.menuOpenType });
+							bodyFrame.changePage({ href: data.menuUrl, type: data.menuOpenType, path:data.menuPath  });
 						}
 						compatible()
 					})
@@ -380,7 +380,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				this.footer(footer);
 			}
 
-			this.footer = function (footer) {
+			/*this.footer = function (footer) {
 				var bodyDOM = $(".pear-admin .layui-body");
 				var footerDOM = $(".pear-admin .layui-footer");
 				if (footer === true || footer === "true") {
@@ -389,6 +389,18 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				} else {
 					footerDOM.addClass("close");
 					bodyDOM.css("bottom", "");
+				}
+			}*/
+
+			this.footer = function (footer) {
+				var bodyDOM = $("#content");				
+				var footerDOM = $(".pear-admin .layui-footer");
+				if (footer === true || footer === "true") {
+					footerDOM.removeClass("close");
+					bodyDOM.css({"height": "calc(100% - 44px)"});
+				} else {
+					footerDOM.addClass("close");
+					bodyDOM.css({"height": "calc(100% - 0px)"});
 				}
 			}
 

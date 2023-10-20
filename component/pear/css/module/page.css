@@ -5,7 +5,7 @@
 	height: 100%;
 }
 
-.pear-page .dot {
+/*.pear-page .dot {
 	width: 5px;
 	height: 24px;
 	background-color: #5FB878;
@@ -20,6 +20,32 @@
 	line-height: 40px;
 	background-color: white;
 	border: whitesmoke 1px solid;
+}*/
+
+.pear-page .dot {
+	width: 5px;
+	height: 24px;
+	background-color: var(--global-primary-color);
+	margin-top: 8px;
+	margin-left: 15px;
+	border-radius: 2px;
+	display: inline-block;
+}
+
+.pear-page .pear-page-title {
+	height: 40px;
+	line-height: 40px;
+	background-color: white; 
+	border: whitesmoke 1px solid;
+}
+
+.pear-page .breadcrumb {
+	position: absolute;
+	margin-top: 0px;
+	margin-left: 12px;
+	color: dimgray;
+	display: inline-block;
+	letter-spacing: 2px;
 }
 
 .pear-page .pear-page-content,
