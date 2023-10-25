@@ -458,7 +458,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 	function downShow(option) {
 		$("body #" + option.elem).on("click", "a[menu-type='0']", function () {
 			if (!$("#" + option.elem).is(".pear-nav-mini")) {
-				var superEle = $(this).parent();
 				var ele = $(this).next('.layui-nav-child');
 				var heights = ele.children("dd").length * 48;
 
@@ -484,7 +483,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 						});
 					});
 				} else {
-					$(this).parent().addClass("layui-nav-itemed");
 					ele.animate({
 						height: "0px"
 					}, 240, function () {
