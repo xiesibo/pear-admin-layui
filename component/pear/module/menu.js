@@ -454,7 +454,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 						});
 					});
 				} else {
-					$(this).parent().addClass("layui-nav-itemed");
 					ele.animate({
 						height: "0px"
 					}, 240, function () {
