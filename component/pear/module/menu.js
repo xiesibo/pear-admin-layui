@@ -252,13 +252,12 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			}
 		}
 		element.init();
-		downShow(option);
 		option.done();
 	}
 
 	function createMenu(option) {
 		var menuHtml = '<div style="height:100%!important;" class="pear-side-scroll layui-side-scroll ' + option.theme + '"><ul lay-filter="' + option.elem +
-			'" class="layui-nav arrow   pear-menu layui-nav-tree pear-nav-tree">'
+			'" class="layui-nav arrow   pear-menu layui-nav-tree pear-nav-tree" '+ (option.accordion ? "lay-accordion" : "") +'>'
 		$.each(option.data, function (i, item) {
 			var content = '<li class="layui-nav-item" >';
 			if (i == option.defaultOpen) {
@@ -423,48 +422,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		}
 		content += '</dl>';
 		return content;
-	}
-
-	function downShow(option) {
-		$("body #" + option.elem).on("click", "a[menu-type='0']", function () {
-			if (!$("#" + option.elem).is(".pear-nav-mini")) {
-				var superEle = $(this).parent();
-				var ele = $(this).next('.layui-nav-child');
-				var heights = ele.children("dd").length * 48;
-
-				if ($(this).parent().is(".layui-nav-itemed")) {
-					if (option.accordion) {
-						var currentDom = $(this).parent().siblings('.layui-nav-itemed').children('.layui-nav-child');
-						currentDom.animate({
-							height: '0px'
-						}, 240, function () {
-							currentDom.css({
-								height: "auto",
-							});
-							$(this).parent().removeClass("layui-nav-itemed");
-							$(this).find('.layui-nav-itemed').removeClass("layui-nav-itemed");
-						});
-					}
-					ele.height(0);
-					ele.animate({
-						height: heights + "px"
-					}, 240, function () {
-						ele.css({
-							height: "auto"
-						});
-					});
-				} else {
-					ele.animate({
-						height: "0px"
-					}, 240, function () {
-						ele.css({
-							height: "auto"
-						});
-						$(this).parent().removeClass("layui-nav-itemed");
-					});
-				}
-			}
-		})
 	}
 
 	/** 二 级 悬 浮 菜 单*/
