@@ -4,32 +4,33 @@ layui.define(['jquery'], function(exports) {
 	/**
 	 * Button component
 	 * */
-	var MOD_NAME = 'button',
+	const MOD_NAME = 'button',
 		$ = layui.jquery;
 
-	var button = function(opt) {
+	const button = function (opt) {
 		this.option = opt;
 	};
 
-    /**
+	/**
 	 * Button start loading
 	 * */
 	button.prototype.load = function(opt) {
-		
-		var option = {
+
+		const option = {
 			elem: opt.elem,
 			time: opt.time ? opt.time : false,
-			done: opt.done ? opt.done : function(){}
-		}
-		var text = $(option.elem).html();
-		
+			done: opt.done ? opt.done : function () {
+			}
+		};
+		const text = $(option.elem).html();
+
 		$(option.elem).html("<i class='layui-anim layui-anim-rotate layui-icon layui-anim-loop layui-icon-loading'/>");
 		
 		$(option.elem).attr("disabled", "disabled");
-		
-		var buttons = $(option.elem);
-		
-		if (option.time != "" || option.time !=false) {
+
+		const buttons = $(option.elem);
+
+		if (option.time !==false) {
 			setTimeout(function() {
 				$(option.elem).attr("disabled", false);
 				buttons.html(text);

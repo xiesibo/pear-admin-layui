@@ -4,12 +4,12 @@ layui.define(['jquery', 'element', 'table'], function (exports) {
     /**
      * 常用封装类
      * */
-    var MOD_NAME = 'common',
+    const MOD_NAME = 'common',
         $ = layui.jquery,
         table = layui.table,
         element = layui.element;
 
-    var common = new function () {
+    const common = new function () {
 
         /**
          * 获取当前表格选中字段
@@ -109,6 +109,6 @@ layui.define(['jquery', 'element', 'table'], function (exports) {
                 }
             })
         }
-    }
+    };
     exports(MOD_NAME, common);
 });

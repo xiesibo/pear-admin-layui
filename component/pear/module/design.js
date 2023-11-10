@@ -1,14 +1,15 @@
 layui.define(['layer', 'form'], function(exports) {
-	var layer = layui.layer,
+	let layer = layui.layer,
 		form = layui.form,
 		$ = layui.$,
 		key = '';
 	delHtml()
 	$('button').on('click', function() {
-		var _this = $(this),
+		let _this = $(this),
 			size = _this.data('size'),
 			type = _this.data('type'),
 			html = '';
+		const formElem = $('form');
 		key = randStrName();
 		switch (type) {
 			case 'text':
@@ -36,18 +37,17 @@ layui.define(['layer', 'form'], function(exports) {
 				html = submits(size)
 				break;
 			case 'del':
-				$('form').html("\n")
+				formElem.html("\n")
 				delHtml()
 				$('.code-show').text('')
-				return false
-				break;
+				return false;
 			default:
 				layer.msg('类型错误', {
 					icon: 2
 				})
 		}
 
-		$('form').append(html);
+		formElem.append(html);
 		form.render();
 		setHtml(html)
 	})
@@ -60,11 +60,12 @@ layui.define(['layer', 'form'], function(exports) {
 	}
 
 	function setHtml(html) {
-		var h = layui.data('form_html');
+		let _d;
+		const h = layui.data('form_html');
 		if (h && h.html) {
-			var _d = h.html + html
+			_d = h.html + html;
 		} else {
-			var _d = html
+			_d = html;
 		}
 		layui.data('form_html', {
 			key: 'html',
@@ -75,19 +76,18 @@ layui.define(['layer', 'form'], function(exports) {
 	}
 
 	function input(type, size) {
-		var name = type === 'text' ? '输入框' : (type === 'password' ? '密码框' : '');
-		var html = '  <div class="layui-form-item">\n' +
+		const name = type === 'text' ? '输入框' : (type === 'password' ? '密码框' : '');
+		return '  <div class="layui-form-item">\n' +
 			'    <label class="layui-form-label">' + name + '</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <input type="' + type + '" name="' + key + '" required  lay-verify="required" placeholder="请输入' + name +
 			'内容" autocomplete="off" class="layui-input">\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function select(size) {
-		var html = '  <div class="layui-form-item">\n' +
+		return '  <div class="layui-form-item">\n' +
 			'    <label class="layui-form-label">选择框</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <select name="' + key + '" lay-verify="required" lay-search>\n' +
@@ -100,11 +100,10 @@ layui.define(['layer', 'form'], function(exports) {
 			'      </select>\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function checkbox_a(size) {
-		var html = '  <div class="layui-form-item">\n' +
+		return '  <div class="layui-form-item">\n' +
 			'    <label class="layui-form-label">复选框</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <input type="checkbox" name="' + key + '[]" title="写作">\n' +
@@ -112,52 +111,47 @@ layui.define(['layer', 'form'], function(exports) {
 			'      <input type="checkbox" name="' + key + '[]" title="发呆">\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function checkbox_b(size) {
-		var html = '  <div class="layui-form-item">\n' +
+		return '  <div class="layui-form-item">\n' +
 			'    <label class="layui-form-label">开关</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <input type="checkbox" name="' + key + '" lay-skin="switch">\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function radio(size) {
-		var html = '  <div class="layui-form-item">\n' +
+		return '  <div class="layui-form-item">\n' +
 			'    <label class="layui-form-label">单选框</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <input type="radio" name="' + key + '" value="男" title="男">\n' +
 			'      <input type="radio" name="' + key + '" value="女" title="女" checked>\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function textarea(size) {
-		var html = '  <div class="layui-form-item layui-form-text">\n' +
+		return '  <div class="layui-form-item layui-form-text">\n' +
 			'    <label class="layui-form-label">文本域</label>\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <textarea name="' + key + '" placeholder="请输入内容" class="layui-textarea"></textarea>\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function submits(size) {
-		var html = '  <div class="layui-form-item">\n' +
+		return '  <div class="layui-form-item">\n' +
 			'    <div class="layui-input-' + size + '">\n' +
 			'      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>\n' +
 			'      <button type="reset" class="layui-btn layui-btn-primary">重置</button>\n' +
 			'    </div>\n' +
 			'  </div>\n';
-		return html;
 	}
 
 	function jscode() {
-		var html = '<script>\n' +
+		return '<script>\n' +
 			'  layui.use(\'form\', function(){\n' +
 			'    var form = layui.form;\n' +
 			'    form.on(\'submit(formDemo)\', function(data){\n' +
@@ -166,13 +160,13 @@ layui.define(['layer', 'form'], function(exports) {
 			'    });\n' +
 			'  });\n' +
 			'</script>';
-		return html;
 	}
 
 	function randStrName() {
 		return Math.random().toString(36).substr(8);
 	}
-	var jscodehtml = jscode();
+
+	const jscodehtml = jscode();
 	$('.js-show').text(jscodehtml)
 	form.on('submit(formDemo)', function(data) {
 		layer.msg(JSON.stringify(data.field));
