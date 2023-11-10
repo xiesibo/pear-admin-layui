@@ -62,6 +62,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 	pearMenu.prototype.click = function (clickEvent) {
 		var _this = this;
+		//左侧子菜单点击事件
 		$("body").on("click", "#" + _this.option.elem + " .site-demo-active", function () {
 			var dom = $(this);
 			var data = {
@@ -103,6 +104,33 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			}
 			clickEvent(dom, data);
 		})
+		//顶部菜单点击事件
+		$("body").on("click","#" + _this.option.control + " .pear-nav-control [pear-id]", function () {
+			var dom = $(this);
+			var href = $(this).attr("pear-href");
+			if (href == "javascript:;") {
+				$("#" + _this.option.elem).find(".pear-nav-tree").css({
+					display: 'none'
+				});
+				$("#" + _this.option.elem).find(".pear-nav-tree[pear-id='" + $(this).attr("pear-id") + "']").css({
+					display: 'block'
+				});
+				$("#" + _this.option.control).find(".pe-title").html($(this).attr("pear-title"));
+				$("#" + _this.option.control).find("")
+				_this.option.change($(this).attr("pear-id"), $(this).attr("pear-title"), $(this).attr("pear-href"))
+			}else if(href){
+				var data = {
+					menuId: dom.attr("pear-id"),
+					menuTitle: dom.attr("pear-title"),
+					menuPath: dom.attr("pear-title"),
+					menuIcon: dom.attr("pear-icon"),
+					menuUrl: dom.attr("pear-href"),
+					openType: dom.attr("pear-type")
+				};
+				clickEvent(dom, data);
+
+			}
+		})
 	}
 
 	function hash(dom) {
@@ -131,9 +159,13 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 				display: "block"
 			});
 			var controlId = $("#" + this.option.elem + " a[menu-id='" + pearId + "']").parents("ul").attr("pear-id");
+
+			$("#" + this.option.control).find(".layui-this").removeClass("layui-this");
 			if (controlId != undefined) {
-				$("#" + this.option.control).find(".layui-this").removeClass("layui-this");
 				$("#" + this.option.control).find("[pear-id='" + controlId + "']").addClass("layui-this");
+			}else{
+				//顶级菜单获取焦点
+				$("#" + this.option.control).find("[pear-id='" + pearId + "']").addClass("layui-this");
 			}
 		}
 
@@ -304,11 +336,21 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		var index = 0;
 		var controlItemPe = '<dl class="layui-nav-child">';
 		$.each(option.data, function (i, item) {
+			if(item.children != null && item.children.length > 0){
+                item.href = 'javascript:;';
+			}
 			var menuItem = '';
 			var controlItem = '';
+			var target = "";
+			var href = "javascript:;";
+			if (item.openType == "_blank" && (typeof item.childlist =='undefined' || item.childlist.length == 0)) {
+				href = item.href;
+				item.href = '';
+				target = "target='_blank'";
+			}
 			if (i === option.defaultMenu) {
 				controlItem = '<li pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'" class="layui-this layui-nav-item"><a href="#">' + item.title + '</a></li>';
+					'" class="layui-this layui-nav-item"><a href="'+ href +'" ' + target + '>' + item.title + '</a></li>';
 				menuItem = '<ul  pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
 
@@ -319,7 +361,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 			} else {
 
 				controlItem = '<li  pear-href="' + item.href + '" pear-title="' + item.title + '" pear-id="' + item.id +
-					'" class="layui-nav-item"><a href="#">' + item.title + '</a></li>';
+					'" class="layui-nav-item"><a href="'+ href +'" ' + target + '>' + item.title + '</a></li>';
 
 				menuItem = '<ul style="display:none" pear-id="' + item.id + '" lay-filter="' + option.elem +
 					'" class="layui-nav arrow layui-nav-tree pear-nav-tree">';
@@ -365,17 +407,6 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		$("#" + option.control).html(control + "</div>");
 		$("#" + option.control).append(controlPe);
 		$("#" + option.elem).html(menu);
-		$("#" + option.control + " .pear-nav-control").on("click", "[pear-id]", function () {
-			$("#" + option.elem).find(".pear-nav-tree").css({
-				display: 'none'
-			});
-			$("#" + option.elem).find(".pear-nav-tree[pear-id='" + $(this).attr("pear-id") + "']").css({
-				display: 'block'
-			});
-			$("#" + option.control).find(".pe-title").html($(this).attr("pear-title"));
-			$("#" + option.control).find("")
-			option.change($(this).attr("pear-id"), $(this).attr("pear-title"), $(this).attr("pear-href"))
-		})
 	}
 
 	/** 加载子菜单 (递归)*/
