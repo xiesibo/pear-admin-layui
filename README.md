@@ -25,11 +25,9 @@
         <img src="https://img.shields.io/badge/Layui-2.7.0+-green.svg" alt="Layui Version">
     </a>
 </p>
-
 <br>
-
 <div align="center">
-  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="./README/image.png" />
+  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://gitee.com/pear-admin/Pear-Admin-Layui/raw/3.x/admin/images/show.png" />
 </div>
 <br>
 
