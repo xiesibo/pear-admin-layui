@@ -1,4 +1,6 @@
-html, body, .layui-row {
+html,
+body,
+.layui-row {
 	height: 100%;
 }
 
@@ -62,6 +64,12 @@ html, body, .layui-row {
 	height: 50px;
 }
 
+.top-log-title span {
+	font-size: 32px;
+	font-weight: 700;
+	color: var(--global-primary-color);
+}
+
 .top-desc {
 	font-size: 14px;
 	color: #808695;
@@ -99,12 +107,6 @@ html, body, .layui-row {
 	cursor: pointer;
 	color: #16baaa;
 	border-bottom: 2px solid #16baaa;
-}
-
-
-.green {
-	color: #16baaa;
-	border-bottom: 2px solid #16baaa !important;
 }
 
 .tab-log-verification {
@@ -168,14 +170,6 @@ html, body, .layui-row {
 	flex: 1;
 }
 
-.consent-agreement {
-	width: 100%;
-	display: flex;
-	text-align: left;
-	box-sizing: border-box;
-	padding-left: 16px;
-}
-
 .layui-input {
 	border-radius: 4px;
 	line-height: 40px;
@@ -184,4 +178,5 @@ html, body, .layui-row {
 
 .layui-btn {
 	border-radius: 4px;
+	background-color: var(--global-primary-color);
 }
