@@ -83,8 +83,6 @@ Pear Admin Layui
 │
 ├─component 组件
 │    │
-│    ├─code 设计器
-│    │
 │    ├─layui 核心框架
 │    │
 │    └─pear 扩展组件
@@ -97,17 +95,17 @@ Pear Admin Layui
 │
 ├─view 视图
 │    │
-│    ├─console 首页
+│    ├─analysis 分析页
 │    │
-│    ├─document 文档
+│    ├─component 组件案例
 │    │
-│    ├─echarts 图表
+│    ├─console 控制台
 │    │
-│    ├─error 错误页
+│    ├─exception 错误页
 │    │
-│    ├─result 结果页
+│    ├─listing 列表页
 │    │
-│    └─system 系统管理
+│    └─result 结果页
 │
 ├─index.html 入口
 │
