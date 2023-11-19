@@ -74,7 +74,7 @@
         </a>
       </div>
       <div class="layui-form-item">
-        <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="demo-reg">注册</button>
+        <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="reg">注册</button>
       </div>
       <div class="layui-form-item demo-reg-other">
         <label>社交账号注册</label>
@@ -97,7 +97,7 @@
       var popup = layui.popup;
 
       // 登 录 提 交
-      form.on('submit(login)', function (data) {
+      form.on('submit(reg)', function (data) {
 
         /// 验证
 
@@ -108,8 +108,8 @@
           elem: '.login',
           time: 1500,
           done: function () {
-            popup.success("登录成功", function () {
-              location.href = "index.html"
+            popup.success("注册成功", function () {
+              location.href = "./index.html"
             });
           }
         })
