@@ -37,9 +37,7 @@
 
 <p style="padding:10px;"  width="90%">
 
-Pear Admin 是一款开箱即用的前端开发模板，扩展Layui原生UI样式，集成第三方开源组件，提供便捷快速的开发方式，延续 Admin 的设计规范。
-
-异步 Ajax 的菜单构建，完善的多标签页，单标签页的共存，丰富自由的布局方式，为研发者提供相对完善的前端解决方案。
+Pear Admin 是一款开箱即用的前端开发模板，提供便捷快速的开发方式，延续 Admin 的设计规范。
 
 若你需要更多版本 (Java Go Think 等)，请前往 [Pear Admin 社区](https://gitee.com/pear-admin)
 
