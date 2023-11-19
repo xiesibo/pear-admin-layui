@@ -525,6 +525,9 @@
 			};
 
 			echartsRecordsOne.setOption(optionOne);
+			setTimeout(() => {
+				echartsRecordsOne.resize();
+			}, 500)
 
 			window.onresize = function () {
 				echartsRecordsOne.resize();

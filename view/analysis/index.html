@@ -378,6 +378,9 @@
                 ]
             };
             echartsRecords.setOption(option);
+            setTimeout(() => {
+                echartsRecords.resize();
+            }, 500)
 
             window.onresize = function () {
                 echartsRecords.resize();
