@@ -91,10 +91,13 @@
 				var admin = layui.admin;
 				var popup = layui.popup;
 				
+				// yml | json | api
 				admin.setConfigurationPath("config/pear.config.yml");
 				
+				// 渲染
 				admin.render();
 				 
+				// 注销
 				admin.logout(function(){
 
 					popup.success("注销成功",function(){
