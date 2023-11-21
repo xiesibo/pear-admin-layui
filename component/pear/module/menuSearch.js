@@ -114,7 +114,7 @@ layui.define(['jquery', 'tools'], function (exports) {
 					})
 
 					// 监听键盘事件
-					$(document).off("keydown").keydown(function (e) {
+					$('.menu-search-content').off("keydown").keydown(function (e) {
 						if (e.keyCode === 13 || e.keyCode === 32) {
 							e.preventDefault();
 							var that = $(".menu-search-list li.this");
