@@ -67,7 +67,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		option.success(sessionStorage.getItem(option.elem + "-pear-tab-page-data-current"));
 
 		dropdown.render({
-			elem: `#${option.elem} .layui-icon-down`,
+			elem: `#${option.elem} .layui-tab-control > .layui-icon-down`,
 			trigger: 'hover',
 			data: [{
 				title: '关 闭 当 前',
