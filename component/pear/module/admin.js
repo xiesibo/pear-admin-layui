@@ -407,10 +407,10 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				var footerDOM = $(".pear-admin .layui-footer");
 				if (footer === true || footer === "true") {
 					footerDOM.removeClass("close");
-					bodyDOM.css("bottom", footerDOM.outerHeight());
+					bodyDOM.css("height", "calc(100% - 105px)");
 				} else {
 					footerDOM.addClass("close");
-					bodyDOM.css("bottom", "");
+					bodyDOM.css("height", "calc(100% - 60px)");
 				}
 			}
 
