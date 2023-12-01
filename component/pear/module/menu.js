@@ -288,7 +288,7 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 
 	function createMenu(option) {
 		var menuHtml = '<div style="height:100%!important;" class="pear-side-scroll layui-side-scroll ' + option.theme + '"><ul lay-filter="' + option.elem +
-			'" class="layui-nav arrow   pear-menu layui-nav-tree pear-nav-tree" '+ (option.accordion ? "lay-accordion" : "") +'>'
+			'" class="layui-nav arrow   pear-menu layui-nav-tree pear-nav-tree" ' + (option.accordion ? "lay-accordion" : "") + '>'
 		$.each(option.data, function (i, item) {
 			var content = '<li class="layui-nav-item" >';
 			if (i == option.defaultOpen) {
@@ -522,9 +522,10 @@ layui.define(['table', 'jquery', 'element'], function (exports) {
 		$(window).on('resize', function () {
 			rationalizeHeaderControlWidth(option);
 		})
-
 		$(document).ready(function () {
-			rationalizeHeaderControlWidth(option);
+			setTimeout(() => {
+				rationalizeHeaderControlWidth(option);
+			}, 1000);
 		});
 	}
 
