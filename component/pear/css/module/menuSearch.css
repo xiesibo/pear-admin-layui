@@ -3,6 +3,11 @@
 	padding-left: 30px;
 }
 
+.menu-search-content .layui-input:focus {
+	border: 1px solid var(--global-primary-color)!important;
+	box-shadow: none;
+}
+
 .menu-search-content {
 	display: flex;
 	flex-wrap: wrap;
