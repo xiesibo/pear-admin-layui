@@ -40,10 +40,6 @@ body,
 	display: none;
 }
 
-.pear-admin .layui-logo .title {
-	font-size: 20px;
-}
-
 .pear-admin .layui-layout-right .layui-nav-child {
 	border: 1px solid whitesmoke;
 	border-radius: 4px;
@@ -87,8 +83,6 @@ body,
 	font-weight: 550;
 	color: var(--global-primary-color);
 	position: relative;
-	top: 5px;
-	margin-left: 5px;
 }
 
 .pear-admin .layui-logo .logo {
