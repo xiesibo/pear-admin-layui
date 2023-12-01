@@ -168,18 +168,18 @@
     </div>
 
     <script>
-        layui.use(['jquery', 'element', 'layer', 'convert'], function () {
+        layui.use(['jquery', 'element', 'layer', 'tools'], function () {
             var element = layui.element,
                 layer = layui.layer,
                 $ = layui.jquery,
-                convert = layui.convert;
+                tools = layui.tools;
 
             let MODULE_PATH = "operate/";
 
             var image = new Image();
             image.src = "../../admin/images/avatar.jpg";
             image.onload = function () {
-                $("#userAvatar").attr("src", convert.imageToBase64(image));
+                $("#userAvatar").attr("src", tools.imageToBase64(image));
             }
 
             window.callback = function (data) {
