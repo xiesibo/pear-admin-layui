@@ -552,7 +552,10 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 					close: true
 				}, 300);
 			} else {
-				bodyFrame.changePage($(this).attr("user-menu-url"), true);
+				bodyFrame.changePage({
+					href: $(this).attr("user-menu-url"),
+					type: "_component"
+				}, true);
 			}
 		});
 
