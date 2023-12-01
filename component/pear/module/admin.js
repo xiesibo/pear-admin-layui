@@ -17,9 +17,9 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 		var configurationCache;
 
-		var bodyTab;
+		var bodyTabPage;
 
-		var bodyFrame;
+		var bodyPage;
 
 		var logout = function () { };
 
@@ -139,7 +139,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 							} else {
 								if (isMuiltTab(options) === "true" ||
 									isMuiltTab(options) === true) {
-									bodyTab.addTabOnly({
+									bodyTabPage.addTabOnly({
 										id: node.id,
 										title: node.title,
 										type: node.openType,
@@ -148,7 +148,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 										close: true
 									});
 								} else {
-									bodyFrame.changePage({
+									bodyPage.changePage({
 										href: node.url,
 										type: node.openType
 									});
@@ -218,7 +218,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
 
-					bodyTab = tabPage.render({
+					bodyTabPage = tabPage.render({
 						elem: 'content',
 						session: param.tab.session,
 						index: 0,
@@ -237,17 +237,17 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 							if (param.tab.session) {
 								setTimeout(function () {
 									sideMenu.selectItem(id);
-									bodyTab.positionTab();
+									bodyTabPage.positionTab();
 								}, 500)
 							}
 						}
 					});
 
-					bodyTab.click(function (id) {
+					bodyTabPage.click(function (id) {
 						if (!param.tab.keepState) {
-							bodyTab.refresh(false);
+							bodyTabPage.refresh(false);
 						}
-						bodyTab.positionTab();
+						bodyTabPage.positionTab();
 						sideMenu.selectItem(id);
 					})
 
@@ -255,7 +255,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyTab.addTabOnly({
+							bodyTabPage.addTabOnly({
 								id: data.menuId,
 								title: data.menuTitle,
 								type: data.menuOpenType,
@@ -269,7 +269,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 				} else {
 
-					bodyFrame = page.render({
+					bodyPage = page.render({
 						elem: 'content',
 						title: '首页',
 						url: param.tab.index.href
@@ -279,7 +279,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 						if (data.menuOpenType === "_layer") {
 							layer.open({ type: 2, title: data.menuTitle, content: data.menuUrl, area: ['80%', '80%'], maxmin: true })
 						} else {
-							bodyFrame.changePage({ href: data.menuUrl, type: data.menuOpenType });
+							bodyPage.changePage({ href: data.menuUrl, type: data.menuOpenType });
 						}
 						compatible()
 					})
@@ -470,8 +470,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			refreshA.addClass("layui-anim-rotate");
 			refreshA.addClass("layui-anim-loop");
 			refreshA.addClass("layui-icon-loading");
-			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) bodyTab.refresh(true);
-			else bodyFrame.refresh(true);
+			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) bodyTabPage.refresh(true);
+			else bodyPage.refresh(true);
 			setTimeout(function () {
 				refreshA.addClass("layui-icon-refresh-1");
 				refreshA.removeClass("layui-anim");
@@ -509,7 +509,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 		 * 
 		 * 使用 admin.logout(Function) 实现注销 
 		 * 
-		 * Promise<boolean> 作为返回值类型时，泛型内容为 true 时视为注销成功，则清除 bodyTab 缓存
+		 * Promise<boolean> 作为返回值类型时，泛型内容为 true 时视为注销成功，则清除 bodyTabPage 缓存
 		 * 
 		 * 否则视为注销失败，不做任何处置。
 		 */
@@ -518,11 +518,11 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			if (promise != undefined) {
 				promise.then((asyncResult) => {
 					if (asyncResult) {
-						bodyTab.clear();
+						bodyTabPage.clear();
 					}
 				})
 			} else {
-				bodyTab.clear();
+				bodyTabPage.clear();
 			}
 		})
 
@@ -544,7 +544,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 		body.on("click", '[user-menu-id]', function () {
 			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) {
-				bodyTab.addTabOnly({
+				bodyTabPage.addTabOnly({
 					id: $(this).attr("user-menu-id"),
 					title: $(this).attr("user-menu-title"),
 					url: $(this).attr("user-menu-url"),
@@ -552,7 +552,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 					close: true
 				}, 300);
 			} else {
-				bodyFrame.changePage({
+				bodyPage.changePage({
 					href: $(this).attr("user-menu-url"),
 					type: "_component"
 				}, true);
