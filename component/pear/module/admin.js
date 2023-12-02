@@ -518,11 +518,15 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			if (promise != undefined) {
 				promise.then((asyncResult) => {
 					if (asyncResult) {
-						bodyTabPage.clear();
+						if(bodyTabPage != undefined) {
+							bodyTabPage.clear();
+						}
 					}
 				})
 			} else {
-				bodyTabPage.clear();
+				if(bodyTabPage != undefined) {
+					bodyTabPage.clear();
+				}
 			}
 		})
 
