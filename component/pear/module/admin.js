@@ -468,7 +468,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			}
 
 			/**
-			 * @since Pear Admin 4.0.2
+			 * @since Pear Admin 4.0.3
 			 * 
 			 * 刷新当前页面
 			 */
