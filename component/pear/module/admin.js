@@ -213,7 +213,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			this.bodyRender = function (param) {
 
 				body.on("click", ".refresh", function () {
-					refresh();
+					pearAdmin.refresh();
 				})
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
@@ -293,6 +293,11 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				}, param.other.keepLoad)
 			}
 
+			/***
+			 * @since Pear Admin 4.0
+			 *
+			 * 切换主题色
+			 */
 			this.changeTheme = function () {
 				const variableKey = "--global-primary-color";
 				const variableVal = localStorage.getItem("theme-color-color");
@@ -398,7 +403,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				this.menuSkin(menu);
 				this.headerSkin(header);
 				this.bannerSkin(banner);
-				this.enableDark(dark);
+				this.switchTheme(dark);
 				this.footer(footer);
 			}
 
@@ -422,7 +427,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				}
 			}
 
-			this.enableDark = function (checked) {
+			this.switchTheme = function (checked) {
 				var $pearAdmin = $(".pear-admin");
 				$pearAdmin.removeClass("pear-admin-dark");
 				if (checked === true || checked === "true") {
@@ -453,33 +458,33 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				pearAdmin.addClass(theme);
 			}
 
+			/**
+			 * 设置注销逻辑
+			 * 
+			 * @param callback 实现
+			 */
 			this.logout = function (callback) {
 				logout = callback;
 			}
-		};
 
-		/**
-		 * @since Pear Admin 4.0
-		 * 
-		 * 页面刷新
-		 */
-		function refresh() {
-			var refreshA = $(".refresh a");
-			refreshA.removeClass("layui-icon-refresh-1");
-			refreshA.addClass("layui-anim");
-			refreshA.addClass("layui-anim-rotate");
-			refreshA.addClass("layui-anim-loop");
-			refreshA.addClass("layui-icon-loading");
-			if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) bodyTabPage.refresh(true);
-			else bodyPage.refresh(true);
-			setTimeout(function () {
-				refreshA.addClass("layui-icon-refresh-1");
-				refreshA.removeClass("layui-anim");
-				refreshA.removeClass("layui-anim-rotate");
-				refreshA.removeClass("layui-anim-loop");
-				refreshA.removeClass("layui-icon-loading");
-			}, 600)
-		}
+			/**
+			 * @since Pear Admin 4.0.2
+			 * 
+			 * 刷新当前页面
+			 */
+			this.refresh = function () {
+				var refreshBtn = $(".refresh a");
+				refreshBtn.addClass("layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading");
+				refreshBtn.removeClass("layui-icon-refresh-1");
+				if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) bodyTabPage.refresh(true);
+				else bodyPage.refresh(true);
+				setTimeout(function () {
+					refreshBtn.removeClass("layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading");
+					refreshBtn.addClass("layui-icon-refresh-1");
+				}, 600)
+			}
+
+		};
 
 		/**
 		 * @since Pear Admin 4.0
@@ -714,7 +719,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 					form.on('switch(dark)', function (data) {
 						localStorage.setItem("dark", this.checked);
-						pearAdmin.enableDark(this.checked);
+						pearAdmin.switchTheme(this.checked);
 					})
 
 					if (localStorage.getItem('theme-banner') === 'true') {
