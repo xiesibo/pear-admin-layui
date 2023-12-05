@@ -260,7 +260,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	/**
 	 * @since Pear Admin 4.0
 	 */
-	tabPage.prototype.addTabOnly = function (opt, time) {
+	tabPage.prototype.changePage = function (opt, time) {
 
 		var title = `<span class="pear-tab-page-active"></span>
 					 <span class="${opt.close ? 'able-close' : 'disable-close'} title">${opt.title}</span>
