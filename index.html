@@ -109,6 +109,25 @@
 						resolve(true)
 					});
 				});
+
+				// 功能测试 【加载完毕】
+				setTimeout(() => {
+
+					/**
+					 * 切换页面，兼容 选项卡 与 单页面 模式
+					 * 
+					 * @param type 模式 (1) _iframe (2) _component
+					 */
+					
+					 //PearAdmin.changePage({ id: "999", title: "New Page", type: "_iframe", url: "http://www.layui-vue.com"});
+
+					/**
+					 * 刷新打开的页面
+					 * 
+					 */
+					// PearAdmin.refresh();
+
+				}, 2000)
 			})
 		</script>		
 	</body>

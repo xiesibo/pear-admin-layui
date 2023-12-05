@@ -217,7 +217,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			this.bodyRender = function (param) {
 
 				body.on("click", ".refresh", function () {
-					pearAdmin.refreshPage();
+					pearAdmin.refresh();
 				})
 
 				if (isMuiltTab(param) === "true" || isMuiltTab(param) === true) {
@@ -459,7 +459,9 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			 * @param callback 实现
 			 */
 			this.logout = function (callback) {
-				logout = callback;
+				if(callback != undefined) {
+					logout = callback;
+				}
 			}
 
 			/**
@@ -467,7 +469,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			 * 
 			 * 刷新当前页面
 			 */
-			this.refreshPage = function () {
+			this.refresh = function () {
 				var refreshBtn = $(".refresh a");
 				refreshBtn.addClass("layui-anim layui-anim-rotate layui-anim-loop layui-icon-loading");
 				refreshBtn.removeClass("layui-icon-refresh-1");
@@ -490,7 +492,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				if (isMuiltTab(configurationCache) === "true" || isMuiltTab(configurationCache) === true) {
 					bodyTabPage.changePage({ id: data.id, title: data.title, url: data.url, type: data.type, close: true });
 				} else {
-					bodyPage.changePage({ id: data.id, title: data.title, href: data.url, type: data.type });
+					bodyPage.changePage({ href: data.url, type: data.type });
 				}
 			}
 		};
