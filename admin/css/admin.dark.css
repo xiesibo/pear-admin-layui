@@ -325,3 +325,13 @@
 .pear-admin-dark *::-webkit-scrollbar-thumb:hover {
 	background: #0a0a0a;
 }
+
+/** profile */
+.pear-admin-dark .user-name,
+.pear-admin-dark .user-desc {
+    color: whitesmoke;
+}
+
+.pear-admin-dark .user-desc {
+    border-top: 1px solid #141414;
+}
