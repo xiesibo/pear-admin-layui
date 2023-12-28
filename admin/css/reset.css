@@ -14,10 +14,24 @@
     border-color: var(--global-primary-color);
 }
 
-.layui-form-radio:hover > *,
- .layui-form-radioed, 
- .layui-form-radioed > i {
-    color: var(--global-primary-color)!important;
+.layui-form-radioed,
+.layui-form-radio:hover>*,
+.layui-form-radioed>i {
+    color: var(--global-primary-color) !important;
+}
+
+.layui-form-checked[lay-skin=primary]>i {
+    border-color: var(--global-primary-color) !important;
+    background-color: var(--global-primary-color);
+    color: #fff;
+}
+.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate:hover,
+.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate {
+    border-color: var(--global-primary-color);
+}
+
+.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate:before {
+    background-color: var(--global-primary-color);
 }
 
 .layui-btn {
