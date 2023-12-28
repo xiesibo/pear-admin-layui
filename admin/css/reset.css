@@ -14,6 +14,12 @@
     border-color: var(--global-primary-color);
 }
 
+.layui-form-radio:hover > *,
+ .layui-form-radioed, 
+ .layui-form-radioed > i {
+    color: var(--global-primary-color)!important;
+}
+
 .layui-btn {
     background-color: var(--global-primary-color);
 }
