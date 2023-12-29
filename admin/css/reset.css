@@ -39,6 +39,10 @@
     background-color: var(--global-primary-color);
 }
 
+.layui-btn.layui-btn-primary:hover {
+    border: 1px solid var(--global-primary-color);
+}
+
 .layui-btn.layui-btn-normal {
     background-color: #1e9fff !important;
 }
@@ -62,4 +66,9 @@
 
 .layui-timeline-axis {
     color: var(--global-primary-color);
+}
+
+.layui-table-checked,
+.layui-table-checked:hover {
+    background-color: #f8f8f8;
 }
