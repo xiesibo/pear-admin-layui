@@ -68,7 +68,6 @@
     color: var(--global-primary-color);
 }
 
-.layui-table-checked,
-.layui-table-checked:hover {
+.layui-table-checked {
     background-color: #f8f8f8;
 }
