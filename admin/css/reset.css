@@ -14,9 +14,9 @@
     border-color: var(--global-primary-color);
 }
 
-.layui-form-radioed,
 .layui-form-radio:hover>*,
-.layui-form-radioed>i {
+.layui-form-radioed>i,
+.layui-form-radioed {
     color: var(--global-primary-color) !important;
 }
 
@@ -25,8 +25,9 @@
     background-color: var(--global-primary-color);
     color: #fff;
 }
-.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate:hover,
-.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate {
+
+.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate,
+.layui-form-checkbox[lay-skin=primary]>.layui-icon-indeterminate:hover {
     border-color: var(--global-primary-color);
 }
 
