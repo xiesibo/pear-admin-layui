@@ -32,8 +32,7 @@ layui.define(['jquery', 'element'], function (exports) {
 	 */
 	page.prototype.changePage = function (options) {
 		
-		const $frame = $(`#${this.option.elem} .pear-page-content`).css({display:'none'});
-        var $frameLoad = $(`#${this.option.elem} .pear-page-loading`).css({display:'block'});
+		const $frame = $(`#${this.option.elem} .pear-page-content`);
 
 		if (options.type === "_iframe") {
 		
@@ -45,10 +44,7 @@ layui.define(['jquery', 'element'], function (exports) {
 				type: 'get',
 				dataType: 'html',
 				success: function (data) {
-					$frame.html(data);
-                  	$frameLoad.fadeOut(1000);
-             		$frame.fadeIn(2000);
-					element.init();	
+					$frame.html(data)
 				},
 				error: function (xhr) {
 					return layer.msg('Status:' + xhr.status + '，' + xhr.statusText + '，请稍后再试！');
