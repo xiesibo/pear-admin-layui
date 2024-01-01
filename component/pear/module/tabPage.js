@@ -358,12 +358,12 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	// 刷 新 指 定 的 选 项 卡
 	tabPage.prototype.refresh = function (time) {
+		
 		var $iframe = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show > *");
 		var $iframeLoad;
 
 		if (time != false && time != 0) {
-			$iframe.parent().append(`<div id="pear-tab-page-loading${index}" class="pear-tab-page-loading"><div class="ball-loader"><span></span><span></span><span></span><span></span></div></div>`);
-			$iframeLoad = $("#" + this.option.elem).find("#pear-tab-page-loading" + index++);
+			$iframeLoad = $("#" + this.option.elem).find(".pear-tab-page-loading");
 			$iframeLoad.css({
 				display: "block"
 			});
@@ -373,7 +373,9 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			$iframe.attr("src", $iframe.attr("src"));
 			$iframe.on("load", function () {
 				$iframeLoad.fadeOut(1000, function () {
-					$iframeLoad.remove();
+					$iframeLoad.css({
+						display: "none"
+					});
 				});
 			})
 		} else {
@@ -385,7 +387,9 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 					$iframe.html(data);
 					if ($iframeLoad != undefined) {
 						$iframeLoad.fadeOut(1000, function () {
-							$iframeLoad.remove();
+							$iframeLoad.css({
+								display: "none"
+							});
 						});
 					}
 				},
@@ -459,6 +463,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 		var title = '<ul class="layui-tab-title">';
 		var content = '<div class="layui-tab-content">';
+		var loading = '<div class="pear-tab-page-loading"><div class="ball-loader"><span></span><span></span><span></span><span></span></div></div>'
 		var control = `<div class="layui-tab-control">
 							<li class="layui-tab-prev layui-icon layui-icon-left"></li>
 							<li class="layui-tab-next layui-icon layui-icon-right"></li>
@@ -467,6 +472,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 		// 处 理 选 项 卡 头 部
 		var index = 0;
+
 		$.each(option.data, function (i, item) {
 
 			var titleItem = `<li lay-id="${item.id}" class="${option.index == index ? 'layui-this' : ''}">
@@ -508,6 +514,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		tab += title;
 		tab += control;
 		tab += content;
+		tab += loading;
 		tab += '</div>';
 		tab += ''
 		return tab;
