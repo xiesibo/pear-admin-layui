@@ -358,7 +358,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 
 	// 刷 新 指 定 的 选 项 卡
 	tabPage.prototype.refresh = function (time) {
-		
+
 		var $iframe = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-content .layui-show > *");
 		var $iframeLoad;
 
@@ -461,7 +461,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		var tab = '<div class="pear-tab-page ' + type + ' layui-tab" lay-filter="' + option.elem +
 			'" lay-allowClose="true">';
 
-		var title = '<ul class="layui-tab-title">';
+		var headers = '<ul class="layui-tab-title">';
 		var content = '<div class="layui-tab-content">';
 		var loading = '<div class="pear-tab-page-loading"><div class="ball-loader"><span></span><span></span><span></span><span></span></div></div>'
 		var control = `<div class="layui-tab-control">
@@ -483,7 +483,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
                                 <i class="layui-icon layui-unselect layui-tab-close">ဆ</i></li>
 							</li>`;
 
-			title += titleItem;
+			headers += titleItem;
 
 			if (item.type === "_iframe") {
 
@@ -508,10 +508,10 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			index++;
 		});
 
-		title += '</ul>';
+		headers += '</ul>';
 		content += '</div>';
 
-		tab += title;
+		tab += headers;
 		tab += control;
 		tab += content;
 		tab += loading;
