@@ -126,7 +126,6 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				var top = e.clientY;
 				var left = e.clientX;
 				var menuWidth = 100;
-				var currentId = $(this).attr("lay-id");
 				var menu = `<ul>
 								<li class='item' id='${option.elem}closeThis'>关闭当前</li>
 								<li class='item' id='${option.elem}closeOther'>关闭其他</li>
@@ -209,51 +208,47 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	var index = 0;
-	// 根据过滤 fliter 标识, 重置选项卡标题
-	tabPage.prototype.changeTabTitleById = function (elem, id, title) {
-		var currentTab = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title [lay-id='" + id +
+
+	tabPage.prototype.changeTabTitleById = function (id, title) {
+		var currentTab = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title [lay-id='" + id +
 			"'] .title");
 		currentTab.html(title);
 	}
 
-	// 根据过滤 filter 标识, 删除指定选项卡
-	tabPage.prototype.delTabByElem = function (elem, id, callback) {
-		var currentTab = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title [lay-id='" + id + "']");
+	tabPage.prototype.delTabByElem = function (id, callback) {
+		var currentTab = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title [lay-id='" + id + "']");
 		if (currentTab.find("span").is(".able-close")) {
-			tabDelete(elem, id, callback);
+			tabDelete(this.option.elem, id, callback);
 		}
 	}
-	// 根据过滤 filter 标识, 删除其他选项卡
-	tabPage.prototype.delOtherTabByElem = function (elem, callback) {
-		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr(
+
+	tabPage.prototype.delOtherTabByElem = function (callback) {
+		var currentId = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title .layui-this").attr(
 			"lay-id");
-		var tabtitle = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title li");
+		var tabtitle = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li");
 		$.each(tabtitle, function (i) {
 			if ($(this).attr("lay-id") != currentId) {
 				if ($(this).find("span").is(".able-close")) {
-					tabDelete(elem, $(this).attr("lay-id"), callback);
+					tabDelete(this.option.elem, $(this).attr("lay-id"), callback);
 				}
 			}
 		})
 	}
 
-	// 根据过滤 filter 标识, 删除全部选项卡
-	tabPage.prototype.delAllTabByElem = function (elem, callback) {
-		var currentId = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this").attr(
-			"lay-id");
-		var tabtitle = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title li");
+	tabPage.prototype.delAllTabByElem = function (callback) {
+		var tabtitle = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li");
 		$.each(tabtitle, function (i) {
 			if ($(this).find("span").is(".able-close")) {
-				tabDelete(elem, $(this).attr("lay-id"), callback);
+				tabDelete(this.option.elem, $(this).attr("lay-id"), callback);
 			}
 		})
 	}
-	// 根据过滤 filter 标识, 删除当前选项卡
+
 	tabPage.prototype.delCurrentTabByElem = function (elem, callback) {
-		var currentTab = $(".layui-tab[lay-filter='" + elem + "'] .layui-tab-title .layui-this");
+		var currentTab = $(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title .layui-this");
 		if (currentTab.find("span").is(".able-close")) {
 			var currentId = currentTab.attr("lay-id");
-			tabDelete(elem, currentId, callback);
+			tabDelete(this.option.elem, currentId, callback);
 		}
 	}
 

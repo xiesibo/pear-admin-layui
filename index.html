@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Pear Admin 4.0</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Pear Admin 4.0</title>
 		<link rel="stylesheet" href="component/pear/css/pear.css" />
-		<link rel="stylesheet" href="admin/css/reset.css" />
 		<link rel="stylesheet" href="admin/css/admin.css" />
 		<link rel="stylesheet" href="admin/css/admin.dark.css" />
 		<link rel="stylesheet" href="admin/css/variables.css" />
+		<link rel="stylesheet" href="admin/css/reset.css" />
 	</head>
 	<!-- 结 构 代 码 -->
 	<body class="layui-layout-body pear-admin">
@@ -59,7 +59,7 @@
 				</div>
 				<!-- 菜 单 内 容 -->
 				<div class="layui-side-scroll">
-					<div id="sideMenu"></div>
+					<div id="side"></div>
 				</div>
 			</div>
 			<!-- 视 图 页 面 -->
@@ -109,25 +109,6 @@
 						resolve(true)
 					});
 				});
-
-				// 功能测试 【加载完毕】
-				setTimeout(() => {
-
-					/**
-					 * 切换页面，兼容 选项卡 与 单页面 模式
-					 * 
-					 * @param type 模式 (1) _iframe (2) _component
-					 */
-					
-					 //PearAdmin.changePage({ id: "999", title: "New Page", type: "_iframe", url: "http://www.layui-vue.com"});
-
-					/**
-					 * 刷新打开的页面
-					 * 
-					 */
-					// PearAdmin.refresh();
-
-				}, 2000)
 			})
 		</script>		
 	</body>

@@ -46,6 +46,14 @@
 		"type": 0,
 		"children": [
 			{
+				"id": 21,
+				"title": "核心方法",
+				"icon": "layui-icon layui-icon-face-smile",
+				"type": 1,
+				"openType": "_component",
+				"href": "view/component/admin.html"
+			},
+			{
 				"id": 23,
 				"title": "高级栅格",
 				"icon": "layui-icon layui-icon-face-smile",
