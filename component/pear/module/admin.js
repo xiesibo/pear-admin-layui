@@ -634,19 +634,19 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				'</div>';
 
 			var moreItem =
-				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="control" lay-filter="control" lay-skin="switch" lay-text="开|关"></div><span class="set-text">菜单分割</span></div>';
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="control" lay-filter="control" lay-skin="switch"></div><span class="set-text">菜单分割</span></div>';
 
 			moreItem +=
-				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="muilt-tab" lay-filter="muilt-tab" lay-skin="switch" lay-text="开|关"></div><span class="set-text">多选项卡</span></div>';
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="muilt-tab" lay-filter="muilt-tab" lay-skin="switch"></div><span class="set-text">多选项卡</span></div>';
 
 			moreItem +=
-				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="banner" lay-filter="banner" lay-skin="switch" lay-text="开|关"></div><span class="set-text">通栏布局</span></div>';
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="banner" lay-filter="banner" lay-skin="switch"></div><span class="set-text">通栏布局</span></div>';
 
 			moreItem +=
-				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="footer" lay-filter="footer" lay-skin="switch" lay-text="开|关"></div><span class="set-text">开启页脚</span></div>';
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="footer" lay-filter="footer" lay-skin="switch"></div><span class="set-text">开启页脚</span></div>';
 
 			moreItem +=
-				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="dark" lay-filter="dark" lay-skin="switch" lay-text="开|关"></div><span class="set-text">夜间模式</span></div>';
+				'<div class="layui-form-item"><div class="layui-input-inline" style="width:200px;"><input type="checkbox" name="dark" lay-filter="dark" lay-skin="switch"></div><span class="set-text">夜间模式</span></div>';
 
 			var moreHtml = '<br><div class="pearone-color">\n' +
 				'<div class="color-title">更多设置</div>\n' +
