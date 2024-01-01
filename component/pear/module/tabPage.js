@@ -434,11 +434,8 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 		})
 		sessionStorage.setItem(elem + "-pear-tab-page-data", JSON.stringify(tabData));
 		sessionStorage.setItem(elem + "-pear-tab-page-data-current", currId);
-
 		removeTab.remove();
-		// 删除 content
 		var tabContent = $(".layui-tab[lay-filter='" + elem + "']").find("*[id='" + id + "']").parent();
-		// 删除
 		tabContent.remove();
 	}
 
