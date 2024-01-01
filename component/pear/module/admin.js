@@ -492,16 +492,6 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				}
 			}
 
-			/**
-			 * @since Pear Admin 4.0.3 
-			 * 
-			 * 切换内容页面
-			 * 
-			 * PS: tabPages 模式下，如果页面不存在则新增，反则仅做切换。
-			 */
-			this.removeTab = function (data) {
-				// TODO
-			}
 		};
 
 		/**
