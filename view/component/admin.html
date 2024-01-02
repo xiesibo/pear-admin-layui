@@ -5,7 +5,15 @@
         <div class="layui-card">
             <div class="layui-card-body">
                 <button class="layui-btn refresh">刷新页面</button>
-                <button class="layui-btn changePage">切换页面</button>
+                <button class="layui-btn changePage">切换页面【兼容 page 与 tabPage】</button>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <button class="layui-btn removeCurrentTab">删除当前选项卡</button>
+                <button class="layui-btn removeAllTab">删除所有选项卡</button>
+                <button class="layui-btn removeOtherTab">删除其他选项卡</button>
+                <button class="layui-btn removeTab">删除指定选项卡</button>
             </div>
         </div>
     </div>
@@ -34,6 +42,22 @@
              */
             $(".changePage").click(function() {
                 PearAdmin.changePage({ id: "999", title: "New Page", type: "_iframe", url: "http://www.layui-vue.com"});
+            });
+
+            $(".removeCurrentTab").click(function() {
+                PearAdmin.instances.tabPage.removeCurrentTab();
+            });
+
+            $(".removeAllTab").click(function() {
+                PearAdmin.instances.tabPage.removeTab();
+            });
+
+            $(".removeOtherTab").click(function() {
+                PearAdmin.instances.tabPage.removeOtherTab();
+            });
+
+            $(".removeTab").click(function() {
+                PearAdmin.instances.tabPage.removeTab(21);
             });
 		});
 </script>
