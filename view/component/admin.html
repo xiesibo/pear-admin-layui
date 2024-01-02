@@ -35,27 +35,44 @@
             /**
              * 切换页面
              * 
-             * @param id 页面编号
-             * @param title 页面标题
-             * @param url 页面路径
-             * @param type 渲染方式
+             * @param opt 选项
              */
             $(".changePage").click(function() {
                 PearAdmin.changePage({ id: "999", title: "New Page", type: "_iframe", url: "http://www.layui-vue.com"});
             });
 
+            /**
+             * 删除选中选项卡
+             * 
+             * @param null
+             */
             $(".removeCurrentTab").click(function() {
                 PearAdmin.instances.tabPage.removeCurrentTab();
             });
 
+            /**
+             * 删除所有选项卡
+             * 
+             * @param null
+             */
             $(".removeAllTab").click(function() {
                 PearAdmin.instances.tabPage.removeTab();
             });
 
+            /**
+             * 删除其他选项卡
+             * 
+             * @param null
+             */
             $(".removeOtherTab").click(function() {
                 PearAdmin.instances.tabPage.removeOtherTab();
             });
 
+            /**
+             * 删除所有选项卡
+             * 
+             * @param null
+             */
             $(".removeTab").click(function() {
                 PearAdmin.instances.tabPage.removeTab(21);
             });
