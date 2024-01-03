@@ -148,7 +148,7 @@
                     <div class="layui-card-body">
                         <div class="layui-row">
                             <div class="layui-col layui-col-md9">
-                                <div id="echarts-records" style="min-height:400px;padding: 10px"></div>
+                                <div id="echarts-records" style="height:400px;"></div>
                             </div>
                             <div class="layui-col layui-col-md3">
                                 <div style="padding: 40px 0px 0px 50px;">
@@ -379,9 +379,9 @@
             };
             echartsRecords.setOption(option);
 
-            setTimeout(() => {
+            setInterval(() => {
                 echartsRecords.resize();
-            }, 1000)
+            }, 500);
 
             window.onresize = function () {
                 echartsRecords.resize();

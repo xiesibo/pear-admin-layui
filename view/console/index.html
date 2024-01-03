@@ -121,7 +121,7 @@
 						<div class="layui-card">
 							<div class="layui-card-body">
 								<div class="layui-tab custom-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-									<div id="echarts-records-1" style="min-height:400px;"></div>
+									<div id="echarts-records-1" style="height:400px;"></div>
 								</div>
 							</div>
 						</div>
@@ -526,9 +526,9 @@
 
 			echartsRecordsOne.setOption(optionOne);
 
-			setTimeout(() => {
-				echartsRecordsOne.resize();
-			}, 1000)
+            setInterval(() => {
+                echartsRecordsOne.resize();
+            }, 500);
 
 			window.onresize = function () {
 				echartsRecordsOne.resize();
