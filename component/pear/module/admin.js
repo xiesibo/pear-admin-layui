@@ -34,7 +34,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			 */
 			this.configurationProvider = () => {
 				return new Promise((resolve) => {
-					if (this.configurationPath.indexOf("json") > -1) {
+					if (this.configurationPath.indexOf("yml") == -1) {
 						$.ajax({
 							type: 'get',
 							url: this.configurationPath,
