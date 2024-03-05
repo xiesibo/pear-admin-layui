@@ -1,13 +1,11 @@
 layui.define(['jquery', 'element'], function (exports) {
 	"use strict";
 
-	var MOD_NAME = 'yaml',
-		$ = layui.jquery,
-		element = layui.element;
+	var MOD_NAME = 'yaml';
 
 	var yaml = new function () {
-		this.parse = function (str) {
-			return YAML.parse(yamlString);
+		this.parse = function (yamlStr) {
+			return YAML.parse(yamlStr);
 		}
 		this.load = function (path) {
 			return YAML.load(path);
