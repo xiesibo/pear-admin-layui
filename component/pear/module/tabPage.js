@@ -559,10 +559,19 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 	}
 
 	function closeEvent(option) {
-		$(".layui-tab[lay-filter='" + option.elem + "']").on("click", ".layui-tab-close", function () {
-			var layid = $(this).parent().attr("lay-id");
-			tabDelete(option.elem, layid, option.closeEvent, option);
-		})
+		$(".layui-tab[lay-filter='" + option.elem + "']")
+			.on("click", ".layui-tab-close", function () {
+				var layid = $(this).parent().attr("lay-id");
+				tabDelete(option.elem, layid, option.closeEvent, option);
+			})
+			.on("mousedown", ".layui-tab-title li", function (e) {
+				if (
+					e.buttons === 4 // 滚轮点击事件
+					&& $(this).find("span").is(".able-close")
+				) {
+					tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent, option);
+				}
+			});
 	}
 
 	function menuEvent(option, index) {
