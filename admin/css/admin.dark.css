@@ -61,7 +61,7 @@
 }
 
 .pear-admin-dark .layui-side .layui-logo,
-.pear-admin-dark .layui-side .layui-side-scroll, 
+.pear-admin-dark .layui-side .layui-side-scroll,
 .pear-admin-dark .layui-side .layui-side-scroll .layui-nav-tree{
     background-color: #141414 !important;
 }
@@ -216,7 +216,7 @@
     background-color: #141414 !important;
 }
 
-.pear-admin-dark .layui-table td, 
+.pear-admin-dark .layui-table td,
 .pear-admin-dark .layui-table th,
 .pear-admin-dark .layui-table-view,
 .pear-admin-dark .layui-table-page,
@@ -229,13 +229,12 @@
 .pear-admin-dark .layui-laypage button {
     border-color: rgba(0, 0, 0, .40) !important;
     color: #ffffff !important;
-    background-color: transparent; 
 }
 
 .pear-admin-dark .layui-table-tool-self > div {
     border-color: rgba(0, 0, 0, .40) !important;
     color: #ffffff !important;
-    background-color: transparent; 
+    background-color: transparent;
 }
 
 /** panel */
@@ -335,3 +334,82 @@
 .pear-admin-dark .user-desc {
     border-top: 1px solid #141414;
 }
+
+/** menu search  */
+.pear-admin-dark .menu-search-list li {
+    box-shadow: 0 1px 3px var(--lay-color-fill-4);
+    background-color: var(--lay-color-fill-2);
+}
+
+.pear-admin-dark .menu-search-list li.this,
+.pear-admin-dark .menu-search-list li:hover {
+    background-color: var(--global-primary-color);
+    color: white;
+}
+
+/** 暗黑模式下部分样式： 2024-04-24*/
+.pear-admin-dark .layui-table {
+    background-color: var(--lay-color-bg-2) !important;
+}
+
+.pear-admin-dark .layui-table tr:hover {
+    background-color: #3e3e3f !important;
+}
+
+.pear-admin-dark .layui-footer {
+    color: #ffffff !important;
+}
+
+.pear-admin-dark .layui-form .bottom {
+    box-shadow: -1px 0 4px rgb(0 0 0 / 12%);
+    background-color: var(--lay-color-bg-2);
+    border-top: 1px solid #141414;
+}
+
+.pear-admin-dark .layui-btn.layui-btn-primary {
+    background-color: #f0f8ffb8 !important;
+}
+
+.pear-admin-dark xm-select {
+    background-color: var(--lay-color-fill-2);
+    color: #ffffff;
+    border: 1px solid var(--lay-color-border-2);
+}
+
+.pear-admin-dark xm-select > .xm-body {
+    background-color: var(--lay-color-bg-5);
+}
+
+.pear-admin-dark .layui-input {
+    border-color: var(--lay-color-border-1) !important;
+}
+
+.pear-admin-dark .layui-iconpicker-search {
+    background-color: var(--lay-color-bg-2);
+}
+
+.pear-admin-dark .layui-iconpicker-icon {
+    background-color: var(--lay-color-bg-5);
+    border-right: 1px solid var(--lay-color-bg-3);
+}
+
+.pear-admin-dark .layui-iconpicker-item {
+    border-color: var(--lay-color-border-3) !important;
+}
+
+.pear-admin-dark .layui-iconpicker .layui-iconpicker-icon-item {
+    border-color: var(--lay-color-border-3) !important;
+}
+.pear-admin-dark .layui-iconpicker .layui-iconpicker-icon-item:hover{
+    background-color: var(--lay-color-fill-4);
+}
+
+.pear-admin-dark .layui-iconpicker .layui-anim {
+    background-color: var(--lay-color-fill-2);
+}
+
+.pear-admin-dark .layui-iconpicker .layui-iconpicker-list {
+    background-color: #272626 !important;
+}
+
+/** 暗黑模式下部分样式：end*/
