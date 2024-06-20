@@ -29,8 +29,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
-			 * 获取 pear.config 实现 [ default ] 
+			 *
+			 * 获取 pear.config 实现 [ default ]
 			 */
 			this.configurationProvider = () => {
 				return new Promise((resolve) => {
@@ -51,8 +51,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			}
 
 			/**
-			 * @since Pear Admin 4.0 
-			 * 
+			 * @since Pear Admin 4.0
+			 *
 			 * 配置 pear.config 路径
 			 */
 			this.setConfigurationPath = (path) => {
@@ -61,8 +61,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
-			 * 获取 pear.config 实现 [ implement ] 
+			 *
+			 * 获取 pear.config 实现 [ implement ]
 			 */
 			this.setConfigurationProvider = (provider) => {
 				this.configurationProvider = provider;
@@ -70,7 +70,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 获取 pear.config 配置
 			 */
 			this.getConfiguration = () => {
@@ -79,10 +79,10 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * Core Function.
-			 * 
-			 * @param {*} options 
+			 *
+			 * @param {*} options
 			 */
 			this.render = (options) => {
 				if (options !== undefined) {
@@ -95,8 +95,8 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			}
 
 			/**
-			 * @since Pear Admin 4.0 
-			 * 
+			 * @since Pear Admin 4.0
+			 *
 			 * 启动构建
 			 */
 			this.apply = function (configuration) {
@@ -113,7 +113,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 菜单搜索
 			 */
 			this.menuSearchRender = function (options) {
@@ -155,7 +155,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 消息中心
 			 */
 			this.messageCenterRender = function (options) {
@@ -173,7 +173,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 侧边菜单
 			 */
 			this.menuRender = function (param) {
@@ -205,7 +205,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 视图容器
 			 */
 			this.bodyRender = function (param) {
@@ -303,7 +303,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0
-			 * 
+			 *
 			 * 主题配置
 			 */
 			this.themeRender = function (option) {
@@ -429,6 +429,9 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 				$pearAdmin.removeClass("pear-admin-dark");
 				if (checked === true || checked === "true") {
 					$pearAdmin.addClass("pear-admin-dark");
+					document.getElementById('layui-theme-dark-css').setAttribute('href','/admin/css/layui-theme-dark.css')
+				}else{
+					document.getElementById('layui-theme-dark-css').removeAttribute('href')
 				}
 			}
 
@@ -449,7 +452,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * 设置注销逻辑
-			 * 
+			 *
 			 * @param callback 实现
 			 */
 			this.logout = function (callback) {
@@ -460,7 +463,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 			/**
 			 * @since Pear Admin 4.0.3
-			 * 
+			 *
 			 * 刷新当前页面
 			 */
 			this.refresh = function () {
@@ -476,10 +479,10 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 			}
 
 			/**
-			 * @since Pear Admin 4.0.3 
-			 * 
+			 * @since Pear Admin 4.0.3
+			 *
 			 * 切换内容页面
-			 * 
+			 *
 			 * PS: tabPages 模式下，如果页面不存在则新增，反则仅做切换。
 			 */
 			this.changePage = function (data) {
@@ -494,7 +497,7 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 		/**
 		 * @since Pear Admin 4.0
-		 * 
+		 *
 		 * 菜单折叠
 		 */
 		function collapse() {
@@ -517,11 +520,11 @@ layui.define(['jquery', 'tools', 'element', 'yaml', 'form', 'tabPage', 'menu', '
 
 		/**
 		 * @since Pear Admin 4.0
-		 * 
-		 * 使用 admin.logout(Function) 实现注销 
-		 * 
+		 *
+		 * 使用 admin.logout(Function) 实现注销
+		 *
 		 * Promise<boolean> 作为返回值类型时，泛型内容为 true 时视为注销成功，则清除 pearAdmin.instances.tabPage 缓存
-		 * 
+		 *
 		 * 否则视为注销失败，不做任何处置。
 		 */
 		body.on("click", ".logout", function () {
