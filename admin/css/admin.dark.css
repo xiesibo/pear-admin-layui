@@ -148,6 +148,16 @@
     border-color: rgba(0, 0, 0, .30) !important;
 }
 
+.pear-admin-dark .menu-search-list li{
+    background-color:#141414;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, .6) !important;
+    color: #ffffff;
+}
+
+.pear-admin-dark .menu-search-list li:hover{
+    background-color:var(--global-primary-color) !important;
+}
+
 
 /** message center */
 .pear-admin-dark .pear-message-center .layui-tab-title,
