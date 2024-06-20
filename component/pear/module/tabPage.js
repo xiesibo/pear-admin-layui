@@ -565,10 +565,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 				tabDelete(option.elem, layid, option.closeEvent, option);
 			})
 			.on("mousedown", ".layui-tab-title li", function (e) {
-				if (
-					e.buttons === 4 // 滚轮点击事件
-					&& $(this).find("span").is(".able-close")
-				) {
+				if (e.buttons === 4 && $(this).find("span").is(".able-close")) {
 					tabDelete(option.elem, $(this).attr("lay-id"), option.closeEvent, option);
 				}
 			});
@@ -642,6 +639,7 @@ layui.define(['jquery', 'element', 'dropdown'], function (exports) {
 			var touch = e.originalEvent.targetTouches[0];
 			touchX = touch.pageX
 		})
+
 		$bodyTab.on("touchmove", function (e) {
 			var event = e.originalEvent;
 			if (event.targetTouches.length > 1) return;

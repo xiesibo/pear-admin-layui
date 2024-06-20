@@ -235,6 +235,12 @@
     border-color: rgba(0, 0, 0, .40) !important;
 }
 
+.pear-admin-dark .layui-table-tool-self > div {
+    border-color: rgba(0, 0, 0, .40) !important;
+    color: #ffffff !important;
+    background-color: transparent; 
+}
+
 .pear-admin-dark .layui-laypage select,
 .pear-admin-dark .layui-laypage button {
     border-color: rgba(0, 0, 0, .40) !important;
@@ -242,10 +248,16 @@
     background-color: transparent; 
 }
 
-.pear-admin-dark .layui-table-tool-self > div {
-    border-color: rgba(0, 0, 0, .40) !important;
-    color: #ffffff !important;
-    background-color: transparent; 
+.pear-admin-dark .layui-laypage a,
+.pear-admin-dark .layui-laypage-spr,
+.pear-admin-dark .layui-laypage-skip,
+.pear-admin-dark .layui-laypage-count {
+    color: #ffffff;
+}
+
+.pear-admin-dark .layui-laypage-limits option {
+    background-color: #141414 !important;
+    color: #ffffff;
 }
 
 /** panel */
